@@ -1,0 +1,124 @@
+body{
+    background-color: grey;    
+}
+.background{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.canvas-body{
+    border:5px blue solid;
+    width:"1385px";
+    height:"705px"
+}
+.btns-box{
+    border:5px solid darkblue;
+}
+.options,.ai-decisions,.ai-options {
+  /* setup position */
+  display: flex;
+  flex-direction: column;
+  align-items: end; 
+  justify-content: start;
+  /* height & width */
+  width:70vw;
+  height:10vh;
+
+  /* Border for testing */
+  border:5px solid aqua;
+}
+.ai-decisions{
+    display: flex;
+    flex-direction: column;
+    align-items: start; 
+    justify-content: start;
+}
+.ai-options{
+    display: flex;
+    flex-direction: column;
+    align-items:center; 
+    justify-content: center;
+}
+
+.buttons-{
+    /* setup position */
+    display: flex;
+    flex-direction: column;
+    align-items: end; 
+    justify-content: start;
+
+    /* height & width */
+    width:15rem;
+    height:15rem;
+
+    /* Border for testing */
+    border:5px solid green;
+    
+}
+.first,.second,.third{
+ 
+    width: 244px;
+    height: 34px;
+    left: 1141px;
+    top: 838px;
+    
+    background: #737373;
+    border-radius: 20px;
+}
+.second{
+    background: #4D4AC2;
+}
+.third{
+background: #BB3E3E;
+}
+.first-{
+    /* position: absolute; */
+width: 119px;
+height: 43px;
+left: 226px;
+top: 923px;
+
+background: #A882E7;
+border-radius: 20px;
+}
+.second-{
+    /* position: absolute; */
+    width: 119px;
+    height: 43px;
+    left: 370px;
+    top: 923px;
+    
+    background: #E78282;
+    border-radius: 20px;
+}
+.third-{
+    /* position: absolute; */
+    width: 119px;
+    height: 43px;
+    left: 514px;
+    top: 923px;
+    
+    background: #7BD384;
+    border-radius: 20px;
+}
+.polygon{
+    /* position: absolute; */
+width: 64px;
+height: 59px;
+left: 95px;
+top: 907px;
+
+background: #2A5BD8;
+border-radius: 20px;
+}
+.square{
+    /* position: absolute; */
+width: 64px;
+height: 59px;
+left: 0px;
+top: 907px;
+
+background: #D37404;
+border-radius: 20px;
+}

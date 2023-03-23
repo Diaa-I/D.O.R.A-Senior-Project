@@ -13,6 +13,24 @@ app.use(methodOverride("_method"))
 
 app.use(express.static(path.join(__dirname, '/public/')))
 
+class service{
+
+constructor(port,dbPort){
+this.port = port
+this.dbPort = dbPort
+}
+connectToDB(){
+// connecting to db
+}
+setUp(){
+    //all the basics
+}
+startUp(){
+    //lunch the server
+}
+
+}
+
 const sessionConfig={
     secret:"thisisagoodsecret",resave:false,saveUninitialized:false,
     cookie:{ 
@@ -42,6 +60,9 @@ console.log("YOYOYO")
 console.log(`error is ${e}`)
 }) 
 
+app.get("/",(req,res)=>{
+res.render("workspace.ejs")
+})
 
 
 app.listen(8080,()=>{
