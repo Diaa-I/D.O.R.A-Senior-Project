@@ -30,7 +30,7 @@ app = service.app
 mongo = service.mongo
 
 
-ALLOWED_EXTENSIONS = {'MP4', 'MOV', 'WMV', 'FLV', 'AVI', 'MKV', 'WebM'}
+ALLOWED_EXTENSIONS = {'mp4', 'mov', 'wmv', 'flv', 'avi', 'mkv', 'webm'}
 
 
 def allowed_file(filename):
