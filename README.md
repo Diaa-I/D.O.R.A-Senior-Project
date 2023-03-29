@@ -13,8 +13,10 @@ Our project is mainly about facilitating the annotation process, which is an ess
 
 ## Contributors
 
-- [Seba Al Mokdad](https://www.linkedin.com/in/seba-al-mokdad/)
+- [Diaa Nasr](https://www.linkedin.com/in/diaa-nasr/)
 
 - [Anas Khaled](https://www.linkedin.com/in/anaskhaled/)
 
-- [Diaa Nasr](https://www.linkedin.com/in/diaa-nasr/)
+- [Seba Al Mokdad](https://www.linkedin.com/in/seba-al-mokdad/)
+
+
