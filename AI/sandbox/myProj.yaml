@@ -1,0 +1,7 @@
+path: ../train_data
+train: images/train
+val: images/val
+names:
+  0: lab1
+  1: lab2
+  2: lab3
