@@ -1,7 +1,11 @@
-import requests
 import os
 from flask import Flask,flash,render_template,redirect,request,url_for
 from flask_pymongo import PyMongo, ObjectId
+from models.annotation_class import Annotation
+from models.file_class import File
+from routes.landing.landingRoutes import landing
+from routes.workspace.workspaceRoutes import workspace
+
 # Setup
 class Service:
     def __init__(self):
@@ -14,7 +18,7 @@ class Service:
 
     def connectToDB(self):
         # connection to db via PyMongo
-        self.mongo = PyMongo(self.app, uri="mongodb://localhost:27017/movies-flask")
+        self.mongo = PyMongo(self.app, uri="mongodb://localhost:27017/DORA")
         return self.mongo
 
     def setup(self):
@@ -29,41 +33,17 @@ service = Service()
 app = service.app
 mongo = service.mongo
 
-
-ALLOWED_EXTENSIONS = {'mp4', 'mov', 'wmv', 'flv', 'avi', 'mkv', 'webm'}
-
-
-def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+# Routes to workspace
+app.register_blueprint(workspace, url_prefix='/workspace')
+# Routes to landing page
+app.register_blueprint(landing, url_prefix='/')
 
 
-@app.route("/")
-def rendering():
-    return render_template("/views/landing.html")
 
+# Error handling class
+# --------------------------------------------------------
+# Error Handling
 
-@app.route("/workspace",methods=["GET","POST"])
-def workspace():
-    if request.method == "POST":
-        print("Hello")
-
-        if 'video' not in request.files:
-            flash("No file was uploaded, Upload a video that satisfies the conditions")
-            return redirect(url_for("rendering"))
-        file = request.files['video']
-
-        if file.filename == '':
-            flash("No selected file,Upload a video that satisfies the conditions")
-            return redirect(url_for("rendering"))
-
-        if file and allowed_file(file.filename):
-            print(file)
-        else:
-            flash("Upload a video that satisfies the conditions")
-            return redirect(url_for("rendering"))
-
-    return render_template("/views/workspace.html")
 
 
 if __name__=="__main__":
