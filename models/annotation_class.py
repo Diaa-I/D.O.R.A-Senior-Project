@@ -20,7 +20,6 @@ class Annotation:
         pass
     def validate_annotation(self):
         """Validate the annotation data passed"""
-
         pass
 # Annotation class
 # --------------------------------------------------------

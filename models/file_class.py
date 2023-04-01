@@ -23,6 +23,7 @@ class File:
     def validate_video(self):
         """Unsure what needs to be validated"""
         pass
+
 # File class
 # --------------------------------------------------------
 # Upload video (done)

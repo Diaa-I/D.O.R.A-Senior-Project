@@ -20,9 +20,15 @@
 
 
 <form action="/workspace" method="post" enctype=multipart/form-data>
-    <h3>Labels</h3>
+        <p>Project name</p>
+    <label for="project_name">
+
+        <input type="text" name="project_name" id="project_name" required>
+    </label>
+        <p>labels</p>
     <label for="labels">
-        <textarea name="labels" id="labels" required rows="5" cols="30"> </textarea>
+
+        <textarea name="labels" id="labels" required rows="5" cols="30"></textarea>
     </label>
     <hr>
     <label for="video">

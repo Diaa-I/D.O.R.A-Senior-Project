@@ -12,7 +12,7 @@ class Service:
         # Constructor
         self.__template_dir = os.path.abspath(os.getcwd())
         self.__static_dir = self.__template_dir + "/public/"
-        self.__uploaded_folder = '/upload/files/'
+        self.__uploaded_folder = '/uploads/files/'
         self.app = self.setup()
         self.mongo = self.connectToDB()
 
@@ -32,6 +32,7 @@ class Service:
 service = Service()
 app = service.app
 mongo = service.mongo
+
 
 # Routes to workspace
 app.register_blueprint(workspace, url_prefix='/workspace')
