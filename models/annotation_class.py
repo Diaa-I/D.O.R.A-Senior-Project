@@ -16,12 +16,11 @@ class Annotation:
     def retrieve_annotation_from_db(self):
         """call the db function for that"""
         pass
-    def save_to_db(self):
-        """call db class to save annotation"""
-        pass
+
     def delete_annotation(self):
         """call db class to delete annotation"""
         pass
+    
     def validate_annotation(self):
         """Validate the annotation data passed"""
         pass

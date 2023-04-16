@@ -66,7 +66,7 @@ class DataManager(object):
     def storeAsYOLOtxt(self, annObjsArray, at):
         # the annObjArray must be an array in the form of: 
         #    [[frameFileName, img_width, img_height, objLabel, x_center, y_center, width, height], ...]
-        # e.g. ['12.JPEG', 1200, 800, 'cat', 25.666, 355, 120, 560]
+        # e.g. ['12.JPEG', 'cat', 25.666, 355, 120, 560]
         # CHANGE IT SO THAT AN ANNOTATION FILE CAN HAVE MORE THAN 1 ANNOTATION
         for annObj in annObjsArray:
             # get image width and height
@@ -95,16 +95,16 @@ class DataManager(object):
 
 
 
-DM = DataManager(['cat', 'dog', 'horse'], 'projName')
-print("DataManger: initialized")
+# DM = DataManager(['cat', 'dog', 'horse'], 'projName')
+# print("DataManger: initialized")
 
-DM.createYaml(at="AI\sandbox")
-print("DataManger: YAML created")
+# DM.createYaml(at="AI\sandbox")
+# print("DataManger: YAML created")
 
-DM.extractFrames(videoFile=r"AI\sandbox\sample.mp4", outputDir=r"AI\sandbox")
-print("DataManger: frames extracted")
+# DM.extractFrames(videoFile=r"AI\sandbox\sample.mp4", outputDir=r"AI\sandbox")
+# print("DataManger: frames extracted")
 
-DM.storeAsYOLOtxt([['0_projName.jpg', 'cat', 25.666, 355, 120, 560], 
-                   ['1_projName.jpg', 'dog', 16.566, 50, 40, 1000]], 
-                   at=r"AI\sandbox")
-print("DataManager: .txt annotation files created")
+# DM.storeAsYOLOtxt([['0_projName.jpg', 'cat', 25.666, 355, 120, 560], 
+#                    ['1_projName.jpg', 'dog', 16.566, 50, 40, 1000]],
+#                    at=r"AI\sandbox")
+# print("DataManager: .txt annotation files created")
