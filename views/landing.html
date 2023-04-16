@@ -3,40 +3,223 @@
 <head>
     <meta charset="UTF-8">
     <title>Welcome</title>
+    <link rel="stylesheet" href="/css/landing.css">
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-<h1>Welcome to D.O.R.A</h1>
-<h2>Dynamic Object Recognition and Annotation</h2>
-{% with messages = get_flashed_messages() %}
-  {% if messages %}
-<div class="alert alert-primary" role="alert">
-    {% for message in messages %}
-    {{message}}
-    {% endfor %}
-  {% endif %}
-</div>
-{% endwith %}
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
+    <!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">
+            <img src="views/utils/logo.png" class="logo" alt="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#Try-it">Try it</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#About">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#Features">Features</a>
+                        </li>
+                    </ul>
+                </div>
+
+            
+            
+    
+            
+</nav>
 
 
-<form action="/workspace" method="post" enctype=multipart/form-data>
-        <p>Project name</p>
-    <label for="project_name">
-
-        <input type="text" name="project_name" id="project_name" required>
-    </label>
-        <p>labels</p>
-    <label for="labels">
-
-        <textarea name="labels" id="labels" required rows="5" cols="30"></textarea>
-    </label>
-    <hr>
-    <label for="video">
-        <input type="file" name="video" id="video" required>
-    </label>
-    <button>Submit</button>
-</form>
 
 
+
+
+<!-- Welcome Section -->
+
+<section class="pb-5 welcome section">
+    <div class="container-fluid">
+        <div class = "row">
+            <div class="col-md-6">
+                <div class="ms-4"> <!-- Adding another div to pad the text from left and keep the format as 2-cols-->
+                    <h1>Unleash the Power of AI Annotation</h1>
+                    <p>What used to take weeks now take hours</p>
+                    <button class="btn btn-primary" onClick="document.getElementById('Try-it').scrollIntoView();">Try it yourself</button>
+                </div>
+                    
+                
+            </div>
+            <div class="col-md-6 p-0"> <!-- p-0 to remove the col padding -->
+                <img src="robotHand.png" class="img-fluid" alt="robotHand">
+            </div>
+            
+        </div>
+        
+
+    </div>
+    
+
+</section>
+
+
+<!-- About Section -->
+
+<section id="About" class="pb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2>Dynamic Object Recognition and</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-7 me-5">
+                <div class="card border border-light rounded centered">
+                    <div class="card-body">
+                        <p>Our AI annotation tool is an advanced platform that uses cutting-edge technology to help businesses and individuals annotate their data with precision and speed. With our tool, you can easily label and tag images, videos, and text to train machine learning models and improve the accuracy of your AI applications.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-3">
+                <div class="overlay">
+                    <img src="bounding-box.png" class="img-fluid" alt="bounding-box">
+                    <div class="centered">
+                      <h2>Annotation</h2>
+                    </div>
+                  </div> 
+            </div>
+        </div>
+        
+        
+    </div>
+</section>
+
+
+<!-- Features Section -->
+<section id="Features" class="pb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2>Transform Your Data with 
+                    Our AI Annotation Tool</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-3">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <img src="views/utils/chip.png" alt="Feature 1 Icon">
+                        <h3>Intelligent Labeling</h3>
+                        <p>Our AI-powered tool can automatically label your data with high accuracy, 
+                            reducing the time and effort required to annotate your datasets.
+                            It uses advanced algorithms to analyze just a few frames and generate labels for the rest of the data.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-3">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <img src="views/utils/flexibility.png" alt="Feature 2 Icon">
+                        <h3>Flexible Annotation</h3>
+                        <p>With our easy-to-use tools, you can customize your annotation workflow to 
+                        fit your specific needs. From bounding boxes to segmentation, our tool provides a range 
+                        of annotation options to help you accurately label your data.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-3">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <img src="views/utils/fast-time.png" alt="Feature 3 Icon">
+                        <h3>Fast and Efficient</h3>
+                        <p>Our annotation tool is designed for speed and efficiency, allowing you
+                            to label large datasets in record time. Whether you have thousands or millions 
+                            of data points, our tool can handle it with ease, thanks to its advanced AI-powered annotation capabilities.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-3">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <img src="views/utils/easy.png" alt="Feature 4 Icon">
+                        <h3>Straightforward</h3>
+                        <p>Our annotation tool is designed with simplicity in mind, making
+                            it easy for you to annotate your data without getting bogged down in complicated
+                             interfaces. With intuitive features and a user-friendly design, you can focus on your data without the hassle of complexity.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Try It Section -->
+
+<section id="Try-it" class="pb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2>Try It Yourself</h2>
+              </div>
+        </div>
+
+    </div>
+    <div class="container">
+      <div class="row">
+        
+            <form action="/workspace" method="post" enctype=multipart/form-data>
+                <div class="row mb-3">
+                  <label for="project_name" class="form-label text-white">Project name</label>
+                  <input class="form-control" type="text" name="project_name" id="project_name" placeholder="Name of the project" required>
+                </div>
+                <div class="row mb-3">
+                  <label for="video" class="form-label text-white">Video</label>
+                  <input class="form-control" type="file" name="video" id="video" placeholder="Upload a video" required>
+                </div>
+                <div class="row mb-3">
+                  <label for="labels" class="form-label text-white">Labels</label>
+                  <textarea class="form-control" name="labels" id="labels" required rows="5" cols="30" placeholder="Add your labels (labels should be words separated by comma)"></textarea>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        
+      </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<section id="footer" >
+    <footer class="bg-secondary">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 text-center text-white">
+              <p>Copyright © 2023</p>
+            </div>
+          </div>
+        </div>
+      </footer>      
+</section>
+  
+
+<!--{% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <div class="alert alert-primary" role="alert">
+                {% for message in messages %}
+                {{message}}
+                {% endfor %}
+                {% endif %}
+                </div>
+                {% endwith %}-->
+    
 </body>
 </html>
