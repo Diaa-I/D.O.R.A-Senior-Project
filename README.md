@@ -10,6 +10,25 @@ We believe this project can significantly impact the field of semi-automated vid
 Our project is mainly about facilitating the annotation process, which is an essential part of any supervised learning process. This project will provide an easy-to-use web application that will make the annotation process much faster. The idea is to use a small part of the video to build an initial model which will be used to suggest the annotation of the following frames. The user will be able to accept or reject the suggested annotations by using reinforcement learning which will improve the model performance using the user feedback as well as retraining. The aim of the project is not to replace human annotators, but to significantly speed up their work.
 
 ## Installation
+### `Step 1` - Clone the repository
+```bash
+git clone https://github.com/Diaa-I/Junior-Project.git
+```
+### `Step 2` - Cd in the repository
+```bash
+cd Junior-Project
+```
+### `Step 3` - Install requirements
+```bash
+pip install -r requirements.txt
+```
+### `Step 4` - Run the application
+```bash
+python app.py
+```
+### `Step 5` - Access the application
+
+Open a web browser and navigate to [http://localhost:5000](http://localhost:5000)
 
 ## Contributors
 
