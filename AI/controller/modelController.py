@@ -96,7 +96,7 @@ class ModelController(object):
         Image will be processed not according to its original size, but the size specified in frameSize.
         ====================================================
         Parameters:
-            - img: a 3-D array representing the RGB of an image, or a 4-D array such that the last index is for batching.
+            - img: a 3-D array representing the RGB of an image OR a 4-D array such that the last index is for batching OR string of the path of the image.
             - confThreshold: float between 0 and 1 inclusive, only detected objects equal to or above this value will be returned.
             - frameSize: 2-value tuple of the dimensions of model input. MUST both be equal, integers, and multiple of 160 (160, 320, 480 ..).
         returns: list of python dictionaries of the form: [{'name': str, 'conf_score': float, 'location': [ymin, xmin, ymax, xmax]}, {...}, ...].
@@ -121,6 +121,9 @@ class ModelController(object):
         assert (confThreshold <= 1 or confThreshold >= 0), "Confidence threshold must be equal to or less than 1 positive float."
         assert (frameSize[0] % 160 == 0 and frameSize[1] % 160 == 0), "Both the dimensions of the model input must be integers multiple of 160"
         assert ((isinstance(img, str) and os.path.exists(img)) or len(img.shape == 3) or len(img.shape == 4)), "invalid image input parameter, must be of a 3D or 4D shape, or a string to the path of an image file"
+        
+        # If img is given as a file path, load the image, and convert it to 3D numpy array
+        img = np.array(Image.open(img)) if isinstance(img, str) else img
 
         # Preprocess image for model input
         img = letterbox(img, frameSize, stride=self.pt_stride)[0]  # padded resize
