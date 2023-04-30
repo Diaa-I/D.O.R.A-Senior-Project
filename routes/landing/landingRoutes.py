@@ -8,7 +8,7 @@ landing = Blueprint("landing", __name__)
 
 
 landing.route("/",methods=['GET'])(landingController.rendering)
-
+landing.route("/a",methods=['GET'])(landingController.a)
 
 
 

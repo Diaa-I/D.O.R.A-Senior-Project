@@ -11,10 +11,10 @@ class Service:
     def __init__(self):
         # Constructor
         self.__template_dir = os.path.abspath(os.getcwd())
-        self.__static_dir = self.__template_dir + "/public/"
+        self.__static_dir = self.__template_dir
         self.__uploaded_folder = '/uploads/files/'
         self.app = self.setup()
-        self.mongo = self.connectToDB()
+# 0        self.mongo = self.connectToDB()
 
     def connectToDB(self):
         # connection to db via PyMongo
@@ -31,9 +31,10 @@ class Service:
 
 service = Service()
 app = service.app
-mongo = service.mongo
 
 
+# # Routes to annotations
+# app.register_blueprint(landing, url_prefix='/annotations')
 # Routes to workspace
 app.register_blueprint(workspace, url_prefix='/workspace')
 # Routes to landing page
@@ -48,4 +49,4 @@ app.register_blueprint(landing, url_prefix='/')
 
 
 if __name__=="__main__":
-    app.run(debug=True)
+    app.run(debug=True,threaded=True)

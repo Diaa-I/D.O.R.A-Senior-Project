@@ -6,7 +6,8 @@ from controllers.workspace import workspaceController
 workspace = Blueprint("workspace", __name__)
 
 
-workspace.route("", methods=["POST", "GET"])(workspaceController.workspace)
+workspace.route("", methods=["POST"])(workspaceController.workspace)
+workspace.route("/getlabels", methods=["GET"])(workspaceController.get_labels)
 
 
 
