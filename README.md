@@ -1,3 +1,7 @@
+<div align="center">
+    <img src = 'public\utils\logo.png' width=100% style="border-radius: 4vw;">
+</div>
+
 # Dynamic Object Recognition and Annotation (DORA)
 
 ## Overview
