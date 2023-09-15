@@ -150,11 +150,11 @@ class ModelController(object):
                 loc = [ymin, xmin, ymax, xmax]
 
                 print(f"\t > Object detected, "
-                        f"Name: '{self.labelsIndex['name'][obj_class]}', "
+                        f"Name: '{self.labelsIndex['names'][obj_class]}', "
                         f"Confidence: {round(obj_acc * 100, 1)}%, "
                         f"Location: {loc}")
 
-                filtered_det_obj = {"name": self.labelsIndex['name'][obj_class],
+                filtered_det_obj = {"name": self.labelsIndex['names'][obj_class],
                                     "conf_score": obj_acc,
                                     "location": loc}
 
