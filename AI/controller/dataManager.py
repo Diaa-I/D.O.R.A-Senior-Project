@@ -5,17 +5,10 @@ import cv2
 
 class DataManager(object):
     '''
-    class responsible for managing the training and inference of the model.
-    The methods, when called MUST follow this order:
-        1. loadLabelsIndex() - only done once per Project.
-        2. trainModel() - only done few times (when the conditions for training are satisfied).
-        3. loadModel() - done as many times as trainModel() has been called.
-        4. makeInference() - done for every image/frame.
-
+    class containing utilities for creating required files before, during, and after training.
     refer to the documentation of each method for more details.
         
     TODO:
-        - change the name of 'DataManager' to 'Project'
         - add 2 attributrs, one for total number of frames, and one for current number of frames
     '''
     totalFrameCount = 0

@@ -24,16 +24,13 @@ class ModelController(object):
     '''
     class responsible for managing the training and inference of the model.
     The methods, when called MUST follow this order:
-        1. loadLabelsIndex() - only done once per Project.
-        2. trainModel() - only done few times (when the conditions for training are satisfied).
-        3. loadModel() - done as many times as trainModel() has been called.
-        4. makeInference() - done for every image/frame.
+        1. trainModel() - only done few times (when the conditions for training are satisfied).
+        2. loadTrainedModel() - done as many times as trainModel() has been called.
+        3. makeInference() - done for every image/frame.
 
     refer to the documentation of each method for more details.
     
     TODO:
-        - test every method on a VM.
-        - implement checkTrainCondition()
         - change the training output directory
         - add option to choose from a several starting checkpoint / model architecture for training.
     '''
@@ -160,7 +157,4 @@ class ModelController(object):
 
                 detections.append(filtered_det_obj)
         return detections
-
-    def checkTrainCondition(self) -> bool:
-        pass
 
