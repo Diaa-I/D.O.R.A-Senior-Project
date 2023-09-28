@@ -3,7 +3,7 @@ import yaml
 import cv2
 
 
-class DataManager(object):
+class ProjectManager(object):
     '''
     class containing utilities for creating required files before, during, and after training.
     refer to the documentation of each method for more details.
@@ -11,7 +11,10 @@ class DataManager(object):
     TODO:
         - add 2 attributrs, one for total number of frames, and one for current number of frames
     '''
-    totalFrameCount = 0
+    totalProjectImagesCount = 0
+    imageRetrievalIndex = 0
+    RETRIEVAL_SIZE = 10
+    allFramesPaths = []
 
     def __init__(self, labelsArray, projectName) -> None:
         '''
@@ -89,7 +92,7 @@ class DataManager(object):
             os.makedirs(outputDir)
 
         # Initialize the frame count and loop over all frames
-        count_init = self.totalFrameCount
+        count_init = self.totalProjectImagesCount
         while True:
             # Read a frame from the video
             ret, frame = cap.read()
@@ -99,18 +102,19 @@ class DataManager(object):
                 break
 
             # Construct the output file path and save the frame as a JPG file
-            output_path = os.path.join(outputDir, f"{self.totalFrameCount}_{self.projectName}.jpg") # EDIT projName to a class attribute
+            output_path = os.path.join(outputDir, f"{self.totalProjectImagesCount}_{self.projectName}.jpg") # EDIT projName to a class attribute
             if not os.path.exists(output_path):
                 cv2.imwrite(output_path, frame)
+                self.allFramesPaths.append(output_path)
             else:
                 print(f"{output_path} already exists")
 
             # Increment the frame count
-            self.totalFrameCount += 1
+            self.totalProjectImagesCount += 1
 
         # Release the video capture object
         cap.release()
-        print(f"Extracted {self.totalFrameCount - count_init} frames from {videoFilepath}.")
+        print(f"Extracted {self.totalProjectImagesCount - count_init} frames from {videoFilepath}.")
 
     def storeAsYOLOtxt(self, annObjsArray, at) -> None:
         '''
@@ -157,6 +161,9 @@ class DataManager(object):
                 annFile.write(f"{label} {x_center} {y_center} {width} {height}")
                 annFile.close()
     
+    def retrieveNextBatch(self):
+        pass
+
     @staticmethod
     def normalize_coordinates(x, y, width, height, img_width, img_height):
         '''
