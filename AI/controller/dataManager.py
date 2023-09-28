@@ -10,7 +10,6 @@ class ProjectManager(object):
     '''
     totalProjectImages = 0
     imageRetrievalIndex = 0
-    RETRIEVAL_SIZE = 10
     allFramesPaths = []
 
     def __init__(self, labelsArray, projectName) -> None:
@@ -158,10 +157,13 @@ class ProjectManager(object):
                 annFile.write(f"{label} {x_center} {y_center} {width} {height}")
                 annFile.close()
     
-    def retrieveNextBatch(self):
+    def retrieveNextBatch(self, retrieval_size=10):
         '''
-        returns RETRIEVE_SIZE number of images filepaths in batches every time it's called. Starts from 0 index and moves RETRIEVE_SIZE.
-        RETRIEVE_SIZE is set to 10 by default.
+        returns retrieval_size number of images filepaths in batches every time it's called. Starts from 0 index and moves retrieval_size.
+        retrieval_size is set to 10 by default.
+        ====================================================
+        Parameters:
+            - retrieval_size: the number of filepaths to be returned in each batch.
         ====================================================
         returns: list of relative filepaths to 'outputDir' of all the files stored in 'outputDir'. Returns empty list once all filepaths
         have been returned.
@@ -184,7 +186,7 @@ class ProjectManager(object):
         
         '''
         start = self.imageRetrievalIndex
-        end = self.imageRetrievalIndex + self.RETRIEVAL_SIZE
+        end = self.imageRetrievalIndex + retrieval_size
 
         if start < self.totalProjectImages - 1:
             if end < self.totalProjectImages - 1:
