@@ -7,11 +7,8 @@ class ProjectManager(object):
     '''
     class containing utilities for creating required files before, during, and after training.
     refer to the documentation of each method for more details.
-        
-    TODO:
-        - add 2 attributrs, one for total number of frames, and one for current number of frames
     '''
-    totalProjectImagesCount = 0
+    totalProjectImages = 0
     imageRetrievalIndex = 0
     RETRIEVAL_SIZE = 10
     allFramesPaths = []
@@ -92,7 +89,7 @@ class ProjectManager(object):
             os.makedirs(outputDir)
 
         # Initialize the frame count and loop over all frames
-        count_init = self.totalProjectImagesCount
+        count_init = self.totalProjectImages
         while True:
             # Read a frame from the video
             ret, frame = cap.read()
@@ -102,7 +99,7 @@ class ProjectManager(object):
                 break
 
             # Construct the output file path and save the frame as a JPG file
-            output_path = os.path.join(outputDir, f"{self.totalProjectImagesCount}_{self.projectName}.jpg") # EDIT projName to a class attribute
+            output_path = os.path.join(outputDir, f"{self.totalProjectImages}_{self.projectName}.jpg") # EDIT projName to a class attribute
             if not os.path.exists(output_path):
                 cv2.imwrite(output_path, frame)
                 self.allFramesPaths.append(output_path)
@@ -110,11 +107,11 @@ class ProjectManager(object):
                 print(f"{output_path} already exists")
 
             # Increment the frame count
-            self.totalProjectImagesCount += 1
+            self.totalProjectImages += 1
 
         # Release the video capture object
         cap.release()
-        print(f"Extracted {self.totalProjectImagesCount - count_init} frames from {videoFilepath}.")
+        print(f"Extracted {self.totalProjectImages - count_init} frames from {videoFilepath}.")
 
     def storeAsYOLOtxt(self, annObjsArray, at) -> None:
         '''
@@ -162,7 +159,45 @@ class ProjectManager(object):
                 annFile.close()
     
     def retrieveNextBatch(self):
-        pass
+        '''
+        returns RETRIEVE_SIZE number of images filepaths in batches every time it's called. Starts from 0 index and moves RETRIEVE_SIZE.
+        RETRIEVE_SIZE is set to 10 by default.
+        ====================================================
+        returns: list of relative filepaths to 'outputDir' of all the files stored in 'outputDir'. Returns empty list once all filepaths
+        have been returned.
+        ====================================================
+        Example of usage:
+            > dm = ProjectManager(['cat', 'dog', 'lion'], 'animals_detection')
+            > dm.extractFrames(videoFilepath=r".\dir\Vid.mp4", outputDir=r".\data")
+            > dm.retrieveNextBatch()
+        .\\data\\0_animals_detection.jpg
+        .\\data\\1_animals_detection.jpg
+        .\\data\\2_animals_detection.jpg
+        ...
+        .\\data\\9_animals_detection.jpg
+            > dm.retrieveNextBatch()
+        .\\data\\10_animals_detection.jpg
+        .\\data\\11_animals_detection.jpg
+        .\\data\\12_animals_detection.jpg
+        ...
+        .\\data\\19_animals_detection.jpg
+        
+        '''
+        start = self.imageRetrievalIndex
+        end = self.imageRetrievalIndex + self.RETRIEVAL_SIZE
+
+        if start < self.totalProjectImages - 1:
+            if end < self.totalProjectImages - 1:
+                self.imageRetrievalIndex = end
+                return self.allFramesPaths[start:end]
+            else:
+                end = self.totalProjectImages - 1
+                self.imageRetrievalIndex = end
+                return self.allFramesPaths[start:end]
+        else:
+            return []
+
+
 
     @staticmethod
     def normalize_coordinates(x, y, width, height, img_width, img_height):
