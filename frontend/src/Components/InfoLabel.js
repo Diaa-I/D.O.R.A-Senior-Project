@@ -2,6 +2,8 @@ import './workspace.css'
 
 
 const InfoLabel = ()=>{
+    // when label is selected then information should be printed
+
 return(
     <div class="info-label">
         <div></div>

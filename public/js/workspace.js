@@ -1,3 +1,8 @@
+//ADD ANother canvas on the front that will be transparent and used for the annotation
+
+
+
+
 const canvas = document.querySelector("#canvas")
 let canvasContext = canvas.getContext("2d")
 const btn = document.querySelector(".square")

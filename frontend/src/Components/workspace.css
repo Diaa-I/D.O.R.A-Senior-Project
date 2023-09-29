@@ -21,14 +21,38 @@ align-items: center;
 height: 100vh;
 }
 
-.canvas {
+/* .canvas {
 margin: 2.5vh 0;
+} */
+
+.canvas {
+
+ border: 5px solid blue;
+ width: 70vw;
+ height: 80vh;
+ position: relative;
+ /* display: flex;
+ justify-content: flex-start;
+ align-items: flex-start;
+ flex-direction: column; */
 }
 
-.canvas-body {
- border: 5px solid blue;
- width: 75vw;
- height: auto;
+.canvas-body{
+  border: 5px solid yellow;
+  margin: 2.5%;
+  position: absolute;
+  top:0%;
+  left: 0%;
+  /* width: 75vw;
+  height: auto;   */
+}
+.body-annotation{
+  border: 5px solid green;
+  position: absolute;
+  top:0%;
+  left: 0%;
+  /* width: 75vw;
+  height: auto;   */
 }
 
 .btns-box {
