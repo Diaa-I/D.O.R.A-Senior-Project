@@ -24,3 +24,5 @@ frontend/node_modules/
 *.pyc
 *.txt
 *.txt
+node_modules/.bin/loose-envify
+*.cmd
