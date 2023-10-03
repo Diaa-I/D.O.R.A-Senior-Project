@@ -8,10 +8,10 @@ class_digram.dia~
 =======
 frontend/node_modules/
 .idea/workspace.xml
-*.pyc
 *.xml
 >>>>>>> Stashed changes
 *.mp4
 *.txt
 node_modules/.bin/loose-envify
 *.cmd
+*.pyc
