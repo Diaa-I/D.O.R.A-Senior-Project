@@ -9,13 +9,13 @@ const AnnotationBox = (props)=>{
 return(
     <div className='btns-box'>
         {/*  annotation tools */}
-        <AIOption onSaveAnnotations = {props.onSaveAnnotations} draw={props.draw} showModal={props.showModal} isModalShown={props.isModalShown}/>
+        <AIOption onSaveAnnotations = {props.onSaveAnnotations} draw={props.draw} showModal={props.showModal} isModalShown={props.isModalShown} />
         {/* Frames, suggestions */}
-        <AIBox moveForward={props.moveForward} moveBackwards={props.moveBackwards} counter = {props.counter}/>
+        <AIBox setIsNewFrame={props.setIsNewFrame}/>
         {/* Annotation labels */}
         <InfoLabel />
         {/* Settings, Save, discard */}
-        <OptionsBox />
+        <OptionsBox showModal={props.showModal} isModalShown={props.isModalShown}/>
     </div>
 )
 }

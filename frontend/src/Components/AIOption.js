@@ -5,22 +5,22 @@ import axios from 'axios';
 
 
 function AIBox (props) {
+ const [labels,setLabels] = useState([])
  const [isDraw,setisDraw] = useState(false)
- const [labels, setlabels] = useState(null);
  const [isLoading,setIsLoading] = useState(true)
  const [selectedLabel,setSelectedLabel] = useState(null)
  const [isFirstTime,setIsFirstTime] = useState(true)
 
 
 useEffect(()=>{
-// axios.get('http://127.0.0.1:5000/workspace/getlabels').then((response) => {
-//     console.log(response.data)
-//     setlabels(response.data);
-//     setIsLoading(false);
-//   });
-
-    setlabels(["A","B"]);
+axios.get('http://localhost:5000/workspace/getlabels').then((response) => {
+    console.log([...response.data.labels])
+    setLabels([...response.data.labels]);
     setIsLoading(false);
+  });
+
+    // setlabels(["A","B"]);
+    // setIsLoading(false);
 
 },[])
     
@@ -35,8 +35,8 @@ useEffect(()=>{
 
 
 
-  console.log(labels)
-  console.log(isLoading)
+//   console.log(labels)
+//   console.log(isLoading)
     // if(isDraw){
     //     props.draw(props.Annot)
     //     setisDraw(false)

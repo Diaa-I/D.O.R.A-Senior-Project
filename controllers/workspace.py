@@ -1,9 +1,20 @@
 import os
-from flask import Flask,flash,render_template,redirect,request,url_for, send_from_directory
+from flask import Flask,flash,render_template,redirect,request,url_for, send_from_directory, jsonify
 from werkzeug.utils import secure_filename
-# from AI.controller.dataManager import DataManager
-
+from database import mongo_connection
+from bson.objectid import ObjectId
+# from AI.controller.dataManager import ProjectManager
 ALLOWED_EXTENSIONS = {'mp4', 'mov', 'wmv', 'flv', 'avi', 'mkv', 'webm'}
+
+db_connection = {
+    "Users":mongo_connection.Users,
+    "Projects":mongo_connection.Projects
+}
+
+Users = db_connection['Users']
+Projects = db_connection['Projects']
+print(Users.find_one())
+print(Projects.find_one())
 
 
 def allowed_file(filename):
@@ -11,7 +22,9 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+# To be changed to WorkspaceController
 class workspaceController:
+    project_name = ""
     def get_labels():
         # function to get labels that were entered by the user
         labels = []
@@ -19,9 +32,29 @@ class workspaceController:
         with open('uploads\\files\\labels.txt','r') as label_file:
             labels.append(label_file.readline().strip().split(","))
         # the labels are returned to be used on the front end
-        return labels[0]
+        response = jsonify({"labels":labels[0]})
+        response.headers.add('Access-Control-Allow-Origin', '*')
 
+        return response
 
+    def get_project_information():
+        Project = Projects.find_one({})
+        print(Project)
+        response = jsonify({"Project_Name": Project['Name'], "Frames": Project['Frames_Size']})
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        response.headers.add("Access-Control-Allow-Headers", "X-Requested-With");
+        print(response)
+        return response
+
+    def get_next_frames():
+    #     Function to get the Next set of frames (to be annotated)
+    #     Using the project_id we retieve it from the database, Directory_of_File\Frame_number loop * numberOfRetrievals
+    #
+        pass
+    def get_old_frames():
+    #     Function to get the previous set of frames or frame (That were already annotated even if skipped)
+        pass
+    # print(app.Project.find_one_or_404({"_id":"651aed7e0fa9d4b9db48be1b"}))
 
 
     def workspace():
@@ -45,7 +78,7 @@ class workspaceController:
                 file_path = os.path.join('uploads/files', secure_filename(file.filename))
                 file.save(file_path)
 
-                # project_name = request.form['project_name']
+                project_name = request.form['project_name']
                 # labels = request.form['labels'].split(",")
                 # file_path = file_path
                 # DM_obj = DataManager('',project_name)

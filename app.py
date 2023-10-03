@@ -1,8 +1,6 @@
 import os
 from flask import Flask,flash,render_template,redirect,request,url_for
-from flask_pymongo import PyMongo, ObjectId
-from models.annotation_class import Annotation
-from models.file_class import File
+from database import mongo_connection
 from routes.landing.landingRoutes import landing
 from routes.workspace.workspaceRoutes import workspace
 
@@ -14,17 +12,13 @@ class Service:
         self.__static_dir = self.__template_dir
         self.__uploaded_folder = '/uploads/files/'
         self.app = self.setup()
-# 0        self.mongo = self.connectToDB()
-
-    def connectToDB(self):
-        # connection to db via PyMongo
-        self.mongo = PyMongo(self.app, uri="mongodb://localhost:27017/DORA")
-        return self.mongo
 
     def setup(self):
         # setting up and configuring the flask
         self.app = Flask(__name__,template_folder=self.__template_dir, static_url_path='',static_folder=self.__static_dir)
         self.app.config['UPLOAD_FOLDER'] = self.__uploaded_folder
+        # app.config['CORS_HEADERS'] = 'Content-Type'
+        # cors = CORS(app, resources={r"/foo": {"origins": "http://localhost:port"}})
         self.app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
         return self.app
 

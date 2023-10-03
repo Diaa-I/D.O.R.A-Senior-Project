@@ -24,8 +24,10 @@ export default function Workspace(props){
     const [isModalShown,setIsModalShown] = useState(false)
     
     const [Annotations,setAnnotations]=useState(INITIAL_Annotations)
-    const [frame,setFrames] = useState(0)
+
     const [isNewFrame,setIsNewFrame] = useState(true)
+    const [isLoading,setIsLoading] = useState(true)
+    const [Labels,setLabels] = useState([])
     var check = {"isMoving":true}
   
   
@@ -43,14 +45,8 @@ export default function Workspace(props){
       const contextAnnotation = AnnotationCanvas.getContext('2d')
       // Use this to draw
       annotationContextRef.current = contextAnnotation
-  
-      // AnnotationCanvas.onmousedown = mouse_down
-      // AnnotationCanvas.onmouseup = mouse_up
-      // AnnotationCanvas.onmouseout = mouse_out
-      // AnnotationCanvas.onmousemove = mouse_move
-  
-      // annotationCanvasRef.current.oncontextmenu = onContextMenuHandler
-  
+      
+
     },[])
   
     useEffect(()=>{
@@ -92,7 +88,7 @@ export default function Workspace(props){
       }
   
     },[Annotations])
-      
+
   // return if distance between 2 points is less than 10
   let checkCloseEnough = function(p1, p2) {
     return Math.abs(p1 - p2) < 10;
@@ -132,15 +128,7 @@ export default function Workspace(props){
       setAnnotations((prevAnnotations)=>{return[newAnnotation,...prevAnnotations]})
     }
     
-    const onFrameChangeForward = ()=>{
-      // Add a condition to stop at last frame
-      setFrames((prevframe)=>{return prevframe + 1})
-      setIsNewFrame(true)
-    }
-    const onFrameChangeBackwards = ()=>{
-      setFrames((prevframe)=>{return prevframe>0 ? prevframe - 1 : 0})
-      setIsNewFrame(true)
-    }
+
   
     const draw = ()=>{
   
@@ -349,10 +337,11 @@ export default function Workspace(props){
    
   }
   }
+
     return(
         <div>
         <Canvas Annotations={Annotations}   forwardRef={imageCanvasRef} annotationCanvasRef={annotationCanvasRef} imageMetadata={imageMetadata} onContextMenuHandler={onContextMenuHandler} />
-        <AnnotationBox   draw={draw}   onSaveAnnotations = {onSaveAnnotations} moveForward={onFrameChangeForward} moveBackwards={onFrameChangeBackwards} counter={frame} showModal={props.showModal} isModalShown={props.isModalShown}/>
+        <AnnotationBox   draw={draw}   onSaveAnnotations = {onSaveAnnotations} setIsNewFrame={setIsNewFrame} showModal={props.showModal} isModalShown={props.isModalShown}/>
         </div>
     )
 }

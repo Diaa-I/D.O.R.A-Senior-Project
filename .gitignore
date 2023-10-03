@@ -1,28 +1,17 @@
-
-.idea/inspectionProfiles/profiles_settings.xml
-.idea/Junior-Project.iml
-.idea/misc.xml
-.idea/modules.xml
-.idea/vcs.xml
-class_digram.dia
-class_digram.dia~
 <<<<<<< Updated upstream
 .frontend/node_modules/*
+node_modules/*
+.idea/*
+uploads/files/*
+class_digram.dia
+class_digram.dia~
 =======
 frontend/node_modules/
 .idea/workspace.xml
 *.pyc
 *.xml
-*.pyc
 >>>>>>> Stashed changes
-*.pyc
-*.pyc
 *.mp4
-*.pyc
-*.pyc
-*.pyc
-*.pyc
-*.txt
 *.txt
 node_modules/.bin/loose-envify
 *.cmd

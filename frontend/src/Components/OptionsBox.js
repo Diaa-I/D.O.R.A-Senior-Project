@@ -1,12 +1,12 @@
 import './workspace.css'
 
 
-const OptionsBox = ()=>{
+const OptionsBox = (props)=>{
     return(
         <div class="options-box">
-            <button class="settings-button">Settings</button>
-            <button class="save-button">Save</button>
-            <button class="discard-button">Discard Annotations</button>
+            <button class="settings-button" onClick={props.showModal}>Settings</button>
+            <button class="save-button" onClick={props.showModal}>Save</button>
+            <button class="discard-button" onClick={props.showModal}>Discard Annotations</button>
         </div>
     )
 }
