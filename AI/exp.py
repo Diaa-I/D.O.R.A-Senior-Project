@@ -1,7 +1,7 @@
 import controller as con
 import os
 
-dm = con.dataManager.ProjectManager(['cat', 'dog', 'lion'], 'animals_detection')
+dm = con.projectManager.ProjectManager(['cat', 'dog', 'lion'], 'animals_detection')
 dm.extractFrames(videoFilepath=r".\sandbox\sample.mp4", outputDir=r".\sandbox\data")
 
 batch = dm.retrieveNextBatch()

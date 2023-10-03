@@ -1,2 +1,2 @@
-from . import dataManager
+from . import projectManager
 from . import modelController
