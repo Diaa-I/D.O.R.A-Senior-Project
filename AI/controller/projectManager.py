@@ -185,6 +185,7 @@ class ProjectManager(object):
         .\\data\\19_animals_detection.jpg
         
         '''
+        self.imageRetrievalIndex = starting_from if starting_from is not None else self.imageRetrievalIndex
         start = self.imageRetrievalIndex
         end = self.imageRetrievalIndex + retrieval_size
 
