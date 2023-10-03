@@ -234,8 +234,6 @@ class ProjectManager(object):
         else:
             return []
 
-        
-
     @staticmethod
     def normalize_coordinates(x, y, width, height, img_width, img_height):
         '''
