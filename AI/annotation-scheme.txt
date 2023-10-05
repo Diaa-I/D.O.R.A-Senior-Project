@@ -1,1 +1,8 @@
-class-id x y width height
+{
+    annotation_img: string, // this is the filename of the image with this annotation. Pls note that an image can have multiple annotations.
+    label_id: int,
+    x: float,
+    y: float,
+    width: float,
+    height: float
+}
