@@ -4,11 +4,13 @@ import os
 dm = con.projectManager.ProjectManager(['cat', 'dog', 'lion'], 'animals_detection')
 dm.extractFrames(videoFilepath=r".\sandbox\sample.mp4", outputDir=r".\sandbox\data")
 
-batch = dm.retrieveNextBatch()
-while len(batch) != 0:
-    print(f"BATCH NO. {dm.imageRetrievalIndex}:\n {batch}", end="\n\n")
-    batch = dm.retrieveNextBatch()
+# batch = dm.retrieveNextBatch()
+# for i in range(2):
+#     print(f"BATCH NO. {dm.imageRetrievalIndex}:\n {batch}", end="\n\n")
+#     batch = dm.retrieveNextBatch()
 
+print(dm.retrievePreviousBatch(starting_from=45), end="\n\n")
+print(dm.retrievePreviousBatch(), end="\n\n")
 print(f"imageRetrievalIndex={dm.imageRetrievalIndex} \ntotalProjectImages={dm.totalProjectImages}", end="\n\n")
 
 # remove everything

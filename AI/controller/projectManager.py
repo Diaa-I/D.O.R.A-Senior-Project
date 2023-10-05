@@ -1,6 +1,4 @@
-import os
-import yaml
-import cv2
+import os, yaml, cv2, json
 
 
 class ProjectManager(object):
@@ -192,13 +190,28 @@ class ProjectManager(object):
         if start < self.totalProjectImages - 1:
             if end < self.totalProjectImages - 1:
                 self.imageRetrievalIndex = end
-                return self.allFramesPaths[start:end]
+                batchFilePathsJSON = json.dumps({
+                    "batch_start_index": start,
+                    "batch_end_index": end,                  
+                    "filepaths": self.allFramesPaths[start:end]
+                })
+                return batchFilePathsJSON
             else:
                 end = self.totalProjectImages - 1
                 self.imageRetrievalIndex = end
-                return self.allFramesPaths[start:end]
+                batchFilePathsJSON = json.dumps({
+                    "batch_start_index": start,
+                    "batch_end_index": end,                  
+                    "filepaths": self.allFramesPaths[start:end]
+                })
+                return batchFilePathsJSON
         else:
-            return []
+            batchFilePathsJSON = json.dumps({
+                    "batch_start_index": start,
+                    "batch_end_index": end,                  
+                    "filepaths": []
+                })
+            return batchFilePathsJSON
 
     def retrievePreviousBatch(self, starting_from=None, retrieval_size=10):
         '''
@@ -228,12 +241,27 @@ class ProjectManager(object):
         if start > 0:
             if end > -1:
                 self.imageRetrievalIndex = end
-                return self.allFramesPaths[end+1:start+1] # add 1 for including 'starting_from' and excluding 'end'
+                batchFilePathsJSON = json.dumps({
+                    "batch_start_index": start,
+                    "batch_end_index": end,                  
+                    "filepaths": self.allFramesPaths[end+1:start+1]
+                })
+                return batchFilePathsJSON
             else:
-                return self.allFramesPaths[0:start]
+                batchFilePathsJSON = json.dumps({
+                    "batch_start_index": start,
+                    "batch_end_index": end,                  
+                    "filepaths": self.allFramesPaths[0:start]
+                })
+                return batchFilePathsJSON
         else:
-            return []
-
+            batchFilePathsJSON = json.dumps({
+                    "batch_start_index": start,
+                    "batch_end_index": end,                  
+                    "filepaths": []
+            })
+            return batchFilePathsJSON
+        
     @staticmethod
     def normalize_coordinates(x, y, width, height, img_width, img_height):
         '''
