@@ -96,4 +96,119 @@ class workspaceController:
                 flash("Upload a video that satisfies the conditions")
                 return redirect(url_for("landing.rendering"))
 
+    def retrieve_next_batch(self, starting_from=None, retrieval_size=10):
+        '''
+        returns retrieval_size number of images filepaths in batches every time it's called. Starts from 0 index and moves retrieval_size.
+        retrieval_size is set to 10 by default.
+        ====================================================
+        Parameters:
+            - retrieval_size: the number of filepaths to be returned in each batch.
+        ====================================================
+        returns: list of relative filepaths to 'outputDir' of all the files stored in 'outputDir'. Returns empty list once all filepaths
+        have been returned.
+        ====================================================
+        Example of usage:
+            > dm = ProjectManager(['cat', 'dog', 'lion'], 'animals_detection')
+            > dm.extractFrames(videoFilepath=r".\dir\Vid.mp4", outputDir=r".\data")
+            > dm.retrieve_next_batch()
+        .\\data\\0_animals_detection.jpg
+        .\\data\\1_animals_detection.jpg
+        .\\data\\2_animals_detection.jpg
+        ...
+        .\\data\\9_animals_detection.jpg
+            > dm.retrieve_next_batch()
+        .\\data\\10_animals_detection.jpg
+        .\\data\\11_animals_detection.jpg
+        .\\data\\12_animals_detection.jpg
+        ...
+        .\\data\\19_animals_detection.jpg
+        
+        '''
+        # instance variables that are unimplemented:
+        #   - self.total_project_images -> the total number of images stored in the list.
+        #   - self.all_stored_filepaths -> the list which contains all the filepaths of the images.
+        #   - self.image_retrieval_index -> used as a global pointer to where to start retrieving in the list.
 
+        self.image_retrieval_index = starting_from if starting_from is not None else self.image_retrieval_index
+        start = self.image_retrieval_index
+        end = self.image_retrieval_index + retrieval_size
+
+        if start < self.total_project_images - 1:
+            if end < self.total_project_images - 1:
+                self.image_retrieval_index = end
+                batch_filepaths_json = jsonify({
+                    "batch_start_index": start,
+                    "batch_end_index": end,                  
+                    "filepaths": self.all_stored_filepaths[start:end]
+                })
+                return batch_filepaths_json
+            else:
+                end = self.total_project_images - 1
+                self.image_retrieval_index = end
+                batch_filepaths_json = jsonify({
+                    "batch_start_index": start,
+                    "batch_end_index": end,                  
+                    "filepaths": self.all_stored_filepaths[start:end]
+                })
+                return batch_filepaths_json
+        else:
+            batch_filepaths_json = jsonify({
+                    "batch_start_index": start,
+                    "batch_end_index": end,                  
+                    "filepaths": []
+                })
+            return batch_filepaths_json
+
+    def retrieve_previous_batch(self, starting_from=None, retrieval_size=10):
+        '''
+        returns the previous retrieval_size number of images filepaths in batches every time it's called. Starts from 'starting_from' as an index.
+        ====================================================
+        Parameters:
+            - retrieval_size: the number of filepaths to be returned in each batch.
+            - starting_from: the index at which the previous batch will be retrieved. Defaults to the global imageRetrievalIndex pointer.
+        ====================================================
+        returns: list of relative filepaths to 'outputDir' of all the files stored in 'outputDir'. Returns empty list once all filepaths
+        have been returned.
+        ====================================================
+        Example of usage:
+            > dm = ProjectManager(['cat', 'dog', 'lion'], 'animals_detection')
+            > dm.extractFrames(videoFilepath=r".\dir\Vid.mp4", outputDir=r".\data")
+            > dm.retrieve_previous_batch(starting_from=100, retrieval_size=2)
+        .\\data\\99_animals_detection.jpg
+        .\\data\\100_animals_detection.jpg
+            > dm.retrieve_previous_batch()
+        .\\data\\97_animals_detection.jpg
+        .\\data\\98_animals_detection.jpg
+        '''
+        # instance variables that are unimplemented:
+        #   - self.total_project_images -> the total number of images stored in the list.
+        #   - self.all_stored_filepaths -> the list which contains all the filepaths of the images.
+        #   - self.image_retrieval_index -> used as a global pointer to where to start retrieving in the list.
+
+        self.image_retrieval_index = starting_from if starting_from is not None else self.image_retrieval_index
+        start = self.image_retrieval_index
+        end = start - retrieval_size
+
+        if start > 0 and start < self.total_project_images:
+            if end > -1:
+                self.image_retrieval_index = end
+                batch_filepaths_json = jsonify({
+                    "batch_start_index": start,
+                    "batch_end_index": end,                  
+                    "filepaths": self.all_stored_filepaths[end+1:start+1]
+                })
+                return batch_filepaths_json
+            else:
+                batch_filepaths_json = jsonify({
+                    "batch_start_index": start,
+                    "batch_end_index": end,                  
+                    "filepaths": self.all_stored_filepaths[0:start]
+                })
+                return batch_filepaths_json
+        else:
+            batch_filepaths_json = jsonify({
+                    "batch_start_index": start,
+                    "batch_end_index": end,                  
+                    "filepaths": []
+            })
+            return batch_filepaths_json
