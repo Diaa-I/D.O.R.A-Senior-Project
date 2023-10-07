@@ -1,4 +1,5 @@
 import './Heading.css'
+import 'bootstrap/dist/css/bootstrap.css';
 function Heading (){
     return(
     <>
