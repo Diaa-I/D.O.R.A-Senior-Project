@@ -1,0 +1,17 @@
+.add-project-button {
+    background-color: #0080FF; /* Change the background color to your preference */
+    color: #fff; /* Change the text color to your preference */
+    border-radius: 10px;
+    padding: 0.5rem 0.5rem;
+    font-weight: bold;
+    width: auto;
+}
+
+.plus-sign {
+    font-size: 1rem;
+}
+.heading{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
