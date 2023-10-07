@@ -3,6 +3,7 @@ from flask import Flask,flash,render_template,redirect,request,url_for, send_fro
 from werkzeug.utils import secure_filename
 from database import mongo_connection
 from bson.objectid import ObjectId
+import json
 # from AI.controller.dataManager import ProjectManager
 ALLOWED_EXTENSIONS = {'mp4', 'mov', 'wmv', 'flv', 'avi', 'mkv', 'webm'}
 
@@ -42,7 +43,7 @@ class workspaceController:
         print(Project)
         response = jsonify({"Project_Name": Project['Name'], "Frames": Project['Frames_Size']})
         response.headers.add('Access-Control-Allow-Origin', '*')
-        response.headers.add("Access-Control-Allow-Headers", "X-Requested-With");
+        response.headers.add("Access-Control-Allow-Headers", "X-Requested-With")
         print(response)
         return response
 
@@ -96,119 +97,67 @@ class workspaceController:
                 flash("Upload a video that satisfies the conditions")
                 return redirect(url_for("landing.rendering"))
 
-    def retrieve_next_batch(self, starting_from=None, retrieval_size=10):
-        '''
-        returns retrieval_size number of images filepaths in batches every time it's called. Starts from 0 index and moves retrieval_size.
-        retrieval_size is set to 10 by default.
-        ====================================================
-        Parameters:
-            - retrieval_size: the number of filepaths to be returned in each batch.
-        ====================================================
-        returns: list of relative filepaths to 'outputDir' of all the files stored in 'outputDir'. Returns empty list once all filepaths
-        have been returned.
-        ====================================================
-        Example of usage:
-            > dm = ProjectManager(['cat', 'dog', 'lion'], 'animals_detection')
-            > dm.extractFrames(videoFilepath=r".\dir\Vid.mp4", outputDir=r".\data")
-            > dm.retrieve_next_batch()
-        .\\data\\0_animals_detection.jpg
-        .\\data\\1_animals_detection.jpg
-        .\\data\\2_animals_detection.jpg
-        ...
-        .\\data\\9_animals_detection.jpg
-            > dm.retrieve_next_batch()
-        .\\data\\10_animals_detection.jpg
-        .\\data\\11_animals_detection.jpg
-        .\\data\\12_animals_detection.jpg
-        ...
-        .\\data\\19_animals_detection.jpg
-        
-        '''
-        # instance variables that are unimplemented:
-        #   - self.total_project_images -> the total number of images stored in the list.
-        #   - self.all_stored_filepaths -> the list which contains all the filepaths of the images.
-        #   - self.image_retrieval_index -> used as a global pointer to where to start retrieving in the list.
 
-        self.image_retrieval_index = starting_from if starting_from is not None else self.image_retrieval_index
-        start = self.image_retrieval_index
-        end = self.image_retrieval_index + retrieval_size
 
-        if start < self.total_project_images - 1:
-            if end < self.total_project_images - 1:
-                self.image_retrieval_index = end
-                batch_filepaths_json = jsonify({
-                    "batch_start_index": start,
-                    "batch_end_index": end,                  
-                    "filepaths": self.all_stored_filepaths[start:end]
-                })
-                return batch_filepaths_json
-            else:
-                end = self.total_project_images - 1
-                self.image_retrieval_index = end
-                batch_filepaths_json = jsonify({
-                    "batch_start_index": start,
-                    "batch_end_index": end,                  
-                    "filepaths": self.all_stored_filepaths[start:end]
-                })
-                return batch_filepaths_json
+
+    def save_annotation():
+        print(request.json)
+        print("WRITINIASNPDINASD")
+        response = jsonify({"data":request.json})
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        with open('annotations.txt', 'w') as convert_file:
+            convert_file.write(json.dumps(request.json))
+
+        return response
+
+    def retrieve_next_batch():
+        # Because we are using file directories then we get all the files locations, but if GridFS then we check if portions
+        # We can write the defaults if not present
+        args = request.args
+        startings_from = args.get('starting_from')
+        retrievals_size =args.get('retrieval_size')
+        print(startings_from,retrievals_size)
+
+        Project = Projects.find_one({})
+        image_dir = Project['Directory_of_File']
+        # CHANGE IT TO CONTAIN ALL TYPES OF PHOTOS ALSO SAY THE TYPES IN REPORT
+        for file in os.listdir(image_dir):
+            if file.endswith(".jpg"):
+                dir_list = '/images/'+ file
+                break
+        dir_list =  dir_list
+        print(dir_list)
+        # dir_list[0] = './'+ Project['Directory_of_File'] + dir_list[0]
+        response = jsonify({"Project_Name": Project['Name'], "Frames": Project['Frames_Size'],"Image_Dir":dir_list})
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
+
+
+    def retrieve_previous_batch(starting_from=None, retrieval_size=10):
+        Project = Projects.find_one({})
+        image_dir = Project['Directory_of_File']
+        for file in os.listdir(image_dir):
+            # CHANGE IT TO CONTAIN ALL TYPES OF PHOTOS ALSO SAY THE TYPES IN REPORT
+            if file.endswith(".jpg"):
+                dir_list = file
+                break
+        dir_list = '/images/' + dir_list
+
+        f = open("annotations.txt", "r")
+        try:
+            data_file = json.load(f)
+        except json.JSONDecodeError:
+            f.close()
+            response = jsonify({ "Frames": Project['Frames_Size'], "Image_Dir": dir_list})
+            response.headers.add('Access-Control-Allow-Origin', '*')
+            return response
         else:
-            batch_filepaths_json = jsonify({
-                    "batch_start_index": start,
-                    "batch_end_index": end,                  
-                    "filepaths": []
-                })
-            return batch_filepaths_json
+            with open('annotations.txt', 'w') as convert_file:
+                convert_file.write('')
 
-    def retrieve_previous_batch(self, starting_from=None, retrieval_size=10):
-        '''
-        returns the previous retrieval_size number of images filepaths in batches every time it's called. Starts from 'starting_from' as an index.
-        ====================================================
-        Parameters:
-            - retrieval_size: the number of filepaths to be returned in each batch.
-            - starting_from: the index at which the previous batch will be retrieved. Defaults to the global imageRetrievalIndex pointer.
-        ====================================================
-        returns: list of relative filepaths to 'outputDir' of all the files stored in 'outputDir'. Returns empty list once all filepaths
-        have been returned.
-        ====================================================
-        Example of usage:
-            > dm = ProjectManager(['cat', 'dog', 'lion'], 'animals_detection')
-            > dm.extractFrames(videoFilepath=r".\dir\Vid.mp4", outputDir=r".\data")
-            > dm.retrieve_previous_batch(starting_from=100, retrieval_size=2)
-        .\\data\\99_animals_detection.jpg
-        .\\data\\100_animals_detection.jpg
-            > dm.retrieve_previous_batch()
-        .\\data\\97_animals_detection.jpg
-        .\\data\\98_animals_detection.jpg
-        '''
-        # instance variables that are unimplemented:
-        #   - self.total_project_images -> the total number of images stored in the list.
-        #   - self.all_stored_filepaths -> the list which contains all the filepaths of the images.
-        #   - self.image_retrieval_index -> used as a global pointer to where to start retrieving in the list.
 
-        self.image_retrieval_index = starting_from if starting_from is not None else self.image_retrieval_index
-        start = self.image_retrieval_index
-        end = start - retrieval_size
 
-        if start > 0 and start < self.total_project_images:
-            if end > -1:
-                self.image_retrieval_index = end
-                batch_filepaths_json = jsonify({
-                    "batch_start_index": start,
-                    "batch_end_index": end,                  
-                    "filepaths": self.all_stored_filepaths[end+1:start+1]
-                })
-                return batch_filepaths_json
-            else:
-                batch_filepaths_json = jsonify({
-                    "batch_start_index": start,
-                    "batch_end_index": end,                  
-                    "filepaths": self.all_stored_filepaths[0:start]
-                })
-                return batch_filepaths_json
-        else:
-            batch_filepaths_json = jsonify({
-                    "batch_start_index": start,
-                    "batch_end_index": end,                  
-                    "filepaths": []
-            })
-            return batch_filepaths_json
+
+            response = jsonify({"Annotations": data_file, "Frames": Project['Frames_Size'], "Image_Dir": dir_list})
+            response.headers.add('Access-Control-Allow-Origin', '*')
+            return response

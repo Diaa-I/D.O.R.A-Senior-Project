@@ -5,15 +5,15 @@ const Canvas = (props) => {
 
     const Annotations = props.Annotations;
     useEffect(()=>{
-        console.log(props)
-        console.log(props.forwardRef)
-        console.log(props.annotationCanvasRef)
+        // console.log(props)
+        // console.log(props.forwardRef)
+        // console.log(props.annotationCanvasRef)
         // when it loads in change both canvas sizes to the same as photo size
         // props.forwardRef.current.height = "100px"
         // props.forwardRef.current.width = "100px"
     })
 
-console.log(props.onContextMenuHandler)   
+// console.log(props.onContextMenuHandler)   
 
 
     return(

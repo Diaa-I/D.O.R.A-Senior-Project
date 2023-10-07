@@ -11,9 +11,9 @@ return(
         {/*  annotation tools */}
         <AIOption onSaveAnnotations = {props.onSaveAnnotations} draw={props.draw} showModal={props.showModal} isModalShown={props.isModalShown} />
         {/* Frames, suggestions */}
-        <AIBox setIsNewFrame={props.setIsNewFrame}/>
+        <AIBox setIsNewFrame={props.setIsNewFrame} setIsGoingBack={props.setIsGoingBack}/>
         {/* Annotation labels */}
-        <InfoLabel />
+        {/* <InfoLabel /> */}
         {/* Settings, Save, discard */}
         <OptionsBox showModal={props.showModal} isModalShown={props.isModalShown}/>
     </div>

@@ -1,7 +1,7 @@
 import './App.css';
 import React, { useState, useRef, useEffect} from 'react';
 import axios from 'axios';
-import Modal from './Components/Modal';
+import Modal from './Components/utilities/Modal';
 import Navbar from './Components/Navbar';
 
 

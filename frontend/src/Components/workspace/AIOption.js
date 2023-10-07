@@ -14,7 +14,7 @@ function AIBox (props) {
 
 useEffect(()=>{
 axios.get('http://localhost:5000/workspace/getlabels').then((response) => {
-    console.log([...response.data.labels])
+    // console.log([...response.data.labels])
     setLabels([...response.data.labels]);
     setIsLoading(false);
   });

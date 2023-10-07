@@ -3,7 +3,7 @@ import './workspace.css'
 import axios from 'axios'
 
 const AIBox = (props)=>{
-    console.log(props)
+    // console.log(props)
 const moveBackwards = props.moveBackwards
 const moveForward = props.moveForward
 const counter = props.counter
@@ -12,7 +12,7 @@ const [framesSize,setFramesSize] = useState('')
 const [frameCounter,setFramesCounter] = useState(0)
 useEffect(()=>{
 axios.get("http://localhost:5000/a").then(res=>{
-    console.log(res.data)
+    // console.log(res.data)
     setFramesSize(res.data.Frames)
     setIsLoading(false)
 })
@@ -27,8 +27,13 @@ const onFrameChangeForward = ()=>{
   }
   const onFrameChangeBackwards = ()=>{
     // A condition to stop at first frame
+    
+    if(!frameCounter-1<0){
+        console.log("WORKIng")
     setFramesCounter((prevframe)=>{return prevframe>0 ? prevframe - 1 : 0})
     props.setIsNewFrame(true)
+    props.setIsGoingBack(true)
+}
   }
 if (isLoading){
     return <h1>Loading...</h1>

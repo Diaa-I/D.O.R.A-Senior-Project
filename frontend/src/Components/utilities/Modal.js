@@ -1,8 +1,6 @@
 import "./Modal.css"
 
 export default function Modal (props){
-    console.log("11111111111111111111111111111212")
-    // console.log(classes.backdrop)
     if(!props.isModalShown){
         return 
     }
@@ -17,13 +15,6 @@ export default function Modal (props){
       </div>
 </div>
 </>
-        // <div class="modal" id="modal" onClick={props.hideModal} >
-        //    <h2> Hello Modal </h2>
-        //    <div class="actions">
-        //   <button class="toggle-button" onClick={props.hideModal} >
-        //     close
-        //   </button>
-        // </div>
-        // </div>
+
     )
 }
