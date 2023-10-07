@@ -1,5 +1,5 @@
 <div align="center">
-    <img src = 'public\utils\logo.png' width=100% style="border-radius: 4vw;">
+    <img src = 'public\utils\logo.png' width=100%>
 </div>
 
 # Dynamic Object Recognition and Annotation (DORA)

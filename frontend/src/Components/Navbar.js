@@ -11,8 +11,8 @@ export default function Navbar(props){
         <ul>
             <li><Link to='/test'>Home</Link></li>
             <li><Link to='/'>Workspace</Link></li>
-            <li>Projects</li>
-            <li>Datasets</li>
+            <li><Link to='./Projects'>Projects</Link></li>
+            <li><Link to='./Datasets'>Datasets</Link></li>
             <li>User</li>
         </ul>
     </nav>
