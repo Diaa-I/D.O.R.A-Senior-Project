@@ -1,5 +1,5 @@
-// import 'bootstrap/dist/css/bootstrap.css';
-function Project_Modal(){
+import 'bootstrap/dist/css/bootstrap.css';
+function ProjectModal(){
     return(
         <>
         <div class="container mt-5">
@@ -47,4 +47,4 @@ function Project_Modal(){
         </>
     )
 }
-export default Project_Modal;
+export default ProjectModal;
