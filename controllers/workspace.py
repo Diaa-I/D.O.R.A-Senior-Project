@@ -4,6 +4,9 @@ from werkzeug.utils import secure_filename
 from database import mongo_connection
 from bson.objectid import ObjectId
 import json
+# import pymongo
+# from pymongo import MongoClient
+
 # from AI.controller.dataManager import ProjectManager
 ALLOWED_EXTENSIONS = {'mp4', 'mov', 'wmv', 'flv', 'avi', 'mkv', 'webm'}
 
@@ -132,7 +135,6 @@ class workspaceController:
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
 
-
     def retrieve_previous_batch(starting_from=None, retrieval_size=10):
         Project = Projects.find_one({})
         image_dir = Project['Directory_of_File']
@@ -161,3 +163,52 @@ class workspaceController:
             response = jsonify({"Annotations": data_file, "Frames": Project['Frames_Size'], "Image_Dir": dir_list})
             response.headers.add('Access-Control-Allow-Origin', '*')
             return response
+
+    def insert_annotation_into_db(data):
+        # MongoDB connection (where it's hosted), THIS NEEDS TO BE A GLOBAL VARIABLE
+        client = MongoClient('mongodb://localhost:27017/')
+        db = client['your_database']
+        collection = db['annotations']
+
+        # Define the schema
+        schema = {
+            'annotation_img': {'$type':'string'},   # the associated image name.
+            'label_id': {'$type':'int'},    # the label numerical id.
+            'x_center': {'$type': 'double'},   # the x-coord of the center of the bounding box, relative to the width of the image.
+            'y_center': {'$type': 'double'},    # the y-coord of the center of the bounding box, relative to the height of the image.
+            'width': {'$type': 'double'},       # the width of the bounding box, relative to the width of the image.
+            'height': {'$type': 'double'},      # the height of the bounding box, relative to the height of the image.
+        }
+
+        # Create the validator using the schema
+        validator = {
+            '$jsonSchema': {
+                'bsonType': 'object',
+                'required': ['annotation_img', 'label_id', 'x', 'y', 'width', 'height'],
+                'properties': schema
+            }
+        }
+
+        # Set the validator for the collection
+        db.command({
+            'collMod': 'annotations',
+            'validator': validator
+        })
+
+        # Sample data to insert (where x and y should be floats)
+        # data = {
+        #     'annotation_img': "1233.PNG",
+        #     'label_id': 4,
+        #     'x': 0.345,
+        #     'y': 0.55,
+        #     'width': 0.20,
+        #     'height': 0.35,
+        # }
+        try:
+            result = collection.insert_one(data)
+            print('Data inserted successfully.')
+        except pymongo.errors.WriteError as e:
+            print('Error: Data validation failed.')
+            print('Validation Error:', e)
+
+
