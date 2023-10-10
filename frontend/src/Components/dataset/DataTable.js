@@ -1,5 +1,6 @@
 import Data from './data.json';
 import { useTable } from 'react-table';
+import './Table.css';
 
 function DataTable() {
   const data = React.useMemo(() => Data, []);
@@ -39,10 +40,10 @@ function DataTable() {
 
   return (
     <div>
-      <table {...getTableProps()}>
+      <table {...getTableProps()} className="custom-table">
         <thead>
           {headerGroups.map((headerGroup) => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
+            <tr {...headerGroup.getHeaderGroupProps()} className="custom-table-row">
               {headerGroup.headers.map((column) => ( // Changed `columns` to `column`
                 <th {...column.getHeaderProps()}>
                   {column.render('Header')}
