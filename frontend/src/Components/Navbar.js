@@ -53,7 +53,7 @@ export default function Navbar(props){
      <Route path='/' element={<Workspace showModal={props.showModal}  hideModal={props.hideModal}></Workspace>}/>
      <Route path='/test' element={<Test showModal={props.showModal}  hideModal={props.hideModal}></Test>}/>
      <Route path='/Projects' element={<Projects showModal={props.showModal}  hideModal={props.hideModal}></Projects>}/>
-     <Route path='/Datasets' element={<Datasets showModal={props.showModal}  hideModal={props.hideModal}></Test>}/>
+     <Route path='/Datasets' element={<Datasets showModal={props.showModal}  hideModal={props.hideModal}></Datasets>}/>
    </Routes>
    </div>
    </div>
