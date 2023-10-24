@@ -1,0 +1,7 @@
+{
+      Dataset Name: string,
+      Size: string,
+      Type: string,
+      Number of Entries: int,
+      Status: string
+}

@@ -1,0 +1,5 @@
+{
+    model name : string,
+    model size : string,
+    model parameters : string
+}
