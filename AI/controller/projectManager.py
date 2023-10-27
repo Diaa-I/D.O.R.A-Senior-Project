@@ -110,50 +110,56 @@ class ProjectManager(object):
         cap.release()
         print(f"Extracted {self.total_project_images - count_init} frames from {video_filepath}")
 
-    def create_annotations_txt(self, annotations_array, at) -> None:
+    def create_annotations_txt(self, associated_image_name, img_width, img_height, annotations_array, saveto_dir) -> None:
         '''
-        Given an array of python dictionaries in a specific format representing annotations, method will store the annotations in a .TXT file
-        formatted according to YOLO's annotations specifications.
-        TODO:
-            - make it so that it accepts more than 1 annotation per image (can store multiple annotations in one .txt file)
+        Create an annotation file following YOLO's format for training models.
         ====================================================
         Parameters:
-            - annObjsArray: a list of lists, each in the following format: [img_file, label, x_center, y_center, width, height]. img_file is the file name of
-              image containing this annotation. label is the name of the label tagged to this annotation. x_center and y_center are the x and y coordinates of the
-              center of the bounding box. width and height are the width and height of the bounding box. Note that the x_center, y_center, width, and height here are
-              not normalized.
-            - at: string of the path of the directory where the .txt files will be stored.
-        returns: None.
+            - associated_image_name: name of the frame/image of where the annotation box is located. Can be a name only (e.g. frame_0443), or a file name (e.g. frame_0443.png) or a path.
+            - img_width: the width of the image where the annotation box is located.
+            - img_height: the height of the image where the annotation box is located.
+            - annotations_array: an array containing a list of annotation objects representing the boxes drawn. Each annotation object is represneted as: {'label': 'string', 'x_center': float, 'y_center': float, 'width': float, 'height': float}
+               - label is the name of the label associated with the box, given as a string.
+               - x_center and y_center are the x, y coordinates of the center of annotation boxes (absolute value, not normalized).
+               - width and height are the dimesnsions of the annotation box (absolute value, not normalized).
+            - saveto_dir: the path to the directory where the .txt file will be saved.
         ====================================================
-        Example of usage:
-            > dm = DataManager(['cat', 'dog', 'horse'], 'animals_detection')
-            > dm.storeAsYOLOtxt([   
-                                    ['12_animals_detection.JPEG', 'cat', 25.666, 355, 120, 560], 
-                                    ['13_animals_detection.JPEG', 'dog', 60.686, 550, 220, 367] 
-                                ],
-                                at = r"train_data\labels\train")
-            > print(os.listdir(r"train_data\labels\train"))
-        0_animals_detection.txt
-        1_animals_detection.txt
-        2_animals_detection.txt
-        ...
-        144_animals_detection.txt
+        pm = con.projectManager.ProjectManager(['plastic', 'metal', 'paper'], project_name="trash_detection")
+
+        pm.create_annotations_txt("frame_00423", 400, 600, 
+            [{'label': 'plastic', 'x_center':80, 'y_center': 234, 'width': 30, 'height':80}, 
+             {'label': 'metal', 'x_center':20.01, 'y_center': 354.2, 'width': 25, 'height':45.6}], 
+            "./mydir")
         '''
-        for annObj in annotations_array:
-            # get image width and height
-            full_path = os.path.join("AI", "sandbox", annObj[0]) # TODO: CHANGE 'AI\sandbox' TO 'train_data\images\train'
-            img_height, img_width, _ = cv2.imread(full_path).shape
 
-            # change file name to be from .JPG to .TXT
-            filename_noExt = annObj[0].split('.')[0]
-            path = os.path.join(at, filename_noExt + '.txt')
+        # get the associated image name only (without extension, or the file path)
+        base_name, extension = os.path.splitext(associated_image_name)
+        associated_image_name_without_extension = os.path.basename(base_name)
 
-            # create the file, dump all the data into it and close it
-            with open(path, 'w') as annFile:
-                label = self.labels_to_index[annObj[1]]
-                x_center, y_center, width, height = self.normalize_coordinates(annObj[2], annObj[3], annObj[4], annObj[5], img_width=img_width, img_height=img_height)
-                annFile.write(f"{label} {x_center} {y_center} {width} {height}")
-                annFile.close()
+        # get the file path of where the .txt annotations file will be saved
+        saveto_filepath = os.path.join(saveto_dir, associated_image_name_without_extension + '.txt')
+        with open(saveto_filepath, "w") as annotation_file:
+
+            # annotation object format: {'label': 'dog', 'x_center': 45.5, 'y_center': 79.0, 'width': 14.3, 'height': 30.0}
+            for i, annotation in enumerate(annotations_array):
+                # get the labels index (the number representing the label)
+                label_index = self.labels_to_index[annotation['label']]
+                bbox_x_center = annotation['x_center']
+                bbox_y_center = annotation['y_center']
+                bbox_width = annotation['width']
+                bbox_height = annotation['height']
+
+                # get the x, y, w, and h values normalized relative the img height and width
+                x_center_norm, y_center_norm, width_norm, height_norm = self.normalize_coordinates(bbox_x_center, bbox_y_center,
+                                                                                                    bbox_width, bbox_height,
+                                                                                                    img_width, img_height)
+
+                # write to the txt file
+                bbox_info_row = f"{label_index} {x_center_norm} {y_center_norm} {width_norm} {height_norm}"
+                if i != len(annotations_array) - 1: # so that last row doesn't create a new line
+                    bbox_info_row = bbox_info_row + '\n'
+                annotation_file.write(bbox_info_row)
+        
     
     def retrieve_next_batch(self, starting_from=None, retrieval_size=10):
         '''
