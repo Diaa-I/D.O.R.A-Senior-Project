@@ -6,11 +6,11 @@ class ProjectManager(object):
     class containing utilities for creating required files before, during, and after training.
     refer to the documentation of each method for more details.
     '''
-    totalProjectImages = 0
-    imageRetrievalIndex = 0
-    allFramesPaths = []
+    total_project_images = 0
+    image_retrieval_index = 0
+    all_frames_paths = []
 
-    def __init__(self, labelsArray, projectName) -> None:
+    def __init__(self, labels_array, project_name) -> None:
         '''
         Instansiates an object specific to a set of labels.
         ====================================================
@@ -26,13 +26,13 @@ class ProjectManager(object):
             > print(dm.labelsToIndex)
         {'cat': 0, 'dog': 1, 'horse': 2}
         '''
-        assert len(labelsArray) > 0, "labelsArray cannot be an empty list"
-        self.labelsArray = labelsArray # ['cat', 'dog', 'horse', ...]
-        self.projectName = projectName # 'myProject'
-        self.labelsIndex = {i: self.labelsArray[i] for i in range(len(self.labelsArray))} # {0: 'cat', 1: 'dog', 2: 'horse', ...}
-        self.labelsToIndex = {self.labelsIndex[i]: i for i in range(len(self.labelsIndex))} # {'cat': 0, 'dog': 1, 'horse': 2, ...}
+        assert len(labels_array) > 0, "labelsArray cannot be an empty list"
+        self.labels_array = labels_array # ['cat', 'dog', 'horse', ...]
+        self.project_name = project_name # 'myProject'
+        self.index_to_labels = {i: self.labels_array[i] for i in range(len(self.labels_array))} # {0: 'cat', 1: 'dog', 2: 'horse', ...}
+        self.labels_to_index = {self.index_to_labels[i]: i for i in range(len(self.index_to_labels))} # {'cat': 0, 'dog': 1, 'horse': 2, ...}
     
-    def createYaml(self, at) -> None:
+    def create_yaml(self, at) -> None:
         '''
         Create and store a YAML file for the set of labels provided. The file will be named after the project name provided in constructor.
         ====================================================
@@ -47,19 +47,19 @@ class ProjectManager(object):
         assert os.path.exists(at), "Specified path to store YAML file doesn't exist."
 
         # Set the paths to the YAML file
-        file_path = os.path.join(at, f'{self.projectName}.yaml')
+        file_path = os.path.join(at, f'{self.project_name}.yaml')
 
         # If no file already exits, create one and fill it with the labels
         if not os.path.exists(file_path):
             with open(file_path, 'w') as f:
-                myDataYaml = {'path': "../train_data", "train": "images/train", "val": "images/val", "names": self.labelsIndex.copy()}
+                myDataYaml = {'path': "../train_data", "train": "images/train", "val": "images/val", "names": self.index_to_labels.copy()}
                 yaml.dump(myDataYaml, f, sort_keys=False)
 
                 print(f'{file_path} created.')
         else:
             print(f'{file_path} already exists.')
 
-    def extractFrames(self, videoFilepath, outputDir) -> None:
+    def extract_frames(self, video_filepath, output_dir) -> None:
         '''
         prases a video into frames and stores them as .JPG images in a directory.
         ====================================================
@@ -79,14 +79,14 @@ class ProjectManager(object):
         1203_animals_detection.jpg
         '''
         # Open the video file
-        cap = cv2.VideoCapture(videoFilepath)
+        cap = cv2.VideoCapture(video_filepath)
 
         # Create the output directory if it doesn't exist
-        if not os.path.exists(outputDir):
-            os.makedirs(outputDir)
+        if not os.path.exists(output_dir):
+            os.makedirs(output_dir)
 
         # Initialize the frame count and loop over all frames
-        count_init = self.totalProjectImages
+        count_init = self.total_project_images
         while True:
             # Read a frame from the video
             ret, frame = cap.read()
@@ -96,21 +96,21 @@ class ProjectManager(object):
                 break
 
             # Construct the output file path and save the frame as a JPG file
-            output_path = os.path.join(outputDir, f"{self.totalProjectImages}_{self.projectName}.jpg") # EDIT projName to a class attribute
+            output_path = os.path.join(output_dir, f"{self.total_project_images}_{self.project_name}.jpg") # EDIT projName to a class attribute
             if not os.path.exists(output_path):
                 cv2.imwrite(output_path, frame)
-                self.allFramesPaths.append(output_path)
+                self.all_frames_paths.append(output_path)
             else:
                 print(f"{output_path} already exists")
 
             # Increment the frame count
-            self.totalProjectImages += 1
+            self.total_project_images += 1
 
         # Release the video capture object
         cap.release()
-        print(f"Extracted {self.totalProjectImages - count_init} frames from {videoFilepath}")
+        print(f"Extracted {self.total_project_images - count_init} frames from {video_filepath}")
 
-    def storeAsYOLOtxt(self, annObjsArray, at) -> None:
+    def create_annotations_txt(self, annotations_array, at) -> None:
         '''
         Given an array of python dictionaries in a specific format representing annotations, method will store the annotations in a .TXT file
         formatted according to YOLO's annotations specifications.
@@ -139,7 +139,7 @@ class ProjectManager(object):
         ...
         144_animals_detection.txt
         '''
-        for annObj in annObjsArray:
+        for annObj in annotations_array:
             # get image width and height
             full_path = os.path.join("AI", "sandbox", annObj[0]) # TODO: CHANGE 'AI\sandbox' TO 'train_data\images\train'
             img_height, img_width, _ = cv2.imread(full_path).shape
@@ -150,12 +150,12 @@ class ProjectManager(object):
 
             # create the file, dump all the data into it and close it
             with open(path, 'w') as annFile:
-                label = self.labelsToIndex[annObj[1]]
+                label = self.labels_to_index[annObj[1]]
                 x_center, y_center, width, height = self.normalize_coordinates(annObj[2], annObj[3], annObj[4], annObj[5], img_width=img_width, img_height=img_height)
                 annFile.write(f"{label} {x_center} {y_center} {width} {height}")
                 annFile.close()
     
-    def retrieveNextBatch(self, starting_from=None, retrieval_size=10):
+    def retrieve_next_batch(self, starting_from=None, retrieval_size=10):
         '''
         returns retrieval_size number of images filepaths in batches every time it's called. Starts from 0 index and moves retrieval_size.
         retrieval_size is set to 10 by default.
@@ -183,37 +183,37 @@ class ProjectManager(object):
         .\\data\\19_animals_detection.jpg
         
         '''
-        self.imageRetrievalIndex = starting_from if starting_from is not None else self.imageRetrievalIndex
-        start = self.imageRetrievalIndex
-        end = self.imageRetrievalIndex + retrieval_size
+        self.image_retrieval_index = starting_from if starting_from is not None else self.image_retrieval_index
+        start = self.image_retrieval_index
+        end = self.image_retrieval_index + retrieval_size
 
-        if start < self.totalProjectImages - 1:
-            if end < self.totalProjectImages - 1:
-                self.imageRetrievalIndex = end
-                batchFilePathsJSON = json.dumps({
+        if start < self.total_project_images - 1:
+            if end < self.total_project_images - 1:
+                self.image_retrieval_index = end
+                paths_batch_json = json.dumps({
                     "batch_start_index": start,
                     "batch_end_index": end,                  
-                    "filepaths": self.allFramesPaths[start:end]
+                    "filepaths": self.all_frames_paths[start:end]
                 })
-                return batchFilePathsJSON
+                return paths_batch_json
             else:
-                end = self.totalProjectImages - 1
-                self.imageRetrievalIndex = end
-                batchFilePathsJSON = json.dumps({
+                end = self.total_project_images - 1
+                self.image_retrieval_index = end
+                paths_batch_json = json.dumps({
                     "batch_start_index": start,
                     "batch_end_index": end,                  
-                    "filepaths": self.allFramesPaths[start:end]
+                    "filepaths": self.all_frames_paths[start:end]
                 })
-                return batchFilePathsJSON
+                return paths_batch_json
         else:
-            batchFilePathsJSON = json.dumps({
+            paths_batch_json = json.dumps({
                     "batch_start_index": start,
                     "batch_end_index": end,                  
                     "filepaths": []
                 })
-            return batchFilePathsJSON
+            return paths_batch_json
 
-    def retrievePreviousBatch(self, starting_from=None, retrieval_size=10):
+    def retrieve_previous_batch(self, starting_from=None, retrieval_size=10):
         '''
         returns the previous retrieval_size number of images filepaths in batches every time it's called. Starts from 'starting_from' as an index.
         ====================================================
@@ -234,33 +234,33 @@ class ProjectManager(object):
         .\\data\\97_animals_detection.jpg
         .\\data\\98_animals_detection.jpg
         '''
-        self.imageRetrievalIndex = starting_from if starting_from is not None else self.imageRetrievalIndex
-        start = self.imageRetrievalIndex
+        self.image_retrieval_index = starting_from if starting_from is not None else self.image_retrieval_index
+        start = self.image_retrieval_index
         end = start - retrieval_size
 
         if start > 0:
             if end > -1:
-                self.imageRetrievalIndex = end
-                batchFilePathsJSON = json.dumps({
+                self.image_retrieval_index = end
+                paths_batch_json = json.dumps({
                     "batch_start_index": start,
                     "batch_end_index": end,                  
-                    "filepaths": self.allFramesPaths[end+1:start+1]
+                    "filepaths": self.all_frames_paths[end+1:start+1]
                 })
-                return batchFilePathsJSON
+                return paths_batch_json
             else:
-                batchFilePathsJSON = json.dumps({
+                paths_batch_json = json.dumps({
                     "batch_start_index": start,
                     "batch_end_index": end,                  
-                    "filepaths": self.allFramesPaths[0:start]
+                    "filepaths": self.all_frames_paths[0:start]
                 })
-                return batchFilePathsJSON
+                return paths_batch_json
         else:
-            batchFilePathsJSON = json.dumps({
+            paths_batch_json = json.dumps({
                     "batch_start_index": start,
                     "batch_end_index": end,                  
                     "filepaths": []
             })
-            return batchFilePathsJSON
+            return paths_batch_json
         
     @staticmethod
     def normalize_coordinates(x, y, width, height, img_width, img_height):

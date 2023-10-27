@@ -38,7 +38,7 @@ class ModelController(object):
         self.labelsIndex = None
         self.model = None
 
-    def trainModel(self, yamlFilepath, pretrainedWeights, imgTrainSize=(320, 320), epochs=20, batch_size=4) -> None:
+    def train_model(self, yaml_filepath, pretrained_model_path, img_train_size=(320, 320), epochs=20, batch_size=4) -> None:
         '''
         starts the training of the model with the given hyperparameters. 
         The trained model file is stored in yolov5m/runs/exp#/weights.
@@ -58,9 +58,9 @@ class ModelController(object):
             > mc.trainModel(yamlFilepath = r"yolov5m\data\myData.yaml", pretrainedWeights = r"yolov5m\yolov5m.pt", 
                             imgTrainSize = (640, 640), epochs = 10, batch_size = 4)
         '''
-        train.run(data=yamlFilepath, imgsz=imgTrainSize, weights=pretrainedWeights, epochs=epochs, batch_size=batch_size)
+        train.run(data=yaml_filepath, imgsz=img_train_size, weights=pretrained_model_path, epochs=epochs, batch_size=batch_size)
 
-    def loadTrainedModel(self, weightsPath, yamlFilepath) -> None:
+    def load_trained_model(self, model_filepath, yaml_filepath) -> None:
         '''
         loads the model from a .PT file to an object self.model.
         loads the labelIndex as a dictionary from the .yaml file of the dataset. 
@@ -77,16 +77,15 @@ class ModelController(object):
             > mc.loadTrainedModel(weightsPath = r"yolov5m\runs\exp1\weights\best.pt", yamlFilepath = r"yolov5m\data\myData.yaml")
         '''
         # Load the YAML file as a dictionary
-        with open(yamlFilepath, 'r') as file:
+        with open(yaml_filepath, 'r') as file:
             self.labelsIndex = yaml.safe_load(file)
         
         # Load the trained PyTorch model file
-        DEFAULT_YAML_PATH = r"yolov5m\data\coco128.yaml" # to-do: check if this needs to be changed to the trained YAML
-        self.model = DetectMultiBackend(weights=weightsPath, dnn=False, data=DEFAULT_YAML_PATH, fp16=False) # load the model
+        self.model = DetectMultiBackend(weights=model_filepath, dnn=False, data=yaml_filepath, fp16=False) # load the model
         self.pt_stride, self.pt_names, self.pt = self.model.stride, self.model.names, self.model.pt
         imgsz = check_img_size((640, 640), s=self.pt_stride)  # check image size
 
-    def makeInference(self, img, confThreshold=0.9, frameSize=(640, 640)) -> list:
+    def make_inference(self, img, conf_threshold=0.9, frame_size=(640, 640)) -> list:
         '''
         Processes an image (given as a 3D array) and outputs all the detected objects found.
         Detections will be considered only if they're above or equal to confThreshold.
@@ -115,15 +114,15 @@ class ModelController(object):
             > print(det_2[0])
         {'name': 'helicopter', 'conf_score': 0.68975, 'location': [0.55, 0.28, 0.15, 0.132]}
         '''
-        assert (confThreshold <= 1 or confThreshold >= 0), "Confidence threshold must be equal to or less than 1 positive float."
-        assert (frameSize[0] % 160 == 0 and frameSize[1] % 160 == 0), "Both the dimensions of the model input must be integers multiple of 160"
+        assert (conf_threshold <= 1 or conf_threshold >= 0), "Confidence threshold must be equal to or less than 1 positive float."
+        assert (frame_size[0] % 160 == 0 and frame_size[1] % 160 == 0), "Both the dimensions of the model input must be integers multiple of 160"
         assert ((isinstance(img, str) and os.path.exists(img)) or len(img.shape == 3) or len(img.shape == 4)), "invalid image input parameter, must be of a 3D or 4D shape, or a string to the path of an image file"
         
         # If img is given as a file path, load the image, and convert it to 3D numpy array
         img = np.array(Image.open(img)) if isinstance(img, str) else img
 
         # Preprocess image for model input
-        img = letterbox(img, frameSize, stride=self.pt_stride)[0]  # padded resize
+        img = letterbox(img, frame_size, stride=self.pt_stride)[0]  # padded resize
         img = img.transpose((2, 0, 1))[::-1]  # HWC to CHW, BGR to RGB TODO: CHECK IF THIS SHOULD BE REMOVED
         img = np.ascontiguousarray(img)  # contiguous
 
@@ -135,12 +134,12 @@ class ModelController(object):
 
         # Make inference, apply NMS
         preds = self.model(img)
-        preds = non_max_suppression(preds, conf_thres=confThreshold, iou_thres=0.25, max_det=500)
+        preds = non_max_suppression(preds, conf_thres=conf_threshold, iou_thres=0.25, max_det=500)
 
         # Filter and store predictions
         detections = [] # e.g. [{'name': 'cat', conf_score: 0.875, location: [0.644, 0.2, 0.15, 0.222]}, ... ]
         for pred in preds[0]:
-            if len(pred) > 0 and float(pred[4]) >= confThreshold:
+            if len(pred) > 0 and float(pred[4]) >= conf_threshold:
                 xmin, ymin, xmax, ymax = pred[0], pred[1], pred[2], pred[3]  # detected box
                 obj_acc = float(pred[4])  # detected confidence score
                 obj_class = int(pred[5])  # detected class
