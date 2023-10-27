@@ -36,7 +36,7 @@ function hideModal(){
 // }
 
   return (
-    <div class="background">
+    <div>
       <Modal isModalShown={isModalShown}  hideModal={hideModal} ></Modal>
       <Navbar showModal={showModal}  hideModal={hideModal}/>
     </div>

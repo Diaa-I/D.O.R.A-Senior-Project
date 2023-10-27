@@ -1,0 +1,31 @@
+.custom-table {
+    font-family: "Roboto", sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    border: 2px solid #0080ff;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #3d3d3d;
+  }
+  
+  .custom-table th,
+  .custom-table td {
+    border: none;
+    padding: 8px;
+    text-align: left;
+    color: #ffffff;
+    line-height: 2; 
+  }
+  
+  .custom-table-row {
+    border-top: 1px solid #0080ff;
+  }
+  
+  .custom-table-row:hover {
+    background-color: #4d4d4d;
+  }
+  
+  .custom-table-row:hover {
+    background-color: #4d4d4d; 
+  }
+  
