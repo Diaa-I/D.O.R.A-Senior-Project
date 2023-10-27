@@ -37,12 +37,11 @@ class ProjectManager(object):
         Create and store a YAML file for the set of labels provided. The file will be named after the project name provided in constructor.
         ====================================================
         Parameters:
-            - at: string of the path of the directory where the .yaml file will be stored.
-        returns: None.
+            - at: the directory path where the .yaml file will be stored.
         ====================================================
         Example of usage:
-            > dm = DataManager(['cat', 'dog', 'horse'], 'animals_detection')
-            > dm.createYaml(at=r"path\to\directory")
+            > pm = ProjectManager(['cat', 'dog', 'horse'], 'animals_detection')
+            > pm.create_yaml(at=r"path\to\directory")
         '''
         assert os.path.exists(at), "Specified path to store YAML file doesn't exist."
 
@@ -64,13 +63,12 @@ class ProjectManager(object):
         prases a video into frames and stores them as .JPG images in a directory.
         ====================================================
         Parameters:
-            - videoFilepath: string of the relative or absolute path of the video file.
-            - outputDir: string of the relative or absolute path of the directory where all the parsed frames will be stored.
-        returns: None.
+            - video_filepath: the path to the video file.
+            - output_dir: the directory path where all the frames will be stored.
         ====================================================
         Example of usage:
-            > dm = DataManager(['cat', 'dog', 'horse'], 'animals_detection')
-            > dm.extractFrames(r"path\to\video.mp4", r"path\to\images\directory")
+            > pm = ProjectManager(['cat', 'dog', 'horse'], 'animals_detection')
+            > dm.extract_frames(r"path\to\video.mp4", r"path\to\images\directory")
             > print(os.listdir(r"path\to\images\directory"))
         0_animals_detection.jpg
         1_animals_detection.jpg
@@ -160,34 +158,33 @@ class ProjectManager(object):
                     bbox_info_row = bbox_info_row + '\n'
                 annotation_file.write(bbox_info_row)
         
-    
-    def retrieve_next_batch(self, starting_from=None, retrieval_size=10):
+    def retrieve_next_batch(self, starting_from=None, retrieval_size=10) -> str:
         '''
-        returns retrieval_size number of images filepaths in batches every time it's called. Starts from 0 index and moves retrieval_size.
+        returns a json string with retrieval_size number of images filepaths in batches every time it's called. Starts from 0 index and moves retrieval_size.
         retrieval_size is set to 10 by default.
         ====================================================
         Parameters:
             - retrieval_size: the number of filepaths to be returned in each batch.
         ====================================================
-        returns: list of relative filepaths to 'outputDir' of all the files stored in 'outputDir'. Returns empty list once all filepaths
-        have been returned.
+        returns: string representing json that contains a list of relative filepaths to 'output_dir' and all its files.
         ====================================================
         Example of usage:
-            > dm = ProjectManager(['cat', 'dog', 'lion'], 'animals_detection')
-            > dm.extractFrames(videoFilepath=r".\dir\Vid.mp4", outputDir=r".\data")
-            > dm.retrieveNextBatch()
-        .\\data\\0_animals_detection.jpg
-        .\\data\\1_animals_detection.jpg
-        .\\data\\2_animals_detection.jpg
-        ...
-        .\\data\\9_animals_detection.jpg
-            > dm.retrieveNextBatch()
-        .\\data\\10_animals_detection.jpg
-        .\\data\\11_animals_detection.jpg
-        .\\data\\12_animals_detection.jpg
-        ...
-        .\\data\\19_animals_detection.jpg
-        
+            > pm = ProjectManager(['cat', 'dog', 'lion'], 'animals_detection')
+            > pm.extract_frames(video_filepath=r".\dir\Vid.mp4", output_dir=r".\data")
+            > pm.retrieve_next_batch()
+        {
+            "batch_start_index": 0,
+            "batch_end_index": 10,                  
+            "filepaths": 
+            [
+                .\\data\\0_animals_detection.jpg
+                .\\data\\1_animals_detection.jpg
+                .\\data\\2_animals_detection.jpg
+                ...
+                .\\data\\9_animals_detection.jpg
+            ]
+        }
+
         '''
         self.image_retrieval_index = starting_from if starting_from is not None else self.image_retrieval_index
         start = self.image_retrieval_index
@@ -219,26 +216,39 @@ class ProjectManager(object):
                 })
             return paths_batch_json
 
-    def retrieve_previous_batch(self, starting_from=None, retrieval_size=10):
+    def retrieve_previous_batch(self, starting_from=None, retrieval_size=10) -> str:
         '''
-        returns the previous retrieval_size number of images filepaths in batches every time it's called. Starts from 'starting_from' as an index.
+        returns a json string with the previous retrieval_size number of images filepaths in batches every time it's called. Starts from 'starting_from' as an index.
         ====================================================
         Parameters:
             - retrieval_size: the number of filepaths to be returned in each batch.
             - starting_from: the index at which the previous batch will be retrieved. Defaults to the global imageRetrievalIndex pointer.
         ====================================================
-        returns: list of relative filepaths to 'outputDir' of all the files stored in 'outputDir'. Returns empty list once all filepaths
-        have been returned.
+        returns: string representing json that contains a list of relative filepaths to 'output_dir' and all its files.
         ====================================================
         Example of usage:
-            > dm = ProjectManager(['cat', 'dog', 'lion'], 'animals_detection')
-            > dm.extractFrames(videoFilepath=r".\dir\Vid.mp4", outputDir=r".\data")
-            > dm.retrievePreviousBatch(starting_from=100, retrieval_size=2)
-        .\\data\\99_animals_detection.jpg
-        .\\data\\100_animals_detection.jpg
-            > dm.retrievePreviousBatch()
-        .\\data\\97_animals_detection.jpg
-        .\\data\\98_animals_detection.jpg
+        > pm = ProjectManager(['cat', 'dog', 'lion'], 'animals_detection')
+        > pm.extract_frames(video_filepath=r".\dir\Vid.mp4", output_dir=r".\data")
+        > pm.retrieve_previous_batch(starting_from=100, retrieval_size=2)
+        {
+            "batch_start_index": 100,
+            "batch_end_index": 98,                  
+            "filepaths": 
+            [
+                .\\data\\99_animals_detection.jpg,
+                .\\data\\100_animals_detection.jpg
+            ]
+        }
+        > pm.retrievePreviousBatch(retrieval_size=2)
+        {
+            "batch_start_index": 98,
+            "batch_end_index": 96,                  
+            "filepaths": 
+            [
+                .\\data\\97_animals_detection.jpg,
+                .\\data\\98_animals_detection.jpg
+            ]
+        }
         '''
         self.image_retrieval_index = starting_from if starting_from is not None else self.image_retrieval_index
         start = self.image_retrieval_index
