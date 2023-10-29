@@ -19,7 +19,7 @@ export default function Navbar(props) {
   };
 
   return (
-    <div>
+    <div className='contianer'>
       <nav className={`sidebar ${isSidebarOpen ? 'open' : 'close'}`}>
         <header>
           <div className="image-text">
@@ -90,16 +90,20 @@ export default function Navbar(props) {
 
     </nav>
         
-    <div>
-     <Routes>
-     <Route path='/' element={<Workspace showModal={props.showModal}  hideModal={props.hideModal}></Workspace>}/>
-     <Route path='/test' element={<Test showModal={props.showModal}  hideModal={props.hideModal}></Test>}/>
-     <Route path='/Projects' element={<Projects showModal={props.showModal}  hideModal={props.hideModal}></Projects>}/>
-     <Route path='/Datasets' element={<Datasets showModal={props.showModal}  hideModal={props.hideModal}></Datasets>}/>
-     <Route path='/Models' element={<Models showModal={props.showModal}  hideModal={props.hideModal}></Models>}/>
+    <div className='content'>
+    <Routes>
+          <Route path='/' element={<Workspace showModal={props.showModal} hideModal={props.hideModal}></Workspace>} />
+          <Route path='/test' element={<Test showModal={props.showModal} hideModal={props.hideModal}></Test>} />
+          <Route path='/Projects' element={<Projects showModal={props.showModal} hideModal={props.hideModal}></Projects>} />
+          <Route path='/Datasets' element={<Datasets showModal={props.showModal} hideModal={props.hideModal}></Datasets>} />
+          <Route path='/Models' element={<Models showModal={props.showModal} hideModal={props.hideModal}></Models>} />
+        </Routes>
 
-   </Routes>
-   </div>
+    
+        
+        <main></main>
+    </div>
+    
    </div>
     );
 }
