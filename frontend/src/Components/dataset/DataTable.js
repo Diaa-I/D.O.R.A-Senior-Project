@@ -1,6 +1,7 @@
 import Data from './data.json';
 import { useTable } from 'react-table';
 import './Table.css';
+import React from 'react';
 
 function DataTable() {
   const data = React.useMemo(() => Data, []);
