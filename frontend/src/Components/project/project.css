@@ -1,0 +1,18 @@
+.content {
+    margin-left: 255px; /* Match the sidebar width */
+    transition: margin-left 0.3s;
+    margin-top: 2rem;
+}
+.content.closed {
+    margin-left: 85px;
+}
+
+.heading{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+.row{
+    display: flex;
+    flex-direction: row;
+}
