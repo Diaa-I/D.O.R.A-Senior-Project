@@ -1,50 +1,100 @@
-import 'bootstrap/dist/css/bootstrap.css';
-function ProjectModal(){
-    return(
+import React, { useState } from 'react';
+import {Modal , Button ,Form} from 'react-bootstrap';
+
+
+function ProjectModal({ onCreateProject }) {
+    // storing the state of each field
+    const [projectName, setProjectName] = useState(''); 
+    const [selectedModel, setSelectedModel] = useState('model1');
+    const [labels, setLabels] = useState('');
+    const [datasetFile, setDatasetFile] = useState('');
+
+    // handle opening and closing
+    const [show , setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    // When the create button is clicked the values will be stored in an object
+    const handleCreateProject = () => {
+        onCreateProject({
+            name: projectName,
+            model: selectedModel,
+            labels: labels,
+            dataset: datasetFile,
+        });
+
+        // Clear form fields
+        setProjectName('');
+        setSelectedModel('model1');
+        setLabels('');
+        setDatasetFile('');
+    };
+
+    
+
+    return (
         <>
-        <div class="container mt-5">
-        <div id="project-modal" class="modal fade" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modal-title">New Project</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="projectName">Project Name:</label>
-                                <input type="text" class="form-control" id="projectName" name="projectName" />
-                            </div>
-                            <div class="form-group">
-                                <label for="modelSelect">Choose Model:</label>
-                                <select class="form-control" id="modelSelect" name="modelSelect">
-                                    <option value="model1">Model 1</option>
-                                    <option value="model2">Model 2</option>
-                                    <option value="model3">Model 3</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="labels">Labels (separated by comma):</label>
-                                <input type="text" class="form-control" id="labels" name="labels" />
-                            </div>
-                            <div class="form-group">
-                                <label for="datasetUpload">Upload Dataset:</label>
-                                <input type="file" class="form-control-file" id="datasetUpload" name="datasetUpload" />
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button id="create-project-button" class="btn btn-primary">Create</button>
-                    </div>
-
-                    </div>
-
-                </div>
-            </div>
-            
-    </div> 
+        <Button variant='primary' onClick={handleShow}>
+            Create Project
+        </Button>
+        <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+                <Modal.Title>New Project</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <Form>
+                    <Form.Group controlId="projectName">
+                        <Form.Label>Project Name:</Form.Label>
+                        <Form.Control
+                            type="text"
+                            placeholder="Enter project name"
+                            value={projectName}
+                            onChange={(e) => setProjectName(e.target.value)}
+                        />
+                    </Form.Group>
+                    <Form.Group controlId="modelSelect">
+                        <Form.Label>Choose Model:</Form.Label>
+                        <Form.Control
+                            as="select"
+                            value={selectedModel}
+                            onChange={(e) => setSelectedModel(e.target.value)}
+                        >
+                            <option value="model1">Model 1</option>
+                            <option value="model2">Model 2</option>
+                            <option value="model3">Model 3</option>
+                        </Form.Control>
+                    </Form.Group>
+                    <Form.Group controlId="labels">
+                        <Form.Label>Labels (separated by comma):</Form.Label>
+                        <Form.Control
+                            type="text"
+                            placeholder="Enter labels"
+                            value={labels}
+                            onChange={(e) => setLabels(e.target.value)}
+                        />
+                    </Form.Group>
+                    <Form.Group controlId="datasetUpload">
+                        <Form.Label>Upload Dataset:</Form.Label>
+                        <Form.Control
+                            type="file"
+                            value={datasetFile}
+                            onChange={(e) => setDatasetFile(e.target.value)}
+                        />
+                    </Form.Group>
+                </Form>
+            </Modal.Body>
+            <Modal.Footer>
+                <Button variant="secondary" onClick={handleClose}>
+                    Close
+                </Button>
+                <Button variant="primary" onClick={event =>{handleCreateProject, handleClose}}>
+                    Create
+                </Button>
+            </Modal.Footer>
+        </Modal>
         </>
-    )
+        
+    );
 }
+
 export default ProjectModal;
