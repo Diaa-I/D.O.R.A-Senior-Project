@@ -34,11 +34,9 @@ class ModelController(object):
         - change the training output directory
         - add option to choose from a several starting checkpoint / model architecture for training.
     '''
-    def __init__(self) -> None:
-        self.labelsIndex = None
-        self.model = None
 
-    def train_model(self, yaml_filepath, pretrained_model_path, img_train_size=(320, 320), epochs=20, batch_size=4) -> None:
+    @staticmethod
+    def train_model(yaml_filepath, pretrained_model_path, img_train_size=(320, 320), epochs=20, batch_size=4) -> None:
         '''
         starts the training of the model with the given hyperparameters. 
         The trained model file is stored in yolov5m/runs/exp#/weights.
@@ -60,7 +58,8 @@ class ModelController(object):
         '''
         train.run(data=yaml_filepath, imgsz=img_train_size, weights=pretrained_model_path, epochs=epochs, batch_size=batch_size)
 
-    def load_trained_model(self, model_filepath, yaml_filepath) -> None:
+    @staticmethod
+    def load_trained_model(model_filepath, yaml_filepath):
         '''
         loads the model from a .PT file to an object self.model.
         loads the labelIndex as a dictionary from the .yaml file of the dataset. 
@@ -78,14 +77,16 @@ class ModelController(object):
         '''
         # Load the YAML file as a dictionary
         with open(yaml_filepath, 'r') as file:
-            self.labelsIndex = yaml.safe_load(file)
+            labelsIndex = yaml.safe_load(file)
         
         # Load the trained PyTorch model file
-        self.model = DetectMultiBackend(weights=model_filepath, dnn=False, data=yaml_filepath, fp16=False) # load the model
-        self.pt_stride, self.pt_names, self.pt = self.model.stride, self.model.names, self.model.pt
-        imgsz = check_img_size((640, 640), s=self.pt_stride)  # check image size
+        pt_model = DetectMultiBackend(weights=model_filepath, dnn=False, data=yaml_filepath, fp16=False) # load the model
+        pt_stride, pt_names, pt = pt_model.stride, pt_model.names, pt_model.pt
+        imgsz = check_img_size((640, 640), s=pt_stride)  # check image size
+        return pt_model
 
-    def make_inference(self, img, conf_threshold=0.9, frame_size=(640, 640)) -> list:
+    @staticmethod
+    def make_inference(img, yaml_filepath, pt_model, conf_threshold=0.9, frame_size=(640, 640)) -> list:
         '''
         Processes an image (given as a 3D array) and outputs all the detected objects found.
         Detections will be considered only if they're above or equal to confThreshold.
@@ -121,19 +122,23 @@ class ModelController(object):
         # If img is given as a file path, load the image, and convert it to 3D numpy array
         img = np.array(Image.open(img)) if isinstance(img, str) else img
 
+        # Load the YAML file as a dictionary
+        with open(yaml_filepath, 'r') as file:
+            labelsIndex = yaml.safe_load(file)
+        
         # Preprocess image for model input
-        img = letterbox(img, frame_size, stride=self.pt_stride)[0]  # padded resize
+        img = letterbox(img, frame_size, stride=pt_model.stride)[0]  # padded resize
         img = img.transpose((2, 0, 1))[::-1]  # HWC to CHW, BGR to RGB TODO: CHECK IF THIS SHOULD BE REMOVED
         img = np.ascontiguousarray(img)  # contiguous
 
-        img = torch.from_numpy(img).to(self.model.device)
-        img = img.half() if self.model.fp16 else img.float()
+        img = torch.from_numpy(img).to(pt_model.device)
+        img = img.half() if pt_model.fp16 else img.float()
         img /= 255
         if len(img.shape) == 3:
             img = img[None]  # expand for batch dim
 
         # Make inference, apply NMS
-        preds = self.model(img)
+        preds = pt_model(img)
         preds = non_max_suppression(preds, conf_thres=conf_threshold, iou_thres=0.25, max_det=500)
 
         # Filter and store predictions
@@ -146,11 +151,11 @@ class ModelController(object):
                 loc = [ymin, xmin, ymax, xmax]
 
                 print(f"\t > Object detected, "
-                        f"Name: '{self.labelsIndex['names'][obj_class]}', "
+                        f"Name: '{labelsIndex['names'][obj_class]}', "
                         f"Confidence: {round(obj_acc * 100, 1)}%, "
                         f"Location: {loc}")
 
-                filtered_det_obj = {"name": self.labelsIndex['names'][obj_class],
+                filtered_det_obj = {"name": labelsIndex['names'][obj_class],
                                     "conf_score": obj_acc,
                                     "location": loc}
 
