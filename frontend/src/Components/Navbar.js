@@ -4,7 +4,7 @@ import Workspace from './workspace/Workspace';
 import Test from './Test';
 import Projects from './project/Projects';
 import Datasets from './dataset/Datasets';
-import Models from './Models/Models'
+// import Models from './Models/Models'
 import 'bootstrap/dist/css/bootstrap.css';
 import './Navbar.css';
 import logo from '../images/logo.png';
@@ -42,7 +42,7 @@ export default function Navbar(props) {
                     <li className="nav-link">
                         <Link to="/">
                             <i className='bx bx-outline icon'></i>
-                            <span className="text nav-text">Workspace</span>
+                            <span className="text nav-text">Home</span>
                         </Link>
                     </li>
 
@@ -91,19 +91,15 @@ export default function Navbar(props) {
     </nav>
         
     <div className='content'>
-    <Routes>
-          <Route path='/' element={<Workspace showModal={props.showModal} hideModal={props.hideModal}></Workspace>} />
-          <Route path='/test' element={<Test showModal={props.showModal} hideModal={props.hideModal}></Test>} />
-          <Route path='/Projects' element={<Projects showModal={props.showModal} hideModal={props.hideModal}></Projects>} />
-          <Route path='/Datasets' element={<Datasets showModal={props.showModal} hideModal={props.hideModal}></Datasets>} />
-          <Route path='/Models' element={<Models showModal={props.showModal} hideModal={props.hideModal}></Models>} />
-        </Routes>
+     <Routes>
+     <Route path='/workspace/:id' element={<Workspace showModal={props.showModal}  hideModal={props.hideModal}></Workspace>}/>
+     <Route path='/test' element={<Test showModal={props.showModal}  hideModal={props.hideModal}></Test>}/>
+     <Route path='/Projects' element={<Projects showModal={props.showModal}  hideModal={props.hideModal}></Projects>}/>
+     <Route path='/Datasets' element={<Datasets showModal={props.showModal}  hideModal={props.hideModal}></Datasets>}/>
+     {/* <Route path='/Models' element={<Models showModal={props.showModal}  hideModal={props.hideModal}></Models>}/> */}
 
-    
-        
-        <main></main>
-    </div>
-    
+   </Routes>
+   </div>
    </div>
     );
 }

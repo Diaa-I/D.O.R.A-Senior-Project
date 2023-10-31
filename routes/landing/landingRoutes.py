@@ -8,7 +8,9 @@ landing = Blueprint("landing", __name__)
 
 
 landing.route("/",methods=['GET'])(landingController.rendering)
-landing.route("/a",methods=['GET'])(landingController.a)
+landing.route("/all_projects",methods=['GET'])(landingController.all_projects)
+landing.route("/create_project",methods=['POST'])(landingController.create_project)
+landing.route("/upload_video/<project_name>",methods=['POST'])(landingController.upload_video)
 
 
 

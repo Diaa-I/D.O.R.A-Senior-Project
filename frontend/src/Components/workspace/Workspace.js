@@ -3,18 +3,26 @@ import Canvas from './Canvas';
 import AnnotationBox from './AnnotationBox';
 import axios from 'axios';
 import '../../App.css';
+import { useParams } from 'react-router-dom';
 const INITIAL_Annotations = [];
 let current_shape_index = 0;
+
+// const imageBitmap: ImageBitmap = await createImageBitmap(blob); // Blob file
+// const { width, height } = imageBitmap;
 
 
 export default function Workspace(props){
   // All Related to canvas manipulation 
-    let defaultImageMetadata = {width:"1400px",height:"850px"}
+    let defaultImageMetadata = {width:"1250",height:"650"}
     var startX,startY = 0
     var dragTR,dragTL,dragBR,dragBL = false
+    
     // Image related canvas
     const imageCanvasRef = useRef(null)
     const imageContextRef = useRef(null)
+
+    // Get the specific project in the workspace
+    const { id:project_id } = useParams()
 
     // Annotation related canvas
     const annotationCanvasRef = useRef(null)
@@ -40,116 +48,188 @@ export default function Workspace(props){
 
     // Labels array
     const [Labels,setLabels] = useState([])
-    
+
+    // Which frame we are at
+    const [frameCounter,setFramesCounter] = useState(0)
+    // How many frames in the project
+    const [framesSize,setFramesSize] = useState('')
+    // CurrentFrame
+    const [currentFrame,setCurrentFrame] = useState()
+    // Just Loaded for first time or Get New Batch of Frames
+    const [getNewFrames,setGetNewFrames] = useState(true)
+    // Frames Directory list contains all the directories of the frames
+    const [frames,setFrames] = useState([])
+
+    // KEEP TRACK OF WHICH FRAME WAS Annotated
+    // Either each one that has an annotation and was not deleted then save that frame number into a list and is checked once we go back and front
+    // OR Once you skip something that counts as being annotated
+    //GET NUMBER WHERE WE HAVE TO GET NEW FRAMES BUT THIS IS NOT FOR DIRECTORIES
+    // Used to check which frames have been annotated so they can be used to retireve the annotations
+    const [annotatedFrames,setAnnotatedFrames] = useState([])
+
+    // When to train the model (Should we have array or Should we have one by one)
+    const [shouldTrain,setShouldTrain] = useState([])
+
     // Used to check if the user is moving mouse when inside the Annotation
     var check = {"isMoving":true}
-  
-  
+
+    console.log(project_id)
+
+    // When page is first loaded
     useEffect(()=>{
       // Image canvas
       const imageCanvas = imageCanvasRef.current;
       const imageContext = imageCanvas.getContext('2d')
       // Use this to put image
       imageContextRef.current = imageContext
-  
-  
       // Annotation canvas
       const AnnotationCanvas = annotationCanvasRef.current;
       // context of Annotation canvas for drawing Annotation
       const contextAnnotation = AnnotationCanvas.getContext('2d')
       // Use this to draw
       annotationContextRef.current = contextAnnotation
-      // Have a request here to get all location of frames
-      // Then save them into frames
-      // Whenever new frame is there then move based on that
-      // Maybe we can have another state called currentFrame
-      // Which is like pointer to which frame stored in the another state called frames which are requested first
+      axios.get(`http://localhost:5000/workspace/get_project_information/${project_id}`).then((res)=>{
+             // Negative because we starting from 0, so 0-9 is 10 
+        // Maybe for user experience we can start from 10
+        setFramesSize(res.data.Frames-1)
+        // How will we divide it maybe first we do 500 then 100 + 100 + 100 + 50 + 50
+        // IT HAS PROBLEMS WHAT IF I WENT FRONT THEN BACK
+        setShouldTrain((res.data.Frames/2) -1)
+        // maybe when we reach the shouldTrain then event to send to api and then give them access to start again 
+        // 
+        setIsLoading(false)
+      })
 
     },[])
   
     useEffect(()=>{
-        // We probably will need a state called isNewFrame 
-      // So when we change frames, it saves the old annotations, and then sets the annotations state into emtpy array
-      // and displays 0 annotations on the screen
-      console.log(isNewFrame,isGoingBack)
-      if(isNewFrame && !isGoingBack){
-        console.log('THIS ONE ')
-      imageContextRef.current.clearRect(0,0,imageCanvasRef.current.width,imageCanvasRef.current.height);
-      // Before deleteing the frames, we need to save them call the function that saves them
-      // Counter how many frames we have used from the one locally called 
-      // Actually if we are getting their directories we can get all 
-      // If we will be using GridFS then maybe we do counter but if directories then all.
-      // That is moving forward we get all, but backwards then it will be retireval from back
-      console.log("Hello")
-      setAnnotations([])
-      setIsNewFrame(false)
-      // SEND ANNOTATIONS WITH WHICH FRAME NUMBER THIS IS 
-      if(Annotations.length!=0){
-      axios.post("http://localhost:5000/workspace/save_annotation",Annotations).then((response)=>{
-      console.log(response)
-      axios.get("http://localhost:5000/workspace/retrieve_next_batch?starting_from=0&retrieval_size=1").then(res=>{
-      var image = new Image();
-      image.src = res.data['Image_Dir']
-      image.onload = () => {
-        imageContextRef.current.drawImage(image, 0, 0);
-
-      //   if(image.width>1920 && image.height>1080){
-      //     setImageMetaData({width:"1920px",height:"1080px"})
-      // }
-      // else{
-      //   setImageMetaData({width:image.width,height:image.height})
-      // }
+      // Check if get you need to get frames
+      // FrameNumber is the last frame ur at
+      // FrameCounter is this frame ur at 
+      if(getNewFrames){
+        // Make a request to get frames
+        axios.get(`http://localhost:5000/workspace/retrieve_next_batch/${project_id}`).then(response=>{
+        var image = new Image();
+        console.log(response.data)
+        // Get the frames 
+        setFrames(response.data['Image_Dir'])
+        // If more than one photo
+        if(response.data['Image_Dir'].length>1){
+        setCurrentFrame(response.data['Image_Dir'][0]['image_loc'])
+        }
+        // If only one photo
+        else{
+          setCurrentFrame(response.data['Image_Dir']['image_loc'])
+        }
+        image.src = response.data['Image_Dir']['image_loc']
+        image.onload = () => {
+          imageContextRef.current.drawImage(image, 0, 0,frames[frameCounter]['width'],frames[frameCounter]['height']);
+          setImageMetaData({'width':frames[frameCounter]['width'],'height':frames[frameCounter]['width']})  
+      }
+      // Don't request new frames from API
+      setGetNewFrames(false)
+      // setIsLoading(false)
+      })
       }
       
-    })
-    })
-  }
-  else{
-    console.log("WHY")
-    axios.get("http://localhost:5000/workspace/retrieve_next_batch?starting_from=0&retrieval_size=1").then(res=>{
-      var image = new Image();
-      image.src = res.data['Image_Dir']
-     
-      image.onload = () => {
-        imageContextRef.current.drawImage(image, 0, 0);
-      } 
-      setAnnotations([])
-      setIsNewFrame(false)
-      
-    
-    })
-  }
-  }
-  else if (isNewFrame && isGoingBack){
-    axios.get("http://localhost:5000/workspace/retrieve_previous_batch").then(res=>{
-      console.log(res)
-      var image = new Image();
-      image.src = res.data['Image_Dir']
-      console.log("HEEEE")
-      image.onload = () => {
-        imageContextRef.current.drawImage(image, 0, 0);
-      } 
-      // Check If no annotation was present in the last frame if there is then display them if not then don't display anything (Displaying is by setting the Annotation state to either the old annotations or nothing which will trigger the useEffect that renders whenever Annotations change)
-      if(res.data['Annotations']){
-      setAnnotations([...res.data['Annotations']])
-    }
+      // Going forward what shall be requested
+      else if(isNewFrame){
+        imageContextRef.current.clearRect(0,0,imageCanvasRef.current.width,imageCanvasRef.current.height);
+        // Check if this frame is in the annotatedFrames
+        var image = new Image();
+        image.src = currentFrame
+        image.onload = () => {
+          imageContextRef.current.drawImage(image, 0, 0,frames[frameCounter]['width'],frames[frameCounter]['height']);
+          setImageMetaData({'width':frames[frameCounter]['width'],'height':frames[frameCounter]['width']})  
 
-    else{
-      setAnnotations([])
-    }
-      setIsNewFrame(false)
+        }
+
+        // Framenumber so we can send data to API to save annotations 
+        let frameNumber = frameCounter - 1
+        if(isGoingBack){
+           frameNumber = frameCounter + 1
+        }
+
+        if(annotatedFrames.indexOf(frameNumber)!=-1){
+        // Get annotations of the frame using frameCounter because frameNumber is used for the last frame you were at the counter is the one you are currently at
+        // Check the page has been annotated (yes)
+
+        if(Annotations.length!=0){
+          // Save the annotations made by user
+          axios.post(`http://localhost:5000/workspace/save_annotation`,{frameNumber,Annotations,project_id}).then((res)=>console.log(res))
+          setAnnotations([])
+          setIsNewFrame(false)
+         }
+        // Check the page has been annotated(no)
+        else{
+          // Send to API to delete The Annotations data of this frame from DB
+
+          axios.post(`http://localhost:5000/workspace/delete_annotation`,{frameNumber,Annotations,project_id})
+          // Remove this frame from annotatedFrames
+          setAnnotatedFrames(annotatedFrames.filter((frame)=>{
+            return frame!=frameNumber
+          }))
+          // Empty the annotation
+          setAnnotations([])
+          // Move from this frame
+          setIsNewFrame(false)
+       }
+      }
+      // Add the frame to annotatedFrames
+      else{
+        if(Annotations.length!=0){
+          axios.post("http://localhost:5000/workspace/save_annotation",{frameNumber,Annotations,project_id})
+          // Check if it was already there or not
+          if (!annotatedFrames.includes(frameNumber)){
+          setAnnotatedFrames((prevstate)=>{
+            return ([...prevstate,frameNumber])
+          })
+        }
+        // Save in the frontend which frames have been annotated
+      }
+        // Empty the annotation
+        setAnnotations([])
+        // Move from this frame
+        setIsNewFrame(false)
+      }
       setIsGoingBack(false)
-    })
+
+      axios.get(`http://localhost:5000/workspace/retrieve_previous_batch/${project_id}?frameNumber=${frameCounter}`).then(response=>{
+      // Display annotations already stored in DB
+      setAnnotations([...response.data['Annotations']])
+      var image = new Image();
+      image.src = currentFrame
+      image.onload = () => {
+        imageContextRef.current.drawImage(image, 0, 0,frames[frameCounter]['width'],frames[frameCounter]['height']);
+        setImageMetaData({'width':frames[frameCounter]['width'],'height':frames[frameCounter]['width']})  
       }
-    },[imageContextRef,isNewFrame])
+    }).catch((err)=>console.log(err))
+    // Whenever we need to train this will run and then the api will call another thing that will run (as of now this is the idea)
+      // if(shouldTrain.includes(frameCounter)){
+      //   axios.get(`http://localhost:5000/workspace/retrieve_previous_batch?frameNumber=${frameCounter}`).then(response=>{
+      //     // Display annotations already stored in DB
+      //     setAnnotations([...response.data['Annotations']])
+      //     var image = new Image();
+      //     image.src = currentFrame
+      //     image.onload = () => {
+      //       imageContextRef.current.drawImage(image, 0, 0,imageMetadata.width,imageMetadata.height);
+      //     }
+      //   }).catch((err)=>console.log(err))
+      // }
+      
+    }
+    
+    },[imageContextRef,isNewFrame,getNewFrames])
   
+    // When first loaded and any changes in Annotations
     useEffect(()=>{
+      console.log(Annotations)
       annotationCanvasRef.current.onmousedown = mouse_down
       annotationCanvasRef.current.onmouseup = mouse_up
       annotationCanvasRef.current.onmouseout = mouse_out
       annotationCanvasRef.current.onmousemove = mouse_move
       annotationCanvasRef.current.oncontextmenu = onContextMenuHandler
-      console.log(Annotations)
+      // Draw annotations whenever there is a change, check the code if-else
       if (Annotations&&Annotations.length>0){
         draw() 
       }
@@ -158,18 +238,13 @@ export default function Workspace(props){
       }
   
     },[Annotations])
-
+  // ---------------------------------------------------------------------------------------------------------------------------------------------
+  // Canvas manipulation logic
   // return if distance between 2 points is less than 10
   let checkCloseEnough = function(p1, p2) {
     return Math.abs(p1 - p2) < 10;
   }  
-  
-    // const btnToDraw=(newAnnotation)=>{
-    //   // let newAnnotation = {x:200, y:50, width:100, height: 150,"selected":false}
-    //   // setAnnotations((prevAnnotations)=>{return[newAnnotation,...prevAnnotations]})
-    //    draw()
-    // }
-  
+  // Handling right click, for deleting annotations 
     function onContextMenuHandler(e) {
       e.preventDefault();
       // To delete the annotation
@@ -190,13 +265,13 @@ export default function Workspace(props){
   
   };
   
-  
+  // Saving and setting state for annotations
     const onSaveAnnotations = (newAnnotation)=>{
       setAnnotations((prevAnnotations)=>{return[newAnnotation,...prevAnnotations]})
     }
     
 
-  
+    // Drawing annotation
     const draw = ()=>{
   
       // Clear the canvas, Clears specified pixels within a rectangle
@@ -214,7 +289,8 @@ export default function Workspace(props){
         // annotationContextRef.current.fillRect(annotation.x,annotation.y,annotation.width,annotation.height)
     }
   }
-  
+
+  //Checking if click is inside the annotation
   const is_mouse_in_Annotation = (x,y,annotation)=>{
     // the location of where I am clicking (inside the box) and inside the box give very different results
     let annotation_left = annotation.x;
@@ -227,7 +303,8 @@ export default function Workspace(props){
     }
     return false
   }
-  
+
+  // When resizing the annotations updating the annotation
   const update_shape_props = function(shape){
     if (shape.x < 0)
         shape.x = 0
@@ -243,7 +320,7 @@ export default function Workspace(props){
      }
   }
   
-  
+  // When mouse is clicked, if left clicked, check where it is clicked and then determine if resizing or move
   const mouse_down = (event)=>{
     event.preventDefault();
   
@@ -302,7 +379,7 @@ export default function Workspace(props){
   }
     }
   }
-  // Released the mosue click
+  // Released the mouse click
   const mouse_up = ((event)=>{
       for(let Annotation of Annotations){
           if (Annotation.selected == true){
@@ -334,7 +411,8 @@ export default function Workspace(props){
     dragTL = dragTR = dragBL = dragBR = false;
     annotationCanvasRef.current.style.cursor = 'default'
   }
-  
+
+  // Moving the mouse could be resizing or moving the annotation
   const mouse_move = (event)=>{
     
       event.preventDefault()
@@ -404,11 +482,54 @@ export default function Workspace(props){
    
   }
   }
+  // Moving frames forward 
+  const onFrameChangeForward = ()=>{
+    // A condition to stop at last frame
+    if(framesSize>=frameCounter+1){
+      setCurrentFrame(frames[frameCounter+1]['image_loc'])
+        setFramesCounter((prevframe)=>{return prevframe + 1})
+        setIsNewFrame(true)   
+    }
+  }
+  // Moving frames backwards 
+  const onFrameChangeBackwards = ()=>{
+    // A condition to stop at first frame
+    if(!frameCounter-1<0){
+        console.log("WORKIng back")
+    setCurrentFrame(frames[frameCounter-1]['image_loc'])
+    setFramesCounter((prevframe)=>{return prevframe>0 ? prevframe - 1 : 0})
+    setIsNewFrame(true)
+    setIsGoingBack(true)
+}
+  }
+// Handling requests to make predictions and return the prediction
+  const handleMakePrediction = ()=>{
+    // Current image to pass to the API
+    axios.post(`http://localhost:5000/workspace/trained_model/${project_id}`,{currentFrame})
+    .then((res)=>{
+      let newAnnotation = []
+      for (let anno of res.data){
+        newAnnotation.push({
+          "x":anno['x'],
+          "y":anno['y'],
+          "width":anno['w'],
+          "height":anno['h'],
+          "label":anno['label'],
+          'frame':frameCounter,
+          "project_id":project_id
+        })
+      }
+      console.log(newAnnotation)
+      setAnnotations((prevAnnotations)=>{return[...newAnnotation,...prevAnnotations]})
+      console.log(Annotations)
+    })
+    .catch((err)=>{console.log(err)})
+  }
 
     return(
         <div>
         <Canvas Annotations={Annotations}   forwardRef={imageCanvasRef} annotationCanvasRef={annotationCanvasRef} imageMetadata={imageMetadata} onContextMenuHandler={onContextMenuHandler} />
-        <AnnotationBox   setIsGoingBack={setIsGoingBack} draw={draw}   onSaveAnnotations = {onSaveAnnotations} setIsNewFrame={setIsNewFrame} showModal={props.showModal} isModalShown={props.isModalShown}/>
+        <AnnotationBox handleMakePrediction={handleMakePrediction} isLoadingAIBOX={isLoading} framesSize={framesSize} frameCounter={frameCounter} onFrameChangeForward={onFrameChangeForward} onFrameChangeBackwards={onFrameChangeBackwards}  draw={draw}   onSaveAnnotations = {onSaveAnnotations}  showModal={props.showModal} isModalShown={props.isModalShown}/>
         </div>
     )
 }

@@ -4,12 +4,14 @@ from controllers.workspace import workspaceController
 workspace = Blueprint("workspace", __name__)
 
 
-workspace.route("", methods=["POST"])(workspaceController.workspace)
+# workspace.route("", methods=["POST"])(workspaceController.workspace)
 workspace.route("/getlabels", methods=["GET"])(workspaceController.get_labels)
-workspace.route("/get_project_information", methods=["GET"])(workspaceController.get_project_information)
-workspace.route("/retrieve_next_batch", methods=["GET"])(workspaceController.retrieve_next_batch)
-workspace.route("/retrieve_previous_batch", methods=["GET"])(workspaceController.retrieve_previous_batch)
+workspace.route("/get_project_information/<project_id>", methods=["GET"])(workspaceController.get_project_information)
+workspace.route("/retrieve_next_batch/<project_id>", methods=["GET"])(workspaceController.retrieve_next_batch)
+workspace.route("/retrieve_previous_batch/<project_id>", methods=["GET"])(workspaceController.retrieve_previous_batch)
 workspace.route("/save_annotation", methods=["POST"])(workspaceController.save_annotation)
+workspace.route("/delete_annotation", methods=["POST"])(workspaceController.delete_annotation)
+workspace.route("/trained_model/<project_id>", methods=["POST"])(workspaceController.trained_model)
 
 
 

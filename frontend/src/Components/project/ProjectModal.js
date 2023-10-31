@@ -1,8 +1,9 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import {Modal , Button ,Form} from 'react-bootstrap';
 
 
-function ProjectModal({ onCreateProject }) {
+function ProjectModal({ makeNewProject,setIsNewProject }) {
     // storing the state of each field
     const [projectName, setProjectName] = useState(''); 
     const [selectedModel, setSelectedModel] = useState('model1');
@@ -15,34 +16,45 @@ function ProjectModal({ onCreateProject }) {
     const handleShow = () => setShow(true);
 
     // When the create button is clicked the values will be stored in an object
-    const handleCreateProject = () => {
-        onCreateProject({
+    const handleCreateProject = (e) => {
+        e.preventDefault()
+        let newProject = {
             name: projectName,
             model: selectedModel,
             labels: labels,
             dataset: datasetFile,
-        });
+        }
+        const file = e.target.video.files[0];
+        const data = new FormData();
+        data.append('video', e.target.video.files[0])
+
+        makeNewProject(newProject, data);
+        setIsNewProject(true)
 
         // Clear form fields
         setProjectName('');
         setSelectedModel('model1');
         setLabels('');
         setDatasetFile('');
+
+        handleClose();
     };
-
-    
-
+    if(!show){
+        return(
+            <Button variant='primary' onClick={handleShow}>
+                Create Project
+            </Button>
+        )
+    }
+    else{
     return (
         <>
-        <Button variant='primary' onClick={handleShow}>
-            Create Project
-        </Button>
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
                 <Modal.Title>New Project</Modal.Title>
             </Modal.Header>
+            <Form onSubmit={handleCreateProject} encType='multipart/form-data'>
             <Modal.Body>
-                <Form>
                     <Form.Group controlId="projectName">
                         <Form.Label>Project Name:</Form.Label>
                         <Form.Control
@@ -78,23 +90,27 @@ function ProjectModal({ onCreateProject }) {
                         <Form.Control
                             type="file"
                             value={datasetFile}
+                            name='video'
                             onChange={(e) => setDatasetFile(e.target.value)}
                         />
                     </Form.Group>
-                </Form>
-            </Modal.Body>
-            <Modal.Footer>
+                    </Modal.Body>
+             <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>
                     Close
                 </Button>
-                <Button variant="primary" onClick={event =>{handleCreateProject, handleClose}}>
+                {/* onClick={handleCreateProject}    */}
+                <Button variant="primary" type='submit'>
                     Create
                 </Button>
+
             </Modal.Footer>
+            </Form>
         </Modal>
         </>
-        
+
     );
+}
 }
 
 export default ProjectModal;

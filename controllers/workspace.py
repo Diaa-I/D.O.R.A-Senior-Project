@@ -1,8 +1,19 @@
 import os
+
+import cv2
+import numpy as np
+import yaml
 from flask import Flask,flash,render_template,redirect,request,url_for, send_from_directory, jsonify
 from werkzeug.utils import secure_filename
+import os
+
+# from AI.yolov5m.models.common import DetectMultiBackend
+
 from database import mongo_connection
-from bson.objectid import ObjectId
+from flask_pymongo import ObjectId
+import AI.controller.modelController as mc
+# import AI.controller.projectManager as pm
+
 import json
 # import pymongo
 # from pymongo import MongoClient
@@ -12,14 +23,15 @@ ALLOWED_EXTENSIONS = {'mp4', 'mov', 'wmv', 'flv', 'avi', 'mkv', 'webm'}
 
 db_connection = {
     "Users":mongo_connection.Users,
-    "Projects":mongo_connection.Projects
+    "Projects":mongo_connection.Projects,
+    "Annotations":mongo_connection.Annotations
 }
 
 Users = db_connection['Users']
 Projects = db_connection['Projects']
-print(Users.find_one())
-print(Projects.find_one())
+Annotations = db_connection['Annotations']
 
+project_currently_used = {"_id":""}
 
 def allowed_file(filename):
     print(filename)
@@ -41,174 +53,204 @@ class workspaceController:
 
         return response
 
-    def get_project_information():
-        Project = Projects.find_one({})
+    def get_project_information(project_id):
+        # Return the project details
+        project_currently_used['_id'] = ObjectId(project_id)
+        Project = Projects.find_one({"_id":ObjectId(project_id)})
         print(Project)
         response = jsonify({"Project_Name": Project['Name'], "Frames": Project['Frames_Size']})
         response.headers.add('Access-Control-Allow-Origin', '*')
         response.headers.add("Access-Control-Allow-Headers", "X-Requested-With")
-        print(response)
         return response
 
-    def get_next_frames():
-    #     Function to get the Next set of frames (to be annotated)
-    #     Using the project_id we retieve it from the database, Directory_of_File\Frame_number loop * numberOfRetrievals
+    # I THINK NO LONGER BEING USED
+    # def workspace():
+    #     # checking if the request sent was a post request
+    #     if request.method == "POST":
+    #         # Checking whether a video was uploaded that satisfies the conditions was uploaded
+    #         if 'video' not in request.files:
+    #             flash("No file was uploaded, Upload a video that satisfies the conditions")
+    #             return redirect(url_for("landing.rendering"))
     #
-        pass
-    def get_old_frames():
-    #     Function to get the previous set of frames or frame (That were already annotated even if skipped)
-        pass
-    # print(app.Project.find_one_or_404({"_id":"651aed7e0fa9d4b9db48be1b"}))
+    #         # Storing the video in a temporary variable for ease of use
+    #         file = request.files['video']
+    #
+    #         # Checking whether a video was selected that satisfies the conditions was uploaded
+    #         if file.filename == '':
+    #             flash("No selected file,Upload a video that satisfies the conditions")
+    #             return redirect(url_for("landing.rendering"))
+    #
+    #
+    #         if file and allowed_file(file.filename):
+    #             file_path = os.path.join('uploads/files', secure_filename(file.filename))
+    #             file.save(file_path)
+    #
+    #             project_name = request.form['project_name']
+    #             path = os.getcwd()
+    #
+    #             # here is where the labels are stored in a file
+    #             with open("./uploads/files/labels.txt",'w+') as label_file:
+    #                 label_file.writelines(request.form['labels'])
+    #             # returning the SPA page
+    #             return send_from_directory(path+'/frontend/build/',"index.html")
+    #             # return render_template("/views/workspace.html", filename=file.filename, labels=labels)
+    #         else:
+    #             flash("Upload a video that satisfies the conditions")
+    #             return redirect(url_for("landing.rendering"))
 
 
-    def workspace():
-        # checking if the request sent was a post request
-        if request.method == "POST":
-            # Checking whether a video was uploaded that satisfies the conditions was uploaded
-            if 'video' not in request.files:
-                flash("No file was uploaded, Upload a video that satisfies the conditions")
-                return redirect(url_for("landing.rendering"))
+    def delete_annotation():
+        # Annotations from web
+        annotation_arr = request.json['Annotations']
 
-            # Storing the video in a temporary variable for ease of use
-            file = request.files['video']
+        # Frame number
+        frameNumber = request.json['frameNumber']
 
-            # Checking whether a video was selected that satisfies the conditions was uploaded
-            if file.filename == '':
-                flash("No selected file,Upload a video that satisfies the conditions")
-                return redirect(url_for("landing.rendering"))
+        # Project id from web app
+        project_id = ObjectId(request.json['project_id'])
 
-
-            if file and allowed_file(file.filename):
-                file_path = os.path.join('uploads/files', secure_filename(file.filename))
-                file.save(file_path)
-
-                project_name = request.form['project_name']
-                # labels = request.form['labels'].split(",")
-                # file_path = file_path
-                # DM_obj = DataManager('',project_name)
-
-                path = os.getcwd()
-                # DM_obj.extractFrames(file_path,path+'/AI/train_data/images')
-
-                # here is where the labels are stored in a file
-                with open("./uploads/files/labels.txt",'w+') as label_file:
-                    label_file.writelines(request.form['labels'])
-                # returning the SPA page
-                return send_from_directory(path+'/frontend/build/',"index.html")
-                # return render_template("/views/workspace.html", filename=file.filename, labels=labels)
-            else:
-                flash("Upload a video that satisfies the conditions")
-                return redirect(url_for("landing.rendering"))
-
-
+        # Annotations from Database
+        frameAnnotation = list(Annotations.find({"frame":frameNumber,'project_id':project_id}))
+        # Existing Annotations from database
+        # existing_annotations = [i for i in annotation_arr if i in frameAnnotation]
+        #
+        # # Finding the annotations to delete using the annotations in database
+        # delete_annotations = [annotation for annotation in frameAnnotation if annotation not in existing_annotations]
+        # print(delete_annotations)
+        # Delete Annotations
+        if len(frameAnnotation)>0:
+            for annotation in frameAnnotation:
+                Annotations.delete_many({"_id":annotation["_id"]})
+        return "Hello"
 
 
     def save_annotation():
-        print(request.json)
-        print("WRITINIASNPDINASD")
-        response = jsonify({"data":request.json})
-        response.headers.add('Access-Control-Allow-Origin', '*')
-        with open('annotations.txt', 'w') as convert_file:
-            convert_file.write(json.dumps(request.json))
+        # Annotations from web app
+        annotation = request.json['Annotations']
 
+        # Project id from web app
+        project_id = ObjectId(request.json['project_id'])
+
+        # Annotations from database
+        allAnnotations = list(Annotations.find({"frame": request.json['frameNumber'],"project_id":project_id}, {'_id': False,'frame':False,'project_id':False}))
+
+        # Finding all the existing annotations from database, ones that haven't been modified on web
+        existing_annotations = [i for i in annotation if i in allAnnotations]
+
+        # Finding the annotations to delete using the annotations in database
+        delete_annotations = [annotation for annotation in allAnnotations if annotation not in existing_annotations]
+
+        # Finding annotations to add using the annotations not found to be existing in the database be were sent with web request
+        add_annotations = [i for i in annotation if i not in existing_annotations]
+
+        # Modifying all the new annotations to be similar to ones that exist
+        for i in range(len(add_annotations)):
+             add_annotations[i]= {
+                 "frame": request.json['frameNumber'],
+                 "label": add_annotations[i]['label'],
+                 "x": add_annotations[i]['x'],
+                 "y": add_annotations[i]['y'],
+                 "width": add_annotations[i]['width'],
+                 "height": add_annotations[i]['height'],
+                 "project_id":project_id
+                 }
+
+        response = jsonify({"data": "Successfully modified the database"})
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        # Adding all new annotations
+        if len(add_annotations) > 0:
+            Annotations.insert_many(add_annotations)
+        # Removing annotations that no longer exist
+        if len(delete_annotations)>0:
+            for anno in delete_annotations:
+                # (WE CANT USE ID WE ARE NOT REQUESTING ID DUE TO  COMPARING)
+                Annotations.delete_many({"x":anno['x'],'y':anno['y'],'height':anno['height'],'width':anno['width'],"project_id":project_id})
         return response
 
-    def retrieve_next_batch():
+    def retrieve_next_batch(project_id):
         # Because we are using file directories then we get all the files locations, but if GridFS then we check if portions
         # We can write the defaults if not present
+        print(project_id)
         args = request.args
-        startings_from = args.get('starting_from')
-        retrievals_size =args.get('retrieval_size')
-        print(startings_from,retrievals_size)
 
-        Project = Projects.find_one({})
+        Project = Projects.find_one({"_id":ObjectId(project_id)})
+        dir_list = []
         image_dir = Project['Directory_of_File']
+        # To open the images on frontend it will already be in /public
+        opening_dir = Project['Directory_of_File'].split('/')[2:]
+        opening_dir = '/'+'/'.join(opening_dir)
+
         # CHANGE IT TO CONTAIN ALL TYPES OF PHOTOS ALSO SAY THE TYPES IN REPORT
+        # Should later change to accessing from database the frames
         for file in os.listdir(image_dir):
             if file.endswith(".jpg"):
-                dir_list = '/images/'+ file
-                break
-        dir_list =  dir_list
-        print(dir_list)
+                # Extract the width and height of images
+                im = cv2.imread(os.getcwd() + '/' + image_dir + f'/{file}')
+                # Image location + Metadata
+                dir_list.append({"image_loc": opening_dir + f'/{file}', 'width': im.shape[1], 'height': im.shape[0]})
         # dir_list[0] = './'+ Project['Directory_of_File'] + dir_list[0]
         response = jsonify({"Project_Name": Project['Name'], "Frames": Project['Frames_Size'],"Image_Dir":dir_list})
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
 
-    def retrieve_previous_batch(starting_from=None, retrieval_size=10):
-        Project = Projects.find_one({})
-        image_dir = Project['Directory_of_File']
-        for file in os.listdir(image_dir):
-            # CHANGE IT TO CONTAIN ALL TYPES OF PHOTOS ALSO SAY THE TYPES IN REPORT
-            if file.endswith(".jpg"):
-                dir_list = file
-                break
-        dir_list = '/images/' + dir_list
 
-        f = open("annotations.txt", "r")
-        try:
-            data_file = json.load(f)
-        except json.JSONDecodeError:
-            f.close()
-            response = jsonify({ "Frames": Project['Frames_Size'], "Image_Dir": dir_list})
-            response.headers.add('Access-Control-Allow-Origin', '*')
-            return response
-        else:
-            with open('annotations.txt', 'w') as convert_file:
-                convert_file.write('')
+    def retrieve_previous_batch(project_id):
+        args = request.args
+        frame_number = int(args.get('frameNumber'))
+        print(ObjectId(project_id))
+        allAnnotations = list(Annotations.find({"frame":frame_number,"project_id":ObjectId(project_id)}, {'_id': False, "frame": False,'project_id':False}))
+        print(allAnnotations)
+        response = jsonify({"Annotations": allAnnotations})
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
+    # def trained_model(project_id):
+    #     Project = Projects.find_one({"_id": ObjectId(project_id)})
+    #     print(Project)
+    #     print(request.json['currentFrame'])
+    #     print(request.json)
+    #     return 'yes'
+    # def train_model():
+    #     pass
+    #     # # myPM = pm.ProjectManager(['glass', 'metal', 'paper'],
+    #     # #                          projectName='trash_detection')
+    #     # #
+    #     # # myPM.createYaml(at="sandbox")
+    #     # myMC = mc.ModelController()
+    #     # train.run(data=yaml_filepath, imgsz=img_train_size, weights=pretrained_model_path, epochs=epochs,
+    #     #           batch_size=batch_size)
+    #     # myMC.trainModel(yamlFilepath="sandbox/trash_detection.yaml",
+    #     #                 pretrainedWeights="yolov5m/yolov5n.pt",
+    #     #                 imgTrainSize=320,
+    #     #                 batch_size=8)
+    def trained_model(project_id):
+        # Find project, In DB project <-> model, so we can have relation which project relies on model.
+        Project = Projects.find_one({"_id": ObjectId(project_id)})
+        print(Project)
+        print(request.json['currentFrame'])
+        # Loading model
+        pt_model = mc.ModelController().load_trained_model(Project['model_filepath'], Project['yaml_filepath'])
 
+        # Make prediction
+        predictions = mc.ModelController().make_inference(request.json['currentFrame'], Project['yaml_filepath'], pt_model)
+        print(predictions)
+        pred = []
 
-
-
-            response = jsonify({"Annotations": data_file, "Frames": Project['Frames_Size'], "Image_Dir": dir_list})
-            response.headers.add('Access-Control-Allow-Origin', '*')
-            return response
-
-    def insert_annotation_into_db(data):
-        # MongoDB connection (where it's hosted), THIS NEEDS TO BE A GLOBAL VARIABLE
-        client = MongoClient('mongodb://localhost:27017/')
-        db = client['your_database']
-        collection = db['annotations']
-
-        # Define the schema
-        schema = {
-            'annotation_img': {'$type':'string'},   # the associated image name.
-            'label_id': {'$type':'int'},    # the label numerical id.
-            'x_center': {'$type': 'double'},   # the x-coord of the center of the bounding box, relative to the width of the image.
-            'y_center': {'$type': 'double'},    # the y-coord of the center of the bounding box, relative to the height of the image.
-            'width': {'$type': 'double'},       # the width of the bounding box, relative to the width of the image.
-            'height': {'$type': 'double'},      # the height of the bounding box, relative to the height of the image.
-        }
-
-        # Create the validator using the schema
-        validator = {
-            '$jsonSchema': {
-                'bsonType': 'object',
-                'required': ['annotation_img', 'label_id', 'x', 'y', 'width', 'height'],
-                'properties': schema
-            }
-        }
-
-        # Set the validator for the collection
-        db.command({
-            'collMod': 'annotations',
-            'validator': validator
-        })
-
-        # Sample data to insert (where x and y should be floats)
-        # data = {
-        #     'annotation_img': "1233.PNG",
-        #     'label_id': 4,
-        #     'x': 0.345,
-        #     'y': 0.55,
-        #     'width': 0.20,
-        #     'height': 0.35,
-        # }
-        try:
-            result = collection.insert_one(data)
-            print('Data inserted successfully.')
-        except pymongo.errors.WriteError as e:
-            print('Error: Data validation failed.')
-            print('Validation Error:', e)
+        for prediction in predictions:
+            # x = (x_min + x_max)/2, y = (y_min + y_max)/2
+            # w = x_max - x_min, h = y_max - y_min
+            y_min = prediction['location'][0]
+            x_min = prediction['location'][1]
+            y_max = prediction['location'][2]
+            x_max = prediction['location'][3]
+            pred.append({
+                'x':(x_min + x_max)/2,
+                'y':(y_min + y_max)/2,
+                'w':(x_max - x_min),
+                'h':(y_max - y_min),
+                'label':prediction['name'],
+                'conf_score': prediction['conf_score']
+            })
+        # If not prediction then return a flash message saying there were no prediction found
+        return pred
 
 

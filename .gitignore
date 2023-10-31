@@ -15,3 +15,12 @@ frontend/node_modules/
 node_modules/.bin/loose-envify
 *.cmd
 *.pyc
+*.jpg
+*.pyc
+AI/yolov5m/utils/__pycache__/plots.cpython-311.pyc
+*.pyc
+*.yaml
+AI/sandbox/trash_detection.yaml
+*.cache
+*.jpg
+*.pyc

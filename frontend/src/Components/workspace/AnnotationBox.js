@@ -11,7 +11,7 @@ return(
         {/*  annotation tools */}
         <AIOption onSaveAnnotations = {props.onSaveAnnotations} draw={props.draw} showModal={props.showModal} isModalShown={props.isModalShown} />
         {/* Frames, suggestions */}
-        <AIBox setIsNewFrame={props.setIsNewFrame} setIsGoingBack={props.setIsGoingBack}/>
+        <AIBox handleMakePrediction={props.handleMakePrediction} frameCounter={props.frameCounter} isLoadingAIBOX ={props.isLoadingAIBOX}framesSize={props.framesSize} onFrameChangeForward={props.onFrameChangeForward} onFrameChangeBackwards={props.onFrameChangeBackwards} />
         {/* Annotation labels */}
         {/* <InfoLabel /> */}
         {/* Settings, Save, discard */}
