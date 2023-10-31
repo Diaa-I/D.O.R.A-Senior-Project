@@ -24,3 +24,5 @@ AI/sandbox/trash_detection.yaml
 *.cache
 *.jpg
 *.pyc
+*.png
+*.jpg

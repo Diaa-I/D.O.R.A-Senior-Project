@@ -97,7 +97,7 @@ export default function Workspace(props){
         setShouldTrain((res.data.Frames/2) -1)
         // maybe when we reach the shouldTrain then event to send to api and then give them access to start again 
         // 
-        setIsLoading(false)
+        // setIsLoading(false)
       })
 
     },[])
@@ -128,7 +128,7 @@ export default function Workspace(props){
       }
       // Don't request new frames from API
       setGetNewFrames(false)
-      // setIsLoading(false)
+      setIsLoading(false)
       })
       }
       
