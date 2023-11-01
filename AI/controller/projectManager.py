@@ -287,13 +287,39 @@ class ProjectManager(object):
     @staticmethod
     def normalize_coordinates(x, y, w, h, img_width, img_height):
         '''
-        Used to normalize values given an image width. 
+        Used to normalize values (x, y, w, h) of a coordinates given an image width and height.
+        x and w will be normalized relative to img_width. y and h will be normalized relative to img_height.
         Normalization in math is the calculation of having a number between 1 and 0 relative to another number.
         Normalization is needed as it's the standard form of numbers YOLO uses in storing the annotation labels.
         '''
+        # check for irregularities (such as coordinates outside of image)
+        TOLERANCE = 5
+        assert img_height > 0 and img_width > 0, "Image width and height cannot be a negative"
+        assert x > 0 and y > 0 and w > 0 and h > 0, 'The provided values to be normalized must not contain a negative number'
+        assert x <= img_width + TOLERANCE and y <= img_height + TOLERANCE and w < img_width + TOLERANCE and h < img_height + TOLERANCE, \
+            "The provided values to be normalized are out of the image boundaries"
+
         # Calculate the normalized values
         x_norm = x / img_width
         y_norm = y / img_height
         w_norm = w / img_width
         h_norm = h / img_height
         return x_norm, y_norm, w_norm, h_norm
+    
+    @staticmethod
+    def denormalize_coordinates(x_norm, y_norm, w_norm, h_norm, img_width, img_height):
+        '''
+        Does the opposite operation as to 'normalize_coordinates'. That is, given a set of values representing the coordinates (x, y, w, h)
+        That are normalized (and therefore between 0 and 1), the function will return their true absolute position relative to the image.
+        '''
+        assert img_height > 0 and img_width > 0, "Image width and height cannot be a negative"
+        assert 1 >= x >= 0 and 1 >= y >= 0 and 1 >= w >= 0 and 1 >= h >= 0, 'The provided values to be de-normalized must be between 0 and 1'
+        x = x_norm * img_width
+        y = y_norm * img_height
+        w = w_norm * img_width
+        h = h_norm * img_height
+
+        TOLERANCE = 5
+        assert x <= img_width + TOLERANCE and y <= img_height + TOLERANCE and w < img_width + TOLERANCE and h < img_height + TOLERANCE, \
+        "The provided values to be de-normalized are out of the image boundaries"
+        return x, y, w, h
