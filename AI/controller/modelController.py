@@ -56,42 +56,40 @@ class ModelController(object):
         train.run(data=yaml_filepath, imgsz=img_train_size, weights=pretrained_model_path, epochs=epochs, batch_size=batch_size)
 
     @staticmethod
-    def make_inference(img, yaml_filepath, model_filepath, conf_threshold=0.9, frame_size=(640, 640)) -> list:
+    def make_inference(img, yaml_filepath, model_filepath, normalization_dims, conf_threshold=0.9) -> list:
         '''
-        Processes an image (given as a 3D array) and outputs all the detected objects found.
-        Detections will be considered only if they're above or equal to confThreshold.
-        Image will be processed not according to its original size, but the size specified in frameSize.
+        Processes an image and outputs all the detected objects found in it.
+        Detections will be considered only if they're above or equal to conf_threshold.
+        Image will be processed not according to its original size, but the size specified in FRAME_SIZE.
         ====================================================
         Parameters:
-            - img: a 3-D array representing the RGB of an image OR a 4-D array such that the last index is for batching OR string of the path of the image.
+            - img: the path of the image.
             - yaml_filepath: the path to the .yaml file that contains the labels of the trained model to use for inference.
             - model_filepath: the path to the .pt model file that will be used for inference.
+            - normalization_dims: a tuple in the form of (weight, height) that the returned coordinates of each detection will be relative to.
             - conf_threshold: float between 0 and 1 inclusive, only detected objects equal to or above this value will be returned.
-            - frame_size: 2-value tuple of the dimensions of model input. MUST both be equal, integers, and multiple of 160 (160, 320, 480 ..).
         returns: 
-            list of python dictionaries of the form: [{'name': str, 'conf_score': float, 'location': [ymin, xmin, ymax, xmax]}, {...}, ...].
+            list of python dictionaries of the form: [{'name': str, 'conf_score': float, 'location': [xmin, ymin, xmax, ymax]}, {...}, ...].
             In each dictionary, 'name' string represents the name of the label. 'conf_score' float between 0 and 1 represents how confident the model
             think this object belong to that label. 'location' is a list of the coordinates of the bounding box corners, the coordinates are normalized,
             hence they're all between 0 and 1.
         ====================================================
         Example of usage:
-            > mc = ModelController()
-            > img = Image.open('path/to/image.png')
-            > imgay = np.array(img)
-            > det_1 = mc.make_inference(imgay, r"yolov5m\data\myData.yaml", r"yolov5m\runs\exp1\weights\best.pt", 0.8)
-            > print(det_1)
-        [{'name': 'cat', 'conf_score': 0.875, 'location': [0.644, 0.2, 0.15, 0.222]},
-         {'name': 'cow', 'conf_score': 0.9753, 'location': [0.84, 0.23, 0.40, 0.15333]}]
-
-            > det_2 = mc.make_inference(r"path\to\image.png", "yolov5m\data\myData.yaml", pt_model, 0.5, (320, 320))
-            > print(det_2[0])
-        {'name': 'helicopter', 'conf_score': 0.68975, 'location': [0.55, 0.28, 0.15, 0.132]}
+        > det = con.modelController.ModelController.make_inference(img='path/to/image.jpg',
+                                                    normalization_dims=(512, 384),
+                                                    yaml_filepath=r"path/to/yaml/trash_detection.yaml",
+                                                    model_filepath=r"path/to/model/best.pt",
+                                                    conf_threshold=0.8)
+        [{'name': 'metal', 'conf_score': 0.480242, 'location': [144.26025, 108.88249, 261.6675, 263.0825]},
+         {'name': 'metal', 'conf_score': 0.13452, 'location': [61.7375, 146.6877, 378.0625, 267.0625]}]
         '''
+        FRAME_SIZE = (640, 640) # the size of the processed image into the model
         assert (conf_threshold <= 1 or conf_threshold >= 0), "Confidence threshold must be equal to or less than 1 positive float."
-        assert (frame_size[0] % 160 == 0 and frame_size[1] % 160 == 0), "Both the dimensions of the model input must be integers multiple of 160"
         
         # If img is given as a file path, load the image, and convert it to 3D numpy array
-        img = np.array(Image.open(img)) if isinstance(img, str) else img
+        img_object = Image.open(img)
+        img_object = img_object.resize(FRAME_SIZE, Image.ANTIALIAS)
+        img = np.array(img_object)
 
         # Load the YAML file as a dictionary
         with open(yaml_filepath, 'r') as file:
@@ -100,10 +98,10 @@ class ModelController(object):
         # Load the trained PyTorch model file
         pt_model = DetectMultiBackend(weights=model_filepath, dnn=False, data=yaml_filepath, fp16=False) # load the model
         pt_stride, pt_names, pt = pt_model.stride, pt_model.names, pt_model.pt
-        imgsz = check_img_size(frame_size, s=pt_stride)  # check image size
+        imgsz = check_img_size(FRAME_SIZE, s=pt_stride)  # check image size
         
         # Preprocess image for model input
-        img = letterbox(img, frame_size, stride=pt_model.stride)[0]  # padded resize
+        img = letterbox(img, FRAME_SIZE, stride=pt_model.stride)[0]  # padded resize
         img = img.transpose((2, 0, 1))[::-1]  # HWC to CHW, BGR to RGB TODO: CHECK IF THIS SHOULD BE REMOVED
         img = np.ascontiguousarray(img)  # contiguous
 
@@ -121,10 +119,12 @@ class ModelController(object):
         detections = [] # e.g. [{'name': 'cat', conf_score: 0.875, location: [0.644, 0.2, 0.15, 0.222]}, ... ]
         for pred in preds[0]:
             if len(pred) > 0 and float(pred[4]) >= conf_threshold:
-                xmin, ymin, xmax, ymax = pred[0], pred[1], pred[2], pred[3]  # detected box
+                xmin, ymin, xmax, ymax = float(pred[0]), float(pred[1]), float(pred[2]), float(pred[3])  # detected box
+                norm_w, norm_h = normalization_dims[0], normalization_dims[1] # to return the coordinates relative to the given dimensions
+                xmin, ymin, xmax, ymax = (xmin/FRAME_SIZE[0])*norm_w, (ymin/FRAME_SIZE[0])*norm_h, (xmax/FRAME_SIZE[0])*norm_w, (ymax/FRAME_SIZE[0])*norm_h
                 obj_acc = float(pred[4])  # detected confidence score
                 obj_class = int(pred[5])  # detected class
-                loc = [float(ymin), float(xmin), float(ymax), float(xmax)]
+                loc = [float(xmin), float(ymin), float(xmax), float(ymax)]
 
                 print(f"\t > Object detected, "
                         f"Name: '{index_to_labels['names'][obj_class]}', "
