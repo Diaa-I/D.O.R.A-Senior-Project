@@ -35,7 +35,7 @@ class ModelController(object):
     '''
 
     @staticmethod
-    def train_model(yaml_filepath, pretrained_model_path, img_train_size=(320, 320), epochs=20, batch_size=4) -> None:
+    def train_model(yaml_filepath, pretrained_model_path, img_train_size=640, epochs=20, batch_size=4) -> None:
         '''
         starts the training of the model with the given hyperparameters. 
         The trained model file is stored in yolov5m/runs/exp#/weights.
@@ -51,7 +51,7 @@ class ModelController(object):
         Example of usage:
             > mc = ModelController()
             > mc.train_model(yaml_filepath = r"yolov5m\data\myData.yaml", pretrained_model_path = r"yolov5m\yolov5m.pt", 
-                            img_train_size = (640, 640), epochs = 10, batch_size = 4)
+                            img_train_size = 320, epochs = 10, batch_size = 4)
         '''
         train.run(data=yaml_filepath, imgsz=img_train_size, weights=pretrained_model_path, epochs=epochs, batch_size=batch_size)
 
