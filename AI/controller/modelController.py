@@ -24,9 +24,8 @@ class ModelController(object):
     '''
     class responsible for managing the training and inference of the model.
     The methods, when called MUST follow this order:
-        1. trainModel() - only done few times (when the conditions for training are satisfied).
-        2. loadTrainedModel() - done as many times as trainModel() has been called.
-        3. makeInference() - done for every image/frame.
+        1. train_model() - only done few times (when the conditions for training are satisfied).
+        2. make_inference() - done for every image/frame.
 
     refer to the documentation of each method for more details.
     
@@ -43,91 +42,66 @@ class ModelController(object):
         The method assumes there's training dataset (images and labels) stored in train_data/images/train and train_data/labels/train.
         ====================================================
         Parameters:
-            - yamlFilepath: string of the relative or absolute file path of the .yaml file of the dataset.
-            - pretrainedWeights: string the relative or absolute file path of the .PT model file.
-            - imgTrainSize: tuple representing (width, height). MUST both be equal, integers, and multiple of 160 (160, 320, 480 ..).
+            - yaml_filepath: string of the relative or absolute file path of the .yaml file of the dataset.
+            - pretrained_model_path: string the relative or absolute file path of the .PT model file.
+            - img_train_size: tuple representing (width, height). MUST both be equal, integers, and multiple of 160 (160, 320, 480 ..).
             - epochs: how many times the model will go through the whole dataset in training.
             - batch_size: how many images the model will train on during every iteration (forward and backward pass).
-        returns: None.
         ====================================================
         Example of usage:
             > mc = ModelController()
-            > mc.loadLabelIndex(r"yolov5m\data\myData.yaml")
-            > mc.trainModel(yamlFilepath = r"yolov5m\data\myData.yaml", pretrainedWeights = r"yolov5m\yolov5m.pt", 
-                            imgTrainSize = (640, 640), epochs = 10, batch_size = 4)
+            > mc.train_model(yaml_filepath = r"yolov5m\data\myData.yaml", pretrained_model_path = r"yolov5m\yolov5m.pt", 
+                            img_train_size = (640, 640), epochs = 10, batch_size = 4)
         '''
         train.run(data=yaml_filepath, imgsz=img_train_size, weights=pretrained_model_path, epochs=epochs, batch_size=batch_size)
 
     @staticmethod
-    def load_trained_model(model_filepath, yaml_filepath):
+    def make_inference(img, yaml_filepath, model_filepath, normalization_dims, conf_threshold=0.9) -> list:
         '''
-        loads the model from a .PT file to an object self.model.
-        loads the labelIndex as a dictionary from the .yaml file of the dataset. 
-        the dictionary is used to convert labels from numerical form to a string.
-        This function assumes a .yaml file has been created using the DataManager(), and the .PT using trainModel().
+        Processes an image and outputs all the detected objects found in it.
+        Detections will be considered only if they're above or equal to conf_threshold.
+        Image will be processed not according to its original size, but the size specified in FRAME_SIZE.
         ====================================================
         Parameters:
-            - weightsPath: string of the relative or absolute path of the .PT model file.
-            - yamlFilepath: the relative or absolute file path of the .yaml file of the dataset.
-        returns: None.
+            - img: the path of the image.
+            - yaml_filepath: the path to the .yaml file that contains the labels of the trained model to use for inference.
+            - model_filepath: the path to the .pt model file that will be used for inference.
+            - normalization_dims: a tuple in the form of (weight, height) that the returned coordinates of each detection will be relative to.
+            - conf_threshold: float between 0 and 1 inclusive, only detected objects equal to or above this value will be returned.
+        returns: 
+            list of python dictionaries of the form: [{'name': str, 'conf_score': float, 'location': [xmin, ymin, xmax, ymax]}, {...}, ...].
+            In each dictionary, 'name' string represents the name of the label. 'conf_score' float between 0 and 1 represents how confident the model
+            think this object belong to that label. 'location' is a list of the coordinates of the bounding box corners, the coordinates are normalized,
+            hence they're all between 0 and 1.
         ====================================================
         Example of usage:
-            > mc = ModelController()
-            > mc.loadTrainedModel(weightsPath = r"yolov5m\runs\exp1\weights\best.pt", yamlFilepath = r"yolov5m\data\myData.yaml")
+        > det = con.modelController.ModelController.make_inference(img='path/to/image.jpg',
+                                                    normalization_dims=(512, 384),
+                                                    yaml_filepath=r"path/to/yaml/trash_detection.yaml",
+                                                    model_filepath=r"path/to/model/best.pt",
+                                                    conf_threshold=0.8)
+        [{'name': 'metal', 'conf_score': 0.480242, 'location': [144.26025, 108.88249, 261.6675, 263.0825]},
+         {'name': 'metal', 'conf_score': 0.13452, 'location': [61.7375, 146.6877, 378.0625, 267.0625]}]
         '''
+        FRAME_SIZE = (640, 640) # the size of the processed image into the model
+        assert (conf_threshold <= 1 or conf_threshold >= 0), "Confidence threshold must be equal to or less than 1 positive float."
+        
+        # If img is given as a file path, load the image, and convert it to 3D numpy array
+        img_object = Image.open(img)
+        img_object = img_object.resize(FRAME_SIZE, Image.ANTIALIAS)
+        img = np.array(img_object)
+
         # Load the YAML file as a dictionary
         with open(yaml_filepath, 'r') as file:
-            labelsIndex = yaml.safe_load(file)
+            index_to_labels = yaml.safe_load(file)
         
         # Load the trained PyTorch model file
         pt_model = DetectMultiBackend(weights=model_filepath, dnn=False, data=yaml_filepath, fp16=False) # load the model
         pt_stride, pt_names, pt = pt_model.stride, pt_model.names, pt_model.pt
-        imgsz = check_img_size((640, 640), s=pt_stride)  # check image size
-        return pt_model
-
-    @staticmethod
-    def make_inference(img, yaml_filepath, pt_model, conf_threshold=0.9, frame_size=(640, 640)) -> list:
-        '''
-        Processes an image (given as a 3D array) and outputs all the detected objects found.
-        Detections will be considered only if they're above or equal to confThreshold.
-        Image will be processed not according to its original size, but the size specified in frameSize.
-        ====================================================
-        Parameters:
-            - img: a 3-D array representing the RGB of an image OR a 4-D array such that the last index is for batching OR string of the path of the image.
-            - confThreshold: float between 0 and 1 inclusive, only detected objects equal to or above this value will be returned.
-            - frameSize: 2-value tuple of the dimensions of model input. MUST both be equal, integers, and multiple of 160 (160, 320, 480 ..).
-        returns: list of python dictionaries of the form: [{'name': str, 'conf_score': float, 'location': [ymin, xmin, ymax, xmax]}, {...}, ...].
-                In each dictionary, 'name' string represents the name of the label. 'conf_score' float between 0 and 1 represents how confident the model
-                think this object belong to that label. 'location' is a list of the coordinates of the bounding box corners, the coordinates are normalized,
-                hence they're all between 0 and 1.
-        ====================================================
-        Example of usage:
-            > mc = ModelController()
-            > mc.loadTrainedModel(weightsPath = r"yolov5m\runs\exp1\weights\best.pt", yamlFilepath = r"yolov5m\data\myData.yaml")
-            > img = Image.open('path/to/image.png')
-            > imgay = np.array(img)
-            > det_1 = mc.makeInference(imgay, 0.8)
-            > print(det_1)
-        [{'name': 'cat', 'conf_score': 0.875, 'location': [0.644, 0.2, 0.15, 0.222]},
-         {'name': 'cow', 'conf_score': 0.9753, 'location': [0.84, 0.23, 0.40, 0.15333]}]
-
-            > det_2 = mc.makeInference(r"path\to\image.png", 0.5)
-            > print(det_2[0])
-        {'name': 'helicopter', 'conf_score': 0.68975, 'location': [0.55, 0.28, 0.15, 0.132]}
-        '''
-        assert (conf_threshold <= 1 or conf_threshold >= 0), "Confidence threshold must be equal to or less than 1 positive float."
-        assert (frame_size[0] % 160 == 0 and frame_size[1] % 160 == 0), "Both the dimensions of the model input must be integers multiple of 160"
-        assert ((isinstance(img, str) and os.path.exists(img)) or len(img.shape == 3) or len(img.shape == 4)), "invalid image input parameter, must be of a 3D or 4D shape, or a string to the path of an image file"
-        
-        # If img is given as a file path, load the image, and convert it to 3D numpy array
-        img = np.array(Image.open(img)) if isinstance(img, str) else img
-
-        # Load the YAML file as a dictionary
-        with open(yaml_filepath, 'r') as file:
-            labelsIndex = yaml.safe_load(file)
+        imgsz = check_img_size(FRAME_SIZE, s=pt_stride)  # check image size
         
         # Preprocess image for model input
-        img = letterbox(img, frame_size, stride=pt_model.stride)[0]  # padded resize
+        img = letterbox(img, FRAME_SIZE, stride=pt_model.stride)[0]  # padded resize
         img = img.transpose((2, 0, 1))[::-1]  # HWC to CHW, BGR to RGB TODO: CHECK IF THIS SHOULD BE REMOVED
         img = np.ascontiguousarray(img)  # contiguous
 
@@ -145,17 +119,19 @@ class ModelController(object):
         detections = [] # e.g. [{'name': 'cat', conf_score: 0.875, location: [0.644, 0.2, 0.15, 0.222]}, ... ]
         for pred in preds[0]:
             if len(pred) > 0 and float(pred[4]) >= conf_threshold:
-                xmin, ymin, xmax, ymax = pred[0], pred[1], pred[2], pred[3]  # detected box
+                xmin, ymin, xmax, ymax = float(pred[0]), float(pred[1]), float(pred[2]), float(pred[3])  # detected box
+                norm_w, norm_h = normalization_dims[0], normalization_dims[1] # to return the coordinates relative to the given dimensions
+                xmin, ymin, xmax, ymax = (xmin/FRAME_SIZE[0])*norm_w, (ymin/FRAME_SIZE[0])*norm_h, (xmax/FRAME_SIZE[0])*norm_w, (ymax/FRAME_SIZE[0])*norm_h
                 obj_acc = float(pred[4])  # detected confidence score
                 obj_class = int(pred[5])  # detected class
-                loc = [ymin, xmin, ymax, xmax]
+                loc = [float(xmin), float(ymin), float(xmax), float(ymax)]
 
                 print(f"\t > Object detected, "
-                        f"Name: '{labelsIndex['names'][obj_class]}', "
+                        f"Name: '{index_to_labels['names'][obj_class]}', "
                         f"Confidence: {round(obj_acc * 100, 1)}%, "
                         f"Location: {loc}")
 
-                filtered_det_obj = {"name": labelsIndex['names'][obj_class],
+                filtered_det_obj = {"name": index_to_labels['names'][obj_class],
                                     "conf_score": obj_acc,
                                     "location": loc}
 

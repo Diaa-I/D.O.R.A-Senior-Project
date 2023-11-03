@@ -108,11 +108,13 @@ class ProjectManager(object):
         cap.release()
         print(f"Extracted {self.total_project_images - count_init} frames from {video_filepath}")
 
-    def create_annotations_txt(self, associated_image_name, img_width, img_height, annotations_array, saveto_dir) -> None:
+    @staticmethod
+    def create_annotations_txt(yaml_filepath, associated_image_name, img_width, img_height, annotations_array, saveto_dir) -> None:
         '''
         Create an annotation file following YOLO's format for training models.
         ====================================================
         Parameters:
+            - yaml_filepath: the path to the .yaml file that contains the labels of the project.
             - associated_image_name: name of the frame/image of where the annotation box is located. Can be a name only (e.g. frame_0443), or a file name (e.g. frame_0443.png) or a path.
             - img_width: the width of the image where the annotation box is located.
             - img_height: the height of the image where the annotation box is located.
@@ -122,13 +124,17 @@ class ProjectManager(object):
                - width and height are the dimesnsions of the annotation box (absolute value, not normalized).
             - saveto_dir: the path to the directory where the .txt file will be saved.
         ====================================================
-        pm = con.projectManager.ProjectManager(['plastic', 'metal', 'paper'], project_name="trash_detection")
-
-        pm.create_annotations_txt("frame_00423", 400, 600, 
-            [{'label': 'plastic', 'x_center':80, 'y_center': 234, 'width': 30, 'height':80}, 
-             {'label': 'metal', 'x_center':20.01, 'y_center': 354.2, 'width': 25, 'height':45.6}], 
+        Usage Example:
+        > pm.create_annotations_txt('path/to/trash_detection.yaml', "frame_00423", 400, 600, 
+            [{'label': 'plastic', 'x_center': 80, 'y_center': 234, 'width': 30, 'height': 80}, 
+             {'label': 'metal', 'x_center': 20.01, 'y_center': 354.2, 'width': 25, 'height': 45.6}], 
             "./mydir")
         '''
+        # Load the YAML file as a dictionary
+        with open(yaml_filepath, 'r') as file:
+            index_to_labels = yaml.safe_load(file)['names']
+
+        labels_to_index = {index_to_labels[i]: i for i in range(len(index_to_labels))} # {'cat': 0, 'dog': 1, 'horse': 2, ...}
 
         # get the associated image name only (without extension, or the file path)
         base_name, extension = os.path.splitext(associated_image_name)
@@ -141,14 +147,14 @@ class ProjectManager(object):
             # annotation object format: {'label': 'dog', 'x_center': 45.5, 'y_center': 79.0, 'width': 14.3, 'height': 30.0}
             for i, annotation in enumerate(annotations_array):
                 # get the labels index (the number representing the label)
-                label_index = self.labels_to_index[annotation['label']]
+                label_index = labels_to_index[annotation['label']]
                 bbox_x_center = annotation['x_center']
                 bbox_y_center = annotation['y_center']
                 bbox_width = annotation['width']
                 bbox_height = annotation['height']
 
                 # get the x, y, w, and h values normalized relative the img height and width
-                x_center_norm, y_center_norm, width_norm, height_norm = self.normalize_coordinates(bbox_x_center, bbox_y_center,
+                x_center_norm, y_center_norm, width_norm, height_norm = ProjectManager.normalize_coordinates(bbox_x_center, bbox_y_center,
                                                                                                     bbox_width, bbox_height,
                                                                                                     img_width, img_height)
 
@@ -277,17 +283,43 @@ class ProjectManager(object):
                     "filepaths": []
             })
             return paths_batch_json
-        
+
     @staticmethod
-    def normalize_coordinates(x, y, width, height, img_width, img_height):
+    def normalize_coordinates(x, y, w, h, img_width, img_height):
         '''
-        Used to normalize values given an image width. 
+        Used to normalize values (x, y, w, h) of a coordinates given an image width and height.
+        x and w will be normalized relative to img_width. y and h will be normalized relative to img_height.
         Normalization in math is the calculation of having a number between 1 and 0 relative to another number.
         Normalization is needed as it's the standard form of numbers YOLO uses in storing the annotation labels.
         '''
+        # check for irregularities (such as coordinates outside of image)
+        TOLERANCE = 5
+        assert img_height > 0 and img_width > 0, "Image width and height cannot be a negative"
+        assert x > 0 and y > 0 and w > 0 and h > 0, 'The provided values to be normalized must not contain a negative number'
+        assert x <= img_width + TOLERANCE and y <= img_height + TOLERANCE and w < img_width + TOLERANCE and h < img_height + TOLERANCE, \
+            "The provided values to be normalized are out of the image boundaries"
+
         # Calculate the normalized values
         x_norm = x / img_width
         y_norm = y / img_height
-        w_norm = width / img_width
-        h_norm = height / img_height
+        w_norm = w / img_width
+        h_norm = h / img_height
         return x_norm, y_norm, w_norm, h_norm
+    
+    @staticmethod
+    def denormalize_coordinates(x_norm, y_norm, w_norm, h_norm, img_width, img_height):
+        '''
+        Does the opposite operation as to 'normalize_coordinates'. That is, given a set of values representing the coordinates (x, y, w, h)
+        That are normalized (and therefore between 0 and 1), the function will return their true absolute position relative to the image.
+        '''
+        assert img_height > 0 and img_width > 0, "Image width and height cannot be a negative"
+        assert 1 >= x >= 0 and 1 >= y >= 0 and 1 >= w >= 0 and 1 >= h >= 0, 'The provided values to be de-normalized must be between 0 and 1'
+        x = x_norm * img_width
+        y = y_norm * img_height
+        w = w_norm * img_width
+        h = h_norm * img_height
+
+        TOLERANCE = 5
+        assert x <= img_width + TOLERANCE and y <= img_height + TOLERANCE and w < img_width + TOLERANCE and h < img_height + TOLERANCE, \
+        "The provided values to be de-normalized are out of the image boundaries"
+        return x, y, w, h
