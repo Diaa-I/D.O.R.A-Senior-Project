@@ -24,9 +24,7 @@ axios.get('http://localhost:5000/workspace/getlabels').then((response) => {
 
 },[])
     
-  if (isLoading) {
-    return <div className="App">Loading...</div>;
-  }
+  
 
   if(!isLoading && isFirstTime){
   setSelectedLabel(labels[0])
