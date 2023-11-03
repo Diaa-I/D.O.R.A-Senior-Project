@@ -1,0 +1,45 @@
+.ai-options-box {
+    background:#3D3D3D;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    }
+
+.ai-options-box select {
+background-color: white;
+padding: 15px;
+border: none;
+border-radius: 20px;
+}
+
+.ai-options-box button {
+width: 64px;
+height: 59px;
+background: #2a5bd8;
+border-radius: 20px;
+}
+
+.ai-options-box .square {
+background: #d37404;
+}
+
+
+.polygon,
+.square {
+width: 64px;
+height: 59px;
+border-radius: 20px;
+}
+
+.polygon {
+background: #2a5bd8;
+}
+
+.square {
+background: #d37404;
+}
+
+.ai-options-box select {
+    width: 100%;
+    margin-bottom: 10px;
+  }

@@ -26,26 +26,21 @@ margin: 2.5vh 0;
 } */
 
 .canvas {
-
- border: 5px solid blue;
- width: 70vw;
- height: 80vh;
- position: relative;
- /* display: flex;
- justify-content: flex-start;
- align-items: flex-start;
- flex-direction: column; */
+  border: 5px solid blue;
+  width: 85vw;
+  height: 80vh;
+  position: relative;
 }
 
-.canvas-body{
+.canvas-body {
   border: 5px solid yellow;
-  margin: 2.5%;
   position: absolute;
-  top:0%;
-  left: 0%;
-  /* width: 75vw;
-  height: auto;   */
+  top: 0;
+  left: 0;
+  width: 100%; /* Make it take up the full width of .canvas */
+  height: 100%; /* Make it take up the full height of .canvas */
 }
+
 .body-annotation{
   border: 5px solid green;
   position: absolute;
@@ -58,7 +53,7 @@ margin: 2.5vh 0;
 .btns-box {
 display: flex;
 justify-content: space-between;
-width: 100%;
+width: 85vw; /* match the width with the canvas width*/
 border: 5px solid darkblue;
 font: bold 15px Arial, sans-serif;
 position: absolute;
@@ -71,31 +66,8 @@ font: bold 15px Arial, sans-serif;
 border: none;
 }
 
-.ai-options-box {
-background:blue;
-/* border: 3px dashed red; */
-display: flex;
-flex-direction: column;
-gap: 10px;
-}
 
-.ai-options-box select {
-background-color: white;
-padding: 15px;
-border: none;
-border-radius: 20px;
-}
 
-.ai-options-box button {
-width: 64px;
-height: 59px;
-background: #2a5bd8;
-border-radius: 20px;
-}
-
-.ai-options-box .square {
-background: #d37404;
-}
 
 .ai-decisions-box {
 /*border: 3px dashed red;*/
@@ -154,20 +126,7 @@ background-color: #4d4ac2;
 background-color: #bb3e3e;
 }
 
-.polygon,
-.square {
-width: 64px;
-height: 59px;
-border-radius: 20px;
-}
 
-.polygon {
-background: #2a5bd8;
-}
-
-.square {
-background: #d37404;
-}
 
 .navigator {
 display: flex;
@@ -228,11 +187,6 @@ font-weight: 500;
   
     .btns-box {
       flex-direction: column;
-    }
-  
-    .ai-options-box select {
-      width: 100%;
-      margin-bottom: 10px;
     }
   
     .ai-options-box button,
