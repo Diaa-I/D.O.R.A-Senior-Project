@@ -5,6 +5,7 @@ box-sizing: border-box;
 margin: 0;
 padding: 0;
 } */
+
 body {
    background-color: grey;
 
@@ -33,7 +34,6 @@ margin: 2.5vh 0;
 }
 
 .canvas-body {
-  border: 5px solid yellow;
   position: absolute;
   top: 0;
   left: 0;
@@ -42,7 +42,6 @@ margin: 2.5vh 0;
 }
 
 .body-annotation{
-  border: 5px solid green;
   position: absolute;
   top:0%;
   left: 0%;
