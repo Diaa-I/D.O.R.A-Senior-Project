@@ -37,8 +37,7 @@ margin: 2.5vh 0;
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%; /* Make it take up the full width of .canvas */
-  height: 100%; /* Make it take up the full height of .canvas */
+ 
 }
 
 .body-annotation{

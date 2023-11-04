@@ -8,7 +8,7 @@ from werkzeug.utils import secure_filename
 import os
 
 # from AI.yolov5m.models.common import DetectMultiBackend
-
+import test_processing
 from database import mongo_connection
 from flask_pymongo import ObjectId
 import AI.controller.modelController as mc
@@ -41,14 +41,14 @@ def allowed_file(filename):
 # To be changed to WorkspaceController
 class workspaceController:
     project_name = ""
-    def get_labels():
+    def get_labels(project_id):
         # function to get labels that were entered by the user
         labels = []
-        # Labels are stored in a file, once the form is submitted in the landing page
-        with open('uploads\\files\\labels.txt','r') as label_file:
-            labels.append(label_file.readline().strip().split(","))
+        # Labels are stored in the DB record, once the form is submitted in the landing page
+        Project = Projects.find_one({"_id":ObjectId(project_id)})
         # the labels are returned to be used on the front end
-        response = jsonify({"labels":labels[0]})
+        response = jsonify({"labels":Project['Labels']})
+
         response.headers.add('Access-Control-Allow-Origin', '*')
 
         return response
@@ -186,6 +186,7 @@ class workspaceController:
             if file.endswith(".jpg"):
                 # Extract the width and height of images
                 im = cv2.imread(os.getcwd() + '/' + image_dir + f'/{file}')
+                print({'width': im.shape[1], 'height': im.shape[0]})
                 # Image location + Metadata
                 dir_list.append({"image_loc": opening_dir + f'/{file}', 'width': im.shape[1], 'height': im.shape[0]})
         # dir_list[0] = './'+ Project['Directory_of_File'] + dir_list[0]
@@ -203,45 +204,32 @@ class workspaceController:
         response = jsonify({"Annotations": allAnnotations})
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
-    # def trained_model(project_id):
-    #     Project = Projects.find_one({"_id": ObjectId(project_id)})
-    #     print(Project)
-    #     print(request.json['currentFrame'])
-    #     print(request.json)
-    #     return 'yes'
-    # def train_model():
-    #     pass
-    #     # # myPM = pm.ProjectManager(['glass', 'metal', 'paper'],
-    #     # #                          projectName='trash_detection')
-    #     # #
-    #     # # myPM.createYaml(at="sandbox")
-    #     # myMC = mc.ModelController()
-    #     # train.run(data=yaml_filepath, imgsz=img_train_size, weights=pretrained_model_path, epochs=epochs,
-    #     #           batch_size=batch_size)
-    #     # myMC.trainModel(yamlFilepath="sandbox/trash_detection.yaml",
-    #     #                 pretrainedWeights="yolov5m/yolov5n.pt",
-    #     #                 imgTrainSize=320,
-    #     #                 batch_size=8)
+
+
+    def train_model(project_id):
+        Project = Projects.find_one({"_id": ObjectId(project_id)})
+        # test_processing.start_training(Project['yaml_filepath'],Project['model_filepath'] ,img_train_size=320)
+        mc.ModelController().train_model(Project['yaml_filepath'],Project['model_filepath'] ,img_train_size=320)
+        return 'Done'
+
+
     def trained_model(project_id):
         # Find project, In DB project <-> model, so we can have relation which project relies on model.
         Project = Projects.find_one({"_id": ObjectId(project_id)})
         print(Project)
         print(request.json['currentFrame'])
-        # Loading model
-        pt_model = mc.ModelController().load_trained_model(Project['model_filepath'], Project['yaml_filepath'])
 
         # Make prediction
-        predictions = mc.ModelController().make_inference(request.json['currentFrame'], Project['yaml_filepath'], pt_model)
+        predictions = mc.ModelController().make_inference("frontend/public/"+request.json['currentFrame'], Project['yaml_filepath'],Project['model_filepath'],normalization_dims=(1920,1024))
         print(predictions)
         pred = []
-
         for prediction in predictions:
             # x = (x_min + x_max)/2, y = (y_min + y_max)/2
             # w = x_max - x_min, h = y_max - y_min
-            y_min = prediction['location'][0]
-            x_min = prediction['location'][1]
-            y_max = prediction['location'][2]
-            x_max = prediction['location'][3]
+            x_min = prediction['location'][0]
+            y_min = prediction['location'][1]
+            x_max = prediction['location'][2]
+            y_max = prediction['location'][3]
             pred.append({
                 'x':(x_min + x_max)/2,
                 'y':(y_min + y_max)/2,
