@@ -3,11 +3,12 @@ import AIBox from './AIBox';
 import InfoLabel from './InfoLabel';
 import OptionsBox from './OptionsBox';
 
+import 'bootstrap/dist/css/bootstrap.css';
 
 const AnnotationBox = (props)=>{
 
 return(
-    <div className='btns-box'>
+    <div className='btns-box pt-3'>
         {/*  annotation tools */}
         <AIOption onSaveAnnotations = {props.onSaveAnnotations} draw={props.draw} showModal={props.showModal} isModalShown={props.isModalShown} />
         {/* Frames, suggestions */}
