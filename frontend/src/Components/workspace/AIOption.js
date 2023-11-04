@@ -15,15 +15,24 @@ function AIBox (props) {
 
 
 useEffect(()=>{
-axios.get('http://localhost:5000/workspace/getlabels').then((response) => {
-    // console.log([...response.data.labels])
+
+    axios.get(`http://localhost:5000/workspace/${props.project_id}/getlabels`).then((response) => {
+    let annotationLabels = [...response.data.labels]
     setLabels([...response.data.labels]);
+    let labelsObj = {}
+    for (let label of annotationLabels){
+        labelsObj[label] = 0
+    }
+    props.setLabelsCounter(labelsObj)
     setIsLoading(false);
   });
 
     // setlabels(["A","B"]);
     // setIsLoading(false);
 
+    // When labels are changed in set labels
+    // Then make an object counter for each label
+    // each time a label is added a counter + 1 
 },[])
     
   

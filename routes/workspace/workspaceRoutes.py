@@ -5,7 +5,8 @@ workspace = Blueprint("workspace", __name__)
 
 
 # workspace.route("", methods=["POST"])(workspaceController.workspace)
-workspace.route("/getlabels", methods=["GET"])(workspaceController.get_labels)
+workspace.route("/<project_id>/getlabels", methods=["GET"])(workspaceController.get_labels)
+workspace.route("/<project_id>/trainmodel", methods=["GET"])(workspaceController.train_model)
 workspace.route("/get_project_information/<project_id>", methods=["GET"])(workspaceController.get_project_information)
 workspace.route("/retrieve_next_batch/<project_id>", methods=["GET"])(workspaceController.retrieve_next_batch)
 workspace.route("/retrieve_previous_batch/<project_id>", methods=["GET"])(workspaceController.retrieve_previous_batch)

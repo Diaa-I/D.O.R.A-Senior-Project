@@ -1,12 +1,13 @@
 # add the 'yolov5m to path to be able to import it into python
 import sys
 from pathlib import Path
+
 file = Path(__file__).resolve()
 parent, root = file.parent, file.parents[1]
 sys.path.append(str(root))
 try:
-    sys.path.remove(str(parent)) # remove the current file's directory from sys.path
-except ValueError: # Already removed
+    sys.path.remove(str(parent))  # remove the current file's directory from sys.path
+except ValueError:  # Already removed
     pass
 
 import torch
@@ -28,32 +29,40 @@ class ModelController(object):
         2. make_inference() - done for every image/frame.
 
     refer to the documentation of each method for more details.
-    
+
     TODO:
         - change the training output directory
         - add option to choose from a several starting checkpoint / model architecture for training.
     '''
 
     @staticmethod
-    def train_model(yaml_filepath, pretrained_model_path, img_train_size=(320, 320), epochs=20, batch_size=4) -> None:
+    def train_model(yaml_filepath, pretrained_model_path, saveto_dir, name, img_train_size=640, epochs=20, batch_size=4) -> str:
         '''
-        starts the training of the model with the given hyperparameters. 
+        starts the training of the model with the given hyperparameters.
         The trained model file is stored in yolov5m/runs/exp#/weights.
         The method assumes there's training dataset (images and labels) stored in train_data/images/train and train_data/labels/train.
         ====================================================
         Parameters:
             - yaml_filepath: string of the relative or absolute file path of the .yaml file of the dataset.
             - pretrained_model_path: string the relative or absolute file path of the .PT model file.
+            - saveto_dir: the directory where the model's new directory will be save (the new directory will be saveto_dir/name)
+            - name: the name of the directory which contains the weights, it will be a child of saveto_dir. MUST be a unique name.
             - img_train_size: tuple representing (width, height). MUST both be equal, integers, and multiple of 160 (160, 320, 480 ..).
             - epochs: how many times the model will go through the whole dataset in training.
             - batch_size: how many images the model will train on during every iteration (forward and backward pass).
+        Returns:
+            the filepath of where the model file is stored (saveto_dir/name/weights/best.pt)
         ====================================================
         Example of usage:
             > mc = ModelController()
             > mc.train_model(yaml_filepath = r"yolov5m\data\myData.yaml", pretrained_model_path = r"yolov5m\yolov5m.pt", 
-                            img_train_size = (640, 640), epochs = 10, batch_size = 4)
+                            saveto_dir = '~/Desktop', name='exp322', img_train_size = 320, epochs = 10, batch_size = 4)
         '''
-        train.run(data=yaml_filepath, imgsz=img_train_size, weights=pretrained_model_path, epochs=epochs, batch_size=batch_size)
+
+        train.run(data=yaml_filepath, imgsz=img_train_size, weights=pretrained_model_path, epochs=epochs,
+                  batch_size=batch_size, noplots=True, project="sandbox", name="new-parames-exp")
+        trained_model_path = os.path.join(saveto_dir, name, 'weights', 'best.pt')
+        return trained_model_path
 
     @staticmethod
     def make_inference(img, yaml_filepath, model_filepath, normalization_dims, conf_threshold=0.9) -> list:
@@ -88,7 +97,7 @@ class ModelController(object):
         
         # If img is given as a file path, load the image, and convert it to 3D numpy array
         img_object = Image.open(img)
-        img_object = img_object.resize(FRAME_SIZE, Image.ANTIALIAS)
+        img_object = img_object.resize(FRAME_SIZE, Image.LANCZOS)
         img = np.array(img_object)
 
         # Load the YAML file as a dictionary
@@ -96,7 +105,8 @@ class ModelController(object):
             index_to_labels = yaml.safe_load(file)
         
         # Load the trained PyTorch model file
-        pt_model = DetectMultiBackend(weights=model_filepath, dnn=False, data=yaml_filepath, fp16=False) # load the model
+        pt_model = DetectMultiBackend(weights=model_filepath, dnn=False, data=yaml_filepath,
+                                      fp16=False)  # load the model
         pt_stride, pt_names, pt = pt_model.stride, pt_model.names, pt_model.pt
         imgsz = check_img_size(FRAME_SIZE, s=pt_stride)  # check image size
         
@@ -114,9 +124,8 @@ class ModelController(object):
         # Make inference, apply NMS
         preds = pt_model(img)
         preds = non_max_suppression(preds, conf_thres=conf_threshold, iou_thres=0.25, max_det=500)
-
         # Filter and store predictions
-        detections = [] # e.g. [{'name': 'cat', conf_score: 0.875, location: [0.644, 0.2, 0.15, 0.222]}, ... ]
+        detections = []  # e.g. [{'name': 'cat', conf_score: 0.875, location: [0.644, 0.2, 0.15, 0.222]}, ... ]
         for pred in preds[0]:
             if len(pred) > 0 and float(pred[4]) >= conf_threshold:
                 xmin, ymin, xmax, ymax = float(pred[0]), float(pred[1]), float(pred[2]), float(pred[3])  # detected box
@@ -134,7 +143,7 @@ class ModelController(object):
                 filtered_det_obj = {"name": index_to_labels['names'][obj_class],
                                     "conf_score": obj_acc,
                                     "location": loc}
-
                 detections.append(filtered_det_obj)
+
         return detections
 

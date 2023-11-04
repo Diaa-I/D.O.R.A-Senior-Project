@@ -10,7 +10,7 @@ const AnnotationBox = (props)=>{
 return(
     <div className='btns-box pt-3'>
         {/*  annotation tools */}
-        <AIOption onSaveAnnotations = {props.onSaveAnnotations} draw={props.draw} showModal={props.showModal} isModalShown={props.isModalShown} />
+        <AIOption setLabelsCounter={props.setLabelsCounter} project_id={props.project_id} onSaveAnnotations = {props.onSaveAnnotations} draw={props.draw} showModal={props.showModal} isModalShown={props.isModalShown} />
         {/* Frames, suggestions */}
         <AIBox handleMakePrediction={props.handleMakePrediction} frameCounter={props.frameCounter} isLoadingAIBOX ={props.isLoadingAIBOX}framesSize={props.framesSize} onFrameChangeForward={props.onFrameChangeForward} onFrameChangeBackwards={props.onFrameChangeBackwards} />
         {/* Annotation labels */}

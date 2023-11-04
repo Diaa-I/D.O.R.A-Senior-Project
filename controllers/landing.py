@@ -108,6 +108,7 @@ class landingController:
             file_path = os.path.join(f'frontend/public/images/{Project["Name"]}/video', secure_filename(file.filename))
             file.save(file_path)
             extract_frames(file_path,f'frontend/public/images/{Project["Name"]}', Project)
+
             return "DONE"
         else:
             flash("Upload a video that satisfies the conditions")
