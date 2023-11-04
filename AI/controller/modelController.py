@@ -36,7 +36,7 @@ class ModelController(object):
     '''
 
     @staticmethod
-    def train_model(yaml_filepath, pretrained_model_path, img_train_size=640, epochs=20, batch_size=4) -> None:
+    def train_model(yaml_filepath, pretrained_model_path, saveto_dir, name, img_train_size=640, epochs=20, batch_size=4) -> str:
         '''
         starts the training of the model with the given hyperparameters.
         The trained model file is stored in yolov5m/runs/exp#/weights.
@@ -45,18 +45,24 @@ class ModelController(object):
         Parameters:
             - yaml_filepath: string of the relative or absolute file path of the .yaml file of the dataset.
             - pretrained_model_path: string the relative or absolute file path of the .PT model file.
+            - saveto_dir: the directory where the model's new directory will be save (the new directory will be saveto_dir/name)
+            - name: the name of the directory which contains the weights, it will be a child of saveto_dir. MUST be a unique name.
             - img_train_size: tuple representing (width, height). MUST both be equal, integers, and multiple of 160 (160, 320, 480 ..).
             - epochs: how many times the model will go through the whole dataset in training.
             - batch_size: how many images the model will train on during every iteration (forward and backward pass).
+        Returns:
+            the filepath of where the model file is stored (saveto_dir/name/weights/best.pt)
         ====================================================
         Example of usage:
             > mc = ModelController()
             > mc.train_model(yaml_filepath = r"yolov5m\data\myData.yaml", pretrained_model_path = r"yolov5m\yolov5m.pt", 
-                            img_train_size = 320, epochs = 10, batch_size = 4)
+                            saveto_dir = '~/Desktop', name='exp322', img_train_size = 320, epochs = 10, batch_size = 4)
         '''
-        train.run(data=yaml_filepath, imgsz=img_train_size, weights=pretrained_model_path, epochs=epochs,
-                  batch_size=batch_size)
 
+        train.run(data=yaml_filepath, imgsz=img_train_size, weights=pretrained_model_path, epochs=epochs,
+                  batch_size=batch_size, noplots=True, project="sandbox", name="new-parames-exp")
+        trained_model_path = os.path.join(saveto_dir, name, 'weights', 'best.pt')
+        return trained_model_path
 
     @staticmethod
     def make_inference(img, yaml_filepath, model_filepath, normalization_dims, conf_threshold=0.9) -> list:
