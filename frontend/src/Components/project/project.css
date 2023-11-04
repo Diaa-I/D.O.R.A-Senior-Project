@@ -1,5 +1,4 @@
 .content {
-    margin-left: 255px; /* Match the sidebar width */
     transition: margin-left 0.3s;
     margin-top: 2rem;
 }

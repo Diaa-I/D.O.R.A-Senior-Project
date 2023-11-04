@@ -5,6 +5,7 @@ import axios from 'axios';
 import '../../App.css';
 import { useParams } from 'react-router-dom';
 import LoadingModal from './LoadingModal';
+import 'bootstrap/dist/css/bootstrap.css';
 const INITIAL_Annotations = [];
 let current_shape_index = 0;
 
@@ -46,12 +47,7 @@ export default function Workspace(props){
 
     // Is the all the data retrieved (IS Loading)
     const [isLoading,setIsLoading] = useState(true)
-    useEffect(() => {
-      // Simulate a loading delay (replace with your actual data loading logic)
-      setTimeout(() => {
-        setIsLoading(false); // Loading is done
-      }, 3000); // Adjust the delay as needed
-    }, []);
+    
 
     // Labels array
     const [Labels,setLabels] = useState([])
@@ -534,7 +530,7 @@ export default function Workspace(props){
   }
 
     return(
-        <div>
+        <div style={{height : 'calc(90vh - 2rem)'}}>
         <LoadingModal isLoading= {isLoading}/>
         <Canvas Annotations={Annotations}   forwardRef={imageCanvasRef} annotationCanvasRef={annotationCanvasRef} imageMetadata={imageMetadata} onContextMenuHandler={onContextMenuHandler} />
         <AnnotationBox handleMakePrediction={handleMakePrediction} isLoadingAIBOX={isLoading} framesSize={framesSize} frameCounter={frameCounter} onFrameChangeForward={onFrameChangeForward} onFrameChangeBackwards={onFrameChangeBackwards}  draw={draw}   onSaveAnnotations = {onSaveAnnotations}  showModal={props.showModal} isModalShown={props.isModalShown}/>

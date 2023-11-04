@@ -1,0 +1,29 @@
+
+
+.more-button {
+    color: black;
+    border: none;
+    margin: 3px;
+    cursor: pointer;
+}
+
+.circle-badge {
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: #007bff;
+    text-align: center;
+    color: #007bff;
+    line-height: 2rem;
+    cursor: pointer;
+    transition: width 0.5s ease;
+    overflow: hidden;
+  }
+  
+  .circle-badge:hover {
+    width: auto;
+    padding: 0 1rem;
+    color: #fff;
+  }
+  
