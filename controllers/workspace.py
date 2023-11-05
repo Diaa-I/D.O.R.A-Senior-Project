@@ -185,10 +185,11 @@ class workspaceController:
         for file in os.listdir(image_dir):
             if file.endswith(".jpg"):
                 # Extract the width and height of images
-                im = cv2.imread(os.getcwd() + '/' + image_dir + f'/{file}')
-                print({'width': im.shape[1], 'height': im.shape[0]})
+                # im = cv2.imread(os.getcwd() + '/' + image_dir + f'/{file}')
+                # print({'width': im.shape[1], 'height': im.shape[0]})
                 # Image location + Metadata
-                dir_list.append({"image_loc": opening_dir + f'/{file}', 'width': im.shape[1], 'height': im.shape[0]})
+                # dir_list.append({"image_loc": opening_dir + f'/{file}', 'width': im.shape[1], 'height': im.shape[0]})
+                dir_list.append({"image_loc": opening_dir + f'/{file}', 'width': "1600", 'height': "900"})
         # dir_list[0] = './'+ Project['Directory_of_File'] + dir_list[0]
         response = jsonify({"Project_Name": Project['Name'], "Frames": Project['Frames_Size'],"Image_Dir":dir_list})
         response.headers.add('Access-Control-Allow-Origin', '*')
@@ -242,3 +243,4 @@ class workspaceController:
         return pred
 
 
+# Function to return first frame

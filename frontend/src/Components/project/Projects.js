@@ -11,7 +11,18 @@ function Projects(props) {
     const [showModal, setShowModal] = useState(false);
     const [projects, setProjects] = useState([]);
     const [isNewProject, setIsNewProject] = useState(true);
+    useEffect(() => {
+        if (isNewProject) {
+            axios.get("http://localhost:5000/all_projects")
+                .then((res) => {
+                    console.log(res.data)
+                    setProjects(res.data['Projects'])
+                    setIsNewProject(false)
+                })
+                .catch((err) => { console.log(err) })
 
+        }
+    }, [isNewProject]);
     const makeNewProject = (project,data)=>{
         
         axios.post('http://localhost:5000/create_project',{"project":project})
