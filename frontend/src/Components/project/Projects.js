@@ -4,6 +4,7 @@ import { Container, Row, Button, Col } from 'react-bootstrap';
 import SearchBar from './SearchBar';
 import ProjectCard from './ProjectCard';
 import ProjectModal from './ProjectModal';
+import LoadingModal from '../workspace/LoadingModal';
 import './project.css';
 import axios from 'axios';
 
@@ -11,6 +12,7 @@ function Projects(props) {
     const [showModal, setShowModal] = useState(false);
     const [projects, setProjects] = useState([]);
     const [isNewProject, setIsNewProject] = useState(true);
+    const [isLoading,setIsLoading] = useState(true)
     useEffect(() => {
         if (isNewProject) {
             axios.get("http://localhost:5000/all_projects")
@@ -29,7 +31,7 @@ function Projects(props) {
             .then((res)=>{
                 axios.post(`http://localhost:5000/upload_video/${res.data}`,data).then((res)=>{
             console.log(res)
-            // setIsLoading(false) 
+            setIsLoading(false) 
             }).catch((err)=>console.log(err))
             })
             .catch((err)=>console.log(err))
@@ -39,6 +41,7 @@ function Projects(props) {
 
     return (
         <Container className="content mt-5">
+            <LoadingModal isLoading= {isLoading}/>
             <div className='row'>
             <Button variant='primary' onClick={()=>setShowModal(true)}>
             Create Project
@@ -52,6 +55,7 @@ function Projects(props) {
                 makeNewProject={makeNewProject}
                 setIsNewProject={setIsNewProject}
             />
+            {console.log(projects)}
             <Row>
                 {projects.map((project) => <ProjectCard   key={project.name} project={project} thumbnailUrl="http://www.w3.org/2000/svg" />)}
             </Row>
