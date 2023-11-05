@@ -1,6 +1,7 @@
 # add the 'yolov5m to path to be able to import it into python
 import sys
 from pathlib import Path
+from ultralytics import YOLO
 
 file = Path(__file__).resolve()
 parent, root = file.parent, file.parents[1]
@@ -58,9 +59,9 @@ class ModelController(object):
             > mc.train_model(yaml_filepath = r"yolov5m\data\myData.yaml", pretrained_model_path = r"yolov5m\yolov5m.pt", 
                             saveto_dir = '~/Desktop', name='exp322', img_train_size = 320, epochs = 10, batch_size = 4)
         '''
-
-        train.run(data=yaml_filepath, imgsz=img_train_size, weights=pretrained_model_path, epochs=epochs,
-                  batch_size=batch_size, noplots=True, project="sandbox", name="new-parames-exp")
+        model = YOLO(pretrained_model_path)
+        model.train(data=yaml_filepath, imgsz=img_train_size, epochs=epochs,
+                  batch_size=batch_size, noplots=True, project=saveto_dir, name=name)
         trained_model_path = os.path.join(saveto_dir, name, 'weights', 'best.pt')
         return trained_model_path
 
