@@ -1,15 +1,16 @@
 import controller as con
 
-image_path = r'C:\Users\anas3\Desktop\metal1.jpg'
-output_path = r'C:\Users\anas3\Desktop\metal1_out.jpg'
 
-det = con.modelController.ModelController.make_inference(img=image_path,
-                                                    normalization_dims=(512, 384),
-                                                    yaml_filepath=r"C:\Users\anas3\Desktop\trash_detection.yaml",
-                                                    model_filepath=r"C:\Users\anas3\Desktop\best.pt",
-                                                    conf_threshold=0.1)
+image_path = r'C:\Users\anas3\Desktop\metal-new.jpg'
+output_path = r'C:\Users\anas3\Desktop\metal-new_out.jpg'
+MODEL = r"C:\Users\anas3\Junior-Project\AI\sandbox\exp-1\weights\best.pt"
 
-print(det)
+dets = con.modelController.ModelController.make_inference(img_filepath=image_path,
+                                                   model_filepath=MODEL,
+                                                   normalization_dims=(512, 384),
+                                                   conf_threshold=0.1)
+
+print("DETECTIONS:", dets)
 
 import cv2
 import numpy as np
@@ -28,8 +29,11 @@ def draw_bounding_box(image_path, points, output_path):
     cv2.imwrite(output_path, image)
 
 # Example usage:
-loc = det[0]['location']
-x_min, y_min, x_max, y_max = loc[0], loc[1], loc[2], loc[3]
+if len(dets) > 0:
+    loc = dets[0]['location']
+    x_min, y_min, x_max, y_max = loc[0], loc[1], loc[2], loc[3]
 
-points = [(x_min, y_min), (x_max, y_min), (x_max, y_max), (x_min, y_max)]  # Replace with your own points
-draw_bounding_box(image_path, points, output_path)
+    points = [(x_min, y_min), (x_max, y_min), (x_max, y_max), (x_min, y_max)]  # Replace with your own points
+    draw_bounding_box(image_path, points, output_path)
+else:
+    print('NO DETECTIONS')

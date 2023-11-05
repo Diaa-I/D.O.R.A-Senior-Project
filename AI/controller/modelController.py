@@ -2,6 +2,7 @@
 import sys
 from pathlib import Path
 from ultralytics import YOLO
+import os
 
 file = Path(__file__).resolve()
 parent, root = file.parent, file.parents[1]
@@ -10,16 +11,6 @@ try:
     sys.path.remove(str(parent))  # remove the current file's directory from sys.path
 except ValueError:  # Already removed
     pass
-
-import torch
-from yolov5m import train
-from yolov5m.models.common import DetectMultiBackend
-from yolov5m.utils.general import check_img_size, non_max_suppression
-from yolov5m.utils.augmentations import letterbox
-import numpy as np
-import yaml
-from PIL import Image
-import os
 
 
 class ModelController(object):
