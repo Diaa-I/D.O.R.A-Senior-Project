@@ -60,7 +60,7 @@ class ModelController(object):
         '''
 
         train.run(data=yaml_filepath, imgsz=img_train_size, weights=pretrained_model_path, epochs=epochs,
-                  batch_size=batch_size, noplots=True, project="sandbox", name="new-parames-exp")
+                  batch_size=batch_size, noplots=True, project=saveto_dir, name=name)
         trained_model_path = os.path.join(saveto_dir, name, 'weights', 'best.pt')
         return trained_model_path
 
