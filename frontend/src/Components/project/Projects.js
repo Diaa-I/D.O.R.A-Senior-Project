@@ -12,44 +12,28 @@ function Projects(props) {
     const [projects, setProjects] = useState([]);
     const [isNewProject, setIsNewProject] = useState(true);
 
-    useEffect(() => {
-        if (isNewProject) {
-            axios.get("http://localhost:5000/all_projects")
-                .then((res) => {
-                    console.log(res.data)
-                    setProjects(res.data['Projects'])
-                    setIsNewProject(false)
-                })
-                .catch((err) => { console.log(err) })
-
-        }
-    }, [isNewProject]);
-
-    const makeNewProject = (project, data) => {
-        axios.post('http://localhost:5000/create_project', { "project": project })
-            .then((res) => {
-                axios.post(`http://localhost:5000/upload_video/${res.data}`, data).then((res) => {
-                    console.log(res)
-                }).catch((err) => console.log(err))
+    const makeNewProject = (project,data)=>{
+        
+        axios.post('http://localhost:5000/create_project',{"project":project})
+            .then((res)=>{
+                axios.post(`http://localhost:5000/upload_video/${res.data}`,data).then((res)=>{
+            console.log(res)
+            // setIsLoading(false) 
+            }).catch((err)=>console.log(err))
             })
-            .catch((err) => console.log(err))
-    };
+            .catch((err)=>console.log(err))
+        
+        
+    }
 
     return (
-        <Container className="content">
-            <Row className="heading">
-                <Col>
-                    <SearchBar></SearchBar>
-                </Col>
-                <Col>
-                <Row>
-                    <Button variant="primary"    style={{width : 'auto'}} onClick={() => {setShowModal(true)}}>
-                        New Project
-                    </Button>
-                </Row>
-                    
-                </Col>
-            </Row>
+        <Container className="content mt-5">
+            <div className='row'>
+            <Button variant='primary' onClick={()=>setShowModal(true)}>
+            Create Project
+            </Button>
+            <SearchBar projects={projects}></SearchBar>
+            </div>
             <ProjectModal
                 show={showModal}
                 onHide={() => setShowModal(false)}

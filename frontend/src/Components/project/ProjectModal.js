@@ -2,15 +2,19 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
-function ProjectModal({ makeNewProject, setIsNewProject }) {
-    const [projectName, setProjectName] = useState('');
+
+function ProjectModal({ makeNewProject,setIsNewProject,onHide,show }) {
+    // storing the state of each field
+    const [projectName, setProjectName] = useState(''); 
     const [selectedModel, setSelectedModel] = useState('model1');
     const [labels, setLabels] = useState('');
     const [datasetFile, setDatasetFile] = useState('');
 
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    // handle opening and closing DELETE
+    // const [show , setShow] = useState(false);
+    // const handleShow = () => setShow(true);
+    const handleClose = () => onHide(false);
+
 
     const handleCreateProject = (e) => {
         e.preventDefault();
@@ -31,10 +35,9 @@ function ProjectModal({ makeNewProject, setIsNewProject }) {
         setSelectedModel('model1');
         setLabels('');
         setDatasetFile('');
-
+        // setIsLoading(true)
         handleClose();
     };
-
     return (
         <>
             <Modal show={show} onHide={handleClose} style={{ backgroundColor: 'rgba(255, 255, 255, 0)' }}>

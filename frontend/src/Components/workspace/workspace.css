@@ -27,8 +27,8 @@ margin: 2.5vh 0;
 } */
 
 .canvas {
-  border: 5px solid blue;
-  width: 85vw;
+  /* border: 5px solid blue; */
+  width: 84vw;
   height: 80vh;
   position: relative;
 }
@@ -37,10 +37,13 @@ margin: 2.5vh 0;
   position: absolute;
   top: 0;
   left: 0;
+  /* width: 100%;
+  height: 100%; */
  
 }
 
 .body-annotation{
+  /* border: 5px solid green; */
   position: absolute;
   top:0%;
   left: 0%;

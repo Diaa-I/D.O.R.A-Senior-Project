@@ -50,10 +50,6 @@ export default function Workspace(props){
 
     // Is the all the data retrieved (IS Loading)
     const [isLoading,setIsLoading] = useState(true)
-<<<<<<< HEAD
-    
-=======
->>>>>>> 9f430b9e8dd256aec5cf75748a759d7d3d67342f
 
     // Labels array
     const [Labels,setLabels] = useState([])
