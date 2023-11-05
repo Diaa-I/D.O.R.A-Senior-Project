@@ -31,9 +31,6 @@ class ModelController(object):
 
     refer to the documentation of each method for more details.
 
-    TODO:
-        - change the training output directory
-        - add option to choose from a several starting checkpoint / model architecture for training.
     '''
 
     @staticmethod
@@ -61,7 +58,7 @@ class ModelController(object):
         '''
         model = YOLO(pretrained_model_path)
         model.train(data=yaml_filepath, imgsz=img_train_size, epochs=epochs,
-                  batch_size=batch_size, noplots=True, project=saveto_dir, name=name)
+                  batch=batch_size, plots=False, project=saveto_dir, name=name)
         trained_model_path = os.path.join(saveto_dir, name, 'weights', 'best.pt')
         return trained_model_path
 
