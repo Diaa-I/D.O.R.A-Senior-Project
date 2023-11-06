@@ -3,21 +3,16 @@ import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
 
-function ProjectModal({ makeNewProject,setIsNewProject,onHide,show }) {
+function ProjectModal({ makeNewProject,onHide,show }) {
     // storing the state of each field
     const [projectName, setProjectName] = useState(''); 
     const [selectedModel, setSelectedModel] = useState('model1');
     const [labels, setLabels] = useState('');
     const [datasetFile, setDatasetFile] = useState('');
 
-    // handle opening and closing DELETE
-    // const [show , setShow] = useState(false);
-    // const handleShow = () => setShow(true);
-    const handleClose = () => onHide(false);
-
-
     const handleCreateProject = (e) => {
         e.preventDefault();
+        console.log(e.target.value)
         let newProject = {
             name: projectName,
             model: selectedModel,
@@ -27,20 +22,22 @@ function ProjectModal({ makeNewProject,setIsNewProject,onHide,show }) {
         const file = e.target.video.files[0];
         const data = new FormData();
         data.append('video', e.target.video.files[0]);
-
-        makeNewProject(newProject, data);
-        setIsNewProject(true);
-
+        // Related to modal
         setProjectName('');
         setSelectedModel('model1');
         setLabels('');
         setDatasetFile('');
-        // setIsLoading(true)
-        handleClose();
+        onHide();
+        // related to project
+        makeNewProject(newProject, data);
     };
+
+    console.log(show)
     return (
         <>
-            <Modal show={show} onHide={handleClose} style={{ backgroundColor: 'rgba(255, 255, 255, 0)' }}>
+        {console.log(show)}
+        {console.log(onHide)}
+            <Modal show={show} onHide={onHide} style={{ backgroundColor: 'rgba(255, 255, 255, 0)' }}>
                 <Modal.Header closeButton>
                     <Modal.Title>New Project</Modal.Title>
                 </Modal.Header>
@@ -82,12 +79,12 @@ function ProjectModal({ makeNewProject,setIsNewProject,onHide,show }) {
                                 type="file"
                                 value={datasetFile}
                                 name='video'
-                                onChange={(e) => setDatasetFile(e.target.files[0])}
+                                onChange={(e) => setDatasetFile(e.target.value)}
                             />
                         </Form.Group>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="secondary" onClick={handleClose}>
+                        <Button variant="secondary" onClick={onHide}>
                             Close
                         </Button>
                         <Button variant="primary" type='submit'>

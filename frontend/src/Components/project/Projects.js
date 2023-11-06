@@ -12,12 +12,14 @@ function Projects(props) {
     const [showModal, setShowModal] = useState(false);
     const [projects, setProjects] = useState([]);
     const [isNewProject, setIsNewProject] = useState(true);
-    const [isLoading,setIsLoading] = useState(true)
+    const [isLoading,setIsLoading] = useState(false)
+    const handleClose = () => {setShowModal(false);}
+    const handleShow = () => {setShowModal(true);}
+
     useEffect(() => {
         if (isNewProject) {
             axios.get("http://localhost:5000/all_projects")
                 .then((res) => {
-                    console.log(res.data)
                     setProjects(res.data['Projects'])
                     setIsNewProject(false)
                 })
@@ -25,35 +27,30 @@ function Projects(props) {
 
         }
     }, [isNewProject]);
-    const makeNewProject = (project,data)=>{
-        
+
+    const makeNewProject = (project,data)=>{        
+        setIsLoading(true)
         axios.post('http://localhost:5000/create_project',{"project":project})
             .then((res)=>{
-                axios.post(`http://localhost:5000/upload_video/${res.data}`,data).then((res)=>{
-            console.log(res)
+            axios.post(`http://localhost:5000/upload_video/${res.data}`,data).then((res)=>{
+            setIsNewProject(true);
             setIsLoading(false) 
             }).catch((err)=>console.log(err))
             })
             .catch((err)=>console.log(err))
-        
-        
     }
 
     return (
         <Container className="content mt-5">
-            <LoadingModal isLoading= {isLoading}/>
+            <LoadingModal isLoading={isLoading}/>
             <div className='row'>
-            <Button variant='primary' onClick={()=>setShowModal(true)}>
-            Create Project
-            </Button>
+            <Button variant='primary' onClick={handleShow}>Create Project</Button>
             <SearchBar projects={projects}></SearchBar>
             </div>
             <ProjectModal
                 show={showModal}
-                onHide={() => setShowModal(false)}
-                setProjects={setProjects}
+                onHide={handleClose}
                 makeNewProject={makeNewProject}
-                setIsNewProject={setIsNewProject}
             />
             {console.log(projects)}
             <Row>
