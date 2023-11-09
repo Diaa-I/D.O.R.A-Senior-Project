@@ -42,7 +42,7 @@ class ProjectManager(object):
             - associated_image_name: name of the frame/image of where the annotation box is located. Can be a name only (e.g. frame_0443), or a file name (e.g. frame_0443.png) or a path.
             - img_width: the width of the image where the annotation box is located.
             - img_height: the height of the image where the annotation box is located.
-            - annotations_array: an array containing a list of annotation objects representing the boxes drawn. Each annotation object is represneted as: {'label': 'string', 'x_center': float, 'y_center': float, 'width': float, 'height': float}
+            - annotations_array: an array containing a list of annotation objects representing the boxes drawn. Each annotation object is represneted as: {'label': 'string', 'x_min': float, 'y_min': float, 'width': float, 'height': float}
                - label is the name of the label associated with the box, given as a string.
                - x_center and y_center are the x, y coordinates of the center of annotation boxes (absolute value, not normalized).
                - width and height are the dimesnsions of the annotation box (absolute value, not normalized).
@@ -50,8 +50,8 @@ class ProjectManager(object):
         ====================================================
         Usage Example:
         > pm.create_annotations_txt('path/to/trash_detection.yaml', "frame_00423", 400, 600, 
-            [{'label': 'plastic', 'x_center': 80, 'y_center': 234, 'width': 30, 'height': 80}, 
-             {'label': 'metal', 'x_center': 20.01, 'y_center': 354.2, 'width': 25, 'height': 45.6}], 
+            [{'label': 'plastic', 'x': 80, 'y': 234, 'width': 30, 'height': 80}, 
+             {'label': 'metal', 'x': 20.01, 'y': 354.2, 'width': 25, 'height': 45.6}], 
             "./mydir")
         '''
         # Load the YAML file as a dictionary
@@ -72,10 +72,11 @@ class ProjectManager(object):
             for i, annotation in enumerate(annotations_array):
                 # get the labels index (the number representing the label)
                 label_index = labels_to_index[annotation['label']]
-                bbox_x_center = annotation['x_center']
-                bbox_y_center = annotation['y_center']
                 bbox_width = annotation['width']
                 bbox_height = annotation['height']
+                bbox_x_center = annotation['x'] + (bbox_width / 2.0)
+                bbox_y_center = annotation['y'] + (bbox_height / 2.0)
+
 
                 # get the x, y, w, and h values normalized relative the img height and width
                 x_center_norm, y_center_norm, width_norm, height_norm = ProjectManager.normalize_coordinates(bbox_x_center, bbox_y_center,
