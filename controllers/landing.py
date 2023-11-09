@@ -3,8 +3,14 @@ from flask import Flask, flash, render_template, redirect, request, url_for, jso
 from database import mongo_connection
 import bson.json_util as json_util
 from flask_pymongo import ObjectId
+import glob
+import shutil
+import os
 from werkzeug.utils import secure_filename
 import os, yaml , json
+import AI.controller.projectManager as pm
+import AI.controller.modelController as mc
+
 db_connection = {
     "Users":mongo_connection.Users,
     "Projects":mongo_connection.Projects,
@@ -16,10 +22,30 @@ Projects = db_connection['Projects']
 Annotations = db_connection['Annotations']
 
 ALLOWED_EXTENSIONS = {'mp4', 'mov', 'wmv', 'flv', 'avi', 'mkv', 'webm'}
+
+
+# def annotationUpdate():
+#     Annotations.update_many({"project_id": ObjectId("654bb3d2b209809760f6911e")},{"$set": {"project_id":ObjectId("654bcdfa5d580b31ca40c13d") }})
+
+def delete_folder_files(folder):
+# Make it a function and pass folder names
+    for filename in os.listdir(folder):
+        file_path = os.path.join(folder, filename)
+        try:
+            if os.path.isfile(file_path) or os.path.islink(file_path):
+                os.unlink(file_path)
+            elif os.path.isdir(file_path):
+                shutil.rmtree(file_path)
+        except Exception as e:
+            print('Failed to delete %s. Reason: %s' % (file_path, e))
+
+
 def allowed_file(filename):
     print(filename)
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
 def extract_frames(video_filepath, output_dir, Project) -> None:
         '''
         prases a video into frames and stores them as .JPG images in a directory.
@@ -41,7 +67,8 @@ def extract_frames(video_filepath, output_dir, Project) -> None:
         all_frames_paths = []
         # Open the video file
         cap = cv2.VideoCapture(video_filepath)
-
+        height = cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
+        width = cap.get(cv2.CAP_PROP_FRAME_WIDTH)
         # Create the output directory if it doesn't exist
         if not os.path.exists(output_dir):
             os.makedirs(output_dir)
@@ -73,6 +100,8 @@ def extract_frames(video_filepath, output_dir, Project) -> None:
         print(f"Extracted {total_project_images - count_init} frames from {video_filepath}")
         # Release the video capture object
         cap.release()
+        return (width,height)
+
 
 
 class landingController:
@@ -107,8 +136,8 @@ class landingController:
             os.mkdir(f'frontend/public/images/{Project["Name"]}/video')
             file_path = os.path.join(f'frontend/public/images/{Project["Name"]}/video', secure_filename(file.filename))
             file.save(file_path)
-            extract_frames(file_path,f'frontend/public/images/{Project["Name"]}', Project)
-
+            width,height = extract_frames(file_path,f'frontend/public/images/{Project["Name"]}', Project)
+            Projects.update_one({"_id":Project['_id']},{"$set":{"Dimensions":{"width":width,"height":height}}})
             return "DONE"
         else:
             flash("Upload a video that satisfies the conditions")
@@ -133,8 +162,10 @@ class landingController:
 
             # Make Model and YAML files
             newProject = request.json['project']
-            print(newProject)
-            index_to_labels = {i: newProject['labels'][i] for i in range(len(newProject['labels']))}
+            project_labels = [x.strip() for x in newProject['labels'].split(',')]
+            index_to_labels = {i: project_labels[i] for i in range(len(project_labels))}
+
+            print(index_to_labels)
             file_path_yaml = os.path.join('AI/yolov5m/data/', f'{newProject["name"]}.yaml')
             print(file_path_yaml)
 
@@ -156,16 +187,77 @@ class landingController:
                 "Frames_Size": '',
                 "Directory_of_File": '',
                 "Labels": newProject['labels'].split(','),
-                "model_filepath": "AI/yolov5m/runs/train/exp4/weights/best.pt",
+                "model_filepath": "AI/yolov5n.pt",
                 "yaml_filepath": file_path_yaml,
+                'Dimensions':{'width':0,'height':0},
+                'is_training':False
             }
             # Add to Database
             Projects.insert_one(project_obj)
             return project_obj['Name']
 
 
-
     def rendering():
-        return render_template("/views/landing.html")
+        # annotationUpdate()
+        Project = Projects.find_one({"_id": ObjectId("654c9e430f8686ec765ec073")})
+        print(Project)
+        # Get frames that are annotated and get their annotations, then pass to createAnnotation_txt
+        annotatedFrames = request.json['annotatedFrames']
+        # Get the annotations related to only frames that were annotated
+        all_annotations = list(Annotations.find( {"project_id":ObjectId("654c9e430f8686ec765ec073"), "frame": {"$in": annotatedFrames } }, {'_id': False, 'project_id':False} ) )
+        # response = jsonify({"Annotations": json.loads(json_util.dumps(all_annotations))})
+
+        # Set doesn't allow duplications, give me all the frame numbers that were annotated with no duplicates
+        frames_annotated = {annotation['frame'] for annotation in all_annotations}
+
+        # after knowing the frames that were annotated, now I want a dictionary containing the frame numbers as a parent
+        array_of_annotations = {}
+        for frames in frames_annotated:
+            array_of_annotations[frames] = []
+        frame_names = []
+        # the children are an array of annotations in that specific frame, parent is commented above which is frame number
+        for annotation in all_annotations:
+            array_of_annotations[annotation['frame']].append(annotation)
+        # Get the the image name so we can create annotation txt for it
+        for frame_num in frames_annotated:
+            print(frame_num)
+            image_name = f"{frame_num}_{Project['Name']}.jpg"
+            frame_names.append(image_name)
+            # train
+            pm.ProjectManager().create_annotations_txt(Project['yaml_filepath'], image_name, Project['Dimensions']['width'],
+                                      Project['Dimensions']['height'], array_of_annotations[frame_num],
+                                      'AI/train_data/labels/train',Project['Labels'])
+            # val
+            pm.ProjectManager().create_annotations_txt(Project['yaml_filepath'], image_name,
+                                                       Project['Dimensions']['width'],
+                                                       Project['Dimensions']['height'], array_of_annotations[frame_num],
+                                                       'AI/train_data/labels/val', Project['Labels'])
+        src_dir = Project['Directory_of_File']
+        dst_dir = "AI/train_data/images/"
+        # Only the images
+        for f in frame_names:
+            print(src_dir+'/'+f,dst_dir)
+            # train
+            shutil.copy(src_dir+'/'+f, dst_dir+'/train')
+            # val
+            shutil.copy(src_dir+'/'+f, dst_dir+'/val')
+
+        response = jsonify({"Annotations": array_of_annotations})
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        trained_model_path = mc.ModelController().train_model(Project['yaml_filepath'], Project['model_filepath'], f"AI/yolov5m/runs/{Project['Name']}", Project['Name'])
+        Projects.update_one({"_id":ObjectId("654c9e430f8686ec765ec073")},{"$set":{"model_filepath":trained_model_path}})
+        delete_folder_files(dst_dir+'/train')
+        delete_folder_files(dst_dir+'/val')
+        delete_folder_files('AI/train_data/labels/train')
+        delete_folder_files('AI/train_data/labels/val')
+        return response
+        # return render_template("/views/landing.html")
+            # Make txt files for each frame that was annotated (DONE) MAKE ITS OWN FUNCTION
+            # make a copy of those frames to AI/train_data/images/train MAKE ITS OWN FUNCTION
+        #         train the model
+
+
+
+
 
 # landingController.a()

@@ -173,11 +173,13 @@ export default function Workspace(props){
           // console.log("===============================")
         }
         // Only training when not training
-        if(trainObj.train && !trainObj.isTraining){
+        if(trainObj.train && shouldTrain){
           // console.log("===============================")
           // console.log(shouldTrain)
           // console.log("===============================")
-          axios.get(`http://localhost:5000/workspace/${project_id}/trainmodel`).then((res)=>console.log(res))
+          axios.post(`http://localhost:5000/workspace/${project_id}/trainmodel`,{annotatedFrames}).then((res)=>{console.log(res);setShouldTrain(false);})
+          // Until labelsCounter > 50 for all then model shouldn't train
+          // what we can do is keep shouldTrain true when we want to train
           trainObj.train = false
         }
       }
@@ -272,6 +274,15 @@ export default function Workspace(props){
       // Draw annotations whenever there is a change, check the code if-else
       if (Annotations&&Annotations.length>0){
         draw() 
+        console.log(annotatedFrames)
+        console.log(annotatedFrames.includes(frameCounter))
+        console.log(frameCounter)
+        if(!isGoingBack && !annotatedFrames.includes(frameCounter)){
+          console.log(isGoingBack)
+        for(let annotation of Annotations){
+          labelsCounter[annotation['label']] += 1
+        }
+      }
       }
       else{
         draw()
@@ -297,7 +308,12 @@ export default function Workspace(props){
             let tempAnnotation = [...Annotations]
             tempAnnotation = tempAnnotation.filter(current=>{
               if(current == Annotation){
+                if(labelsCounter[current['label']]<=0){
+                  labelsCounter[current['label']] = 0
+                }
+                else{
               labelsCounter[current['label']] -= 1
+            }
               console.log(labelsCounter)
              }
               return current!==Annotation

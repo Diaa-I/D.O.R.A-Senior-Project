@@ -1,5 +1,7 @@
 import os
-
+import subprocess
+import sys
+from natsort import natsorted
 import cv2
 import numpy as np
 import yaml
@@ -12,7 +14,7 @@ import test_processing
 from database import mongo_connection
 from flask_pymongo import ObjectId
 import AI.controller.modelController as mc
-# import AI.controller.projectManager as pm
+import AI.controller.projectManager as pm
 
 import json
 # import pymongo
@@ -179,18 +181,29 @@ class workspaceController:
         # To open the images on frontend it will already be in /public
         opening_dir = Project['Directory_of_File'].split('/')[2:]
         opening_dir = '/'+'/'.join(opening_dir)
-
+        files_sorted = []
+        # Sort the files using natsort which uses decimal because normal sorted returns it wrong
+        for file in os.listdir(image_dir):
+            files_sorted.append(file)
+        files_sorted = natsorted(files_sorted)
         # CHANGE IT TO CONTAIN ALL TYPES OF PHOTOS ALSO SAY THE TYPES IN REPORT
         # Should later change to accessing from database the frames
-        for file in os.listdir(image_dir):
+        # use the sorted file list to return the actual frame ordered properly
+        for file in files_sorted:
             if file.endswith(".jpg"):
+                # print(file)
                 # Extract the width and height of images
                 # im = cv2.imread(os.getcwd() + '/' + image_dir + f'/{file}')
                 # print({'width': im.shape[1], 'height': im.shape[0]})
                 # Image location + Metadata
                 # dir_list.append({"image_loc": opening_dir + f'/{file}', 'width': im.shape[1], 'height': im.shape[0]})
-                dir_list.append({"image_loc": opening_dir + f'/{file}', 'width': "1600", 'height': "900"})
+                dir_list.append({"image_loc": opening_dir + f'/{file}', 'width': Project['Dimensions']['width'], 'height': Project['Dimensions']['height']})
         # dir_list[0] = './'+ Project['Directory_of_File'] + dir_list[0]
+        # print(dir_list.sort(key='image_loc'))
+        # print(dir_list.sort(key='image_loc'))
+        # print(dir_list.items())
+        # print(sorted(dir_list, key=lambda item: item['image_loc']))
+
         response = jsonify({"Project_Name": Project['Name'], "Frames": Project['Frames_Size'],"Image_Dir":dir_list})
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
@@ -209,8 +222,62 @@ class workspaceController:
 
     def train_model(project_id):
         Project = Projects.find_one({"_id": ObjectId(project_id)})
-        # test_processing.start_training(Project['yaml_filepath'],Project['model_filepath'] ,img_train_size=320)
-        mc.ModelController().train_model(Project['yaml_filepath'],Project['model_filepath'] ,img_train_size=320)
+        annotated_frames = request.json['annotatedFrames']
+        annotations = Annotations.find({"project_id":project_id})
+        # Check if already training by checking if isTraining == false or isTraining == a number
+        if Project['isTraining'] == False:
+            # If not training then take all the frames ( the question is which frames ) and annotations related to
+            # those frames and do createAnnotaions function
+            # Maybe trained frames should be in DB
+            # already they is an array called annotatedFrames, so we take that and check which one has already been
+            # trained and don't train those
+            # anytime you want to exit workspace save them to DB or no need just save the trained frames (second yes)
+            # Get frames that are annotated and get their annotations, then pass to createAnnotation_txt
+            annotatedFrames = request.json['annotatedFrames']
+            # Get the annotations related to only frames that were annotated
+            all_annotations = list(Annotations.find(
+                {"project_id": ObjectId("6544fb62801230ccdc4d166c"), "frame": {"$in": annotatedFrames}},
+                {'_id': False, 'project_id': False}))
+            # response = jsonify({"Annotations": json.loads(json_util.dumps(all_annotations))})
+
+            # Set doesn't allow duplications, give me all the frame numbers that were annotated with no duplicates
+            frames_annotated = {annotation['frame'] for annotation in all_annotations}
+
+            # after knowing the frames that were annotated, now I want a dictionary containing the frame numbers as a parent
+            array_of_annotations = {}
+            for frames in frames_annotated:
+                array_of_annotations[frames] = []
+
+
+            # the children are an array of annotations in that specific frame, parent is commented above which is frame number
+            for annotation in all_annotations:
+                array_of_annotations[annotation['frame']].append(annotation)
+            # for each frame create txt file for annotations using the create_annotations_txt function
+            for frame_num in frames_annotated:
+                image_name = f"{frame_num}_test.jpg"
+                pm.create_annotations_txt(Project['yaml_filepath'], image_name, Project['Dimensions']['width'],
+                                          Project['Dimensions']['height'], array_of_annotations[frame_num],
+                                          'AI/train_data/labels/train')
+
+            #           Dimensions are added already
+        #           Project['Dimensions']['width'],Project['Dimensions']['height']
+        #           now retrieval of annotations + where to save the file
+        #           Also now we need to pick where to save the model
+
+            mc.ModelController().train_model(Project['yaml_filepath'], Project['model_filepath'], img_train_size=320)
+            DETACHED_PROCESS = 0x00000008
+            pid = subprocess.Popen([sys.executable, "test_processing.py", Project['yaml_filepath'], Project['model_filepath'], "320"],
+                                                          creationflags=DETACHED_PROCESS).pid
+            return True
+            pass
+        else:
+            # Return that it is already being trained
+            # when that happens then add how many needs to be trained
+            # Maybe when done training send the annotatedFrames and it will do training
+            return False
+            pass
+
+        test_processing.start_training(Project['yaml_filepath'],Project['model_filepath'] ,img_train_size=320)
         return 'Done'
 
 
@@ -219,26 +286,30 @@ class workspaceController:
         Project = Projects.find_one({"_id": ObjectId(project_id)})
         print(Project)
         print(request.json['currentFrame'])
-
+        print((Project['Dimensions']['width'],Project['Dimensions']['height']))
         # Make prediction
-        predictions = mc.ModelController().make_inference("frontend/public/"+request.json['currentFrame'], Project['yaml_filepath'],Project['model_filepath'],normalization_dims=(1920,1024))
+        predictions = mc.ModelController().make_inference("frontend/public/"+request.json['currentFrame'], Project['yaml_filepath'],Project['model_filepath'],normalization_dims=(Project['Dimensions']['width'],Project['Dimensions']['height']))
         print(predictions)
+        #
         pred = []
         for prediction in predictions:
             # x = (x_min + x_max)/2, y = (y_min + y_max)/2
             # w = x_max - x_min, h = y_max - y_min
+            print("----------------------------------")
+            print(prediction)
             x_min = prediction['location'][0]
             y_min = prediction['location'][1]
             x_max = prediction['location'][2]
             y_max = prediction['location'][3]
             pred.append({
-                'x':(x_min + x_max)/2,
-                'y':(y_min + y_max)/2,
+                'x':x_min,
+                'y':y_min,
                 'w':(x_max - x_min),
                 'h':(y_max - y_min),
                 'label':prediction['name'],
                 'conf_score': prediction['conf_score']
             })
+        print(pred)
         # If not prediction then return a flash message saying there were no prediction found
         return pred
 

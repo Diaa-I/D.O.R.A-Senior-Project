@@ -93,7 +93,7 @@ export default function Navbar(props) {
     <div className='content'>
      <Routes>
      <Route path='/workspace/:id' element={<Workspace showModal={props.showModal}  hideModal={props.hideModal}></Workspace>}/>
-     <Route path='/test' element={<Test showModal={props.showModal}  hideModal={props.hideModal}></Test>}/>
+     <Route path='/' element={<Test showModal={props.showModal}  hideModal={props.hideModal}></Test>}/>
      <Route path='/Projects' element={<Projects showModal={props.showModal}  hideModal={props.hideModal}></Projects>}/>
      <Route path='/Datasets' element={<Datasets showModal={props.showModal}  hideModal={props.hideModal}></Datasets>}/>
      {/* <Route path='/Models' element={<Models showModal={props.showModal}  hideModal={props.hideModal}></Models>}/> */}

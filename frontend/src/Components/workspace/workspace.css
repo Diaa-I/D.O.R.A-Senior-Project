@@ -59,6 +59,7 @@ border: 5px solid darkblue;
 font: bold 15px Arial, sans-serif;
 position: absolute;
 top: 83.5vh;
+margin-top:100px
 }
 
 select, option {
