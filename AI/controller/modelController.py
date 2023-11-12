@@ -65,7 +65,7 @@ class ModelController(object):
         return trained_model_path
 
     @staticmethod
-    def make_inference(img, yaml_filepath, model_filepath, normalization_dims, conf_threshold=0.9) -> list:
+    def make_inference(img, yaml_filepath, model_filepath, normalization_dims, conf_threshold=0.25) -> list:
         '''
         Processes an image and outputs all the detected objects found in it.
         Detections will be considered only if they're above or equal to conf_threshold.
@@ -103,7 +103,7 @@ class ModelController(object):
         # Load the YAML file as a dictionary
         with open(yaml_filepath, 'r') as file:
             index_to_labels = yaml.safe_load(file)
-        
+
         # Load the trained PyTorch model file
         pt_model = DetectMultiBackend(weights=model_filepath, dnn=False, data=yaml_filepath,
                                       fp16=False)  # load the model
@@ -132,9 +132,12 @@ class ModelController(object):
                 norm_w, norm_h = normalization_dims[0], normalization_dims[1] # to return the coordinates relative to the given dimensions
                 xmin, ymin, xmax, ymax = (xmin/FRAME_SIZE[0])*norm_w, (ymin/FRAME_SIZE[0])*norm_h, (xmax/FRAME_SIZE[0])*norm_w, (ymax/FRAME_SIZE[0])*norm_h
                 obj_acc = float(pred[4])  # detected confidence score
+                # Giving wrong class when 2 classes
                 obj_class = int(pred[5])  # detected class
+                # Change this later
+                if not obj_class == 0:
+                    continue
                 loc = [float(xmin), float(ymin), float(xmax), float(ymax)]
-
                 print(f"\t > Object detected, "
                         f"Name: '{index_to_labels['names'][obj_class]}', "
                         f"Confidence: {round(obj_acc * 100, 1)}%, "

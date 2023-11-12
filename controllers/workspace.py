@@ -1,4 +1,5 @@
 import os
+import shutil
 import subprocess
 import sys
 from natsort import natsorted
@@ -10,6 +11,7 @@ from werkzeug.utils import secure_filename
 import os
 
 # from AI.yolov5m.models.common import DetectMultiBackend
+import checkProcesses
 import test_processing
 from database import mongo_connection
 from flask_pymongo import ObjectId
@@ -35,6 +37,17 @@ Annotations = db_connection['Annotations']
 
 project_currently_used = {"_id":""}
 
+def delete_folder_files(folder):
+# Make it a function and pass folder names
+    for filename in os.listdir(folder):
+        file_path = os.path.join(folder, filename)
+        try:
+            if os.path.isfile(file_path) or os.path.islink(file_path):
+                os.unlink(file_path)
+            elif os.path.isdir(file_path):
+                shutil.rmtree(file_path)
+        except Exception as e:
+            print('Failed to delete %s. Reason: %s' % (file_path, e))
 def allowed_file(filename):
     print(filename)
     return '.' in filename and \
@@ -60,7 +73,7 @@ class workspaceController:
         project_currently_used['_id'] = ObjectId(project_id)
         Project = Projects.find_one({"_id":ObjectId(project_id)})
         print(Project)
-        response = jsonify({"Project_Name": Project['Name'], "Frames": Project['Frames_Size']})
+        response = jsonify({"Project_Name": Project['Name'], "Frames": Project['Frames_Size'],'Frames_num_to_train':Project['Frames_num_to_train']})
         response.headers.add('Access-Control-Allow-Origin', '*')
         response.headers.add("Access-Control-Allow-Headers", "X-Requested-With")
         return response
@@ -222,65 +235,133 @@ class workspaceController:
 
     def train_model(project_id):
         Project = Projects.find_one({"_id": ObjectId(project_id)})
+        # Get frames that are annotated and get their annotations, then pass to createAnnotation_txt
         annotated_frames = request.json['annotatedFrames']
-        annotations = Annotations.find({"project_id":project_id})
+        print(Project)
+        # Get the annotations related to only frames that were annotated and not trained on already previously
+        all_annotations = list(Annotations.find( {"project_id":ObjectId(project_id),
+                                                  "$and": [{"frame": {"$in": annotated_frames}},
+                                                             {"frame": {"$nin": Project['trained_frames']}} ] }, {'_id': False, 'project_id':False} ) )
+        print(all_annotations)
+
+        # Set doesn't allow duplications, give me all the frame numbers that were annotated with no duplicates
+        frames_annotated = {annotation['frame'] for annotation in all_annotations}
+        # Set is Training to true
+        Projects.update_one({"_id": ObjectId(project_id)}, {"$set": {"is_training":True}})
+        # after knowing the frames that were annotated, now I want a dictionary containing the frame numbers as a parent
+        array_of_annotations = {}
+        for frames in frames_annotated:
+            array_of_annotations[frames] = []
+        frame_names = []
+        # the children are an array of annotations in that specific frame, parent is commented above which is frame number
+        for annotation in all_annotations:
+            array_of_annotations[annotation['frame']].append(annotation)
+        # Get the the image name so we can create annotation txt for it
+        for frame_num in frames_annotated:
+            image_name = f"{frame_num}_{Project['Name']}.jpg"
+            frame_names.append(image_name)
+            # for train file
+            pm.ProjectManager().create_annotations_txt(Project['yaml_filepath'], image_name, Project['Dimensions']['width'],
+                                      Project['Dimensions']['height'], array_of_annotations[frame_num],
+                                      'AI/train_data/labels/train')
+            # for val file
+            pm.ProjectManager().create_annotations_txt(Project['yaml_filepath'], image_name,
+                                                       Project['Dimensions']['width'],
+                                                       Project['Dimensions']['height'], array_of_annotations[frame_num],
+                                                       'AI/train_data/labels/val')
+        src_dir = Project['Directory_of_File']
+        dst_dir = "AI/train_data/images/"
+        # Only the images, copy them to the folder used for training
+        for f in frame_names:
+            # train
+            shutil.copy(src_dir+'/'+f, dst_dir+'/train')
+            # val
+            shutil.copy(src_dir+'/'+f, dst_dir+'/val')
+        # Train the model
+        trained_model_path = mc.ModelController().train_model(Project['yaml_filepath'], Project['model_filepath'],
+                                                              f"AI/yolov5m/runs/{Project['Name']}", Project['Name'])
+        # Save the new model file path to the database and end the isTraining process
+        print(trained_model_path)
+        Projects.update_one({"_id": ObjectId(project_id)},
+                            {
+                                "$set": {"model_filepath": trained_model_path, 'is_training': False,
+                                         'Frames_num_to_train': Project['Frames_num_to_train'] + 50},
+                                "$addToSet": {'trained_frames': {"$each": frames_annotated}}
+                            })
+
+        response = jsonify({"isTraining": False})
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        delete_folder_files(dst_dir + '/train')
+        delete_folder_files(dst_dir + '/val')
+        delete_folder_files('AI/train_data/labels/train')
+        delete_folder_files('AI/train_data/labels/val')
+        return response
+
+
+
         # Check if already training by checking if isTraining == false or isTraining == a number
-        if Project['isTraining'] == False:
-            # If not training then take all the frames ( the question is which frames ) and annotations related to
-            # those frames and do createAnnotaions function
-            # Maybe trained frames should be in DB
-            # already they is an array called annotatedFrames, so we take that and check which one has already been
-            # trained and don't train those
-            # anytime you want to exit workspace save them to DB or no need just save the trained frames (second yes)
-            # Get frames that are annotated and get their annotations, then pass to createAnnotation_txt
-            annotatedFrames = request.json['annotatedFrames']
-            # Get the annotations related to only frames that were annotated
-            all_annotations = list(Annotations.find(
-                {"project_id": ObjectId("6544fb62801230ccdc4d166c"), "frame": {"$in": annotatedFrames}},
-                {'_id': False, 'project_id': False}))
-            # response = jsonify({"Annotations": json.loads(json_util.dumps(all_annotations))})
+        # if Project['isTraining'] == False:
+        #     # If not training then take all the frames ( the question is which frames ) and annotations related to
+        #     # those frames and do createAnnotaions function
+        #     # Maybe trained frames should be in DB
+        #     # already they is an array called annotatedFrames, so we take that and check which one has already been
+        #     # trained and don't train those
+        #     # anytime you want to exit workspace save them to DB or no need just save the trained frames (second yes)
+        #     # Get frames that are annotated and get their annotations, then pass to createAnnotation_txt
+        #     annotatedFrames = request.json['annotatedFrames']
+        #     # Get the annotations related to only frames that were annotated
+        #     all_annotations = list(Annotations.find(
+        #         {"project_id": ObjectId("6544fb62801230ccdc4d166c"), "frame": {"$in": annotatedFrames}},
+        #         {'_id': False, 'project_id': False}))
+        #     # response = jsonify({"Annotations": json.loads(json_util.dumps(all_annotations))})
+        #
+        #     # Set doesn't allow duplications, give me all the frame numbers that were annotated with no duplicates
+        #     frames_annotated = {annotation['frame'] for annotation in all_annotations}
+        #
+        #     # after knowing the frames that were annotated, now I want a dictionary containing the frame numbers as a parent
+        #     array_of_annotations = {}
+        #     for frames in frames_annotated:
+        #         array_of_annotations[frames] = []
+        #
+        #
+        #     # the children are an array of annotations in that specific frame, parent is commented above which is frame number
+        #     for annotation in all_annotations:
+        #         array_of_annotations[annotation['frame']].append(annotation)
+        #     # for each frame create txt file for annotations using the create_annotations_txt function
+        #     for frame_num in frames_annotated:
+        #         image_name = f"{frame_num}_test.jpg"
+        #         pm.create_annotations_txt(Project['yaml_filepath'], image_name, Project['Dimensions']['width'],
+        #                                   Project['Dimensions']['height'], array_of_annotations[frame_num],
+        #                                   'AI/train_data/labels/train')
+        #
+        #     #           Dimensions are added already
+        # #           Project['Dimensions']['width'],Project['Dimensions']['height']
+        # #           now retrieval of annotations + where to save the file
+        # #           Also now we need to pick where to save the model
+        #
+        #     mc.ModelController().train_model(Project['yaml_filepath'], Project['model_filepath'], img_train_size=320)
+        #     DETACHED_PROCESS = 0x00000008
+        #     pid = subprocess.Popen([sys.executable, "test_processing.py", Project['yaml_filepath'], Project['model_filepath'], "320"],
+        #                                                   creationflags=DETACHED_PROCESS).pid
+        #     return True
+        #     pass
+        # else:
+        #     # Return that it is already being trained
+        #     # when that happens then add how many needs to be trained
+        #     # Maybe when done training send the annotatedFrames and it will do training
+        #     return False
+        #     pass
+        #
+        # test_processing.start_training(Project['yaml_filepath'],Project['model_filepath'] ,img_train_size=320)
 
-            # Set doesn't allow duplications, give me all the frame numbers that were annotated with no duplicates
-            frames_annotated = {annotation['frame'] for annotation in all_annotations}
-
-            # after knowing the frames that were annotated, now I want a dictionary containing the frame numbers as a parent
-            array_of_annotations = {}
-            for frames in frames_annotated:
-                array_of_annotations[frames] = []
-
-
-            # the children are an array of annotations in that specific frame, parent is commented above which is frame number
-            for annotation in all_annotations:
-                array_of_annotations[annotation['frame']].append(annotation)
-            # for each frame create txt file for annotations using the create_annotations_txt function
-            for frame_num in frames_annotated:
-                image_name = f"{frame_num}_test.jpg"
-                pm.create_annotations_txt(Project['yaml_filepath'], image_name, Project['Dimensions']['width'],
-                                          Project['Dimensions']['height'], array_of_annotations[frame_num],
-                                          'AI/train_data/labels/train')
-
-            #           Dimensions are added already
-        #           Project['Dimensions']['width'],Project['Dimensions']['height']
-        #           now retrieval of annotations + where to save the file
-        #           Also now we need to pick where to save the model
-
-            mc.ModelController().train_model(Project['yaml_filepath'], Project['model_filepath'], img_train_size=320)
-            DETACHED_PROCESS = 0x00000008
-            pid = subprocess.Popen([sys.executable, "test_processing.py", Project['yaml_filepath'], Project['model_filepath'], "320"],
-                                                          creationflags=DETACHED_PROCESS).pid
-            return True
-            pass
-        else:
-            # Return that it is already being trained
-            # when that happens then add how many needs to be trained
-            # Maybe when done training send the annotatedFrames and it will do training
-            return False
-            pass
-
-        test_processing.start_training(Project['yaml_filepath'],Project['model_filepath'] ,img_train_size=320)
-        return 'Done'
-
-
+    def check_training_process(project_id):
+        Project = Projects.find_one({"_id":ObjectId(project_id)})
+        print(Project)
+        is_training = Project['is_training']
+        if is_training:
+            # IF DONE THEN SAVE THE MODEL PLACE HERE
+            return jsonify({"isTraining":True})
+        return jsonify({"isTraining":False})
     def trained_model(project_id):
         # Find project, In DB project <-> model, so we can have relation which project relies on model.
         Project = Projects.find_one({"_id": ObjectId(project_id)})
@@ -293,8 +374,6 @@ class workspaceController:
         #
         pred = []
         for prediction in predictions:
-            # x = (x_min + x_max)/2, y = (y_min + y_max)/2
-            # w = x_max - x_min, h = y_max - y_min
             print("----------------------------------")
             print(prediction)
             x_min = prediction['location'][0]

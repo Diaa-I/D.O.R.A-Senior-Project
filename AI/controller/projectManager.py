@@ -10,7 +10,7 @@ class ProjectManager(object):
     image_retrieval_index = 0
     all_frames_paths = []
 
-    def __init__(self, labels_array, project_name) -> None:
+    def __init__(self) -> None:
         '''
         Instansiates an object specific to a set of labels.
         ====================================================
@@ -26,11 +26,11 @@ class ProjectManager(object):
             > print(dm.labelsToIndex)
         {'cat': 0, 'dog': 1, 'horse': 2}
         '''
-        assert len(labels_array) > 0, "labelsArray cannot be an empty list"
-        self.labels_array = labels_array # ['cat', 'dog', 'horse', ...]
-        self.project_name = project_name # 'myProject'
-        self.index_to_labels = {i: self.labels_array[i] for i in range(len(self.labels_array))} # {0: 'cat', 1: 'dog', 2: 'horse', ...}
-        self.labels_to_index = {self.index_to_labels[i]: i for i in range(len(self.index_to_labels))} # {'cat': 0, 'dog': 1, 'horse': 2, ...}
+        # assert len(labels_array) > 0, "labelsArray cannot be an empty list"
+        # self.labels_array = labels_array # ['cat', 'dog', 'horse', ...]
+        # self.project_name = project_name # 'myProject'
+        # self.index_to_labels = {i: self.labels_array[i] for i in range(len(self.labels_array))} # {0: 'cat', 1: 'dog', 2: 'horse', ...}
+        # self.labels_to_index = {self.index_to_labels[i]: i for i in range(len(self.index_to_labels))} # {'cat': 0, 'dog': 1, 'horse': 2, ...}
 
     @staticmethod
     def create_annotations_txt(yaml_filepath, associated_image_name, img_width, img_height, annotations_array, saveto_dir) -> None:
@@ -57,9 +57,10 @@ class ProjectManager(object):
         # Load the YAML file as a dictionary
         with open(yaml_filepath, 'r') as file:
             index_to_labels = yaml.safe_load(file)['names']
+        print(index_to_labels)
 
         labels_to_index = {index_to_labels[i]: i for i in range(len(index_to_labels))} # {'cat': 0, 'dog': 1, 'horse': 2, ...}
-
+        print(labels_to_index)
         # get the associated image name only (without extension, or the file path)
         base_name, extension = os.path.splitext(associated_image_name)
         associated_image_name_without_extension = os.path.basename(base_name)
@@ -100,7 +101,8 @@ class ProjectManager(object):
         # check for irregularities (such as coordinates outside of image)
         TOLERANCE = 5
         assert img_height > 0 and img_width > 0, "Image width and height cannot be a negative"
-        assert x > 0 and y > 0 and w > 0 and h > 0, 'The provided values to be normalized must not contain a negative number'
+        print(x,y,w,h)
+        assert x >= 0 and y >= 0 and w >=0  and h >=0 , 'The provided values to be normalized must not contain a negative number'
         assert x <= img_width + TOLERANCE and y <= img_height + TOLERANCE and w < img_width + TOLERANCE and h < img_height + TOLERANCE, \
             "The provided values to be normalized are out of the image boundaries"
 

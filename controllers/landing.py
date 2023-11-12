@@ -190,7 +190,9 @@ class landingController:
                 "model_filepath": "AI/yolov5n.pt",
                 "yaml_filepath": file_path_yaml,
                 'Dimensions':{'width':0,'height':0},
-                'is_training':False
+                'is_training':False,
+                'trained_frames':[],
+                'Frames_num_to_train':50
             }
             # Add to Database
             Projects.insert_one(project_obj)
@@ -198,66 +200,48 @@ class landingController:
 
 
     def rendering():
-        # annotationUpdate()
-        Project = Projects.find_one({"_id": ObjectId("654c9e430f8686ec765ec073")})
-        print(Project)
-        # Get frames that are annotated and get their annotations, then pass to createAnnotation_txt
-        annotatedFrames = request.json['annotatedFrames']
-        # Get the annotations related to only frames that were annotated
-        all_annotations = list(Annotations.find( {"project_id":ObjectId("654c9e430f8686ec765ec073"), "frame": {"$in": annotatedFrames } }, {'_id': False, 'project_id':False} ) )
-        # response = jsonify({"Annotations": json.loads(json_util.dumps(all_annotations))})
-
-        # Set doesn't allow duplications, give me all the frame numbers that were annotated with no duplicates
-        frames_annotated = {annotation['frame'] for annotation in all_annotations}
-
-        # after knowing the frames that were annotated, now I want a dictionary containing the frame numbers as a parent
+        frames_annotated = [0]
+        Project = Projects.find_one({"_id": ObjectId('65509da4c7aada45a4c08ced')})
+        # for i in range(50):
+        #     frames_annotated.append(i)
+        # Projects.update_one({"_id": ObjectId('65509da4c7aada45a4c08ced')},
+        #                     {
+        #                         "$set": {"model_filepath": 'L', 'is_training': False,
+        #                               'Frames_num_to_train': 50 + 50},
+        #                          "$addToSet": {'trained_frames': {"$each": frames_annotated}}
+        #
+        #                      })
+        # Projects.update_one({"_id":ObjectId("654c9e430f8686ec765ec073")},{"$addToSet":{'trained_frames':{ "$each": frames_annotated}}})
+        # Projects.update_one({"_id": ObjectId("65509da4c7aada45a4c08ced")},
+        #                     {
+        #                         "$set": {"model_filepath": "AI/yolov5m/runs/Delete_test\Delete_test\weights\best.pt", 'is_training': False,
+        #                                  'Frames_num_to_train': 50 + 50},
+        #                         "$addToSet": {'trained_frames': {"$each": frames_annotated}}
+        #                     })
         array_of_annotations = {}
         for frames in frames_annotated:
             array_of_annotations[frames] = []
         frame_names = []
         # the children are an array of annotations in that specific frame, parent is commented above which is frame number
-        for annotation in all_annotations:
-            array_of_annotations[annotation['frame']].append(annotation)
-        # Get the the image name so we can create annotation txt for it
+
+        array_of_annotations[0].append({"x":50,'y':50,"frame":50,'width':5,'height':5,"label":"object"})
+        frame_names = []
         for frame_num in frames_annotated:
-            print(frame_num)
             image_name = f"{frame_num}_{Project['Name']}.jpg"
             frame_names.append(image_name)
-            # train
-            pm.ProjectManager().create_annotations_txt(Project['yaml_filepath'], image_name, Project['Dimensions']['width'],
-                                      Project['Dimensions']['height'], array_of_annotations[frame_num],
-                                      'AI/train_data/labels/train',Project['Labels'])
-            # val
             pm.ProjectManager().create_annotations_txt(Project['yaml_filepath'], image_name,
                                                        Project['Dimensions']['width'],
                                                        Project['Dimensions']['height'], array_of_annotations[frame_num],
-                                                       'AI/train_data/labels/val', Project['Labels'])
-        src_dir = Project['Directory_of_File']
-        dst_dir = "AI/train_data/images/"
-        # Only the images
-        for f in frame_names:
-            print(src_dir+'/'+f,dst_dir)
-            # train
-            shutil.copy(src_dir+'/'+f, dst_dir+'/train')
-            # val
-            shutil.copy(src_dir+'/'+f, dst_dir+'/val')
-
-        response = jsonify({"Annotations": array_of_annotations})
-        response.headers.add('Access-Control-Allow-Origin', '*')
-        trained_model_path = mc.ModelController().train_model(Project['yaml_filepath'], Project['model_filepath'], f"AI/yolov5m/runs/{Project['Name']}", Project['Name'])
-        Projects.update_one({"_id":ObjectId("654c9e430f8686ec765ec073")},{"$set":{"model_filepath":trained_model_path}})
-        delete_folder_files(dst_dir+'/train')
-        delete_folder_files(dst_dir+'/val')
-        delete_folder_files('AI/train_data/labels/train')
-        delete_folder_files('AI/train_data/labels/val')
-        return response
-        # return render_template("/views/landing.html")
-            # Make txt files for each frame that was annotated (DONE) MAKE ITS OWN FUNCTION
-            # make a copy of those frames to AI/train_data/images/train MAKE ITS OWN FUNCTION
-        #         train the model
+                                                       'AI/train_data/labels/val')
+        return {"Done":True}
 
 
-
-
+# db.test.update({"name":"albert"},
+#   {
+#     "$set" : {"bugs.0.test" : {"name" : "haha"}},
+#     "$inc" : {"bugs.0.count" : 1},
+#     "$inc" : {"bugs.1.count" : 1}
+#   }
+# );
 
 # landingController.a()
