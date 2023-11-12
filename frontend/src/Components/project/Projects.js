@@ -54,7 +54,7 @@ function Projects(props) {
             />
             {console.log(projects)}
             <Row>
-                {projects.map((project) => <ProjectCard   key={project.name} project={project} thumbnailUrl="http://www.w3.org/2000/svg" />)}
+                {projects.map((project) => <ProjectCard   key={project.name} project={project} />)}
             </Row>
         </Container>
     );

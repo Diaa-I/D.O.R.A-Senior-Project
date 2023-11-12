@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './ProjectCard.css';
 
-function ProjectCard({ project, thumbnailUrl }) {
+function ProjectCard({ project }) {
     const labels = project.Labels || [];
 
     const [showAllLabels, setShowAllLabels] = useState(false);
@@ -11,11 +11,12 @@ function ProjectCard({ project, thumbnailUrl }) {
     const toggleLabels = () => {
         setShowAllLabels(!showAllLabels);
     };
-
+    console.log(project)
+    console.log(project['Directory_of_File']+`/0_${project['Name']}.jpg`)
     return (
         <div className="col mb-3">
             <Card style={{ width: '18rem' }}>
-                <img src={thumbnailUrl} alt={project.Name} className="card-img-top" />
+                <img src={`images/${project.Name}/0_${project['Name']}.jpg`} alt={project.Name} className="card-img-top" />
 
                 <div className="card-body">
                     <h5 className="card-title">{project.Name}</h5>

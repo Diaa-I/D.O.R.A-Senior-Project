@@ -245,7 +245,7 @@ class workspaceController:
         print(all_annotations)
 
         # Set doesn't allow duplications, give me all the frame numbers that were annotated with no duplicates
-        frames_annotated = {annotation['frame'] for annotation in all_annotations}
+        frames_annotated = [annotation['frame'] for annotation in all_annotations]
         # Set is Training to true
         Projects.update_one({"_id": ObjectId(project_id)}, {"$set": {"is_training":True}})
         # after knowing the frames that were annotated, now I want a dictionary containing the frame numbers as a parent
