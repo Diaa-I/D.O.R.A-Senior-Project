@@ -275,7 +275,10 @@ export default function Workspace(props){
                 // Change the number of times it needs to be trained + 50
                 if(!response.data.isTraining){
                 trainObj.isTraining = false
-                trainObj.numberToTrain +=50}
+                trainObj.numberToTrain +=50
+                trainObj.train = true
+                setShouldTrain(true)
+              }
               }).catch((err)=>console.log(err))
           }
     // Whenever we need to train this will run and then the api will call another thing that will run (as of now this is the idea)
