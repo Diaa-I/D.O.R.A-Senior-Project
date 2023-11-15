@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
-
 function ProjectModal({ makeNewProject,onHide,show }) {
     // storing the state of each field
     const [projectName, setProjectName] = useState(''); 
@@ -12,11 +11,11 @@ function ProjectModal({ makeNewProject,onHide,show }) {
 
     const handleCreateProject = (e) => {
         e.preventDefault();
+        const cleanedLabels = labels.replace(/\s/g, '');
         console.log(e.target.value)
         let newProject = {
             name: projectName,
-            model: selectedModel,
-            labels: labels,
+            labels: cleanedLabels,
             dataset: datasetFile,
         };
         const file = e.target.video.files[0];
@@ -52,18 +51,7 @@ function ProjectModal({ makeNewProject,onHide,show }) {
                                 onChange={(e) => setProjectName(e.target.value)}
                             />
                         </Form.Group>
-                        <Form.Group controlId="modelSelect">
-                            <Form.Label>Choose Model:</Form.Label>
-                            <Form.Control
-                                as="select"
-                                value={selectedModel}
-                                onChange={(e) => setSelectedModel(e.target.value)}
-                            >
-                                <option value="model1">Model 1</option>
-                                <option value="model2">Model 2</option>
-                                <option value="model3">Model 3</option>
-                            </Form.Control>
-                        </Form.Group>
+                        
                         <Form.Group controlId="labels">
                             <Form.Label>Labels (separated by comma):</Form.Label>
                             <Form.Control
