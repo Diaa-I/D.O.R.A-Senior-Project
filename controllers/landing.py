@@ -209,20 +209,22 @@ class landingController:
             # Remove directory and the files contained in it
             try:
                 shutil.rmtree(Project['Directory_of_File'])
-            except FileNotFoundError as err:
+            except Exception as err:
                 print(err)
+                return json.dumps({'error': err.__class__.__name__, 'message': str(err)})
             # # Delete yaml file os.getcwd()+'/'+
             try:
                 os.remove(Project['yaml_filepath'])
-            except FileNotFoundError as err:
+            except Exception as err:
                 print(err)
             # Delete model if the path is new
             if not Project['model_filepath'] == "AI/yolov5n.pt":
                 models_filepath = os.getcwd()+'/'+ f"AI/yolov5m/runs/{Project['Name']}"
                 try:
                     shutil.rmtree(models_filepath)
-                except FileNotFoundError as err:
+                except Exception as err:
                     print(err)
+                    return json.dumps({'error': err.__class__.__name__, 'message': str(err)})
             # Delete all the annotations in that project from DB and error handling because annotations are different
             try:
                 Annotations.delete_many({"project_id":ObjectId(project_id)})

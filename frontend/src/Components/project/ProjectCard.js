@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import './ProjectCard.css';
 import axios from 'axios';
 
-function ProjectCard({ project, setIsNewProject}) {
+function ProjectCard({ project, setIsNewProject,setIsLoading}) {
     const labels = project.Labels || [];
 
     const [showAllLabels, setShowAllLabels] = useState(false);
@@ -14,9 +14,10 @@ function ProjectCard({ project, setIsNewProject}) {
     };
     const buttonHandler= (event,project)=>{
         event.preventDefault()
+        setIsLoading(true)
         axios.get(`http://localhost:5000/delete_project/${project['_id']['$oid']}`)
-        .then((res)=>{console.log(res.data); setIsNewProject(true)})
-        .catch((err)=>{console.log(err)})
+        .then((res)=>{console.log(res.data);setIsLoading(false); setIsNewProject(true);  })
+        .catch((err)=>{console.log(err);setIsLoading(false);})
     }
     return (
         <div className="col mb-3">

@@ -54,7 +54,7 @@ function Projects(props) {
             />
             {console.log(projects)}
             <Row>
-                {projects.map((project) => <ProjectCard   key={project.name} project={project} setIsNewProject={setIsNewProject} />)}
+                {projects.map((project) => <ProjectCard   key={project.name} project={project} setIsNewProject={setIsNewProject} setIsLoading={setIsLoading} />)}
             </Row>
         </Container>
     );
