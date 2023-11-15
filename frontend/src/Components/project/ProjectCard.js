@@ -16,7 +16,7 @@ function ProjectCard({ project, setIsNewProject,setIsLoading}) {
         event.preventDefault()
         setIsLoading(true)
         axios.get(`http://localhost:5000/delete_project/${project['_id']['$oid']}`)
-        .then((res)=>{console.log(res.data);setIsLoading(false); setIsNewProject(true);  })
+        .then((res)=>{console.log(res.data);setIsLoading(false); setIsNewProject(true);})
         .catch((err)=>{console.log(err);setIsLoading(false);})
     }
     return (

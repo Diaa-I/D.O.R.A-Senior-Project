@@ -226,19 +226,12 @@ export default function Workspace(props){
     setIsGoingBack(false)
     // Move from this frame
     setIsNewFrame(false)
-    console.log(annotatedFrames)
+
             // IF going back then doesn't work only if going work it will train, or make it work somehow
             if(!isGoingBack && !trainObj.isTraining){
-              console.log(annotatedFrames)
-              console.log(annotatedFrames.includes(frameCounter))
-              console.log(frameCounter)
+
             // Train the model when number of annotatedFrames( number of classes make counter for each one ) reach the number of frames required to train       
             for(let label in labelsCounter){
-              console.log(labelsCounter)
-              // console.log("===============================")
-              console.log(labelsCounter[label])
-              console.log(trainObj.numberToTrain)
-              console.log(trainObj.isTraining)
               // Train 
               if(labelsCounter[label] >= trainObj.numberToTrain){
                 trainObj.train = true
@@ -247,25 +240,30 @@ export default function Workspace(props){
                 trainObj.train = false
                 break
               }
-              // console.log("===============================")
             }
+
             // Only training when not training
             if(trainObj.train && shouldTrain){
-              // console.log("===============================")
-              // console.log(shouldTrain)
-              // console.log("===============================")
-              axios.post(`http://localhost:5000/workspace/${project_id}/train_model`,{annotatedFrames}).then((res)=>{console.log(res);setShouldTrain(false);})
-              // Until labelsCounter > 50 for all then model shouldn't train
-              // what we can do is keep shouldTrain true when we want to train
               trainObj.train = false
               trainObj.isTraining = true
-              trainObj.numberToTrain +=50
-              console.log(trainObj.numberToTrain)
               setShouldTrain(false)
+              axios.post(`http://localhost:5000/workspace/${project_id}/train_model`,{annotatedFrames})
+              .then((res)=>{
+                trainObj.numberToTrain = res.data['frames_train']
+                setShouldTrain(true)
+              })
+              .catch((err)=>{
+                setShouldTrain(true)
+                trainObj.train = true
+                trainObj.isTraining = false
+              })
+              // Until labelsCounter > 50 for all then model shouldn't train
+              // what we can do is keep shouldTrain true when we want to train
+
             }
           }
           else{
-            console.log("Yo")
+
               axios.get(`http://localhost:5000/workspace/${project_id}/check_training_process`)
               .then((response)=>{
                 console.log(response.data)
@@ -273,13 +271,25 @@ export default function Workspace(props){
                 // Two things need to be done 
                 // isTraining set to false
                 // Change the number of times it needs to be trained + 50
-                if(!response.data.isTraining){
+                if(response.data.isTraining){
+                trainObj.isTraining = true
+                trainObj.numberToTrain =response.data['frames_train']
+                trainObj.train = false
+                setShouldTrain(false)
+              }
+              else{
                 trainObj.isTraining = false
-                trainObj.numberToTrain +=50
+                trainObj.numberToTrain =response.data['frames_train']
                 trainObj.train = true
                 setShouldTrain(true)
               }
-              }).catch((err)=>console.log(err))
+              }).catch((err)=>
+              {
+                console.log(err)
+                trainObj.isTraining = false
+                trainObj.train = true
+                setShouldTrain(true)
+              })
           }
     // Whenever we need to train this will run and then the api will call another thing that will run (as of now this is the idea)
       // if(shouldTrain.includes(frameCounter)){

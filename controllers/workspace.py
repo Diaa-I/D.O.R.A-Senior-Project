@@ -289,7 +289,7 @@ class workspaceController:
                                 "$addToSet": {'trained_frames': {"$each": frames_annotated}}
                             })
 
-        response = jsonify({"isTraining": False})
+        response = jsonify({"isTraining": False,"frames_train":Project['Frames_num_to_train']})
         response.headers.add('Access-Control-Allow-Origin', '*')
         delete_folder_files(dst_dir + '/train')
         delete_folder_files(dst_dir + '/val')
@@ -361,7 +361,7 @@ class workspaceController:
         if is_training:
             # IF DONE THEN SAVE THE MODEL PLACE HERE
             return jsonify({"isTraining":True})
-        return jsonify({"isTraining":False})
+        return jsonify({"isTraining":False,"frames_train":Project['Frames_num_to_train']})
     def trained_model(project_id):
         # Find project, In DB project <-> model, so we can have relation which project relies on model.
         Project = Projects.find_one({"_id": ObjectId(project_id)})
@@ -392,5 +392,3 @@ class workspaceController:
         # If not prediction then return a flash message saying there were no prediction found
         return pred
 
-
-# Function to return first frame
