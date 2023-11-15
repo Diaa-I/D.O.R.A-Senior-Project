@@ -282,9 +282,23 @@ class workspaceController:
                                                               f"AI/yolov5m/runs/{Project['Name']}", Project['Name'])
         # Save the new model file path to the database and end the isTraining process
         print(trained_model_path)
+
+        # Find the last model file path that has weights best, because yolo makes last file
+        model_file = os.getcwd() + f"/AI/yolov5m/runs/{Project['Name']}"
+        all_folder = natsorted(os.listdir(model_file))
+        for i in range(-1, -len(all_folder), -1):
+            last_folder = all_folder[i]
+            print(last_folder)
+            print(model_file + '/weights/best.pt')
+            print(os.getcwd() + f"/AI/yolov5m/runs/{last_folder}" + '/weights/best.pt')
+            # project name then last folder
+            file_exist = os.path.exists(model_file + f'/{last_folder}/weights/best.pt')
+            if file_exist:
+                break
+        new_model_filepath = f"AI/yolov5m/runs/{Project['Name']}/{last_folder}/weights/best.pt"
         Projects.update_one({"_id": ObjectId(project_id)},
                             {
-                                "$set": {"model_filepath": trained_model_path, 'is_training': False,
+                                "$set": {"model_filepath": new_model_filepath, 'is_training': False,
                                          'Frames_num_to_train': Project['Frames_num_to_train'] + 50},
                                 "$addToSet": {'trained_frames': {"$each": frames_annotated}}
                             })

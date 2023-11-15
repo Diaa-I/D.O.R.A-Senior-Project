@@ -1,6 +1,8 @@
 import bson
 import cv2
 from flask import Flask, flash, render_template, redirect, request, url_for, jsonify
+import natsort
+
 from database import mongo_connection
 import bson.json_util as json_util
 from flask_pymongo import ObjectId
@@ -267,6 +269,18 @@ class landingController:
         #                                                Project['Dimensions']['width'],
         #                                                Project['Dimensions']['height'], array_of_annotations[frame_num],
         #                                                'AI/train_data/labels/val')
+        # model_file = f"/AI/yolov5m/runs/{Project['model_filepath']}"
+        model_file = os.getcwd()+f"/AI/yolov5m/runs/Latest_test"
+        all_folder = natsort.natsorted(os.listdir(model_file))
+        for i in range(-1,-len(all_folder),-1):
+            last_folder = all_folder[i]
+            print(last_folder)
+            print(model_file+'/weights/best.pt')
+            print(os.getcwd()+f"/AI/yolov5m/runs/{last_folder}"+'/weights/best.pt')
+            # project name then last folder
+            file_exist = os.path.exists(model_file+f'/{last_folder}/weights/best.pt')
+            if file_exist:
+                break
         return {"Done":True}
 
 

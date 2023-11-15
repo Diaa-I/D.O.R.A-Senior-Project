@@ -120,7 +120,6 @@ export default function Workspace(props){
         // Make a request to get frames
         axios.get(`http://localhost:5000/workspace/retrieve_next_batch/${project_id}`).then(response=>{
         var image = new Image();
-        console.log(response.data)
         // Get the frames 
         setFrames(response.data['Image_Dir'])
         // If more than one photo
@@ -151,13 +150,12 @@ export default function Workspace(props){
         imageContextRef.current.clearRect(0,0,imageCanvasRef.current.width,imageCanvasRef.current.height);
         // Check if this frame is in the annotatedFrames
         var image = new Image();
-        console.log(currentFrame)
         image.src = currentFrame
         image.onload = () => {
           imageContextRef.current.drawImage(image, 0, 0,frames[frameCounter]['width'],frames[frameCounter]['height']);
-          console.log("loaded")
         }
-
+        console.log(trainObj)
+        console.log(labelsCounter)
 
       
 
@@ -203,19 +201,13 @@ export default function Workspace(props){
       }
       }
       
-      console.log("------------------------------------------------")
       axios.get(`http://localhost:5000/workspace/retrieve_previous_batch/${project_id}?frameNumber=${frameCounter}`).then(response=>{
       // Display annotations already stored in DB
       setAnnotations([...response.data['Annotations']])
-      console.log(response.data)
-      console.log(isGoingBack)
-      console.log(frameNumber)
-      console.log(frameCounter)
       if(!isGoingBack && !annotatedFrames.includes(frameCounter)){
       for(let annotation of response.data['Annotations']){
               labelsCounter[annotation['label']] += 1
             }}
-            console.log(labelsCounter)
       // var image = new Image();
       // image.src = currentFrame
       // image.onload = () => {
@@ -247,10 +239,12 @@ export default function Workspace(props){
               trainObj.train = false
               trainObj.isTraining = true
               setShouldTrain(false)
+              alert("Training started")
               axios.post(`http://localhost:5000/workspace/${project_id}/train_model`,{annotatedFrames})
               .then((res)=>{
                 trainObj.numberToTrain = res.data['frames_train']
                 setShouldTrain(true)
+
               })
               .catch((err)=>{
                 setShouldTrain(true)
@@ -266,18 +260,16 @@ export default function Workspace(props){
 
               axios.get(`http://localhost:5000/workspace/${project_id}/check_training_process`)
               .then((response)=>{
-                console.log(response.data)
-                console.log(response.data.isTraining)
                 // Two things need to be done 
                 // isTraining set to false
                 // Change the number of times it needs to be trained + 50
                 if(response.data.isTraining){
                 trainObj.isTraining = true
-                trainObj.numberToTrain =response.data['frames_train']
                 trainObj.train = false
                 setShouldTrain(false)
               }
               else{
+                alert("Training Done")
                 trainObj.isTraining = false
                 trainObj.numberToTrain =response.data['frames_train']
                 trainObj.train = true
@@ -350,7 +342,6 @@ export default function Workspace(props){
                 else{
               labelsCounter[current['label']] -= 1
             }
-              console.log(labelsCounter)
              }
               return current!==Annotation
             })
@@ -363,9 +354,7 @@ export default function Workspace(props){
   
   // Saving and setting state for annotations
     const onSaveAnnotations = (newAnnotation)=>{
-      console.log(newAnnotation)
         labelsCounter[newAnnotation['label']] += 1
-      console.log(labelsCounter)
       setAnnotations((prevAnnotations)=>{return[newAnnotation,...prevAnnotations]})
     }
     
@@ -619,12 +608,10 @@ export default function Workspace(props){
           "project_id":project_id
         })
       }
-      console.log(newAnnotation)
       for (let anno of newAnnotation){
         labelsCounter[anno['label']] += 1
       }
       setAnnotations((prevAnnotations)=>{return[...newAnnotation,...prevAnnotations]})
-      console.log(Annotations)
     })
     .catch((err)=>{console.log(err)})
   }
