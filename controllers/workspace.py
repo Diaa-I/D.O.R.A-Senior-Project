@@ -10,9 +10,6 @@ from flask import Flask,flash,render_template,redirect,request,url_for, send_fro
 from werkzeug.utils import secure_filename
 import os
 
-# from AI.yolov5m.models.common import DetectMultiBackend
-import checkProcesses
-import test_processing
 from database import mongo_connection
 from flask_pymongo import ObjectId
 import AI.controller.modelController as mc
