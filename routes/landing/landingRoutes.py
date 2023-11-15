@@ -1,6 +1,4 @@
-import os
-from flask import Flask, flash, render_template, redirect, request, url_for, Blueprint
-from flask_pymongo import PyMongo, ObjectId
+from flask import Blueprint
 from controllers.landing import landingController
 
 

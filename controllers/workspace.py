@@ -1,12 +1,7 @@
-import os
+
 import shutil
-import subprocess
-import sys
 from natsort import natsorted
-import cv2
-import numpy as np
-import yaml
-from flask import Flask,flash,render_template,redirect,request,url_for, send_from_directory, jsonify
+from flask import request,jsonify
 from werkzeug.utils import secure_filename
 import os
 

@@ -1,18 +1,14 @@
-import bson
 import cv2
-from flask import Flask, flash, render_template, redirect, request, url_for, jsonify
+from flask import flash, request,  jsonify
 import natsort
 
 from database import mongo_connection
 import bson.json_util as json_util
 from flask_pymongo import ObjectId
-import glob
 import shutil
-import os
 from werkzeug.utils import secure_filename
 import os, yaml , json
-import AI.controller.projectManager as pm
-import AI.controller.modelController as mc
+
 
 db_connection = {
     "Users":mongo_connection.Users,

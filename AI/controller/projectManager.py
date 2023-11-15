@@ -1,5 +1,4 @@
-import os, yaml, cv2, json
-
+import os, yaml
 
 class ProjectManager(object):
     '''
