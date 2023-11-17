@@ -5,7 +5,6 @@ import { Modal, Button, Form } from 'react-bootstrap';
 function ProjectModal({ makeNewProject,onHide,show }) {
     // storing the state of each field
     const [projectName, setProjectName] = useState(''); 
-    const [selectedModel, setSelectedModel] = useState('model1');
     const [labels, setLabels] = useState('');
     const [datasetFile, setDatasetFile] = useState('');
 
@@ -23,7 +22,6 @@ function ProjectModal({ makeNewProject,onHide,show }) {
         data.append('video', e.target.video.files[0]);
         // Related to modal
         setProjectName('');
-        setSelectedModel('model1');
         setLabels('');
         setDatasetFile('');
         onHide();

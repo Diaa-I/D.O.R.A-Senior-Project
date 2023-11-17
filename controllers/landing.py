@@ -136,7 +136,11 @@ class landingController:
             file_path = os.path.join(f'frontend/public/images/{Project["Name"]}/video', secure_filename(file.filename))
             file.save(file_path)
             width,height = extract_frames(file_path,f'frontend/public/images/{Project["Name"]}', Project)
-            Projects.update_one({"_id":Project['_id']},{"$set":{"Dimensions":{"width":width,"height":height}}})
+            if(not width== '1280 ' and not height=='720'):
+                Projects.update_one({"_id":Project['_id']},{"$set":{"Dimensions":{"width":1280,"height":720}}})
+            else:
+                Projects.update_one({"_id": Project['_id']},
+                                    {"$set": {"Dimensions": {"width": width, "height": height}}})
             return "DONE"
         else:
             flash("Upload a video that satisfies the conditions")
@@ -161,6 +165,10 @@ class landingController:
 
             # Make Model and YAML files
             newProject = request.json['project']
+            # Strip the name in case of whitespaces
+            newProject["name"] = newProject["name"].strip()
+            print(newProject['name'])
+            # Strip the labels in case of whitespaces
             project_labels = [x.strip() for x in newProject['labels'].split(',')]
             index_to_labels = {i: project_labels[i] for i in range(len(project_labels))}
 
@@ -168,7 +176,7 @@ class landingController:
             file_path_yaml = os.path.join('AI/yolov5m/data/', f'{newProject["name"]}.yaml')
             print(file_path_yaml)
 
-            # If no file already exits, create one and fill it with the labels
+            # CREATE yaml file, If no file already exits, create one and fill it with the labels
             if not os.path.exists(file_path_yaml):
                 with open(file_path_yaml, 'w+') as f:
                     myDataYaml = {'path': "../train_data", "train": "images/train", "val": "images/val",

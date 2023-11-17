@@ -6,12 +6,16 @@ import '../../App.css';
 import { useParams } from 'react-router-dom';
 import LoadingModal from './LoadingModal';
 import 'bootstrap/dist/css/bootstrap.css';
+import LabelsCounterBox from './LabelsCounterBox';
+
+
+
 const INITIAL_Annotations = [];
 let current_shape_index = 0;
 // Train to notify if training is needed
 // After each frame skip check if model is finished and there is a button to check 
 // isTraining to notify the model is being trained
-let trainObj ={train:false,isTraining:false,numberToTrain:100} 
+let trainObj ={train:false,isTraining:false,numberToTrain:50} 
 // After each training the numbers in the counter condition need to be added by the same number checked earlier for example if 10 then it needs to be 20
 
 
@@ -617,6 +621,7 @@ export default function Workspace(props){
     return(
         <div style={{height : 'calc(90vh - 2rem)'}}>
         <LoadingModal isLoading= {isLoading}/>
+        <LabelsCounterBox labelsCounter={labelsCounter}/>
         <Canvas Annotations={Annotations}   forwardRef={imageCanvasRef} annotationCanvasRef={annotationCanvasRef} imageMetadata={imageMetadata} onContextMenuHandler={onContextMenuHandler} />
         <AnnotationBox setLabelsCounter={setLabelsCounter} project_id={project_id}handleMakePrediction={handleMakePrediction} isLoadingAIBOX={isLoading} framesSize={framesSize} frameCounter={frameCounter} onFrameChangeForward={onFrameChangeForward} onFrameChangeBackwards={onFrameChangeBackwards}  draw={draw}   onSaveAnnotations = {onSaveAnnotations}  showModal={props.showModal} isModalShown={props.isModalShown}/>
         </div>
