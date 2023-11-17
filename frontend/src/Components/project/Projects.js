@@ -41,10 +41,12 @@ function Projects(props) {
     }
 
     return (
-        <Container className="content mt-5">
+        <Container className="content mt-3">
             <LoadingModal isLoading={isLoading}/>
-            <div className='row'>
+            <div className='heading'>
             <div className='col'><SearchBar projects={projects}></SearchBar></div>
+            <div className='col'></div>
+            <div className='col'></div>
             <div className='col'><Button variant='primary' onClick={handleShow}>Create Project</Button></div>    
             </div>
             <ProjectModal

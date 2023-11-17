@@ -9,14 +9,13 @@
     display: flex;
     align-items: 'center';
 }
-.flexItem{
-    height: 0%;
-}
+
 .heading{
     display: flex;
     justify-content: space-between;
     align-items: baseline;
 }
+
 .row{
     display: flex;
     flex-direction: row;
