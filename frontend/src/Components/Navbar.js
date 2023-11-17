@@ -70,22 +70,7 @@ export default function Navbar(props) {
                 </ul>
             </div>
 
-            <div className="bottom-content">
-                <li className="">
-                    <a href="#">
-                        <i className='bx bxs-user icon'></i>
-                        <span className="text nav-text">User Account</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="'#">
-                        <i className='bx bx-cog icon' ></i>
-                        <span className="text nav-text">Settings</span>
-                    </a>
-                    
-                </li>
-                
-            </div>
+            
         </div>
 
     </nav>
