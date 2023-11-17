@@ -27,19 +27,22 @@ function ProjectCard({ project, setIsNewProject,setIsLoading}) {
                     <h5 className="card-title">{project.Name}</h5>
                     
                     {labels.slice(0, showAllLabels ? labels.length : 5).map((label, index) => (
-        <span key={index} className="circle-badge me-2">{label}</span>))}
+        <span key={index} className="badge rounded-pill text-bg-primary me-2">{label}</span>))}
 
 
                     {labels.length > 5 && (
-                        <h6 className="more-button" onClick={toggleLabels}>
+                        <h6 className="more-button" onClick={toggleLabels} style={{ fontSize: '12px', color: 'grey'}}>
                             {showAllLabels ? 'Show less...' : 'Show more...'}
                         </h6>
                     )}
 
                 </div>
-                <Card.Footer>                    
-                    <Link className="btn btn-primary" to={`/workspace/${project['_id']['$oid']}`}>Open Project</Link>
-                    <button className="btn btn-danger" onClick={(e)=>buttonHandler(e,project)}>Delete Project</button>
+                <Card.Footer>
+                    <div className='footer'>
+                    <div className='flexItem'><Link className="btn btn-primary me-2"  to={`/workspace/${project['_id']['$oid']}`}>Open Project</Link></div>
+                    <div className='flexItem'><button className="btn btn-danger"  onClick={(e)=>buttonHandler(e,project)}>Delete Project</button></div>
+                    </div>                    
+                    
                 </Card.Footer>
             </Card>
         </div>

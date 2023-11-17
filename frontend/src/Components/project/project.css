@@ -5,7 +5,13 @@
 .content.closed {
     margin-left: 85px;
 }
-
+.footer{
+    display: flex;
+    align-items: 'center';
+}
+.flexItem{
+    height: 0%;
+}
 .heading{
     display: flex;
     justify-content: space-between;
