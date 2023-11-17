@@ -207,22 +207,24 @@ class landingController:
 
 
     def delete_project(project_id):
+        error = []
         try:
             Project = Projects.find_one({"_id": ObjectId(project_id)})
         except Exception as err:
-            return json.dumps({'error': err.__class__.__name__,'message':str(err)})
+            error.append({'error': err.__class__.__name__,'message':f"{str(err)},{error}"})
         else:
             # Remove directory and the files contained in it
             try:
                 shutil.rmtree(Project['Directory_of_File'])
             except Exception as err:
                 print(err)
-                return json.dumps({'error': err.__class__.__name__, 'message': str(err)})
+                error.append({'error': err.__class__.__name__, 'message':f"{str(err)},{error}"})
             # # Delete yaml file os.getcwd()+'/'+
             try:
                 os.remove(Project['yaml_filepath'])
             except Exception as err:
                 print(err)
+                error.append({'error': err.__class__.__name__, 'message':f"{str(err)},{error}"})
             # Delete model if the path is new
             if not Project['model_filepath'] == "AI/yolov5n.pt":
                 models_filepath = os.getcwd()+'/'+ f"AI/yolov5m/runs/{Project['Name']}"
@@ -230,15 +232,17 @@ class landingController:
                     shutil.rmtree(models_filepath)
                 except Exception as err:
                     print(err)
-                    return json.dumps({'error': err.__class__.__name__, 'message': str(err)})
+                    error.append({'error': err.__class__.__name__, 'message':f"{str(err)},{error}"})
             # Delete all the annotations in that project from DB and error handling because annotations are different
             try:
                 Annotations.delete_many({"project_id":ObjectId(project_id)})
             except Exception as err:
-                return json.dumps({'error': err.__class__.__name__, 'message': str(err)})
+                error.append({'error': err.__class__.__name__, 'message':f"{str(err)},{error}"})
+
             # Delete the project from DB
             Projects.delete_one({"_id": ObjectId(project_id)})
-            return "Done"
+            return json.dumps({'error': error})
+
     def rendering():
         # frames_annotated = [0]
         # Project = Projects.find_one({"_id": ObjectId('65509da4c7aada45a4c08ced')})
