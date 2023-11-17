@@ -44,8 +44,8 @@ function Projects(props) {
         <Container className="content mt-5">
             <LoadingModal isLoading={isLoading}/>
             <div className='row'>
-            <Button variant='primary' onClick={handleShow}>Create Project</Button>
-            <SearchBar projects={projects}></SearchBar>
+            <div className='col'><SearchBar projects={projects}></SearchBar></div>
+            <div className='col'><Button variant='primary' onClick={handleShow}>Create Project</Button></div>    
             </div>
             <ProjectModal
                 show={showModal}
@@ -53,9 +53,9 @@ function Projects(props) {
                 makeNewProject={makeNewProject}
             />
             {console.log(projects)}
-            <Row>
-                {projects.map((project) => <ProjectCard   key={project.name} project={project} setIsNewProject={setIsNewProject} setIsLoading={setIsLoading} />)}
-            </Row>
+            <div className='row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3'>
+                {projects.map((project) => <div className='col'><ProjectCard   key={project.name} project={project} setIsNewProject={setIsNewProject} setIsLoading={setIsLoading} /></div>)}
+            </div>
         </Container>
     );
 }
