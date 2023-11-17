@@ -247,8 +247,9 @@ export default function Workspace(props){
 
               })
               .catch((err)=>{
+                alert("Error when training",err)
                 setShouldTrain(true)
-                trainObj.train = true
+                trainObj.train = false
                 trainObj.isTraining = false
               })
               // Until labelsCounter > 50 for all then model shouldn't train
@@ -257,18 +258,13 @@ export default function Workspace(props){
             }
           }
           else{
-
+            if (trainObj.isTraining){
               axios.get(`http://localhost:5000/workspace/${project_id}/check_training_process`)
               .then((response)=>{
                 // Two things need to be done 
                 // isTraining set to false
                 // Change the number of times it needs to be trained + 50
-                if(response.data.isTraining){
-                trainObj.isTraining = true
-                trainObj.train = false
-                setShouldTrain(false)
-              }
-              else{
+                if(!response.data.isTraining){
                 alert("Training Done")
                 trainObj.isTraining = false
                 trainObj.numberToTrain =response.data['frames_train']
@@ -277,11 +273,13 @@ export default function Workspace(props){
               }
               }).catch((err)=>
               {
+                alert("Error when checking if training is done",err)
                 console.log(err)
                 trainObj.isTraining = false
                 trainObj.train = true
                 setShouldTrain(true)
               })
+            }
           }
     // Whenever we need to train this will run and then the api will call another thing that will run (as of now this is the idea)
       // if(shouldTrain.includes(frameCounter)){

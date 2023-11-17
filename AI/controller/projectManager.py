@@ -56,10 +56,8 @@ class ProjectManager(object):
         # Load the YAML file as a dictionary
         with open(yaml_filepath, 'r') as file:
             index_to_labels = yaml.safe_load(file)['names']
-        print(index_to_labels)
 
         labels_to_index = {index_to_labels[i]: i for i in range(len(index_to_labels))} # {'cat': 0, 'dog': 1, 'horse': 2, ...}
-        print(labels_to_index)
         # get the associated image name only (without extension, or the file path)
         base_name, extension = os.path.splitext(associated_image_name)
         associated_image_name_without_extension = os.path.basename(base_name)
@@ -100,7 +98,6 @@ class ProjectManager(object):
         # check for irregularities (such as coordinates outside of image)
         TOLERANCE = 5
         assert img_height > 0 and img_width > 0, "Image width and height cannot be a negative"
-        print(x,y,w,h)
         assert x >= 0 and y >= 0 and w >=0  and h >=0 , 'The provided values to be normalized must not contain a negative number'
         assert x <= img_width + TOLERANCE and y <= img_height + TOLERANCE and w < img_width + TOLERANCE and h < img_height + TOLERANCE, \
             "The provided values to be normalized are out of the image boundaries"

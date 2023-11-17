@@ -229,12 +229,10 @@ class workspaceController:
         Project = Projects.find_one({"_id": ObjectId(project_id)})
         # Get frames that are annotated and get their annotations, then pass to createAnnotation_txt
         annotated_frames = request.json['annotatedFrames']
-        print(Project)
         # Get the annotations related to only frames that were annotated and not trained on already previously
         all_annotations = list(Annotations.find( {"project_id":ObjectId(project_id),
                                                   "$and": [{"frame": {"$in": annotated_frames}},
                                                              {"frame": {"$nin": Project['trained_frames']}} ] }, {'_id': False, 'project_id':False} ) )
-        print(all_annotations)
 
         # Set doesn't allow duplications, give me all the frame numbers that were annotated with no duplicates
         frames_annotated = [annotation['frame'] for annotation in all_annotations]
