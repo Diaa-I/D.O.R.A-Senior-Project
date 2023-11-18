@@ -21,6 +21,7 @@ let trainObj ={train:false,isTraining:false,numberToTrain:50}
 
 
 export default function Workspace(props){
+  
   // All Related to canvas manipulation 
     let defaultImageMetadata = {width:"1250",height:"650"}
     var startX,startY = 0
@@ -115,6 +116,34 @@ export default function Workspace(props){
       })
 
     },[])
+    useEffect(() => {
+      const handleResize = () => {
+        // Get the container's width and height
+        const containerWidth = imageCanvasRef.current.parentNode.clientWidth;
+        const containerHeight = imageCanvasRef.current.parentNode.clientHeight;
+  
+        // Update the canvas dimensions based on the container size
+        imageCanvasRef.current.width = containerWidth;
+        imageCanvasRef.current.height = containerHeight;
+  
+        // Redraw the image on the resized canvas
+        const image = new Image();
+        image.src = currentFrame;
+        image.onload = () => {
+          imageContextRef.current.drawImage(image, 0, 0, containerWidth, containerHeight);
+        };
+      };
+  
+      // Attach the resize event listener
+      window.addEventListener('resize', handleResize);
+  
+      // Cleanup the event listener on component unmount
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+  
+    }, [currentFrame, imageCanvasRef, imageContextRef]);
+  
   
     useEffect(()=>{
       // THIS CAN BE PLACED UP IN THE FIRST LOADED useEffect instead of here where it does the same concept

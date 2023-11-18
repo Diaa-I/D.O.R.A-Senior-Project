@@ -38,11 +38,18 @@ function ProjectCard({ project, setIsNewProject,setIsLoading}) {
 
                 </div>
                 <Card.Footer>
-                    <div className='footer'>
-                    <div className='flexItem'><Link className="btn btn-primary me-2"  to={`/workspace/${project['_id']['$oid']}`}>Open Project</Link></div>
-                    <div className='flexItem'><button className="btn btn-danger"  onClick={(e)=>buttonHandler(e,project)}>Delete Project</button></div>
-                    </div>                    
-                    
+                    <div className="d-inline-flex gap-2">
+                        <div>
+                            <Link className="d-inline-flex align-items-center btn btn-primary" to={`/workspace/${project['_id']['$oid']}`}>
+                            Open Project
+                            </Link>
+                        </div>
+                        <div>
+                            <button className="d-inline-flex align-items-center btn btn-danger" onClick={(e) => buttonHandler(e, project)}>
+                            Delete Project
+                            </button>
+                        </div>
+                    </div>
                 </Card.Footer>
             </Card>
         </div>

@@ -39,24 +39,11 @@ export default function Navbar(props) {
             <div className="menu">
 
                 <ul className="menu-links">
-                    <li className="nav-link">
-                        <Link to="/">
-                            <i className='bx bx-outline icon'></i>
-                            <span className="text nav-text">Home</span>
-                        </Link>
-                    </li>
 
                     <li className="nav-link">
                         <Link to="/Datasets">
                             <i className='bx bx-data icon'></i>
                             <span className="text nav-text">Datasets</span>
-                        </Link>
-                    </li>
-
-                    <li className="nav-link">
-                        <Link to="/Models">
-                            <i className='bx bx-shape-circle icon'></i>
-                            <span className="text nav-text">Models</span>
                         </Link>
                     </li>
 
