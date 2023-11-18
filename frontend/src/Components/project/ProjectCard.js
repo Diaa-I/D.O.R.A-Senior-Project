@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import './ProjectCard.css';
 import axios from 'axios';
 
-function ProjectCard({ project, setIsNewProject,setIsLoading}) {
+function ProjectCard({ project,frameSize , trainedFrames, setIsNewProject,setIsLoading}) {
     const labels = project.Labels || [];
 
     const [showAllLabels, setShowAllLabels] = useState(false);
@@ -31,21 +31,26 @@ function ProjectCard({ project, setIsNewProject,setIsLoading}) {
 
 
                     {labels.length > 5 && (
-                        <h6 className="more-button" onClick={toggleLabels} style={{ fontSize: '12px', color: 'grey'}}>
+                        <h6 className="more-button text-end" onClick={toggleLabels} style={{ fontSize: '10px', color: 'grey'}}>
                             {showAllLabels ? 'Show less...' : 'Show more...'}
                         </h6>
                     )}
 
                 </div>
+                <div className='d-inline-flex gap-2 justify-content-end me-3 mb-2'>
+                    <small className='text-body-secondary' style={{fontSize : '.75rem'}}>Frame Size: {frameSize}</small>
+                    <small className='text-body-secondary' style={{fontSize : '.75rem'}}>Trained Frames: {trainedFrames}</small>
+                </div>
                 <Card.Footer>
-                    <div className="d-inline-flex gap-2">
+                    <div className="d-flex justify-content-center gap-3 ">
+                        
                         <div>
-                            <Link className="d-inline-flex align-items-center btn btn-primary" to={`/workspace/${project['_id']['$oid']}`}>
+                            <Link className="btn-sm btn btn-primary"  to={`/workspace/${project['_id']['$oid']}`}>
                             Open Project
                             </Link>
                         </div>
                         <div>
-                            <button className="d-inline-flex align-items-center btn btn-danger" onClick={(e) => buttonHandler(e, project)}>
+                            <button className="btn-sm btn btn-danger" onClick={(e) => buttonHandler(e, project)}>
                             Delete Project
                             </button>
                         </div>
