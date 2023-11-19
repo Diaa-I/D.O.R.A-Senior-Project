@@ -6,6 +6,7 @@ import axios from 'axios';
 
 function ProjectCard({ project,frameSize , trainedFrames, setIsNewProject,setIsLoading}) {
     const labels = project.Labels || [];
+    const progress = (trainedFrames / frameSize) * 100;
 
     const [showAllLabels, setShowAllLabels] = useState(false);
 
@@ -38,8 +39,7 @@ function ProjectCard({ project,frameSize , trainedFrames, setIsNewProject,setIsL
 
                 </div>
                 <div className='d-inline-flex gap-2 justify-content-end me-3 mb-2'>
-                    <small className='text-body-secondary' style={{fontSize : '.75rem'}}>Frame Size: {frameSize}</small>
-                    <small className='text-body-secondary' style={{fontSize : '.75rem'}}>Trained Frames: {trainedFrames}</small>
+                    <small className='text-body-secondary' style={{fontSize : '.75rem'}}>{trainedFrames} / {frameSize} frames completed</small>
                 </div>
                 <Card.Footer>
                     <div className="d-flex justify-content-center gap-3 ">
