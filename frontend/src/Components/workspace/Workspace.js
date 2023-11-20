@@ -648,11 +648,23 @@ export default function Workspace(props){
   }
 
     return(
-        <div style={{height : 'calc(90vh - 2rem)'}}>
+        <div >
         <LoadingModal isLoading= {isLoading}/>
-        <LabelsCounterBox labelsCounter={labelsCounter}/>
-        <Canvas Annotations={Annotations}   forwardRef={imageCanvasRef} annotationCanvasRef={annotationCanvasRef} imageMetadata={imageMetadata} onContextMenuHandler={onContextMenuHandler} />
-        <AnnotationBox setLabelsCounter={setLabelsCounter} project_id={project_id}handleMakePrediction={handleMakePrediction} isLoadingAIBOX={isLoading} framesSize={framesSize} frameCounter={frameCounter} onFrameChangeForward={onFrameChangeForward} onFrameChangeBackwards={onFrameChangeBackwards}  draw={draw}   onSaveAnnotations = {onSaveAnnotations}  showModal={props.showModal} isModalShown={props.isModalShown}/>
+        <div className='container-fluid'>
+          <div className='row'>
+          <div className='col-md-10'>
+          <Canvas Annotations={Annotations}   forwardRef={imageCanvasRef} annotationCanvasRef={annotationCanvasRef} imageMetadata={imageMetadata} onContextMenuHandler={onContextMenuHandler} />
+          <AnnotationBox setLabelsCounter={setLabelsCounter} project_id={project_id}handleMakePrediction={handleMakePrediction} isLoadingAIBOX={isLoading} framesSize={framesSize} frameCounter={frameCounter} onFrameChangeForward={onFrameChangeForward} onFrameChangeBackwards={onFrameChangeBackwards}  draw={draw}   onSaveAnnotations = {onSaveAnnotations}  showModal={props.showModal} isModalShown={props.isModalShown}/>
+          </div>
+          <div className='col-md-2'>
+          <LabelsCounterBox labelsCounter={labelsCounter}/>
+          </div>
+
+          </div>
+          
+          
+        </div>
+        
         </div>
     )
 }
