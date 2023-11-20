@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react'
 import { BsBoundingBoxCircles } from 'react-icons/bs';
-import { BiShapePolygon } from 'react-icons/bi';
-
-import "./AIOption.css"
+import 'bootstrap/dist/css/bootstrap.css';
 import axios from 'axios';
 
 
@@ -68,16 +66,14 @@ useEffect(()=>{
     }
 
     return( 
-    <div class="ai-options-box" >
-        <select name="select label" id=""  onChange={select_handler} value={selectedLabel}>
+    <div className='d-flex align-items-baseline gap-2 flex-column'>
+        <select className='form-control ms-2 mb-2' name="select label" id=""  onChange={select_handler} value={selectedLabel}>
             {labels.map(label=>(
                 <option value={label}>{label}</option>
                 ))}
         </select>
-        <div >
-            <button onClick={squareHandler} class="square" ><BsBoundingBoxCircles /></button>
-            <button class="polygon" onClick={props.showModal}><BiShapePolygon /></button>
-        </div>
+        
+            <button className='btn btn-primary ' onClick={squareHandler}  ><BsBoundingBoxCircles size={25} /></button>
     </div>
     )
 
