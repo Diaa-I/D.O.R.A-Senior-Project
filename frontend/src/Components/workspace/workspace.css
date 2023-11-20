@@ -51,12 +51,11 @@ margin: 2.5vh 0;
 }
 
 .btns-box {
-display: flex;
-justify-content: space-between;
+
 width: 66.7vw; /* match the width with the canvas width*/
 /* border: 5px solid darkblue; */
 background-color: #737373;
-font: bold 1rem Arial, sans-serif;
+font: 1rem Arial, sans-serif;
 position: absolute;
 top: 73.5vh;
 margin-top:5rem
@@ -68,9 +67,6 @@ font: bold 15px Arial, sans-serif;
 border: none;
 }
 
-
-
-
 .ai-decisions-box {
 /*border: 3px dashed red;*/
 display: flex;
@@ -81,11 +77,8 @@ color: white;
 }
 
 .ai-decisions-box button {
-padding: 0 20px;
-height: 43px;
 border-radius: 20px;
 margin: 0 20px;
-font-size: 14px;
 }
 
 .resuggest {
@@ -130,7 +123,6 @@ background-color: #bb3e3e;
 
 .navigator {
 display: flex;
-gap: 20px;
 }
 
 .navigator div {
