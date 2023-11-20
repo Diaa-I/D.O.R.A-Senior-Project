@@ -52,12 +52,12 @@ margin: 2.5vh 0;
 
 .btns-box {
 
-width: 66.7vw; /* match the width with the canvas width*/
+width: 68vw; /* match the width with the canvas width*/
 /* border: 5px solid darkblue; */
 background-color: #737373;
 font: 1rem Arial, sans-serif;
 position: absolute;
-top: 73.5vh;
+top: 71vh;
 margin-top:5rem
 }
 
