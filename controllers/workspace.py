@@ -376,7 +376,7 @@ class workspaceController:
         print(request.json['currentFrame'])
         print((Project['Dimensions']['width'],Project['Dimensions']['height']))
         # Make prediction
-        predictions = mc.ModelController().make_inference("frontend/public/"+request.json['currentFrame'], Project['yaml_filepath'],Project['model_filepath'],normalization_dims=(int(Project['Dimensions']['width']),int(Project['Dimensions']['height'])))
+        predictions = mc.ModelController().make_inference("frontend/public/"+request.json['currentFrame'], Project['model_filepath'],normalization_dims=(int(Project['Dimensions']['width']),int(Project['Dimensions']['height'])))
         print(predictions)
         #
         pred = []

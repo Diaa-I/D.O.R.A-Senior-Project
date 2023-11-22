@@ -173,13 +173,13 @@ class landingController:
             index_to_labels = {i: project_labels[i] for i in range(len(project_labels))}
 
             print(index_to_labels)
-            file_path_yaml = os.path.join('AI/yolov5m/data/', f'{newProject["name"]}.yaml')
+            file_path_yaml = os.path.join('AI/yaml_files/', f'{newProject["name"]}.yaml')
             print(file_path_yaml)
 
             # CREATE yaml file, If no file already exits, create one and fill it with the labels
             if not os.path.exists(file_path_yaml):
                 with open(file_path_yaml, 'w+') as f:
-                    myDataYaml = {'path': "../train_data", "train": "images/train", "val": "images/val",
+                    myDataYaml = {'path': "../AI/train_data", "train": "images/train", "val": "images/val",
                                   "names": index_to_labels.copy()}
                     yaml.dump(myDataYaml, f, sort_keys=False)
 
@@ -194,7 +194,7 @@ class landingController:
                 "Frames_Size": '',
                 "Directory_of_File": '',
                 "Labels": newProject['labels'].split(','),
-                "model_filepath": "AI/yolov5n.pt",
+                "model_filepath": "AI/yolov8n.pt",
                 "yaml_filepath": file_path_yaml,
                 'Dimensions':{'width':0,'height':0},
                 'is_training':False,

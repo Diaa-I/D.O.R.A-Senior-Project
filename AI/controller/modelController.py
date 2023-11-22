@@ -88,6 +88,7 @@ class ModelController(object):
                 x_min, y_min, x_max, y_max = coords[0], coords[1], coords[2], coords[3]
                 x_min, y_min, x_max, y_max = x_min*norm_w, y_min*norm_h, x_max*norm_w, y_max*norm_h #de-normalize the coordinates
                 filtered_result = {'name':label, 'conf_score':conf, 'location':[x_min, y_min, x_max, y_max]}
+                print(filtered_result)
                 filtered_results.append(filtered_result)
 
         return filtered_results
