@@ -54,7 +54,7 @@ useEffect(()=>{
     function squareHandler(event){
         event.preventDefault()
         //  When button is pressed then we pass data from child to parent, then go to canvas and draw a shape
-       let Annotation = ({"x":10,"y":10,"width":100,"height":100,"color":"red","label":selectedLabel})
+       let Annotation = ({"x":10,"y":10,"width":100,"height":100,"label":selectedLabel})
 
         props.onSaveAnnotations(Annotation)
         // setisDraw(true)

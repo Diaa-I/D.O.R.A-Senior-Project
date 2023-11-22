@@ -85,6 +85,34 @@ export default function Workspace(props){
     // Used to check if the user is moving mouse when inside the Annotation
     var check = {"isMoving":true}
 
+
+    const check_training = ()=>{
+      axios.get(`http://localhost:5000/workspace/${project_id}/check_training_process`)
+      .then((response)=>{
+        // Two things need to be done 
+        // isTraining set to false
+        // Change the number of times it needs to be trained + 50
+        if(!response.data.isTraining){
+        alert("Training Done")
+        trainObj.isTraining = false
+        trainObj.numberToTrain =response.data['frames_train']
+        trainObj.train = true
+        setShouldTrain(true)
+      }
+      else{
+        alert("Training is not Done")
+      }
+      }).catch((err)=>
+      {
+        alert("Error when checking if training is done",err)
+        console.log(err)
+        trainObj.isTraining = false
+        trainObj.train = true
+        setShouldTrain(true)
+      })
+    }
+
+
     // When page is first loaded
     useEffect(()=>{
     
@@ -292,26 +320,7 @@ export default function Workspace(props){
           }
           else{
             if (trainObj.isTraining){
-              axios.get(`http://localhost:5000/workspace/${project_id}/check_training_process`)
-              .then((response)=>{
-                // Two things need to be done 
-                // isTraining set to false
-                // Change the number of times it needs to be trained + 50
-                if(!response.data.isTraining){
-                alert("Training Done")
-                trainObj.isTraining = false
-                trainObj.numberToTrain =response.data['frames_train']
-                trainObj.train = true
-                setShouldTrain(true)
-              }
-              }).catch((err)=>
-              {
-                alert("Error when checking if training is done",err)
-                console.log(err)
-                trainObj.isTraining = false
-                trainObj.train = true
-                setShouldTrain(true)
-              })
+              check_training()
             }
           }
     // Whenever we need to train this will run and then the api will call another thing that will run (as of now this is the idea)
@@ -391,17 +400,22 @@ export default function Workspace(props){
     
 
     // Drawing annotation
-    const draw = ()=>{
+    const draw = (color='yellow')=>{
   
       // Clear the canvas, Clears specified pixels within a rectangle
       annotationContextRef.current.clearRect(0,0,annotationCanvasRef.current.width,annotationCanvasRef.current.height);
       // For all the annotations display a square box
       for(let annotation of Annotations){ 
-        annotationContextRef.current.strokeStyle = "yellow"
+        console.log(annotation.color)
+        if(annotation.color){
+          color = annotation.color
+        }
+        annotationContextRef.current.strokeStyle = color
         annotationContextRef.current.beginPath();
         annotationContextRef.current.rect(annotation.x,annotation.y,annotation.width,annotation.height); 
         annotationContextRef.current.stroke(); 
         annotationContextRef.current.closePath();
+        color = 'yellow'
         // Color of the box, 	Sets or returns the color, gradient, or pattern used to fill the drawing
         // annotationContextRef.current.fillStyle = "black"
         // // Placing the annotation in the right place, fillRect Draws a "filled" rectangle, strokeRect()	Draws a rectangle (with no fill)
@@ -636,7 +650,8 @@ export default function Workspace(props){
           "height":anno['h'],
           "label":anno['label'],
           'frame':frameCounter,
-          "project_id":project_id
+          "project_id":project_id,
+          "color":"blue"
         })
       }
       for (let anno of newAnnotation){
@@ -654,10 +669,10 @@ export default function Workspace(props){
           <div className='row'>
           <div className='col-md-10'>
           <Canvas Annotations={Annotations}   forwardRef={imageCanvasRef} annotationCanvasRef={annotationCanvasRef} imageMetadata={imageMetadata} onContextMenuHandler={onContextMenuHandler} />
-          <AnnotationBox setLabelsCounter={setLabelsCounter} project_id={project_id}handleMakePrediction={handleMakePrediction} isLoadingAIBOX={isLoading} framesSize={framesSize} frameCounter={frameCounter} onFrameChangeForward={onFrameChangeForward} onFrameChangeBackwards={onFrameChangeBackwards}  draw={draw}   onSaveAnnotations = {onSaveAnnotations}  showModal={props.showModal} isModalShown={props.isModalShown}/>
+          <AnnotationBox setLabelsCounter={setLabelsCounter} project_id={project_id}handleMakePrediction={handleMakePrediction} isLoadingAIBOX={isLoading} framesSize={framesSize} frameCounter={frameCounter} onFrameChangeForward={onFrameChangeForward} onFrameChangeBackwards={onFrameChangeBackwards}  draw={draw}   onSaveAnnotations = {onSaveAnnotations}  check_training={check_training} isModalShown={props.isModalShown}/>
           </div>
           <div className='col-md-2'>
-          <LabelsCounterBox labelsCounter={labelsCounter}/>
+          <LabelsCounterBox labelsCounter={labelsCounter} Annotations={Annotations} isNewFrame={isNewFrame}/>
           </div>
 
           </div>

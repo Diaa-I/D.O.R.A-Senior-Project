@@ -22,7 +22,7 @@ return(
 
             {/* OptionsBox on the right */}
             <div className='col-3 align-self-center'>
-                <OptionsBox showModal={props.showModal} isModalShown={props.isModalShown} />
+                <OptionsBox check_training={props.check_training} isModalShown={props.isModalShown} />
             </div>
         </div>
     </div>
