@@ -1,4 +1,4 @@
-from flask import Flask,flash,render_template,redirect,request,url_for,Blueprint
+from flask import Blueprint
 from controllers.workspace import workspaceController
 
 workspace = Blueprint("workspace", __name__)
@@ -13,6 +13,8 @@ workspace.route("/retrieve_previous_batch/<project_id>", methods=["GET"])(worksp
 workspace.route("/save_annotation", methods=["POST"])(workspaceController.save_annotation)
 workspace.route("/delete_annotation", methods=["POST"])(workspaceController.delete_annotation)
 workspace.route("/trained_model/<project_id>", methods=["POST"])(workspaceController.trained_model)
+workspace.route("/<project_id>/train_model", methods=["POST"])(workspaceController.train_model)
+workspace.route("/<project_id>/check_training_process", methods=["GET"])(workspaceController.check_training_process)
 
 
 

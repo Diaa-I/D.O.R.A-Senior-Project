@@ -26,7 +26,7 @@ body{
     top: 0;
     left: 0;
     height: 100%;
-    width: 15.625rem;
+    width: 10.625rem;
     padding: 0.625rem  0.875rem;
     background: #D9D9D9;
     transition: all 0.3s ease;
@@ -136,7 +136,7 @@ header .image-text .profession{
 }
 
 .sidebar .menu{
-    margin-top: 2.5rem;
+    margin-top: 3.5rem;
 }
 
 
@@ -192,10 +192,10 @@ ul{
 
 
   .sidebar.open + .content {
-    margin-left: 16.875rem; /* Adjust the margin to match the opened sidebar width */
+    margin-left: 11.875rem; /* Adjust the margin to match the opened sidebar width */
   }
 
   .sidebar.close + .content {
-    margin-left: 7.5rem; /* Adjust the margin to match the closed sidebar width */
+    margin-left: 6.5rem; /* Adjust the margin to match the closed sidebar width */
   }
 

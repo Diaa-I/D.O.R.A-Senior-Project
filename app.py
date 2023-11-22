@@ -1,6 +1,5 @@
 import os
 from flask import Flask,flash,render_template,redirect,request,url_for
-from database import mongo_connection
 from routes.landing.landingRoutes import landing
 from routes.workspace.workspaceRoutes import workspace
 from flask_cors import CORS

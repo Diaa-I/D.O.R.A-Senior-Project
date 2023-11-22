@@ -39,24 +39,11 @@ export default function Navbar(props) {
             <div className="menu">
 
                 <ul className="menu-links">
-                    <li className="nav-link">
-                        <Link to="/">
-                            <i className='bx bx-outline icon'></i>
-                            <span className="text nav-text">Home</span>
-                        </Link>
-                    </li>
 
                     <li className="nav-link">
                         <Link to="/Datasets">
                             <i className='bx bx-data icon'></i>
                             <span className="text nav-text">Datasets</span>
-                        </Link>
-                    </li>
-
-                    <li className="nav-link">
-                        <Link to="/Models">
-                            <i className='bx bx-shape-circle icon'></i>
-                            <span className="text nav-text">Models</span>
                         </Link>
                     </li>
 
@@ -70,22 +57,7 @@ export default function Navbar(props) {
                 </ul>
             </div>
 
-            <div className="bottom-content">
-                <li className="">
-                    <a href="#">
-                        <i className='bx bxs-user icon'></i>
-                        <span className="text nav-text">User Account</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="'#">
-                        <i className='bx bx-cog icon' ></i>
-                        <span className="text nav-text">Settings</span>
-                    </a>
-                    
-                </li>
-                
-            </div>
+            
         </div>
 
     </nav>
@@ -93,7 +65,7 @@ export default function Navbar(props) {
     <div className='content'>
      <Routes>
      <Route path='/workspace/:id' element={<Workspace showModal={props.showModal}  hideModal={props.hideModal}></Workspace>}/>
-     <Route path='/test' element={<Test showModal={props.showModal}  hideModal={props.hideModal}></Test>}/>
+     <Route path='/' element={<Test showModal={props.showModal}  hideModal={props.hideModal}></Test>}/>
      <Route path='/Projects' element={<Projects showModal={props.showModal}  hideModal={props.hideModal}></Projects>}/>
      <Route path='/Datasets' element={<Datasets showModal={props.showModal}  hideModal={props.hideModal}></Datasets>}/>
      {/* <Route path='/Models' element={<Models showModal={props.showModal}  hideModal={props.hideModal}></Models>}/> */}

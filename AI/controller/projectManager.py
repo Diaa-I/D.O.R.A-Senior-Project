@@ -1,6 +1,5 @@
 import os, yaml
 
-
 class ProjectManager(object):
     '''
     class containing utilities for creating required files before, during, and after training.
@@ -10,7 +9,7 @@ class ProjectManager(object):
     image_retrieval_index = 0
     all_frames_paths = []
 
-    def __init__(self, labels_array, project_name) -> None:
+    def __init__(self) -> None:
         '''
         Instansiates an object specific to a set of labels.
         ====================================================
@@ -26,11 +25,11 @@ class ProjectManager(object):
             > print(dm.labelsToIndex)
         {'cat': 0, 'dog': 1, 'horse': 2}
         '''
-        assert len(labels_array) > 0, "labelsArray cannot be an empty list"
-        self.labels_array = labels_array # ['cat', 'dog', 'horse', ...]
-        self.project_name = project_name # 'myProject'
-        self.index_to_labels = {i: self.labels_array[i] for i in range(len(self.labels_array))} # {0: 'cat', 1: 'dog', 2: 'horse', ...}
-        self.labels_to_index = {self.index_to_labels[i]: i for i in range(len(self.index_to_labels))} # {'cat': 0, 'dog': 1, 'horse': 2, ...}
+        # assert len(labels_array) > 0, "labelsArray cannot be an empty list"
+        # self.labels_array = labels_array # ['cat', 'dog', 'horse', ...]
+        # self.project_name = project_name # 'myProject'
+        # self.index_to_labels = {i: self.labels_array[i] for i in range(len(self.labels_array))} # {0: 'cat', 1: 'dog', 2: 'horse', ...}
+        # self.labels_to_index = {self.index_to_labels[i]: i for i in range(len(self.index_to_labels))} # {'cat': 0, 'dog': 1, 'horse': 2, ...}
 
     @staticmethod
     def create_annotations_txt(yaml_filepath, associated_image_name, img_width, img_height, annotations_array, saveto_dir) -> None:
@@ -42,7 +41,7 @@ class ProjectManager(object):
             - associated_image_name: name of the frame/image of where the annotation box is located. Can be a name only (e.g. frame_0443), or a file name (e.g. frame_0443.png) or a path.
             - img_width: the width of the image where the annotation box is located.
             - img_height: the height of the image where the annotation box is located.
-            - annotations_array: an array containing a list of annotation objects representing the boxes drawn. Each annotation object is represneted as: {'label': 'string', 'x_center': float, 'y_center': float, 'width': float, 'height': float}
+            - annotations_array: an array containing a list of annotation objects representing the boxes drawn. Each annotation object is represneted as: {'label': 'string', 'x_min': float, 'y_min': float, 'width': float, 'height': float}
                - label is the name of the label associated with the box, given as a string.
                - x_center and y_center are the x, y coordinates of the center of annotation boxes (absolute value, not normalized).
                - width and height are the dimesnsions of the annotation box (absolute value, not normalized).
@@ -50,8 +49,8 @@ class ProjectManager(object):
         ====================================================
         Usage Example:
         > pm.create_annotations_txt('path/to/trash_detection.yaml', "frame_00423", 400, 600, 
-            [{'label': 'plastic', 'x_center': 80, 'y_center': 234, 'width': 30, 'height': 80}, 
-             {'label': 'metal', 'x_center': 20.01, 'y_center': 354.2, 'width': 25, 'height': 45.6}], 
+            [{'label': 'plastic', 'x': 80, 'y': 234, 'width': 30, 'height': 80}, 
+             {'label': 'metal', 'x': 20.01, 'y': 354.2, 'width': 25, 'height': 45.6}], 
             "./mydir")
         '''
         # Load the YAML file as a dictionary
@@ -59,7 +58,6 @@ class ProjectManager(object):
             index_to_labels = yaml.safe_load(file)['names']
 
         labels_to_index = {index_to_labels[i]: i for i in range(len(index_to_labels))} # {'cat': 0, 'dog': 1, 'horse': 2, ...}
-
         # get the associated image name only (without extension, or the file path)
         base_name, extension = os.path.splitext(associated_image_name)
         associated_image_name_without_extension = os.path.basename(base_name)
@@ -72,10 +70,11 @@ class ProjectManager(object):
             for i, annotation in enumerate(annotations_array):
                 # get the labels index (the number representing the label)
                 label_index = labels_to_index[annotation['label']]
-                bbox_x_center = annotation['x_center']
-                bbox_y_center = annotation['y_center']
                 bbox_width = annotation['width']
                 bbox_height = annotation['height']
+                bbox_x_center = annotation['x'] + (bbox_width / 2.0)
+                bbox_y_center = annotation['y'] + (bbox_height / 2.0)
+
 
                 # get the x, y, w, and h values normalized relative the img height and width
                 x_center_norm, y_center_norm, width_norm, height_norm = ProjectManager.normalize_coordinates(bbox_x_center, bbox_y_center,
@@ -99,7 +98,7 @@ class ProjectManager(object):
         # check for irregularities (such as coordinates outside of image)
         TOLERANCE = 5
         assert img_height > 0 and img_width > 0, "Image width and height cannot be a negative"
-        assert x > 0 and y > 0 and w > 0 and h > 0, 'The provided values to be normalized must not contain a negative number'
+        assert x >= 0 and y >= 0 and w >=0  and h >=0 , 'The provided values to be normalized must not contain a negative number'
         assert x <= img_width + TOLERANCE and y <= img_height + TOLERANCE and w < img_width + TOLERANCE and h < img_height + TOLERANCE, \
             "The provided values to be normalized are out of the image boundaries"
 

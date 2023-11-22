@@ -5,12 +5,17 @@
 .content.closed {
     margin-left: 85px;
 }
+.footer{
+    display: flex;
+    align-items: 'center';
+}
 
 .heading{
     display: flex;
     justify-content: space-between;
     align-items: baseline;
 }
+
 .row{
     display: flex;
     flex-direction: row;

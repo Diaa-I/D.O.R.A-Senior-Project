@@ -6,17 +6,22 @@ import '../../App.css';
 import { useParams } from 'react-router-dom';
 import LoadingModal from './LoadingModal';
 import 'bootstrap/dist/css/bootstrap.css';
+import LabelsCounterBox from './LabelsCounterBox';
+
+
+
 const INITIAL_Annotations = [];
 let current_shape_index = 0;
 // Train to notify if training is needed
 // After each frame skip check if model is finished and there is a button to check 
 // isTraining to notify the model is being trained
-let trainObj ={train:false,checkTraining:true,isTraining:false} 
+let trainObj ={train:false,isTraining:false,numberToTrain:50} 
 // After each training the numbers in the counter condition need to be added by the same number checked earlier for example if 10 then it needs to be 20
 
 
 
 export default function Workspace(props){
+  
   // All Related to canvas manipulation 
     let defaultImageMetadata = {width:"1250",height:"650"}
     var startX,startY = 0
@@ -73,7 +78,7 @@ export default function Workspace(props){
     const [annotatedFrames,setAnnotatedFrames] = useState([])
 
     // When to train the model (Should we have array or Should we have one by one)
-    const [shouldTrain,setShouldTrain] = useState(false)
+    const [shouldTrain,setShouldTrain] = useState(true)
 
     // Counter of Labels  
     const [labelsCounter,setLabelsCounter] = useState([])
@@ -82,10 +87,6 @@ export default function Workspace(props){
 
     // When page is first loaded
     useEffect(()=>{
-        // Simulate a loading delay (replace with your actual data loading logic)
-      //   setTimeout(() => {
-      //   setIsLoading(false); // Loading is done
-      // }, 10000); // Adjust the delay as needed
     
       // Image canvas
       const imageCanvas = imageCanvasRef.current;
@@ -102,6 +103,8 @@ export default function Workspace(props){
              // Negative because we starting from 0, so 0-9 is 10 
         // Maybe for user experience we can start from 10
         setFramesSize(res.data.Frames-1)
+        trainObj.numberToTrain = res.data.Frames_num_to_train
+        console.log(trainObj.numberToTrain)
         // How will we divide it maybe first we do 500 then 100 + 100 + 100 + 50 + 50
         // IT HAS PROBLEMS WHAT IF I WENT FRONT THEN BACK
         // setShouldTrain((res.data.Frames/2) -1)
@@ -113,30 +116,61 @@ export default function Workspace(props){
       })
 
     },[])
+    useEffect(() => {
+      const handleResize = () => {
+        // Get the container's width and height
+        const containerWidth = imageCanvasRef.current.parentNode.clientWidth;
+        const containerHeight = imageCanvasRef.current.parentNode.clientHeight;
+  
+        // Update the canvas dimensions based on the container size
+        imageCanvasRef.current.width = containerWidth;
+        imageCanvasRef.current.height = containerHeight;
+  
+        // Redraw the image on the resized canvas
+        const image = new Image();
+        image.src = currentFrame;
+        image.onload = () => {
+          imageContextRef.current.drawImage(image, 0, 0, containerWidth, containerHeight);
+        };
+      };
+  
+      // Attach the resize event listener
+      window.addEventListener('resize', handleResize);
+  
+      // Cleanup the event listener on component unmount
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+  
+    }, [currentFrame, imageCanvasRef, imageContextRef]);
+  
   
     useEffect(()=>{
-      // Check if get you need to get frames
+      // THIS CAN BE PLACED UP IN THE FIRST LOADED useEffect instead of here where it does the same concept
       // FrameNumber is the last frame ur at
       // FrameCounter is this frame ur at 
       if(getNewFrames){
         // Make a request to get frames
         axios.get(`http://localhost:5000/workspace/retrieve_next_batch/${project_id}`).then(response=>{
         var image = new Image();
-        console.log(response.data)
         // Get the frames 
         setFrames(response.data['Image_Dir'])
         // If more than one photo
         if(response.data['Image_Dir'].length>1){
         setCurrentFrame(response.data['Image_Dir'][0]['image_loc'])
+        // Set canvas width + height when first loading, only set Canvas width and height when loading in the first time
+        setImageMetaData({'width':response.data['Image_Dir'][0]['width'],'height':response.data['Image_Dir'][0]['height']})  
         }
         // If only one photo
         else{
           setCurrentFrame(response.data['Image_Dir']['image_loc'])
+        // Set canvas width + height when first loading
+        setImageMetaData({'width':response.data['Image_Dir']['width'],'height':response.data['Image_Dir']['height']})
         }
+
         image.src = response.data['Image_Dir']['image_loc']
         image.onload = () => {
           imageContextRef.current.drawImage(image, 0, 0,frames[frameCounter]['width'],frames[frameCounter]['height']);
-          setImageMetaData({'width':frames[frameCounter]['width'],'height':frames[frameCounter]['height']})  
       }
       // Don't request new frames from API
       setGetNewFrames(false)
@@ -152,42 +186,18 @@ export default function Workspace(props){
         image.src = currentFrame
         image.onload = () => {
           imageContextRef.current.drawImage(image, 0, 0,frames[frameCounter]['width'],frames[frameCounter]['height']);
-          setImageMetaData({'width':frames[frameCounter]['width'],'height':frames[frameCounter]['height']})  
         }
+        console.log(trainObj)
+        console.log(labelsCounter)
 
-        // IF going back then doesn't work only if going work it will train, or make it work somehow
-        if(!isGoingBack){
-        // Train the model when number of annotatedFrames( number of classes make counter for each one ) reach the number of frames required to train       
-        for(let label in labelsCounter){
-          console.log(labelsCounter)
-          // console.log("===============================")
-          console.log(labelsCounter[label])
-          // Train 
-          if(labelsCounter[label] >= 10){
-            trainObj.train = true
-          }
-          else{
-            trainObj.train = false
-            break
-          }
-          // console.log("===============================")
-        }
-        // Only training when not training
-        if(trainObj.train && !trainObj.isTraining){
-          // console.log("===============================")
-          // console.log(shouldTrain)
-          // console.log("===============================")
-          axios.get(`http://localhost:5000/workspace/${project_id}/trainmodel`).then((res)=>console.log(res))
-          trainObj.train = false
-        }
-      }
+      
 
         // Framenumber so we can send data to API to save annotations 
         let frameNumber = frameCounter - 1
         if(isGoingBack){
            frameNumber = frameCounter + 1
         }
-
+        // Check if the frame you were at is a previously annotated frame or not
         if(annotatedFrames.indexOf(frameNumber)!=-1){
         // Get annotations of the frame using frameCounter because frameNumber is used for the last frame you were at the counter is the one you are currently at
         // Check the page has been annotated (yes)
@@ -195,8 +205,6 @@ export default function Workspace(props){
         if(Annotations.length!=0){
           // Save the annotations made by user
           axios.post(`http://localhost:5000/workspace/save_annotation`,{frameNumber,Annotations,project_id}).then((res)=>{console.log(res)
-          setAnnotations([])
-          setIsNewFrame(false)
         })
          }
         // Check the page has been annotated(no)
@@ -207,43 +215,105 @@ export default function Workspace(props){
           setAnnotatedFrames(annotatedFrames.filter((frame)=>{
             return frame!=frameNumber
           }))
-          // Empty the annotation
-          setAnnotations([])
-          // Move from this frame
-          setIsNewFrame(false)
         })
        }
       }
-      // Add the frame to annotatedFrames
+      // Frame annotated not in annotatedFrames Arr, so add the frame to annotatedFrames
       else{
         if(Annotations.length!=0){
           axios.post("http://localhost:5000/workspace/save_annotation",{frameNumber,Annotations,project_id}).then((res)=>{
-          // Check if it was already there or not
+          // Check if it was already there or not, if not add it, it is not, so add it.
           if (!annotatedFrames.includes(frameNumber)){
+          // Save in the frontend which frames have been annotated
           setAnnotatedFrames((prevstate)=>{
             return ([...prevstate,frameNumber])
           })
         }
       })
-        // Save in the frontend which frames have been annotated
+        
       }
-        // Empty the annotation
-        setAnnotations([])
-        // Move from this frame
-        setIsNewFrame(false)
       }
-      setIsGoingBack(false)
-
+      
       axios.get(`http://localhost:5000/workspace/retrieve_previous_batch/${project_id}?frameNumber=${frameCounter}`).then(response=>{
       // Display annotations already stored in DB
       setAnnotations([...response.data['Annotations']])
-      var image = new Image();
-      image.src = currentFrame
-      image.onload = () => {
-        imageContextRef.current.drawImage(image, 0, 0,frames[frameCounter]['width'],frames[frameCounter]['height']);
-        setImageMetaData({'width':frames[frameCounter]['width'],'height':frames[frameCounter]['height']})  
-      }
+      if(!isGoingBack && !annotatedFrames.includes(frameCounter)){
+      for(let annotation of response.data['Annotations']){
+              labelsCounter[annotation['label']] += 1
+            }}
+      // var image = new Image();
+      // image.src = currentFrame
+      // image.onload = () => {
+      //   imageContextRef.current.drawImage(image, 0, 0,frames[frameCounter]['width'],frames[frameCounter]['height']);
+      // }
     }).catch((err)=>console.log(err))
+    // Empty the annotation
+    setIsGoingBack(false)
+    // Move from this frame
+    setIsNewFrame(false)
+
+            // IF going back then doesn't work only if going work it will train, or make it work somehow
+            if(!isGoingBack && !trainObj.isTraining){
+
+            // Train the model when number of annotatedFrames( number of classes make counter for each one ) reach the number of frames required to train       
+            for(let label in labelsCounter){
+              // Train 
+              if(labelsCounter[label] >= trainObj.numberToTrain){
+                trainObj.train = true
+              }
+              else{
+                trainObj.train = false
+                break
+              }
+            }
+
+            // Only training when not training
+            if(trainObj.train && shouldTrain){
+              trainObj.train = false
+              trainObj.isTraining = true
+              setShouldTrain(false)
+              alert("Training started")
+              axios.post(`http://localhost:5000/workspace/${project_id}/train_model`,{annotatedFrames})
+              .then((res)=>{
+                trainObj.numberToTrain = res.data['frames_train']
+                setShouldTrain(true)
+
+              })
+              .catch((err)=>{
+                alert("Error when training",err)
+                setShouldTrain(true)
+                trainObj.train = false
+                trainObj.isTraining = false
+              })
+              // Until labelsCounter > 50 for all then model shouldn't train
+              // what we can do is keep shouldTrain true when we want to train
+
+            }
+          }
+          else{
+            if (trainObj.isTraining){
+              axios.get(`http://localhost:5000/workspace/${project_id}/check_training_process`)
+              .then((response)=>{
+                // Two things need to be done 
+                // isTraining set to false
+                // Change the number of times it needs to be trained + 50
+                if(!response.data.isTraining){
+                alert("Training Done")
+                trainObj.isTraining = false
+                trainObj.numberToTrain =response.data['frames_train']
+                trainObj.train = true
+                setShouldTrain(true)
+              }
+              }).catch((err)=>
+              {
+                alert("Error when checking if training is done",err)
+                console.log(err)
+                trainObj.isTraining = false
+                trainObj.train = true
+                setShouldTrain(true)
+              })
+            }
+          }
     // Whenever we need to train this will run and then the api will call another thing that will run (as of now this is the idea)
       // if(shouldTrain.includes(frameCounter)){
       //   axios.get(`http://localhost:5000/workspace/retrieve_previous_batch?frameNumber=${frameCounter}`).then(response=>{
@@ -271,7 +341,7 @@ export default function Workspace(props){
       annotationCanvasRef.current.oncontextmenu = onContextMenuHandler
       // Draw annotations whenever there is a change, check the code if-else
       if (Annotations&&Annotations.length>0){
-        draw() 
+        draw()
       }
       else{
         draw()
@@ -297,8 +367,12 @@ export default function Workspace(props){
             let tempAnnotation = [...Annotations]
             tempAnnotation = tempAnnotation.filter(current=>{
               if(current == Annotation){
+                if(labelsCounter[current['label']]<=0){
+                  labelsCounter[current['label']] = 0
+                }
+                else{
               labelsCounter[current['label']] -= 1
-              console.log(labelsCounter)
+            }
              }
               return current!==Annotation
             })
@@ -311,9 +385,7 @@ export default function Workspace(props){
   
   // Saving and setting state for annotations
     const onSaveAnnotations = (newAnnotation)=>{
-      console.log(newAnnotation)
         labelsCounter[newAnnotation['label']] += 1
-      console.log(labelsCounter)
       setAnnotations((prevAnnotations)=>{return[newAnnotation,...prevAnnotations]})
     }
     
@@ -524,9 +596,10 @@ export default function Workspace(props){
           return
       }
   }
-      
+  // END OF Canvas manipulation logic
+  // ---------------------------------------------------------------------------------------------------------------------------------------------
   
-   
+  
   }
   }
   // Moving frames forward 
@@ -566,18 +639,32 @@ export default function Workspace(props){
           "project_id":project_id
         })
       }
-      console.log(newAnnotation)
+      for (let anno of newAnnotation){
+        labelsCounter[anno['label']] += 1
+      }
       setAnnotations((prevAnnotations)=>{return[...newAnnotation,...prevAnnotations]})
-      console.log(Annotations)
     })
     .catch((err)=>{console.log(err)})
   }
 
     return(
-        <div style={{height : 'calc(90vh - 2rem)'}}>
+        <div >
         <LoadingModal isLoading= {isLoading}/>
-        <Canvas Annotations={Annotations}   forwardRef={imageCanvasRef} annotationCanvasRef={annotationCanvasRef} imageMetadata={imageMetadata} onContextMenuHandler={onContextMenuHandler} />
-        <AnnotationBox setLabelsCounter={setLabelsCounter} project_id={project_id}handleMakePrediction={handleMakePrediction} isLoadingAIBOX={isLoading} framesSize={framesSize} frameCounter={frameCounter} onFrameChangeForward={onFrameChangeForward} onFrameChangeBackwards={onFrameChangeBackwards}  draw={draw}   onSaveAnnotations = {onSaveAnnotations}  showModal={props.showModal} isModalShown={props.isModalShown}/>
+        <div className='container-fluid'>
+          <div className='row'>
+          <div className='col-md-10'>
+          <Canvas Annotations={Annotations}   forwardRef={imageCanvasRef} annotationCanvasRef={annotationCanvasRef} imageMetadata={imageMetadata} onContextMenuHandler={onContextMenuHandler} />
+          <AnnotationBox setLabelsCounter={setLabelsCounter} project_id={project_id}handleMakePrediction={handleMakePrediction} isLoadingAIBOX={isLoading} framesSize={framesSize} frameCounter={frameCounter} onFrameChangeForward={onFrameChangeForward} onFrameChangeBackwards={onFrameChangeBackwards}  draw={draw}   onSaveAnnotations = {onSaveAnnotations}  showModal={props.showModal} isModalShown={props.isModalShown}/>
+          </div>
+          <div className='col-md-2'>
+          <LabelsCounterBox labelsCounter={labelsCounter}/>
+          </div>
+
+          </div>
+          
+          
+        </div>
+        
         </div>
     )
 }

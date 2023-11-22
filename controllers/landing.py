@@ -1,10 +1,15 @@
 import cv2
-from flask import Flask, flash, render_template, redirect, request, url_for, jsonify
+from flask import flash, request,  jsonify
+import natsort
+
 from database import mongo_connection
 import bson.json_util as json_util
 from flask_pymongo import ObjectId
+import shutil
 from werkzeug.utils import secure_filename
 import os, yaml , json
+
+
 db_connection = {
     "Users":mongo_connection.Users,
     "Projects":mongo_connection.Projects,
@@ -16,10 +21,30 @@ Projects = db_connection['Projects']
 Annotations = db_connection['Annotations']
 
 ALLOWED_EXTENSIONS = {'mp4', 'mov', 'wmv', 'flv', 'avi', 'mkv', 'webm'}
+
+
+# def annotationUpdate():
+#     Annotations.update_many({"project_id": ObjectId("654bb3d2b209809760f6911e")},{"$set": {"project_id":ObjectId("654bcdfa5d580b31ca40c13d") }})
+
+def delete_folder_files(folder):
+# Make it a function and pass folder names
+    for filename in os.listdir(folder):
+        file_path = os.path.join(folder, filename)
+        try:
+            if os.path.isfile(file_path) or os.path.islink(file_path):
+                os.unlink(file_path)
+            elif os.path.isdir(file_path):
+                shutil.rmtree(file_path)
+        except Exception as e:
+            print('Failed to delete %s. Reason: %s' % (file_path, e))
+
+
 def allowed_file(filename):
     print(filename)
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
 def extract_frames(video_filepath, output_dir, Project) -> None:
         '''
         prases a video into frames and stores them as .JPG images in a directory.
@@ -41,7 +66,8 @@ def extract_frames(video_filepath, output_dir, Project) -> None:
         all_frames_paths = []
         # Open the video file
         cap = cv2.VideoCapture(video_filepath)
-
+        height = cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
+        width = cap.get(cv2.CAP_PROP_FRAME_WIDTH)
         # Create the output directory if it doesn't exist
         if not os.path.exists(output_dir):
             os.makedirs(output_dir)
@@ -73,6 +99,8 @@ def extract_frames(video_filepath, output_dir, Project) -> None:
         print(f"Extracted {total_project_images - count_init} frames from {video_filepath}")
         # Release the video capture object
         cap.release()
+        return (width,height)
+
 
 
 class landingController:
@@ -107,8 +135,12 @@ class landingController:
             os.mkdir(f'frontend/public/images/{Project["Name"]}/video')
             file_path = os.path.join(f'frontend/public/images/{Project["Name"]}/video', secure_filename(file.filename))
             file.save(file_path)
-            extract_frames(file_path,f'frontend/public/images/{Project["Name"]}', Project)
-
+            width,height = extract_frames(file_path,f'frontend/public/images/{Project["Name"]}', Project)
+            if(not width== '1280 ' and not height=='720'):
+                Projects.update_one({"_id":Project['_id']},{"$set":{"Dimensions":{"width":1280,"height":720}}})
+            else:
+                Projects.update_one({"_id": Project['_id']},
+                                    {"$set": {"Dimensions": {"width": width, "height": height}}})
             return "DONE"
         else:
             flash("Upload a video that satisfies the conditions")
@@ -133,12 +165,18 @@ class landingController:
 
             # Make Model and YAML files
             newProject = request.json['project']
-            print(newProject)
-            index_to_labels = {i: newProject['labels'][i] for i in range(len(newProject['labels']))}
+            # Strip the name in case of whitespaces
+            newProject["name"] = newProject["name"].strip()
+            print(newProject['name'])
+            # Strip the labels in case of whitespaces
+            project_labels = [x.strip() for x in newProject['labels'].split(',')]
+            index_to_labels = {i: project_labels[i] for i in range(len(project_labels))}
+
+            print(index_to_labels)
             file_path_yaml = os.path.join('AI/yolov5m/data/', f'{newProject["name"]}.yaml')
             print(file_path_yaml)
 
-            # If no file already exits, create one and fill it with the labels
+            # CREATE yaml file, If no file already exits, create one and fill it with the labels
             if not os.path.exists(file_path_yaml):
                 with open(file_path_yaml, 'w+') as f:
                     myDataYaml = {'path': "../train_data", "train": "images/train", "val": "images/val",
@@ -156,16 +194,110 @@ class landingController:
                 "Frames_Size": '',
                 "Directory_of_File": '',
                 "Labels": newProject['labels'].split(','),
-                "model_filepath": "AI/yolov5m/runs/train/exp4/weights/best.pt",
+                "model_filepath": "AI/yolov5n.pt",
                 "yaml_filepath": file_path_yaml,
+                'Dimensions':{'width':0,'height':0},
+                'is_training':False,
+                'trained_frames':[],
+                'Frames_num_to_train':50
             }
             # Add to Database
             Projects.insert_one(project_obj)
             return project_obj['Name']
 
 
+    def delete_project(project_id):
+        error = []
+        try:
+            Project = Projects.find_one({"_id": ObjectId(project_id)})
+        except Exception as err:
+            error.append({'error': err.__class__.__name__,'message':f"{str(err)},{error}"})
+        else:
+            # Remove directory and the files contained in it
+            try:
+                shutil.rmtree(Project['Directory_of_File'])
+            except Exception as err:
+                print(err)
+                error.append({'error': err.__class__.__name__, 'message':f"{str(err)},{error}"})
+            # # Delete yaml file os.getcwd()+'/'+
+            try:
+                os.remove(Project['yaml_filepath'])
+            except Exception as err:
+                print(err)
+                error.append({'error': err.__class__.__name__, 'message':f"{str(err)},{error}"})
+            # Delete model if the path is new
+            if not Project['model_filepath'] == "AI/yolov5n.pt":
+                models_filepath = os.getcwd()+'/'+ f"AI/yolov5m/runs/{Project['Name']}"
+                try:
+                    shutil.rmtree(models_filepath)
+                except Exception as err:
+                    print(err)
+                    error.append({'error': err.__class__.__name__, 'message':f"{str(err)},{error}"})
+            # Delete all the annotations in that project from DB and error handling because annotations are different
+            try:
+                Annotations.delete_many({"project_id":ObjectId(project_id)})
+            except Exception as err:
+                error.append({'error': err.__class__.__name__, 'message':f"{str(err)},{error}"})
+
+            # Delete the project from DB
+            Projects.delete_one({"_id": ObjectId(project_id)})
+            return json.dumps({'error': error})
 
     def rendering():
-        return render_template("/views/landing.html")
+        # frames_annotated = [0]
+        # Project = Projects.find_one({"_id": ObjectId('65509da4c7aada45a4c08ced')})
+        # # for i in range(50):
+        # #     frames_annotated.append(i)
+        # # Projects.update_one({"_id": ObjectId('65509da4c7aada45a4c08ced')},
+        # #                     {
+        # #                         "$set": {"model_filepath": 'L', 'is_training': False,
+        # #                               'Frames_num_to_train': 50 + 50},
+        # #                          "$addToSet": {'trained_frames': {"$each": frames_annotated}}
+        # #
+        # #                      })
+        # # Projects.update_one({"_id":ObjectId("654c9e430f8686ec765ec073")},{"$addToSet":{'trained_frames':{ "$each": frames_annotated}}})
+        # # Projects.update_one({"_id": ObjectId("65509da4c7aada45a4c08ced")},
+        # #                     {
+        # #                         "$set": {"model_filepath": "AI/yolov5m/runs/Delete_test\Delete_test\weights\best.pt", 'is_training': False,
+        # #                                  'Frames_num_to_train': 50 + 50},
+        # #                         "$addToSet": {'trained_frames': {"$each": frames_annotated}}
+        # #                     })
+        # array_of_annotations = {}
+        # for frames in frames_annotated:
+        #     array_of_annotations[frames] = []
+        # frame_names = []
+        # # the children are an array of annotations in that specific frame, parent is commented above which is frame number
+        #
+        # array_of_annotations[0].append({"x":50,'y':50,"frame":50,'width':5,'height':5,"label":"object"})
+        # frame_names = []
+        # for frame_num in frames_annotated:
+        #     image_name = f"{frame_num}_{Project['Name']}.jpg"
+        #     frame_names.append(image_name)
+        #     pm.ProjectManager().create_annotations_txt(Project['yaml_filepath'], image_name,
+        #                                                Project['Dimensions']['width'],
+        #                                                Project['Dimensions']['height'], array_of_annotations[frame_num],
+        #                                                'AI/train_data/labels/val')
+        # model_file = f"/AI/yolov5m/runs/{Project['model_filepath']}"
+        model_file = os.getcwd()+f"/AI/yolov5m/runs/Latest_test"
+        all_folder = natsort.natsorted(os.listdir(model_file))
+        for i in range(-1,-len(all_folder),-1):
+            last_folder = all_folder[i]
+            print(last_folder)
+            print(model_file+'/weights/best.pt')
+            print(os.getcwd()+f"/AI/yolov5m/runs/{last_folder}"+'/weights/best.pt')
+            # project name then last folder
+            file_exist = os.path.exists(model_file+f'/{last_folder}/weights/best.pt')
+            if file_exist:
+                break
+        return {"Done":True}
+
+
+# db.test.update({"name":"albert"},
+#   {
+#     "$set" : {"bugs.0.test" : {"name" : "haha"}},
+#     "$inc" : {"bugs.0.count" : 1},
+#     "$inc" : {"bugs.1.count" : 1}
+#   }
+# );
 
 # landingController.a()
