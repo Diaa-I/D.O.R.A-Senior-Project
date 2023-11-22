@@ -269,7 +269,7 @@ class workspaceController:
             shutil.copy(src_dir+'/'+f, dst_dir+'/val')
         # Train the model
         trained_model_path = mc.ModelController().train_model(Project['yaml_filepath'], Project['model_filepath'],
-                                                              f"AI/yolov5m/runs/{Project['Name']}", Project['Name'])
+                                                              f"AI/yolov8n/runs/{Project['Name']}", Project['Name'])
         # Save the new model file path to the database and end the isTraining process
         # When its first time we can use the trained_model_path because it is the first and only folder
         print(trained_model_path)
@@ -277,18 +277,18 @@ class workspaceController:
             new_model_filepath = trained_model_path
         else:
         # Find the last model file path that has weights best, because yolo makes last file
-            model_file = os.getcwd() + f"/AI/yolov5m/runs/{Project['Name']}"
+            model_file = os.getcwd() + f"/AI/yolov8n/runs/{Project['Name']}"
             all_folder = natsorted(os.listdir(model_file))
             for i in range(-1, -len(all_folder), -1):
                 last_folder = all_folder[i]
                 print(last_folder)
                 print(model_file + '/weights/best.pt')
-                print(os.getcwd() + f"/AI/yolov5m/runs/{last_folder}" + '/weights/best.pt')
+                print(os.getcwd() + f"/AI/yolov8n/runs/{last_folder}" + '/weights/best.pt')
                 # project name then last folder
                 file_exist = os.path.exists(model_file + f'/{last_folder}/weights/best.pt')
                 if file_exist:
                     break
-            new_model_filepath = f"AI/yolov5m/runs/{Project['Name']}/{last_folder}/weights/best.pt"
+            new_model_filepath = f"AI/yolov8n/runs/{Project['Name']}/{last_folder}/weights/best.pt"
         Projects.update_one({"_id": ObjectId(project_id)},
                             {
                                 "$set": {"model_filepath": new_model_filepath, 'is_training': False,

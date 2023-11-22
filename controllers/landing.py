@@ -258,7 +258,7 @@ class landingController:
         # # Projects.update_one({"_id":ObjectId("654c9e430f8686ec765ec073")},{"$addToSet":{'trained_frames':{ "$each": frames_annotated}}})
         # # Projects.update_one({"_id": ObjectId("65509da4c7aada45a4c08ced")},
         # #                     {
-        # #                         "$set": {"model_filepath": "AI/yolov5m/runs/Delete_test\Delete_test\weights\best.pt", 'is_training': False,
+        # #                         "$set": {"model_filepath": "AI/yolov8n/runs/Delete_test\Delete_test\weights\best.pt", 'is_training': False,
         # #                                  'Frames_num_to_train': 50 + 50},
         # #                         "$addToSet": {'trained_frames': {"$each": frames_annotated}}
         # #                     })
@@ -277,7 +277,7 @@ class landingController:
         #                                                Project['Dimensions']['width'],
         #                                                Project['Dimensions']['height'], array_of_annotations[frame_num],
         #                                                'AI/train_data/labels/val')
-        # model_file = f"/AI/yolov5m/runs/{Project['model_filepath']}"
+        # model_file = f"/AI/yolov8n/runs/{Project['model_filepath']}"
         model_file = os.getcwd()+f"/AI/yolov5m/runs/Latest_test"
         all_folder = natsort.natsorted(os.listdir(model_file))
         for i in range(-1,-len(all_folder),-1):
