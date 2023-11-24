@@ -8,6 +8,7 @@ function ProjectModal({ makeNewProject,onHide,show }) {
     const [labels, setLabels] = useState('');
     const [datasetFile, setDatasetFile] = useState('');
 
+
     const handleCreateProject = (e) => {
         e.preventDefault();
         const cleanedLabels = labels.replace(/\s/g, '');
@@ -64,6 +65,7 @@ function ProjectModal({ makeNewProject,onHide,show }) {
                             <Form.Control
                                 type="file"
                                 value={datasetFile}
+                                accept="video/mp4,video/x-m4v,video/*"
                                 name='video'
                                 onChange={(e) => setDatasetFile(e.target.value)}
                             />

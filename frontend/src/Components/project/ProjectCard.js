@@ -17,8 +17,15 @@ function ProjectCard({ project,frameSize , trainedFrames, setIsNewProject,setIsL
         event.preventDefault()
         setIsLoading(true)
         axios.get(`http://localhost:5000/delete_project/${project['_id']['$oid']}`)
-        .then((res)=>{console.log(res.data);setIsLoading(false); setIsNewProject(true);})
-        .catch((err)=>{console.log(err);setIsLoading(false);})
+        .then((res)=>{console.log(res.data);setIsLoading(false); setIsNewProject(true);
+        if(res.data.error){
+        alert("Some errors have occurred, Deletion was successful")
+        for(let error of res.data.error){
+            alert(error.message)
+        }
+         }
+        })
+        .catch((err)=>{console.log(err);setIsLoading(false); alert("Couldn't find the project to delete it")})
     }
     return (
         <div className="col mb-3">

@@ -279,6 +279,7 @@ class workspaceController:
         # Find the last model file path that has weights best, because yolo makes last file
             model_file = os.getcwd() + f"/AI/yolov8n/runs/{Project['Name']}"
             all_folder = natsorted(os.listdir(model_file))
+            last_folder = all_folder[i]
             for i in range(-1, -len(all_folder), -1):
                 last_folder = all_folder[i]
                 print(last_folder)

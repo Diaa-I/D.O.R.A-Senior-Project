@@ -33,6 +33,12 @@ function Projects(props) {
         axios.post('http://localhost:5000/create_project',{"project":project})
             .then((res)=>{
             axios.post(`http://localhost:5000/upload_video/${res.data}`,data).then((res)=>{
+            console.log(res.data)
+            if(res.data['Error']){
+                axios.get(`http://localhost:5000/delete_project/${res.data.Project}`)
+                .then((res)=>{console.log(res.data);setIsLoading(false); setIsNewProject(true); alert("Error when uploading, please upload the correct file type");})
+                .catch((err)=>{console.log(err);setIsLoading(false);})
+            }
             setIsNewProject(true);
             setIsLoading(false) 
             }).catch((err)=>console.log(err))

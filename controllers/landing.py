@@ -1,5 +1,5 @@
 import cv2
-from flask import flash, request,  jsonify
+from flask import flash, request,  jsonify, send_from_directory
 import natsort
 
 from database import mongo_connection
@@ -144,7 +144,7 @@ class landingController:
             return "DONE"
         else:
             flash("Upload a video that satisfies the conditions")
-            return 'NO'
+            return {"Error":"Upload a video that satisfies the conditions","Project":str(ObjectId(Project['_id']))}
             # return redirect(url_for("landing.rendering"))
 
     def create_project():
@@ -226,8 +226,8 @@ class landingController:
                 print(err)
                 error.append({'error': err.__class__.__name__, 'message':f"{str(err)},{error}"})
             # Delete model if the path is new
-            if not Project['model_filepath'] == "AI/yolov5n.pt":
-                models_filepath = os.getcwd()+'/'+ f"AI/yolov5m/runs/{Project['Name']}"
+            if not Project['model_filepath'] == "AI/yolov8n.pt":
+                models_filepath = os.getcwd()+'/'+ f"AI/yolov8n/runs/{Project['Name']}"
                 try:
                     shutil.rmtree(models_filepath)
                 except Exception as err:
@@ -241,55 +241,12 @@ class landingController:
 
             # Delete the project from DB
             Projects.delete_one({"_id": ObjectId(project_id)})
-            return json.dumps({'error': error})
+        return json.dumps({'error': error})
 
     def rendering():
-        # frames_annotated = [0]
-        # Project = Projects.find_one({"_id": ObjectId('65509da4c7aada45a4c08ced')})
-        # # for i in range(50):
-        # #     frames_annotated.append(i)
-        # # Projects.update_one({"_id": ObjectId('65509da4c7aada45a4c08ced')},
-        # #                     {
-        # #                         "$set": {"model_filepath": 'L', 'is_training': False,
-        # #                               'Frames_num_to_train': 50 + 50},
-        # #                          "$addToSet": {'trained_frames': {"$each": frames_annotated}}
-        # #
-        # #                      })
-        # # Projects.update_one({"_id":ObjectId("654c9e430f8686ec765ec073")},{"$addToSet":{'trained_frames':{ "$each": frames_annotated}}})
-        # # Projects.update_one({"_id": ObjectId("65509da4c7aada45a4c08ced")},
-        # #                     {
-        # #                         "$set": {"model_filepath": "AI/yolov8n/runs/Delete_test\Delete_test\weights\best.pt", 'is_training': False,
-        # #                                  'Frames_num_to_train': 50 + 50},
-        # #                         "$addToSet": {'trained_frames': {"$each": frames_annotated}}
-        # #                     })
-        # array_of_annotations = {}
-        # for frames in frames_annotated:
-        #     array_of_annotations[frames] = []
-        # frame_names = []
-        # # the children are an array of annotations in that specific frame, parent is commented above which is frame number
-        #
-        # array_of_annotations[0].append({"x":50,'y':50,"frame":50,'width':5,'height':5,"label":"object"})
-        # frame_names = []
-        # for frame_num in frames_annotated:
-        #     image_name = f"{frame_num}_{Project['Name']}.jpg"
-        #     frame_names.append(image_name)
-        #     pm.ProjectManager().create_annotations_txt(Project['yaml_filepath'], image_name,
-        #                                                Project['Dimensions']['width'],
-        #                                                Project['Dimensions']['height'], array_of_annotations[frame_num],
-        #                                                'AI/train_data/labels/val')
-        # model_file = f"/AI/yolov8n/runs/{Project['model_filepath']}"
-        model_file = os.getcwd()+f"/AI/yolov5m/runs/Latest_test"
-        all_folder = natsort.natsorted(os.listdir(model_file))
-        for i in range(-1,-len(all_folder),-1):
-            last_folder = all_folder[i]
-            print(last_folder)
-            print(model_file+'/weights/best.pt')
-            print(os.getcwd()+f"/AI/yolov5m/runs/{last_folder}"+'/weights/best.pt')
-            # project name then last folder
-            file_exist = os.path.exists(model_file+f'/{last_folder}/weights/best.pt')
-            if file_exist:
-                break
-        return {"Done":True}
+        return "DONE"
+        # print(os.getcwd())
+        # return send_from_directory("/frontend/build",'index.html')
 
 
 # db.test.update({"name":"albert"},
