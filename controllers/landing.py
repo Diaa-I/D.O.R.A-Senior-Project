@@ -219,6 +219,12 @@ class landingController:
             except Exception as err:
                 print(err)
                 error.append({'error': err.__class__.__name__, 'message':f"{str(err)},{error}"})
+            # Delete the directories for exported data, and delete the images and labels subfolders
+            try:
+                shutil.rmtree(os.getcwd()+f"/Exported_data/{Project['Name']}")
+            except Exception as err:
+                print(err)
+                error.append({'error': err.__class__.__name__, 'message': f"{str(err)},{error}"})
             # # Delete yaml file os.getcwd()+'/'+
             try:
                 os.remove(Project['yaml_filepath'])
