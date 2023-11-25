@@ -248,7 +248,7 @@ class landingController:
         all_annotations = list(Annotations.find({"project_id": ObjectId(project_id),"frame": {"$in": Project['trained_frames']}},
                                                 {'_id': False, 'project_id': False}))
         # Set doesn't allow duplications, give me all the frame numbers that were annotated with no duplicates
-        frames_annotated = list(annotation['frame'] for annotation in all_annotations)
+        frames_annotated = [annotation['frame'] for annotation in all_annotations]
         # after knowing the frames that were annotated, now I want a dictionary containing the frame numbers as a parent
         array_of_annotations = {}
         for frames in frames_annotated:
@@ -281,8 +281,9 @@ class landingController:
         for frame_num in frames_annotated:
             image_name = f"{frame_num}_{Project['Name']}.jpg"
             frame_names.append(image_name)
-            img = cv2.imread(Project['Directory_of_File'] +'/'+ image_name)
-            cv2.resize(img, (Project['Dimensions']['width'], Project['Dimensions']['height']))
+            # RESIZING JUST IN CASE
+            # img = cv2.imread(Project['Directory_of_File'] +'/'+ image_name)
+            # cv2.resize(img, (Project['Dimensions']['width'], Project['Dimensions']['height']))
             # export annotations
             pm.ProjectManager().create_annotations_txt(Project['yaml_filepath'], image_name,
                                                        Project['Dimensions']['width'],
