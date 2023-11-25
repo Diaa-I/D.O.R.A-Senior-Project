@@ -3,9 +3,15 @@ import AIBox from './AIBox';
 import OptionsBox from './OptionsBox';
 
 import 'bootstrap/dist/css/bootstrap.css';
+import axios from 'axios';
 
 const AnnotationBox = (props)=>{
-
+    const export_project = ()=>{
+        props.setIsLoading(true)
+        axios.post(`http://localhost:5000/export_project/${props.project_id}`)
+        .then((res)=>{alert(res.data.Exported_data_location); props.setIsLoading(false)})
+        .catch((err)=>{alert(err,"Error occurred"); props.setIsLoading(false)})
+    }
 return(
     <div className='btns-box pt-3 pb-3'>
     <div className='container'>
@@ -22,7 +28,7 @@ return(
 
             {/* OptionsBox on the right */}
             <div className='col-3 align-self-center'>
-                <OptionsBox check_training={props.check_training} isModalShown={props.isModalShown} />
+                <OptionsBox export_project = {export_project}check_training={props.export_project} isModalShown={props.isModalShown} />
             </div>
         </div>
     </div>

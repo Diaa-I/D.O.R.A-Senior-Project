@@ -669,7 +669,7 @@ export default function Workspace(props){
           <div className='row'>
           <div className='col-md-10'>
           <Canvas Annotations={Annotations}   forwardRef={imageCanvasRef} annotationCanvasRef={annotationCanvasRef} imageMetadata={imageMetadata} onContextMenuHandler={onContextMenuHandler} />
-          <AnnotationBox setLabelsCounter={setLabelsCounter} project_id={project_id}handleMakePrediction={handleMakePrediction} isLoadingAIBOX={isLoading} framesSize={framesSize} frameCounter={frameCounter} onFrameChangeForward={onFrameChangeForward} onFrameChangeBackwards={onFrameChangeBackwards}  draw={draw}   onSaveAnnotations = {onSaveAnnotations}  check_training={check_training} isModalShown={props.isModalShown}/>
+          <AnnotationBox setIsLoading={setIsLoading} setLabelsCounter={setLabelsCounter} project_id={project_id}handleMakePrediction={handleMakePrediction} isLoadingAIBOX={isLoading} framesSize={framesSize} frameCounter={frameCounter} onFrameChangeForward={onFrameChangeForward} onFrameChangeBackwards={onFrameChangeBackwards}  draw={draw}   onSaveAnnotations = {onSaveAnnotations}  check_training={check_training} isModalShown={props.isModalShown}/>
           </div>
           <div className='col-md-2'>
           <LabelsCounterBox labelsCounter={labelsCounter} Annotations={Annotations} isNewFrame={isNewFrame}/>

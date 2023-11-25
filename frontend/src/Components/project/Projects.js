@@ -67,5 +67,4 @@ function Projects(props) {
         </Container>
     );
 }
-
 export default Projects;

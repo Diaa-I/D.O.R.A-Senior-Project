@@ -8,7 +8,7 @@ from flask_pymongo import ObjectId
 import shutil
 from werkzeug.utils import secure_filename
 import os, yaml , json
-
+import AI.controller.projectManager as pm
 
 db_connection = {
     "Users":mongo_connection.Users,
@@ -243,6 +243,58 @@ class landingController:
             Projects.delete_one({"_id": ObjectId(project_id)})
         return json.dumps({'error': error})
 
+    def export_project(project_id):
+        Project = Projects.find_one({"_id": ObjectId(project_id)})
+        all_annotations = list(Annotations.find({"project_id": ObjectId(project_id),"frame": {"$in": Project['trained_frames']}},
+                                                {'_id': False, 'project_id': False}))
+        # Set doesn't allow duplications, give me all the frame numbers that were annotated with no duplicates
+        frames_annotated = list(annotation['frame'] for annotation in all_annotations)
+        # after knowing the frames that were annotated, now I want a dictionary containing the frame numbers as a parent
+        array_of_annotations = {}
+        for frames in frames_annotated:
+            array_of_annotations[frames] = []
+        frame_names = []
+        # the children are an array of annotations in that specific frame, parent is commented above which is frame number
+        for annotation in all_annotations:
+            array_of_annotations[annotation['frame']].append(annotation)
+
+        # Check if folder for export data exist or not
+        if(not os.path.exists(os.getcwd()+f"/Exported_data/{Project['Name']}")):
+            # Create directories for project, then sub directories of images and labels
+            os.mkdir(os.getcwd()+f"/Exported_data/{Project['Name']}")
+            os.mkdir(os.getcwd()+f"/Exported_data/{Project['Name']}/images")
+            os.mkdir(os.getcwd()+f"/Exported_data/{Project['Name']}/annotations")
+        else:
+            # Delete the directories, to empty the images and labels
+            try:
+                shutil.rmtree(os.getcwd()+f"/Exported_data/{Project['Name']}/images")
+            except Exception as err:
+                print(err)
+            try:
+                shutil.rmtree(os.getcwd()+f"/Exported_data/{Project['Name']}/annotations")
+            except Exception as err:
+                print(err)
+            # Create the folders again to insert images and labels
+            os.mkdir(os.getcwd()+f"/Exported_data/{Project['Name']}/images")
+            os.mkdir(os.getcwd()+f"/Exported_data/{Project['Name']}/annotations")
+        # Get the the image name so we can create annotation txt for it
+        for frame_num in frames_annotated:
+            image_name = f"{frame_num}_{Project['Name']}.jpg"
+            frame_names.append(image_name)
+            img = cv2.imread(Project['Directory_of_File'] +'/'+ image_name)
+            cv2.resize(img, (1280, 720))
+            # export annotations
+            pm.ProjectManager().create_annotations_txt(Project['yaml_filepath'], image_name,
+                                                       Project['Dimensions']['width'],
+                                                       Project['Dimensions']['height'], array_of_annotations[frame_num],
+                                                       f'Exported_data/{Project["Name"]}/annotations')
+        src_dir = Project['Directory_of_File']
+        dst_dir = os.getcwd()+ f"/Exported_data/{Project['Name']}/images"
+        # Only the images, copy them to the folder
+        for f in frame_names:
+            # Copy images to folder
+            shutil.copy(src_dir + '/' + f, dst_dir)
+        return {"Exported_data_location":f"Folder Created called Exported_data/{Project['Name']} and contains exported data"}
     def rendering():
         return "DONE"
         # print(os.getcwd())
