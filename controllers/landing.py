@@ -282,7 +282,7 @@ class landingController:
             image_name = f"{frame_num}_{Project['Name']}.jpg"
             frame_names.append(image_name)
             img = cv2.imread(Project['Directory_of_File'] +'/'+ image_name)
-            cv2.resize(img, (1280, 720))
+            cv2.resize(img, (Project['Dimensions']['width'], Project['Dimensions']['height']))
             # export annotations
             pm.ProjectManager().create_annotations_txt(Project['yaml_filepath'], image_name,
                                                        Project['Dimensions']['width'],
