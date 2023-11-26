@@ -45,7 +45,7 @@ class ModelController(object):
         return trained_model_path
 
     @staticmethod
-    def make_inference(img_filepath, model_filepath, normalization_dims, conf_threshold=0.8) -> list:
+    def make_inference(img_filepath, model_filepath, normalization_dims, conf_threshold=0.7) -> list:
         '''
         Processes an image and outputs all the detected objects found in it.
         Detections will be considered only if they're above or equal to conf_threshold.
