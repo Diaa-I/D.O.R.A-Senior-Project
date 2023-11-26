@@ -33,9 +33,10 @@ export default function LabelsCounterBox(props) {
                         </li>
                     ))}
                 </ul>
-                <ul className="list-group">
-                    {<li className="list-group-item d-flex justify-content-between" style={{ backgroundColor: '#555555', color: '#ffffff' }}>Selected annotation Label: {selectedAnnotation}</li>}
-                </ul>
+                <div className="alert alert-info mt-3" role="alert">
+                    <h6 className="alert-heading">Selected Annotation:</h6>
+                <span className="badge bg-primary">{selectedAnnotation}</span>
+                </div>
             </div>
         </div>
     );
