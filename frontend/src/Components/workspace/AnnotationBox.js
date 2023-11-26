@@ -28,7 +28,7 @@ return(
 
             {/* OptionsBox on the right */}
             <div className='col-3 align-self-center'>
-                <OptionsBox export_project = {export_project}check_training={props.export_project} isModalShown={props.isModalShown} />
+                <OptionsBox export_project = {export_project} check_training={props.check_training} isModalShown={props.isModalShown} />
             </div>
         </div>
     </div>
