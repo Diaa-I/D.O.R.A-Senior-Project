@@ -120,7 +120,7 @@ class landingController:
         print(request.files['video'])
         if 'video' not in request.files:
             flash("No file was uploaded, Upload a video that satisfies the conditions")
-            return "NO"
+            return {"Error":"No file was uploaded, Upload a video that satisfies the conditions","Project":str(ObjectId(Project['_id']))}
             # return redirect(url_for("landing.rendering"))
 
         # Storing the video in a temporary variable for ease of use
@@ -129,7 +129,7 @@ class landingController:
         # Checking whether a video was selected that satisfies the conditions was uploaded
         if file.filename == '':
             flash("No selected file,Upload a video that satisfies the conditions")
-            return "NOT DONE"
+            return {"Error":"No selected file,Upload a video that satisfies the conditions","Project":str(ObjectId(Project['_id']))}
         if file and allowed_file(file.filename):
             os.mkdir(f'frontend/public/images/{Project["Name"]}')
             os.mkdir(f'frontend/public/images/{Project["Name"]}/video')
@@ -141,7 +141,7 @@ class landingController:
             else:
                 Projects.update_one({"_id": Project['_id']},
                                     {"$set": {"Dimensions": {"width": width, "height": height}}})
-            return "DONE"
+            return {"isDone":"True"}
         else:
             flash("Upload a video that satisfies the conditions")
             return {"Error":"Upload a video that satisfies the conditions","Project":str(ObjectId(Project['_id']))}
