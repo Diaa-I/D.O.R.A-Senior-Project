@@ -66,14 +66,14 @@ useEffect(()=>{
     }
 
     return( 
-    <div className='d-flex align-items-baseline gap-2 flex-column'>
+        <div className='d-flex align-items-baseline flex-column'>
         <select className='form-control ms-2 mb-2' name="select label" id=""  onChange={select_handler} value={selectedLabel}>
             {labels.map(label=>(
                 <option value={label}>{label}</option>
                 ))}
         </select>
         
-            <button className='btn btn-primary ' onClick={squareHandler}  ><BsBoundingBoxCircles size={25} /></button>
+        <button className='btn btn-primary mt-3' onClick={squareHandler}  ><BsBoundingBoxCircles size={25} /></button>
     </div>
     )
 
