@@ -4,7 +4,6 @@ from controllers.workspace import workspaceController
 workspace = Blueprint("workspace", __name__)
 
 
-# workspace.route("", methods=["POST"])(workspaceController.workspace)
 workspace.route("/<project_id>/getlabels", methods=["GET"])(workspaceController.get_labels)
 workspace.route("/<project_id>/trainmodel", methods=["GET"])(workspaceController.train_model)
 workspace.route("/get_project_information/<project_id>", methods=["GET"])(workspaceController.get_project_information)

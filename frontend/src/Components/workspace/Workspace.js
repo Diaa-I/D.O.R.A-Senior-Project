@@ -275,14 +275,13 @@ export default function Workspace(props){
       //   imageContextRef.current.drawImage(image, 0, 0,frames[frameCounter]['width'],frames[frameCounter]['height']);
       // }
     }).catch((err)=>console.log(err))
-    // Empty the annotation
-    setIsGoingBack(false)
-    // Move from this frame
-    setIsNewFrame(false)
+
+      // Move from this frame
+      setIsNewFrame(false)
 
             // IF going back then doesn't work only if going work it will train, or make it work somehow
             if(!isGoingBack && !trainObj.isTraining){
-
+              
             // Train the model when number of annotatedFrames( number of classes make counter for each one ) reach the number of frames required to train       
             for(let label in labelsCounter){
               // Train 
@@ -317,12 +316,16 @@ export default function Workspace(props){
               // what we can do is keep shouldTrain true when we want to train
 
             }
-          }
-          else{
+          
+        }
+        else{
             if (trainObj.isTraining){
-              check_training()
-            }
+            check_training()
+          
           }
+        }
+      // Empty the annotation
+      setIsGoingBack(false)
     // Whenever we need to train this will run and then the api will call another thing that will run (as of now this is the idea)
       // if(shouldTrain.includes(frameCounter)){
       //   axios.get(`http://localhost:5000/workspace/retrieve_previous_batch?frameNumber=${frameCounter}`).then(response=>{
@@ -337,7 +340,7 @@ export default function Workspace(props){
       // }
       
     }
-    
+
     },[imageContextRef,isNewFrame,getNewFrames])
   
     // When first loaded and any changes in Annotations

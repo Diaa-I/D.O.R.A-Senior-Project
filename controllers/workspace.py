@@ -10,9 +10,7 @@ from flask_pymongo import ObjectId
 import AI.controller.modelController as mc
 import AI.controller.projectManager as pm
 
-import json
-# import pymongo
-# from pymongo import MongoClient
+
 
 # from AI.controller.dataManager import ProjectManager
 ALLOWED_EXTENSIONS = {'mp4', 'mov', 'wmv', 'flv', 'avi', 'mkv', 'webm'}
@@ -70,41 +68,6 @@ class workspaceController:
         response.headers.add("Access-Control-Allow-Headers", "X-Requested-With")
         return response
 
-    # I THINK NO LONGER BEING USED
-    # def workspace():
-    #     # checking if the request sent was a post request
-    #     if request.method == "POST":
-    #         # Checking whether a video was uploaded that satisfies the conditions was uploaded
-    #         if 'video' not in request.files:
-    #             flash("No file was uploaded, Upload a video that satisfies the conditions")
-    #             return redirect(url_for("landing.rendering"))
-    #
-    #         # Storing the video in a temporary variable for ease of use
-    #         file = request.files['video']
-    #
-    #         # Checking whether a video was selected that satisfies the conditions was uploaded
-    #         if file.filename == '':
-    #             flash("No selected file,Upload a video that satisfies the conditions")
-    #             return redirect(url_for("landing.rendering"))
-    #
-    #
-    #         if file and allowed_file(file.filename):
-    #             file_path = os.path.join('uploads/files', secure_filename(file.filename))
-    #             file.save(file_path)
-    #
-    #             project_name = request.form['project_name']
-    #             path = os.getcwd()
-    #
-    #             # here is where the labels are stored in a file
-    #             with open("./uploads/files/labels.txt",'w+') as label_file:
-    #                 label_file.writelines(request.form['labels'])
-    #             # returning the SPA page
-    #             return send_from_directory(path+'/frontend/build/',"index.html")
-    #             # return render_template("/views/workspace.html", filename=file.filename, labels=labels)
-    #         else:
-    #             flash("Upload a video that satisfies the conditions")
-    #             return redirect(url_for("landing.rendering"))
-
 
     def delete_annotation():
         # Annotations from web
@@ -118,12 +81,7 @@ class workspaceController:
 
         # Annotations from Database
         frameAnnotation = list(Annotations.find({"frame":frameNumber,'project_id':project_id}))
-        # Existing Annotations from database
-        # existing_annotations = [i for i in annotation_arr if i in frameAnnotation]
-        #
-        # # Finding the annotations to delete using the annotations in database
-        # delete_annotations = [annotation for annotation in frameAnnotation if annotation not in existing_annotations]
-        # print(delete_annotations)
+
         # Delete Annotations
         if len(frameAnnotation)>0:
             for annotation in frameAnnotation:
@@ -196,18 +154,9 @@ class workspaceController:
         # use the sorted file list to return the actual frame ordered properly
         for file in files_sorted:
             if file.endswith(".jpg"):
-                # print(file)
-                # Extract the width and height of images
-                # im = cv2.imread(os.getcwd() + '/' + image_dir + f'/{file}')
-                # print({'width': im.shape[1], 'height': im.shape[0]})
                 # Image location + Metadata
-                # dir_list.append({"image_loc": opening_dir + f'/{file}', 'width': im.shape[1], 'height': im.shape[0]})
                 dir_list.append({"image_loc": opening_dir + f'/{file}', 'width': Project['Dimensions']['width'], 'height': Project['Dimensions']['height']})
-        # dir_list[0] = './'+ Project['Directory_of_File'] + dir_list[0]
-        # print(dir_list.sort(key='image_loc'))
-        # print(dir_list.sort(key='image_loc'))
-        # print(dir_list.items())
-        # print(sorted(dir_list, key=lambda item: item['image_loc']))
+
 
         response = jsonify({"Project_Name": Project['Name'], "Frames": Project['Frames_Size'],"Image_Dir":dir_list})
         response.headers.add('Access-Control-Allow-Origin', '*')
@@ -307,60 +256,7 @@ class workspaceController:
 
 
 
-        # Check if already training by checking if isTraining == false or isTraining == a number
-        # if Project['isTraining'] == False:
-        #     # If not training then take all the frames ( the question is which frames ) and annotations related to
-        #     # those frames and do createAnnotaions function
-        #     # Maybe trained frames should be in DB
-        #     # already they is an array called annotatedFrames, so we take that and check which one has already been
-        #     # trained and don't train those
-        #     # anytime you want to exit workspace save them to DB or no need just save the trained frames (second yes)
-        #     # Get frames that are annotated and get their annotations, then pass to createAnnotation_txt
-        #     annotatedFrames = request.json['annotatedFrames']
-        #     # Get the annotations related to only frames that were annotated
-        #     all_annotations = list(Annotations.find(
-        #         {"project_id": ObjectId("6544fb62801230ccdc4d166c"), "frame": {"$in": annotatedFrames}},
-        #         {'_id': False, 'project_id': False}))
-        #     # response = jsonify({"Annotations": json.loads(json_util.dumps(all_annotations))})
-        #
-        #     # Set doesn't allow duplications, give me all the frame numbers that were annotated with no duplicates
-        #     frames_annotated = {annotation['frame'] for annotation in all_annotations}
-        #
-        #     # after knowing the frames that were annotated, now I want a dictionary containing the frame numbers as a parent
-        #     array_of_annotations = {}
-        #     for frames in frames_annotated:
-        #         array_of_annotations[frames] = []
-        #
-        #
-        #     # the children are an array of annotations in that specific frame, parent is commented above which is frame number
-        #     for annotation in all_annotations:
-        #         array_of_annotations[annotation['frame']].append(annotation)
-        #     # for each frame create txt file for annotations using the create_annotations_txt function
-        #     for frame_num in frames_annotated:
-        #         image_name = f"{frame_num}_test.jpg"
-        #         pm.create_annotations_txt(Project['yaml_filepath'], image_name, Project['Dimensions']['width'],
-        #                                   Project['Dimensions']['height'], array_of_annotations[frame_num],
-        #                                   'AI/train_data/labels/train')
-        #
-        #     #           Dimensions are added already
-        # #           Project['Dimensions']['width'],Project['Dimensions']['height']
-        # #           now retrieval of annotations + where to save the file
-        # #           Also now we need to pick where to save the model
-        #
-        #     mc.ModelController().train_model(Project['yaml_filepath'], Project['model_filepath'], img_train_size=320)
-        #     DETACHED_PROCESS = 0x00000008
-        #     pid = subprocess.Popen([sys.executable, "test_processing.py", Project['yaml_filepath'], Project['model_filepath'], "320"],
-        #                                                   creationflags=DETACHED_PROCESS).pid
-        #     return True
-        #     pass
-        # else:
-        #     # Return that it is already being trained
-        #     # when that happens then add how many needs to be trained
-        #     # Maybe when done training send the annotatedFrames and it will do training
-        #     return False
-        #     pass
-        #
-        # test_processing.start_training(Project['yaml_filepath'],Project['model_filepath'] ,img_train_size=320)
+
 
     def check_training_process(project_id):
         Project = Projects.find_one({"_id":ObjectId(project_id)})

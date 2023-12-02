@@ -23,11 +23,8 @@ Annotations = db_connection['Annotations']
 ALLOWED_EXTENSIONS = {'mp4', 'mov', 'wmv', 'flv', 'avi', 'mkv', 'webm'}
 
 
-# def annotationUpdate():
-#     Annotations.update_many({"project_id": ObjectId("654bb3d2b209809760f6911e")},{"$set": {"project_id":ObjectId("654bcdfa5d580b31ca40c13d") }})
 
 def delete_folder_files(folder):
-# Make it a function and pass folder names
     for filename in os.listdir(folder):
         file_path = os.path.join(folder, filename)
         try:
@@ -148,16 +145,6 @@ class landingController:
             # return redirect(url_for("landing.rendering"))
 
     def create_project():
-        # model_path, yaml_path
-        # name, frames_size, directory_of_file (img), labels
-    #-----------------------------------------------------------
-        # Images uploaded into two places, training and public for displaying
-        # Create folder for each project in public/images/Filename , without spaces in filename
-        # Make model + yaml files
-        # Make a new record in Projects Collection
-        # Calculate how many frames
-
-
 
         # Images (Dataset) add them to two places, public images and in AI/train_data/images
         # checking if the request sent was a post request
@@ -287,9 +274,7 @@ class landingController:
         for frame_num in frames_annotated:
             image_name = f"{frame_num}_{Project['Name']}.jpg"
             frame_names.append(image_name)
-            # RESIZING JUST IN CASE
-            # img = cv2.imread(Project['Directory_of_File'] +'/'+ image_name)
-            # cv2.resize(img, (Project['Dimensions']['width'], Project['Dimensions']['height']))
+
             # export annotations
             pm.ProjectManager().create_annotations_txt(Project['yaml_filepath'], image_name,
                                                        Project['Dimensions']['width'],
@@ -302,18 +287,3 @@ class landingController:
             # Copy images to folder
             shutil.copy(src_dir + '/' + f, dst_dir)
         return {"Exported_data_location":f"Folder Created called Exported_data/{Project['Name']} and contains exported data"}
-    def rendering():
-        return "DONE"
-        # print(os.getcwd())
-        # return send_from_directory("/frontend/build",'index.html')
-
-
-# db.test.update({"name":"albert"},
-#   {
-#     "$set" : {"bugs.0.test" : {"name" : "haha"}},
-#     "$inc" : {"bugs.0.count" : 1},
-#     "$inc" : {"bugs.1.count" : 1}
-#   }
-# );
-
-# landingController.a()
