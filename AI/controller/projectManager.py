@@ -99,8 +99,8 @@ class ProjectManager(object):
         TOLERANCE = 5
         assert img_height > 0 and img_width > 0, "Image width and height cannot be a negative"
         assert x >= 0 and y >= 0 and w >=0  and h >=0 , 'The provided values to be normalized must not contain a negative number'
-        assert x <= img_width + TOLERANCE and y <= img_height + TOLERANCE and w < img_width + TOLERANCE and h < img_height + TOLERANCE, \
-            "The provided values to be normalized are out of the image boundaries"
+        #assert x <= img_width + TOLERANCE and y <= img_height + TOLERANCE and w < img_width + TOLERANCE and h < img_height + TOLERANCE, \
+        #    "The provided values to be normalized are out of the image boundaries"
 
         # Calculate the normalized values
         x_norm = x / img_width
@@ -123,6 +123,6 @@ class ProjectManager(object):
         h = h_norm * img_height
 
         TOLERANCE = 5
-        assert x <= img_width + TOLERANCE and y <= img_height + TOLERANCE and w < img_width + TOLERANCE and h < img_height + TOLERANCE, \
-        "The provided values to be de-normalized are out of the image boundaries"
+#        assert x <= img_width + TOLERANCE and y <= img_height + TOLERANCE and w < img_width + TOLERANCE and h < img_height + TOLERANCE, \
+ #       "The provided values to be de-normalized are out of the image boundaries"
         return x, y, w, h

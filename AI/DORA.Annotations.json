@@ -1,0 +1,8232 @@
+[{
+  "_id": {
+    "$oid": "655f18b8e3b41cdd79376a3d"
+  },
+  "frame": 0,
+  "label": "glass",
+  "x": 525,
+  "y": 339,
+  "width": 575,
+  "height": 264,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f18ebe3b41cdd79376a3e"
+  },
+  "frame": 1,
+  "label": "glass",
+  "x": 167,
+  "y": 203,
+  "width": 876,
+  "height": 265,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1901e3b41cdd79376a3f"
+  },
+  "frame": 2,
+  "label": "glass",
+  "x": 0,
+  "y": 70,
+  "width": 1162,
+  "height": 293,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1921e3b41cdd79376a40"
+  },
+  "frame": 3,
+  "label": "glass",
+  "x": 390,
+  "y": 177,
+  "width": 604,
+  "height": 543,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1935e3b41cdd79376a41"
+  },
+  "frame": 4,
+  "label": "glass",
+  "x": 304,
+  "y": 181,
+  "width": 608,
+  "height": 371,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f194ee3b41cdd79376a42"
+  },
+  "frame": 5,
+  "label": "glass",
+  "x": 303,
+  "y": 3,
+  "width": 973,
+  "height": 659,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1963e3b41cdd79376a43"
+  },
+  "frame": 6,
+  "label": "glass",
+  "x": 144,
+  "y": 162,
+  "width": 974,
+  "height": 386,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1978e3b41cdd79376a44"
+  },
+  "frame": 7,
+  "label": "glass",
+  "x": 266,
+  "y": 111,
+  "width": 671,
+  "height": 606,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f198ce3b41cdd79376a45"
+  },
+  "frame": 8,
+  "label": "glass",
+  "x": 288,
+  "y": 74,
+  "width": 720,
+  "height": 514,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f199fe3b41cdd79376a46"
+  },
+  "frame": 9,
+  "label": "glass",
+  "x": 119,
+  "y": 263,
+  "width": 996,
+  "height": 210,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f19ace3b41cdd79376a47"
+  },
+  "frame": 10,
+  "label": "glass",
+  "x": 503,
+  "y": 210,
+  "width": 252,
+  "height": 210,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f19bde3b41cdd79376a48"
+  },
+  "frame": 11,
+  "label": "glass",
+  "x": 7,
+  "y": 182,
+  "width": 951,
+  "height": 403,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f19cfe3b41cdd79376a49"
+  },
+  "frame": 12,
+  "label": "glass",
+  "x": 3,
+  "y": 68,
+  "width": 1275,
+  "height": 379,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f19eee3b41cdd79376a4a"
+  },
+  "frame": 13,
+  "label": "glass",
+  "x": 7,
+  "y": 94,
+  "width": 1268,
+  "height": 422,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f19fae3b41cdd79376a4b"
+  },
+  "frame": 14,
+  "label": "glass",
+  "x": 137,
+  "y": 7,
+  "width": 956,
+  "height": 473,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1a0be3b41cdd79376a4c"
+  },
+  "frame": 15,
+  "label": "glass",
+  "x": 4,
+  "y": 150,
+  "width": 1144,
+  "height": 391,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1a16e3b41cdd79376a4d"
+  },
+  "frame": 16,
+  "label": "glass",
+  "x": 312,
+  "y": 4,
+  "width": 744,
+  "height": 585,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1a21e3b41cdd79376a4e"
+  },
+  "frame": 17,
+  "label": "glass",
+  "x": 439,
+  "y": 101,
+  "width": 836,
+  "height": 615,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1a37e3b41cdd79376a4f"
+  },
+  "frame": 18,
+  "label": "glass",
+  "x": 249,
+  "y": 127,
+  "width": 758,
+  "height": 358,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1a40e3b41cdd79376a50"
+  },
+  "frame": 19,
+  "label": "glass",
+  "x": 475,
+  "y": 142,
+  "width": 433,
+  "height": 577,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1a4be3b41cdd79376a51"
+  },
+  "frame": 20,
+  "label": "glass",
+  "x": 135,
+  "y": 100,
+  "width": 782,
+  "height": 618,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1a55e3b41cdd79376a52"
+  },
+  "frame": 21,
+  "label": "glass",
+  "x": 448,
+  "y": 246,
+  "width": 377,
+  "height": 215,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1a60e3b41cdd79376a53"
+  },
+  "frame": 22,
+  "label": "glass",
+  "x": 299,
+  "y": 196,
+  "width": 505,
+  "height": 264,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1a6ce3b41cdd79376a54"
+  },
+  "frame": 23,
+  "label": "glass",
+  "x": 146,
+  "y": 4,
+  "width": 1026,
+  "height": 714,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1a7be3b41cdd79376a55"
+  },
+  "frame": 24,
+  "label": "glass",
+  "x": 2,
+  "y": 218,
+  "width": 1274,
+  "height": 428,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1a86e3b41cdd79376a56"
+  },
+  "frame": 25,
+  "label": "glass",
+  "x": 353,
+  "y": 87,
+  "width": 524,
+  "height": 551,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1a94e3b41cdd79376a57"
+  },
+  "frame": 26,
+  "label": "glass",
+  "x": 0,
+  "y": 145,
+  "width": 1263,
+  "height": 246,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1a9ce3b41cdd79376a58"
+  },
+  "frame": 27,
+  "label": "glass",
+  "x": 265,
+  "y": 220,
+  "width": 499,
+  "height": 289,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1aa7e3b41cdd79376a59"
+  },
+  "frame": 28,
+  "label": "glass",
+  "x": 299,
+  "y": 64,
+  "width": 655,
+  "height": 477,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1ab8e3b41cdd79376a5a"
+  },
+  "frame": 29,
+  "label": "glass",
+  "x": 426,
+  "y": 185,
+  "width": 703,
+  "height": 531,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1ac5e3b41cdd79376a5b"
+  },
+  "frame": 30,
+  "label": "glass",
+  "x": 251,
+  "y": 102,
+  "width": 475,
+  "height": 267,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1ad7e3b41cdd79376a5c"
+  },
+  "frame": 31,
+  "label": "glass",
+  "x": 125,
+  "y": 281,
+  "width": 856,
+  "height": 185,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1aeae3b41cdd79376a5d"
+  },
+  "frame": 32,
+  "label": "glass",
+  "x": 1,
+  "y": 106,
+  "width": 1240,
+  "height": 446,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1af5e3b41cdd79376a5e"
+  },
+  "frame": 33,
+  "label": "glass",
+  "x": 256,
+  "y": 181,
+  "width": 763,
+  "height": 337,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1b01e3b41cdd79376a5f"
+  },
+  "frame": 34,
+  "label": "glass",
+  "x": 3,
+  "y": 175,
+  "width": 1154,
+  "height": 442,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1b13e3b41cdd79376a60"
+  },
+  "frame": 35,
+  "label": "glass",
+  "x": 4,
+  "y": 203,
+  "width": 1062,
+  "height": 514,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1b24e3b41cdd79376a61"
+  },
+  "frame": 36,
+  "label": "glass",
+  "x": 28,
+  "y": 348,
+  "width": 1129,
+  "height": 202,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1b35e3b41cdd79376a62"
+  },
+  "frame": 37,
+  "label": "glass",
+  "x": 112,
+  "y": 67,
+  "width": 1044,
+  "height": 509,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1b3ee3b41cdd79376a63"
+  },
+  "frame": 38,
+  "label": "glass",
+  "x": 567,
+  "y": 4,
+  "width": 709,
+  "height": 500,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1b4ce3b41cdd79376a64"
+  },
+  "frame": 39,
+  "label": "glass",
+  "x": 360,
+  "y": 162,
+  "width": 441,
+  "height": 308,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1b59e3b41cdd79376a65"
+  },
+  "frame": 40,
+  "label": "glass",
+  "x": 191,
+  "y": 209,
+  "width": 565,
+  "height": 228,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1b68e3b41cdd79376a66"
+  },
+  "frame": 41,
+  "label": "glass",
+  "x": 308,
+  "y": 47,
+  "width": 657,
+  "height": 627,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1b77e3b41cdd79376a67"
+  },
+  "frame": 42,
+  "label": "glass",
+  "x": 180,
+  "y": 180,
+  "width": 526,
+  "height": 348,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1b83e3b41cdd79376a68"
+  },
+  "frame": 43,
+  "label": "glass",
+  "x": 319,
+  "y": 7,
+  "width": 805,
+  "height": 712,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1b8ce3b41cdd79376a69"
+  },
+  "frame": 44,
+  "label": "glass",
+  "x": 192,
+  "y": 131,
+  "width": 850,
+  "height": 492,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1b96e3b41cdd79376a6a"
+  },
+  "frame": 45,
+  "label": "glass",
+  "x": 367,
+  "y": 290,
+  "width": 399,
+  "height": 234,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1ba0e3b41cdd79376a6b"
+  },
+  "frame": 46,
+  "label": "glass",
+  "x": 205,
+  "y": 162,
+  "width": 813,
+  "height": 340,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1baee3b41cdd79376a6c"
+  },
+  "frame": 47,
+  "label": "glass",
+  "x": 214,
+  "y": 283,
+  "width": 468,
+  "height": 156,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1bb7e3b41cdd79376a6d"
+  },
+  "frame": 48,
+  "label": "glass",
+  "x": 273,
+  "y": 212,
+  "width": 735,
+  "height": 271,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1bc7e3b41cdd79376a6e"
+  },
+  "frame": 49,
+  "label": "glass",
+  "x": 215,
+  "y": 271,
+  "width": 894,
+  "height": 280,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1c09e3b41cdd79376a6f"
+  },
+  "frame": 100,
+  "label": "metal",
+  "x": 2,
+  "y": 4,
+  "width": 779,
+  "height": 530,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1c12e3b41cdd79376a70"
+  },
+  "frame": 101,
+  "label": "metal",
+  "x": 216,
+  "y": 29,
+  "width": 859,
+  "height": 607,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1c1ee3b41cdd79376a71"
+  },
+  "frame": 102,
+  "label": "metal",
+  "x": 423,
+  "y": 223,
+  "width": 767,
+  "height": 424,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1c2be3b41cdd79376a72"
+  },
+  "frame": 103,
+  "label": "metal",
+  "x": 305,
+  "y": 188,
+  "width": 619,
+  "height": 370,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1c33e3b41cdd79376a73"
+  },
+  "frame": 104,
+  "label": "metal",
+  "x": 53,
+  "y": 3,
+  "width": 1225,
+  "height": 713,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1c47e3b41cdd79376a74"
+  },
+  "frame": 105,
+  "label": "metal",
+  "x": 59,
+  "y": 211,
+  "width": 879,
+  "height": 465,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1c54e3b41cdd79376a75"
+  },
+  "frame": 106,
+  "label": "metal",
+  "x": 472,
+  "y": 129,
+  "width": 801,
+  "height": 584,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1c62e3b41cdd79376a76"
+  },
+  "frame": 107,
+  "label": "metal",
+  "x": 361,
+  "y": 98,
+  "width": 589,
+  "height": 449,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1c77e3b41cdd79376a77"
+  },
+  "frame": 108,
+  "label": "metal",
+  "x": 28,
+  "y": 55,
+  "width": 1247,
+  "height": 644,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1c7ee3b41cdd79376a78"
+  },
+  "frame": 109,
+  "label": "metal",
+  "x": 311,
+  "y": 175,
+  "width": 593,
+  "height": 402,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1c87e3b41cdd79376a79"
+  },
+  "frame": 110,
+  "label": "metal",
+  "x": 212,
+  "y": 203,
+  "width": 932,
+  "height": 288,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1c94e3b41cdd79376a7a"
+  },
+  "frame": 111,
+  "label": "metal",
+  "x": 381,
+  "y": 4,
+  "width": 478,
+  "height": 714,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1c9ce3b41cdd79376a7b"
+  },
+  "frame": 112,
+  "label": "metal",
+  "x": 467,
+  "y": 83,
+  "width": 737,
+  "height": 532,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1ca4e3b41cdd79376a7c"
+  },
+  "frame": 113,
+  "label": "metal",
+  "x": 432,
+  "y": 335,
+  "width": 651,
+  "height": 382,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1cb0e3b41cdd79376a7d"
+  },
+  "frame": 114,
+  "label": "metal",
+  "x": 328,
+  "y": 142,
+  "width": 664,
+  "height": 502,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1cbee3b41cdd79376a7e"
+  },
+  "frame": 115,
+  "label": "metal",
+  "x": 377,
+  "y": 32,
+  "width": 896,
+  "height": 680,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1ccbe3b41cdd79376a7f"
+  },
+  "frame": 116,
+  "label": "metal",
+  "x": 290,
+  "y": 16,
+  "width": 750,
+  "height": 551,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1cd5e3b41cdd79376a80"
+  },
+  "frame": 117,
+  "label": "metal",
+  "x": 177,
+  "y": 181,
+  "width": 1014,
+  "height": 521,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1ce3e3b41cdd79376a81"
+  },
+  "frame": 118,
+  "label": "metal",
+  "x": 360,
+  "y": 108,
+  "width": 703,
+  "height": 476,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1cece3b41cdd79376a82"
+  },
+  "frame": 119,
+  "label": "metal",
+  "x": 397,
+  "y": 222,
+  "width": 338,
+  "height": 295,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1cf6e3b41cdd79376a83"
+  },
+  "frame": 120,
+  "label": "metal",
+  "x": 188,
+  "y": 254,
+  "width": 844,
+  "height": 372,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1d02e3b41cdd79376a84"
+  },
+  "frame": 121,
+  "label": "metal",
+  "x": 473,
+  "y": 133,
+  "width": 262,
+  "height": 368,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1d0ce3b41cdd79376a85"
+  },
+  "frame": 122,
+  "label": "metal",
+  "x": 453,
+  "y": 106,
+  "width": 657,
+  "height": 498,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1d16e3b41cdd79376a86"
+  },
+  "frame": 123,
+  "label": "metal",
+  "x": 11,
+  "y": 95,
+  "width": 1262,
+  "height": 624,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1d1ee3b41cdd79376a87"
+  },
+  "frame": 124,
+  "label": "metal",
+  "x": 456,
+  "y": 207,
+  "width": 314,
+  "height": 289,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1d2be3b41cdd79376a88"
+  },
+  "frame": 125,
+  "label": "metal",
+  "x": 340,
+  "y": 135,
+  "width": 687,
+  "height": 405,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1d33e3b41cdd79376a89"
+  },
+  "frame": 126,
+  "label": "metal",
+  "x": 377,
+  "y": 165,
+  "width": 515,
+  "height": 408,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1d3ce3b41cdd79376a8a"
+  },
+  "frame": 127,
+  "label": "metal",
+  "x": 251,
+  "y": 74,
+  "width": 751,
+  "height": 584,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1d45e3b41cdd79376a8b"
+  },
+  "frame": 128,
+  "label": "metal",
+  "x": 84,
+  "y": 4,
+  "width": 716,
+  "height": 712,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1d4fe3b41cdd79376a8c"
+  },
+  "frame": 129,
+  "label": "metal",
+  "x": 78,
+  "y": 58,
+  "width": 937,
+  "height": 657,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1d59e3b41cdd79376a8d"
+  },
+  "frame": 130,
+  "label": "metal",
+  "x": 244,
+  "y": 17,
+  "width": 769,
+  "height": 687,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1d61e3b41cdd79376a8e"
+  },
+  "frame": 131,
+  "label": "metal",
+  "x": 296,
+  "y": 276,
+  "width": 591,
+  "height": 218,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1d6be3b41cdd79376a8f"
+  },
+  "frame": 132,
+  "label": "metal",
+  "x": 376,
+  "y": 234,
+  "width": 439,
+  "height": 384,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1d74e3b41cdd79376a90"
+  },
+  "frame": 133,
+  "label": "metal",
+  "x": 12,
+  "y": 102,
+  "width": 1145,
+  "height": 553,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1d86e3b41cdd79376a91"
+  },
+  "frame": 134,
+  "label": "metal",
+  "x": 96,
+  "y": 3,
+  "width": 843,
+  "height": 669,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1d92e3b41cdd79376a92"
+  },
+  "frame": 135,
+  "label": "metal",
+  "x": 404,
+  "y": 161,
+  "width": 495,
+  "height": 411,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1d9fe3b41cdd79376a93"
+  },
+  "frame": 136,
+  "label": "metal",
+  "x": 179,
+  "y": 43,
+  "width": 705,
+  "height": 631,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1da8e3b41cdd79376a94"
+  },
+  "frame": 137,
+  "label": "metal",
+  "x": 263,
+  "y": 182,
+  "width": 487,
+  "height": 444,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1db0e3b41cdd79376a95"
+  },
+  "frame": 138,
+  "label": "metal",
+  "x": 464,
+  "y": 164,
+  "width": 623,
+  "height": 554,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1dbee3b41cdd79376a96"
+  },
+  "frame": 139,
+  "label": "metal",
+  "x": 449,
+  "y": 136,
+  "width": 399,
+  "height": 377,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1dc8e3b41cdd79376a97"
+  },
+  "frame": 140,
+  "label": "metal",
+  "x": 318,
+  "y": 218,
+  "width": 468,
+  "height": 290,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1dd4e3b41cdd79376a98"
+  },
+  "frame": 141,
+  "label": "metal",
+  "x": 365,
+  "y": 172,
+  "width": 517,
+  "height": 396,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1dece3b41cdd79376a99"
+  },
+  "frame": 142,
+  "label": "metal",
+  "x": 9,
+  "y": 5,
+  "width": 876,
+  "height": 477,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1df8e3b41cdd79376a9a"
+  },
+  "frame": 143,
+  "label": "metal",
+  "x": 268,
+  "y": 109,
+  "width": 789,
+  "height": 611,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1e03e3b41cdd79376a9b"
+  },
+  "frame": 144,
+  "label": "metal",
+  "x": 214,
+  "y": 99,
+  "width": 735,
+  "height": 566,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1e11e3b41cdd79376a9c"
+  },
+  "frame": 145,
+  "label": "metal",
+  "x": 218,
+  "y": 164,
+  "width": 827,
+  "height": 552,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1e1ae3b41cdd79376a9d"
+  },
+  "frame": 146,
+  "label": "metal",
+  "x": 258,
+  "y": 182,
+  "width": 1012,
+  "height": 366,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1e37e3b41cdd79376aa0"
+  },
+  "frame": 149,
+  "label": "metal",
+  "x": 236,
+  "y": 58,
+  "width": 780,
+  "height": 619,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1e73e3b41cdd79376aa1"
+  },
+  "frame": 200,
+  "label": "paper",
+  "x": 179,
+  "y": 57,
+  "width": 901,
+  "height": 576,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1e7ee3b41cdd79376aa2"
+  },
+  "frame": 201,
+  "label": "paper",
+  "x": 2,
+  "y": 2,
+  "width": 1276,
+  "height": 519,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1e8ae3b41cdd79376aa3"
+  },
+  "frame": 202,
+  "label": "paper",
+  "x": 224,
+  "y": 11,
+  "width": 709,
+  "height": 663,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1e94e3b41cdd79376aa4"
+  },
+  "frame": 203,
+  "label": "paper",
+  "x": 27,
+  "y": 6,
+  "width": 1211,
+  "height": 714,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1e9de3b41cdd79376aa5"
+  },
+  "frame": 204,
+  "label": "paper",
+  "x": 203,
+  "y": 49,
+  "width": 835,
+  "height": 524,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1ea6e3b41cdd79376aa6"
+  },
+  "frame": 205,
+  "label": "paper",
+  "x": 423,
+  "y": 196,
+  "width": 349,
+  "height": 359,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1eade3b41cdd79376aa7"
+  },
+  "frame": 206,
+  "label": "paper",
+  "x": 162,
+  "y": 269,
+  "width": 681,
+  "height": 234,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1ebce3b41cdd79376aa8"
+  },
+  "frame": 207,
+  "label": "paper",
+  "x": 14,
+  "y": 50,
+  "width": 1080,
+  "height": 589,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1ec8e3b41cdd79376aa9"
+  },
+  "frame": 208,
+  "label": "paper",
+  "x": 191,
+  "y": 136,
+  "width": 715,
+  "height": 508,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1ed3e3b41cdd79376aaa"
+  },
+  "frame": 209,
+  "label": "paper",
+  "x": 138,
+  "y": 152,
+  "width": 832,
+  "height": 409,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1edfe3b41cdd79376aab"
+  },
+  "frame": 210,
+  "label": "paper",
+  "x": 126,
+  "y": 119,
+  "width": 922,
+  "height": 504,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1ef0e3b41cdd79376aac"
+  },
+  "frame": 211,
+  "label": "paper",
+  "x": 3,
+  "y": 12,
+  "width": 1111,
+  "height": 710,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1ef8e3b41cdd79376aad"
+  },
+  "frame": 212,
+  "label": "paper",
+  "x": 4,
+  "y": 78,
+  "width": 1242,
+  "height": 639,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1f02e3b41cdd79376aae"
+  },
+  "frame": 213,
+  "label": "paper",
+  "x": 3,
+  "y": 4,
+  "width": 1182,
+  "height": 713,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1f0ce3b41cdd79376aaf"
+  },
+  "frame": 214,
+  "label": "paper",
+  "x": 158,
+  "y": 165,
+  "width": 934,
+  "height": 489,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1f16e3b41cdd79376ab0"
+  },
+  "frame": 215,
+  "label": "paper",
+  "x": 1,
+  "y": 2,
+  "width": 1160,
+  "height": 716,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1f1fe3b41cdd79376ab1"
+  },
+  "frame": 216,
+  "label": "paper",
+  "x": 41,
+  "y": 47,
+  "width": 1118,
+  "height": 670,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1f2de3b41cdd79376ab2"
+  },
+  "frame": 217,
+  "label": "paper",
+  "x": 102,
+  "y": 163,
+  "width": 1054,
+  "height": 439,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1f39e3b41cdd79376ab3"
+  },
+  "frame": 218,
+  "label": "paper",
+  "x": 167,
+  "y": 2,
+  "width": 806,
+  "height": 710,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1f42e3b41cdd79376ab4"
+  },
+  "frame": 219,
+  "label": "paper",
+  "x": 50,
+  "y": 3,
+  "width": 1124,
+  "height": 685,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1f4de3b41cdd79376ab5"
+  },
+  "frame": 220,
+  "label": "paper",
+  "x": 230,
+  "y": 218,
+  "width": 759,
+  "height": 376,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1f58e3b41cdd79376ab6"
+  },
+  "frame": 221,
+  "label": "paper",
+  "x": 3,
+  "y": 4,
+  "width": 1178,
+  "height": 705,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1f65e3b41cdd79376ab7"
+  },
+  "frame": 222,
+  "label": "paper",
+  "x": 160,
+  "y": 207,
+  "width": 857,
+  "height": 299,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1f6de3b41cdd79376ab8"
+  },
+  "frame": 223,
+  "label": "paper",
+  "x": 202,
+  "y": 153,
+  "width": 760,
+  "height": 380,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1f7ce3b41cdd79376ab9"
+  },
+  "frame": 224,
+  "label": "paper",
+  "x": 0,
+  "y": 3,
+  "width": 980,
+  "height": 661,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1f86e3b41cdd79376aba"
+  },
+  "frame": 225,
+  "label": "paper",
+  "x": 98,
+  "y": 99,
+  "width": 888,
+  "height": 540,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1f8ee3b41cdd79376abb"
+  },
+  "frame": 226,
+  "label": "paper",
+  "x": 325,
+  "y": 3,
+  "width": 610,
+  "height": 600,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1f97e3b41cdd79376abc"
+  },
+  "frame": 227,
+  "label": "paper",
+  "x": 227,
+  "y": 113,
+  "width": 729,
+  "height": 470,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1f9fe3b41cdd79376abd"
+  },
+  "frame": 228,
+  "label": "paper",
+  "x": 272,
+  "y": 70,
+  "width": 749,
+  "height": 578,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1faae3b41cdd79376abe"
+  },
+  "frame": 229,
+  "label": "paper",
+  "x": 97,
+  "y": 7,
+  "width": 954,
+  "height": 710,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1fb4e3b41cdd79376abf"
+  },
+  "frame": 230,
+  "label": "paper",
+  "x": 5,
+  "y": 8,
+  "width": 1048,
+  "height": 709,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1fbee3b41cdd79376ac0"
+  },
+  "frame": 231,
+  "label": "paper",
+  "x": 29,
+  "y": 118,
+  "width": 940,
+  "height": 569,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1fc8e3b41cdd79376ac1"
+  },
+  "frame": 232,
+  "label": "paper",
+  "x": 0,
+  "y": 0,
+  "width": 1277,
+  "height": 717,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1fd0e3b41cdd79376ac2"
+  },
+  "frame": 233,
+  "label": "paper",
+  "x": 0,
+  "y": 5,
+  "width": 1249,
+  "height": 713,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1fdde3b41cdd79376ac3"
+  },
+  "frame": 234,
+  "label": "paper",
+  "x": 2,
+  "y": 1,
+  "width": 1273,
+  "height": 716,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1fe7e3b41cdd79376ac4"
+  },
+  "frame": 235,
+  "label": "paper",
+  "x": 229,
+  "y": 170,
+  "width": 744,
+  "height": 464,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1ff1e3b41cdd79376ac5"
+  },
+  "frame": 236,
+  "label": "paper",
+  "x": 55,
+  "y": 4,
+  "width": 1091,
+  "height": 708,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f1ffce3b41cdd79376ac6"
+  },
+  "frame": 237,
+  "label": "paper",
+  "x": 296,
+  "y": 173,
+  "width": 982,
+  "height": 539,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2009e3b41cdd79376ac7"
+  },
+  "frame": 238,
+  "label": "paper",
+  "x": 2,
+  "y": 171,
+  "width": 1275,
+  "height": 547,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2019e3b41cdd79376ac8"
+  },
+  "frame": 239,
+  "label": "paper",
+  "x": 320,
+  "y": 215,
+  "width": 559,
+  "height": 294,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f202ce3b41cdd79376ac9"
+  },
+  "frame": 240,
+  "label": "paper",
+  "x": 35,
+  "y": 6,
+  "width": 969,
+  "height": 711,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2036e3b41cdd79376aca"
+  },
+  "frame": 241,
+  "label": "paper",
+  "x": 77,
+  "y": 7,
+  "width": 1090,
+  "height": 712,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2042e3b41cdd79376acb"
+  },
+  "frame": 242,
+  "label": "paper",
+  "x": 182,
+  "y": 244,
+  "width": 1032,
+  "height": 474,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f204ce3b41cdd79376acc"
+  },
+  "frame": 243,
+  "label": "paper",
+  "x": 1,
+  "y": 5,
+  "width": 1056,
+  "height": 541,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2056e3b41cdd79376acd"
+  },
+  "frame": 244,
+  "label": "paper",
+  "x": 181,
+  "y": 178,
+  "width": 1016,
+  "height": 430,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f205fe3b41cdd79376ace"
+  },
+  "frame": 245,
+  "label": "paper",
+  "x": 247,
+  "y": 34,
+  "width": 592,
+  "height": 599,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2069e3b41cdd79376acf"
+  },
+  "frame": 246,
+  "label": "paper",
+  "x": 283,
+  "y": 189,
+  "width": 775,
+  "height": 375,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2075e3b41cdd79376ad0"
+  },
+  "frame": 247,
+  "label": "paper",
+  "x": 134,
+  "y": 0,
+  "width": 677,
+  "height": 716,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2081e3b41cdd79376ad1"
+  },
+  "frame": 248,
+  "label": "paper",
+  "x": 143,
+  "y": 57,
+  "width": 883,
+  "height": 649,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2089e3b41cdd79376ad2"
+  },
+  "frame": 249,
+  "label": "paper",
+  "x": 215,
+  "y": 168,
+  "width": 560,
+  "height": 552,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2522e3b41cdd79376ad3"
+  },
+  "frame": 50,
+  "label": "glass",
+  "x": 168.26610565185547,
+  "y": 24.981751441955566,
+  "width": 1111.7338943481445,
+  "height": 680.7508707046509,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2540e3b41cdd79376ad4"
+  },
+  "frame": 51,
+  "label": "glass",
+  "x": 392,
+  "y": 273,
+  "width": 450,
+  "height": 448,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2552e3b41cdd79376ad5"
+  },
+  "frame": 52,
+  "label": "glass",
+  "x": 107,
+  "y": 30,
+  "width": 973,
+  "height": 323,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f255ee3b41cdd79376ad6"
+  },
+  "frame": 53,
+  "label": "glass",
+  "x": 175,
+  "y": 323,
+  "width": 732,
+  "height": 267,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2569e3b41cdd79376ad7"
+  },
+  "frame": 54,
+  "label": "glass",
+  "x": 118,
+  "y": 124,
+  "width": 987,
+  "height": 467,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2574e3b41cdd79376ad8"
+  },
+  "frame": 55,
+  "label": "glass",
+  "x": 290,
+  "y": 137,
+  "width": 954,
+  "height": 579,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2586e3b41cdd79376ad9"
+  },
+  "frame": 56,
+  "label": "glass",
+  "x": 62,
+  "y": 75,
+  "width": 1139,
+  "height": 357,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f258de3b41cdd79376ada"
+  },
+  "frame": 57,
+  "label": "glass",
+  "x": 0,
+  "y": 131.18475079536438,
+  "width": 1215.5255126953125,
+  "height": 335.4375207424164,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2592e3b41cdd79376adb"
+  },
+  "frame": 58,
+  "label": "glass",
+  "x": 411.17637634277344,
+  "y": 137.6320195198059,
+  "width": 560.205078125,
+  "height": 516.6218447685242,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2597e3b41cdd79376adc"
+  },
+  "frame": 59,
+  "label": "glass",
+  "x": 220.96633911132812,
+  "y": 130.83173990249634,
+  "width": 682.738037109375,
+  "height": 463.92441987991333,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f25a3e3b41cdd79376add"
+  },
+  "frame": 60,
+  "label": "glass",
+  "x": 530,
+  "y": 160,
+  "width": 372,
+  "height": 557,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f25a8e3b41cdd79376ade"
+  },
+  "frame": 61,
+  "label": "glass",
+  "x": 358.15380096435547,
+  "y": 75.13732731342316,
+  "width": 666.4496231079102,
+  "height": 641.2010496854782,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2600e3b41cdd79376ae9"
+  },
+  "frame": 65,
+  "label": "glass",
+  "x": 414,
+  "y": 212,
+  "width": 800,
+  "height": 503,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f260ce3b41cdd79376aed"
+  },
+  "frame": 69,
+  "label": "glass",
+  "x": 426.2785339355469,
+  "y": 67.08575427532196,
+  "width": 845.2375793457031,
+  "height": 361.06415569782257,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2612e3b41cdd79376aee"
+  },
+  "frame": 70,
+  "label": "glass",
+  "x": 6.3481444120407104,
+  "y": 52.356687784194946,
+  "width": 1091.1440736055374,
+  "height": 655.7797944545746,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2617e3b41cdd79376aef"
+  },
+  "frame": 71,
+  "label": "glass",
+  "x": 63.574585914611816,
+  "y": 155.89046001434326,
+  "width": 1044.5856618881226,
+  "height": 268.23437690734863,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f261ce3b41cdd79376af0"
+  },
+  "frame": 72,
+  "label": "glass",
+  "x": 369.45484161376953,
+  "y": 180.99475622177124,
+  "width": 910.1305770874023,
+  "height": 495.5933690071106,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2629e3b41cdd79376af1"
+  },
+  "frame": 73,
+  "label": "glass",
+  "x": 278,
+  "y": 256,
+  "width": 660,
+  "height": 285,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f262de3b41cdd79376af2"
+  },
+  "frame": 74,
+  "label": "glass",
+  "x": 374.8419952392578,
+  "y": 249.3196964263916,
+  "width": 292.6348114013672,
+  "height": 217.52710819244385,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2636e3b41cdd79376af3"
+  },
+  "frame": 75,
+  "label": "glass",
+  "x": 422,
+  "y": 249,
+  "width": 589,
+  "height": 471,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f263de3b41cdd79376af4"
+  },
+  "frame": 76,
+  "label": "glass",
+  "x": 17,
+  "y": 120,
+  "width": 923.6423644423485,
+  "height": 506.79226756095886,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2646e3b41cdd79376af5"
+  },
+  "frame": 77,
+  "label": "glass",
+  "x": 584,
+  "y": 315,
+  "width": 550,
+  "height": 400,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2660e3b41cdd79376af7"
+  },
+  "frame": 78,
+  "label": "glass",
+  "x": 501,
+  "y": 14,
+  "width": 648,
+  "height": 704,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f266fe3b41cdd79376af8"
+  },
+  "frame": 79,
+  "label": "glass",
+  "x": 377,
+  "y": 222,
+  "width": 897,
+  "height": 493,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f267be3b41cdd79376af9"
+  },
+  "frame": 80,
+  "label": "glass",
+  "x": 492,
+  "y": 108,
+  "width": 492,
+  "height": 614,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f268ae3b41cdd79376afa"
+  },
+  "frame": 81,
+  "label": "glass",
+  "x": 330,
+  "y": 209,
+  "width": 645,
+  "height": 505.9224343299866,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2690e3b41cdd79376afb"
+  },
+  "frame": 82,
+  "label": "glass",
+  "x": 187.70544052124023,
+  "y": 44.62377995252609,
+  "width": 1092.2945594787598,
+  "height": 664.1989615559578,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f269ae3b41cdd79376afc"
+  },
+  "frame": 83,
+  "label": "glass",
+  "x": 202,
+  "y": 0,
+  "width": 975,
+  "height": 719,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f26a0e3b41cdd79376afd"
+  },
+  "frame": 84,
+  "label": "glass",
+  "x": 244.71141815185547,
+  "y": 87.4248057603836,
+  "width": 867.8357315063477,
+  "height": 618.542348742485,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f26abe3b41cdd79376afe"
+  },
+  "frame": 85,
+  "label": "glass",
+  "x": 3,
+  "y": 213,
+  "width": 1237,
+  "height": 504,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f26b0e3b41cdd79376aff"
+  },
+  "frame": 86,
+  "label": "glass",
+  "x": 460.52730560302734,
+  "y": 28.450987637043,
+  "width": 447.1401596069336,
+  "height": 609.4030353426933,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f26b5e3b41cdd79376b00"
+  },
+  "frame": 87,
+  "label": "glass",
+  "x": 98.9959716796875,
+  "y": 196.44983768463135,
+  "width": 948.9373779296875,
+  "height": 344.1713619232178,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f26bce3b41cdd79376b01"
+  },
+  "frame": 88,
+  "label": "glass",
+  "x": 123.03784370422363,
+  "y": 194.12861108779907,
+  "width": 986.1166667938232,
+  "height": 337.99680948257446,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f26c7e3b41cdd79376b02"
+  },
+  "frame": 89,
+  "label": "glass",
+  "x": 383,
+  "y": 162,
+  "width": 760,
+  "height": 444,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f26d1e3b41cdd79376b03"
+  },
+  "frame": 90,
+  "label": "glass",
+  "x": 279,
+  "y": 195,
+  "width": 974,
+  "height": 520,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f26dbe3b41cdd79376b04"
+  },
+  "frame": 91,
+  "label": "glass",
+  "x": 360,
+  "y": 226,
+  "width": 756,
+  "height": 342,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f26ebe3b41cdd79376b05"
+  },
+  "frame": 92,
+  "label": "glass",
+  "x": 172,
+  "y": 174,
+  "width": 885,
+  "height": 213,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f26efe3b41cdd79376b06"
+  },
+  "frame": 93,
+  "label": "glass",
+  "x": 239.55982208251953,
+  "y": 83.00439655780792,
+  "width": 814.4936752319336,
+  "height": 580.5496948957443,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f26f9e3b41cdd79376b07"
+  },
+  "frame": 94,
+  "label": "glass",
+  "x": 235,
+  "y": 138,
+  "width": 715,
+  "height": 473,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2706e3b41cdd79376b08"
+  },
+  "frame": 95,
+  "label": "glass",
+  "x": 555,
+  "y": 215,
+  "width": 719,
+  "height": 503,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f270be3b41cdd79376b09"
+  },
+  "frame": 96,
+  "label": "glass",
+  "x": 295.06189346313477,
+  "y": 106.71037673950195,
+  "width": 635.3114891052246,
+  "height": 481.8299674987793,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2715e3b41cdd79376b0a"
+  },
+  "frame": 97,
+  "label": "glass",
+  "x": 147,
+  "y": 274,
+  "width": 845,
+  "height": 208,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2722e3b41cdd79376b0b"
+  },
+  "frame": 98,
+  "label": "glass",
+  "x": 632,
+  "y": 6,
+  "width": 645,
+  "height": 713,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f272fe3b41cdd79376b0c"
+  },
+  "frame": 99,
+  "label": "glass",
+  "x": 348,
+  "y": 96,
+  "width": 929,
+  "height": 625,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f275fe3b41cdd79376b0d"
+  },
+  "frame": 147,
+  "label": "metal",
+  "x": 258,
+  "y": 182,
+  "width": 1012,
+  "height": 366,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2760e3b41cdd79376b0e"
+  },
+  "frame": 148,
+  "label": "metal",
+  "x": 77,
+  "y": 212,
+  "width": 877,
+  "height": 504,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2771e3b41cdd79376b0f"
+  },
+  "frame": 150,
+  "label": "metal",
+  "x": 274.17734146118164,
+  "y": 146.1659073829651,
+  "width": 633.7624931335449,
+  "height": 502.20349073410034,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f277ce3b41cdd79376b10"
+  },
+  "frame": 151,
+  "label": "metal",
+  "x": 288,
+  "y": 139,
+  "width": 891,
+  "height": 278,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2780e3b41cdd79376b11"
+  },
+  "frame": 152,
+  "label": "metal",
+  "x": 294.81225967407227,
+  "y": 41.93164139986038,
+  "width": 813.4869194030762,
+  "height": 594.0612718462944,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2784e3b41cdd79376b12"
+  },
+  "frame": 153,
+  "label": "metal",
+  "x": 273.93115997314453,
+  "y": 110.83368301391602,
+  "width": 687.5313949584961,
+  "height": 588.8793325424194,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2789e3b41cdd79376b13"
+  },
+  "frame": 154,
+  "label": "metal",
+  "x": 244.01477813720703,
+  "y": 39.2263787984848,
+  "width": 920.3322982788086,
+  "height": 666.5659385919571,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f278ee3b41cdd79376b14"
+  },
+  "frame": 155,
+  "label": "metal",
+  "x": 271.025390625,
+  "y": 21.076476573944092,
+  "width": 729.447021484375,
+  "height": 625.7103323936462,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2791e3b41cdd79376b15"
+  },
+  "frame": 156,
+  "label": "metal",
+  "x": 383.04893493652344,
+  "y": 187.15428829193115,
+  "width": 430.2278137207031,
+  "height": 382.6895999908447,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2798e3b41cdd79376b16"
+  },
+  "frame": 157,
+  "label": "metal",
+  "x": 514.6683502197266,
+  "y": 240.28644561767578,
+  "width": 317.3755645751953,
+  "height": 235.28088569641113,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f279de3b41cdd79376b17"
+  },
+  "frame": 158,
+  "label": "metal",
+  "x": 428.387451171875,
+  "y": 0,
+  "width": 749.4932556152344,
+  "height": 716.4145517349243,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f27a2e3b41cdd79376b18"
+  },
+  "frame": 159,
+  "label": "metal",
+  "x": 353.95008087158203,
+  "y": 136.48285388946533,
+  "width": 717.8117752075195,
+  "height": 531.3123893737793,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f27a6e3b41cdd79376b19"
+  },
+  "frame": 160,
+  "label": "metal",
+  "x": 341.70684814453125,
+  "y": 199.2412233352661,
+  "width": 623.6733245849609,
+  "height": 322.86179065704346,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f27a9e3b41cdd79376b1a"
+  },
+  "frame": 161,
+  "label": "metal",
+  "x": 376.4730453491211,
+  "y": 174.15716171264648,
+  "width": 533.0742263793945,
+  "height": 419.9548816680908,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f27ace3b41cdd79376b1b"
+  },
+  "frame": 162,
+  "label": "metal",
+  "x": 359.41173553466797,
+  "y": 66.49053990840912,
+  "width": 847.3237228393555,
+  "height": 638.0279642343521,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f27b9e3b41cdd79376b1c"
+  },
+  "frame": 163,
+  "label": "metal",
+  "x": 302,
+  "y": 142,
+  "width": 603,
+  "height": 461,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f27bde3b41cdd79376b1d"
+  },
+  "frame": 164,
+  "label": "metal",
+  "x": 291.3202476501465,
+  "y": 221.4032006263733,
+  "width": 598.6035346984863,
+  "height": 333.99744272232056,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f27d0e3b41cdd79376b1e"
+  },
+  "frame": 165,
+  "label": "metal",
+  "x": 61,
+  "y": 148,
+  "width": 1218,
+  "height": 398,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f27d3e3b41cdd79376b1f"
+  },
+  "frame": 166,
+  "label": "metal",
+  "x": 263.7943458557129,
+  "y": 91.78600788116455,
+  "width": 689.0116691589355,
+  "height": 515.7292699813843,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f27d7e3b41cdd79376b20"
+  },
+  "frame": 167,
+  "label": "metal",
+  "x": 323.4836959838867,
+  "y": 323.7059998512268,
+  "width": 401.25865936279297,
+  "height": 256.3245749473572,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f27dbe3b41cdd79376b21"
+  },
+  "frame": 168,
+  "label": "metal",
+  "x": 191.25621795654297,
+  "y": 0.06744384707417339,
+  "width": 832.0688247680664,
+  "height": 629.2408895498374,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f27dfe3b41cdd79376b22"
+  },
+  "frame": 169,
+  "label": "metal",
+  "x": 248.14403533935547,
+  "y": 73.74352812767029,
+  "width": 696.9607925415039,
+  "height": 537.2799074649811,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f27ece3b41cdd79376b23"
+  },
+  "frame": 170,
+  "label": "metal",
+  "x": 221,
+  "y": 193,
+  "width": 785,
+  "height": 318,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f27f0e3b41cdd79376b24"
+  },
+  "frame": 171,
+  "label": "metal",
+  "x": 312.7152442932129,
+  "y": 84.34069991111755,
+  "width": 583.2182121276855,
+  "height": 424.3462908267975,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f27f4e3b41cdd79376b25"
+  },
+  "frame": 172,
+  "label": "metal",
+  "x": 611.2747955322266,
+  "y": 176.01995587348938,
+  "width": 530.7724761962891,
+  "height": 530.1788556575775,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f27f8e3b41cdd79376b26"
+  },
+  "frame": 173,
+  "label": "metal",
+  "x": 402.33654022216797,
+  "y": 92.15747237205505,
+  "width": 657.4811935424805,
+  "height": 524.4474899768829,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2803e3b41cdd79376b27"
+  },
+  "frame": 174,
+  "label": "metal",
+  "x": 259,
+  "y": 97,
+  "width": 646,
+  "height": 490,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2807e3b41cdd79376b28"
+  },
+  "frame": 175,
+  "label": "metal",
+  "x": 174.75162506103516,
+  "y": 32.65588402748108,
+  "width": 931.1574172973633,
+  "height": 632.3190915584564,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f280ae3b41cdd79376b29"
+  },
+  "frame": 176,
+  "label": "metal",
+  "x": 315.3110122680664,
+  "y": 160.25452136993408,
+  "width": 689.6255111694336,
+  "height": 359.20108795166016,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2814e3b41cdd79376b2a"
+  },
+  "frame": 177,
+  "label": "metal",
+  "x": 96,
+  "y": 109,
+  "width": 776,
+  "height": 452,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2817e3b41cdd79376b2b"
+  },
+  "frame": 178,
+  "label": "metal",
+  "x": 254.81908798217773,
+  "y": 186.1199426651001,
+  "width": 691.6876411437988,
+  "height": 522.5703620910645,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f281be3b41cdd79376b2c"
+  },
+  "frame": 179,
+  "label": "metal",
+  "x": 462.42504119873047,
+  "y": 106.48754954338074,
+  "width": 757.265510559082,
+  "height": 613.5124504566193,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2824e3b41cdd79376b2d"
+  },
+  "frame": 180,
+  "label": "metal",
+  "x": 556,
+  "y": 195,
+  "width": 720,
+  "height": 522,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2828e3b41cdd79376b2e"
+  },
+  "frame": 181,
+  "label": "metal",
+  "x": 402.0777130126953,
+  "y": 77.68017411231995,
+  "width": 483.6979675292969,
+  "height": 375.06537795066833,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f282ee3b41cdd79376b2f"
+  },
+  "frame": 182,
+  "label": "metal",
+  "x": 365,
+  "y": 257,
+  "width": 595.6827011108398,
+  "height": 439.64833068847656,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2832e3b41cdd79376b30"
+  },
+  "frame": 183,
+  "label": "metal",
+  "x": 4.5515137910842896,
+  "y": 0,
+  "width": 1275.4484862089157,
+  "height": 699.8241662979126,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2844e3b41cdd79376b31"
+  },
+  "frame": 184,
+  "label": "metal",
+  "x": 484,
+  "y": 233,
+  "width": 284,
+  "height": 229,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f284fe3b41cdd79376b32"
+  },
+  "frame": 185,
+  "label": "metal",
+  "x": 81,
+  "y": 26,
+  "width": 1053,
+  "height": 693,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2858e3b41cdd79376b33"
+  },
+  "frame": 186,
+  "label": "metal",
+  "x": 16,
+  "y": 50,
+  "width": 1247.2236323356628,
+  "height": 654.9585127830505,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2866e3b41cdd79376b34"
+  },
+  "frame": 187,
+  "label": "metal",
+  "x": 411,
+  "y": 206,
+  "width": 795,
+  "height": 508,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2871e3b41cdd79376b35"
+  },
+  "frame": 188,
+  "label": "metal",
+  "x": 123,
+  "y": 154,
+  "width": 794,
+  "height": 501,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2876e3b41cdd79376b36"
+  },
+  "frame": 189,
+  "label": "metal",
+  "x": 73.4930419921875,
+  "y": 37.9050287604332,
+  "width": 1202.54638671875,
+  "height": 678.1052175164223,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f287be3b41cdd79376b37"
+  },
+  "frame": 190,
+  "label": "metal",
+  "x": 202,
+  "y": 216,
+  "width": 849.9636077880859,
+  "height": 349.66182231903076,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2880e3b41cdd79376b38"
+  },
+  "frame": 191,
+  "label": "metal",
+  "x": 299.32971954345703,
+  "y": 231.59510135650635,
+  "width": 578.5671615600586,
+  "height": 262.68113136291504,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2884e3b41cdd79376b39"
+  },
+  "frame": 192,
+  "label": "metal",
+  "x": 398.51390838623047,
+  "y": 143.47015857696533,
+  "width": 397.42984771728516,
+  "height": 391.3758373260498,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2887e3b41cdd79376b3a"
+  },
+  "frame": 193,
+  "label": "metal",
+  "x": 150.56432723999023,
+  "y": 219.84479427337646,
+  "width": 942.8717231750488,
+  "height": 337.7357769012451,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f288be3b41cdd79376b3b"
+  },
+  "frame": 194,
+  "label": "metal",
+  "x": 172.13953018188477,
+  "y": 34.79882687330246,
+  "width": 981.8043327331543,
+  "height": 621.0247948765755,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2894e3b41cdd79376b3c"
+  },
+  "frame": 195,
+  "label": "metal",
+  "x": 62,
+  "y": 55,
+  "width": 1208,
+  "height": 663,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2898e3b41cdd79376b3d"
+  },
+  "frame": 196,
+  "label": "metal",
+  "x": 369.9701690673828,
+  "y": 215.1877498626709,
+  "width": 380.8075714111328,
+  "height": 299.15844440460205,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f289ce3b41cdd79376b3e"
+  },
+  "frame": 197,
+  "label": "metal",
+  "x": 411.97715759277344,
+  "y": 186.04657888412476,
+  "width": 606.2270355224609,
+  "height": 398.71567010879517,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f28a1e3b41cdd79376b3f"
+  },
+  "frame": 198,
+  "label": "metal",
+  "x": 428.20281982421875,
+  "y": 148.69621753692627,
+  "width": 411.71875,
+  "height": 327.20958709716797,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f28a5e3b41cdd79376b40"
+  },
+  "frame": 199,
+  "label": "metal",
+  "x": 303.64978790283203,
+  "y": 168.471919298172,
+  "width": 976.350212097168,
+  "height": 539.6961915493011,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f28eee3b41cdd79376b41"
+  },
+  "frame": 250,
+  "label": "paper",
+  "x": 97.23095893859863,
+  "y": 49.93731915950775,
+  "width": 1114.454984664917,
+  "height": 650.5402761697769,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f28f3e3b41cdd79376b42"
+  },
+  "frame": 251,
+  "label": "paper",
+  "x": 4.2589110136032104,
+  "y": 117.10485935211182,
+  "width": 1083.6064606904984,
+  "height": 583.6440467834473,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f28f6e3b41cdd79376b43"
+  },
+  "frame": 252,
+  "label": "paper",
+  "x": 183.49462509155273,
+  "y": 19.816527664661407,
+  "width": 910.8514595031738,
+  "height": 589.6909233927727,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2917e3b41cdd79376b44"
+  },
+  "frame": 253,
+  "label": "paper",
+  "x": 8,
+  "y": 98,
+  "width": 1004,
+  "height": 559,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2921e3b41cdd79376b45"
+  },
+  "frame": 254,
+  "label": "paper",
+  "x": 0.8617553859949112,
+  "y": 31.770508289337158,
+  "width": 930.958770737052,
+  "height": 666.6807961463928,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f292ee3b41cdd79376b46"
+  },
+  "frame": 255,
+  "label": "paper",
+  "x": 81,
+  "y": 86,
+  "width": 921,
+  "height": 543,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2932e3b41cdd79376b47"
+  },
+  "frame": 256,
+  "label": "paper",
+  "x": 130.25280952453613,
+  "y": 0,
+  "width": 1143.6349773406982,
+  "height": 693.7350368499756,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f293de3b41cdd79376b48"
+  },
+  "frame": 257,
+  "label": "paper",
+  "x": 109,
+  "y": 186,
+  "width": 931,
+  "height": 537,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2943e3b41cdd79376b49"
+  },
+  "frame": 258,
+  "label": "paper",
+  "x": 0,
+  "y": 0,
+  "width": 1101.5283203125,
+  "height": 704.7660398483276,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f294de3b41cdd79376b4a"
+  },
+  "frame": 259,
+  "label": "paper",
+  "x": 0,
+  "y": 116,
+  "width": 1179,
+  "height": 548,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2951e3b41cdd79376b4b"
+  },
+  "frame": 260,
+  "label": "paper",
+  "x": 62.24642753601074,
+  "y": 0,
+  "width": 1015.1035785675049,
+  "height": 694.9021625518799,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2957e3b41cdd79376b4c"
+  },
+  "frame": 261,
+  "label": "paper",
+  "x": 48,
+  "y": 48,
+  "width": 1145.9747314453125,
+  "height": 625.2763724327087,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f295be3b41cdd79376b4d"
+  },
+  "frame": 262,
+  "label": "paper",
+  "x": 210.6585693359375,
+  "y": 109.6242105960846,
+  "width": 766.3764953613281,
+  "height": 599.6083295345306,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2962e3b41cdd79376b4e"
+  },
+  "frame": 263,
+  "label": "paper",
+  "x": 77,
+  "y": 177,
+  "width": 1017.9856300354004,
+  "height": 423.49700689315796,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2971e3b41cdd79376b4f"
+  },
+  "frame": 264,
+  "label": "paper",
+  "x": 162,
+  "y": 12,
+  "width": 793,
+  "height": 614,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f297ce3b41cdd79376b50"
+  },
+  "frame": 265,
+  "label": "paper",
+  "x": 91,
+  "y": 188,
+  "width": 864,
+  "height": 328,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2986e3b41cdd79376b51"
+  },
+  "frame": 266,
+  "label": "paper",
+  "x": 146,
+  "y": 30,
+  "width": 931,
+  "height": 640,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f298ee3b41cdd79376b52"
+  },
+  "frame": 267,
+  "label": "paper",
+  "x": 195,
+  "y": 78,
+  "width": 1023,
+  "height": 547,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2997e3b41cdd79376b53"
+  },
+  "frame": 268,
+  "label": "paper",
+  "x": 132,
+  "y": 112,
+  "width": 1141,
+  "height": 604,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f299de3b41cdd79376b54"
+  },
+  "frame": 269,
+  "label": "paper",
+  "x": 101.49111747741699,
+  "y": 5.1420897245407104,
+  "width": 962.8842639923096,
+  "height": 696.9106274843216,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f29a1e3b41cdd79376b55"
+  },
+  "frame": 270,
+  "label": "glass",
+  "x": 77.9583740234375,
+  "y": 131.95613265037537,
+  "width": 965.2298736572266,
+  "height": 419.32249188423157,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f29a9e3b41cdd79376b56"
+  },
+  "frame": 271,
+  "label": "paper",
+  "x": 78.30969333648682,
+  "y": 17.410521805286407,
+  "width": 1089.9916982650757,
+  "height": 680.6320998072624,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f29b5e3b41cdd79376b57"
+  },
+  "frame": 272,
+  "label": "paper",
+  "x": 188,
+  "y": 7,
+  "width": 794,
+  "height": 660,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f29bbe3b41cdd79376b58"
+  },
+  "frame": 273,
+  "label": "paper",
+  "x": 14.869873523712158,
+  "y": 18.369018584489822,
+  "width": 1067.9328608512878,
+  "height": 675.658915489912,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f29c7e3b41cdd79376b59"
+  },
+  "frame": 274,
+  "label": "paper",
+  "x": 221,
+  "y": 216,
+  "width": 875,
+  "height": 379,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f29d6e3b41cdd79376b5a"
+  },
+  "frame": 275,
+  "label": "paper",
+  "x": 121,
+  "y": 97,
+  "width": 1066,
+  "height": 571,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f29dfe3b41cdd79376b5b"
+  },
+  "frame": 276,
+  "label": "paper",
+  "x": 1,
+  "y": 300,
+  "width": 1275,
+  "height": 418,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f29e8e3b41cdd79376b5c"
+  },
+  "frame": 277,
+  "label": "paper",
+  "x": 104,
+  "y": 95,
+  "width": 814,
+  "height": 486,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f29f3e3b41cdd79376b5d"
+  },
+  "frame": 278,
+  "label": "paper",
+  "x": 206,
+  "y": 3,
+  "width": 895,
+  "height": 702,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f29f8e3b41cdd79376b5e"
+  },
+  "frame": 279,
+  "label": "paper",
+  "x": 19.75341796875,
+  "y": 0,
+  "width": 1162.456283569336,
+  "height": 696.1641311645508,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f29fde3b41cdd79376b5f"
+  },
+  "frame": 280,
+  "label": "paper",
+  "x": 4.370483458042145,
+  "y": 0,
+  "width": 1200.0590667128563,
+  "height": 688.1520938873291,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2a04e3b41cdd79376b60"
+  },
+  "frame": 281,
+  "label": "paper",
+  "x": 64.63220119476318,
+  "y": 63.54833900928497,
+  "width": 1027.4159097671509,
+  "height": 628.0169838666916,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2a11e3b41cdd79376b62"
+  },
+  "frame": 283,
+  "label": "paper",
+  "x": 79.06262397766113,
+  "y": 67.15044915676117,
+  "width": 1124.1517162322998,
+  "height": 652.8495508432388,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2a1de3b41cdd79376b63"
+  },
+  "frame": 284,
+  "label": "paper",
+  "x": 247,
+  "y": 109,
+  "width": 1025,
+  "height": 611,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2a22e3b41cdd79376b64"
+  },
+  "frame": 285,
+  "label": "paper",
+  "x": 321.32823944091797,
+  "y": 233.13342332839966,
+  "width": 443.7680435180664,
+  "height": 284.9624562263489,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2a2be3b41cdd79376b65"
+  },
+  "frame": 286,
+  "label": "paper",
+  "x": 72,
+  "y": 4,
+  "width": 1030,
+  "height": 705,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2a35e3b41cdd79376b66"
+  },
+  "frame": 287,
+  "label": "paper",
+  "x": 240,
+  "y": 153,
+  "width": 573,
+  "height": 420,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2a43e3b41cdd79376b67"
+  },
+  "frame": 288,
+  "label": "paper",
+  "x": 5,
+  "y": 161,
+  "width": 1228,
+  "height": 481,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2a4de3b41cdd79376b68"
+  },
+  "frame": 289,
+  "label": "paper",
+  "x": 142,
+  "y": 16,
+  "width": 807,
+  "height": 703,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2a53e3b41cdd79376b69"
+  },
+  "frame": 290,
+  "label": "paper",
+  "x": 18.428223133087158,
+  "y": 66.14056527614594,
+  "width": 1040.5197596549988,
+  "height": 568.7833267450333,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2a5de3b41cdd79376b6a"
+  },
+  "frame": 291,
+  "label": "paper",
+  "x": 46,
+  "y": 173,
+  "width": 1080,
+  "height": 541,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2a66e3b41cdd79376b6b"
+  },
+  "frame": 292,
+  "label": "paper",
+  "x": 7,
+  "y": 3,
+  "width": 1268,
+  "height": 713,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2a6de3b41cdd79376b6c"
+  },
+  "frame": 293,
+  "label": "paper",
+  "x": 80.08398056030273,
+  "y": 147.36565947532654,
+  "width": 1058.265781402588,
+  "height": 478.71063351631165,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2a77e3b41cdd79376b6d"
+  },
+  "frame": 294,
+  "label": "paper",
+  "x": 28,
+  "y": 2,
+  "width": 999,
+  "height": 642,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2a7be3b41cdd79376b6e"
+  },
+  "frame": 295,
+  "label": "paper",
+  "x": 88.38290214538574,
+  "y": 21.606810986995697,
+  "width": 1010.7102680206299,
+  "height": 685.4794898629189,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2a88e3b41cdd79376b6f"
+  },
+  "frame": 296,
+  "label": "paper",
+  "x": 83,
+  "y": 79,
+  "width": 930,
+  "height": 643,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2a8de3b41cdd79376b70"
+  },
+  "frame": 297,
+  "label": "paper",
+  "x": 167.32006072998047,
+  "y": 112.28308439254761,
+  "width": 919.4888687133789,
+  "height": 493.8215231895447,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "655f2a97e3b41cdd79376b71"
+  },
+  "frame": 298,
+  "label": "paper",
+  "x": 313,
+  "y": 219,
+  "width": 639,
+  "height": 347,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "65634435e3b41cdd79376b72"
+  },
+  "frame": 299,
+  "label": "paper",
+  "x": 0,
+  "y": 0,
+  "width": 1188.6746978759766,
+  "height": 708.1702995300293,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "6563446ce3b41cdd79376b73"
+  },
+  "frame": 280,
+  "label": "paper",
+  "x": 4.370483458042145,
+  "y": 0,
+  "width": 1200.0590667128563,
+  "height": 688.1520938873291,
+  "project_id": {
+    "$oid": "655f1834e3b41cdd79376a3b"
+  }
+},
+{
+  "_id": {
+    "$oid": "656357ab621572c4c143ec9c"
+  },
+  "frame": 1,
+  "label": "glass",
+  "x": 154,
+  "y": 186,
+  "width": 896,
+  "height": 285,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635810621572c4c143ec9d"
+  },
+  "frame": 0,
+  "label": "glass",
+  "x": 515,
+  "y": 337,
+  "width": 593,
+  "height": 276,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635824621572c4c143ec9e"
+  },
+  "frame": 2,
+  "label": "glass",
+  "x": 4,
+  "y": 65,
+  "width": 1198,
+  "height": 342,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "6563583a621572c4c143ec9f"
+  },
+  "frame": 3,
+  "label": "glass",
+  "x": 456,
+  "y": 118,
+  "width": 552,
+  "height": 613,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635851621572c4c143eca0"
+  },
+  "frame": 4,
+  "label": "glass",
+  "x": 259,
+  "y": 168,
+  "width": 721,
+  "height": 409,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635862621572c4c143eca1"
+  },
+  "frame": 5,
+  "label": "glass",
+  "x": 243,
+  "y": 5,
+  "width": 1035,
+  "height": 671,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "6563587c621572c4c143eca2"
+  },
+  "frame": 6,
+  "label": "glass",
+  "x": 140,
+  "y": 154,
+  "width": 988,
+  "height": 404,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "6563588c621572c4c143eca3"
+  },
+  "frame": 7,
+  "label": "glass",
+  "x": 183,
+  "y": 98,
+  "width": 972,
+  "height": 658,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635899621572c4c143eca4"
+  },
+  "frame": 8,
+  "label": "glass",
+  "x": 273,
+  "y": 57,
+  "width": 719,
+  "height": 550,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656358a2621572c4c143eca5"
+  },
+  "frame": 9,
+  "label": "glass",
+  "x": 87,
+  "y": 232,
+  "width": 1042,
+  "height": 269,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656358ab621572c4c143eca6"
+  },
+  "frame": 10,
+  "label": "glass",
+  "x": 491,
+  "y": 166,
+  "width": 259,
+  "height": 261,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656358c2621572c4c143eca7"
+  },
+  "frame": 11,
+  "label": "glass",
+  "x": 8,
+  "y": 186,
+  "width": 1049,
+  "height": 397,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656358d3621572c4c143eca8"
+  },
+  "frame": 12,
+  "label": "glass",
+  "x": 3,
+  "y": 58,
+  "width": 1276,
+  "height": 385,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656358e7621572c4c143eca9"
+  },
+  "frame": 13,
+  "label": "glass",
+  "x": 1,
+  "y": 76,
+  "width": 1275,
+  "height": 455,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656358f6621572c4c143ecaa"
+  },
+  "frame": 14,
+  "label": "glass",
+  "x": 123,
+  "y": 2,
+  "width": 975,
+  "height": 541,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "6563590b621572c4c143ecab"
+  },
+  "frame": 15,
+  "label": "glass",
+  "x": 7,
+  "y": 146,
+  "width": 1167,
+  "height": 457,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635918621572c4c143ecac"
+  },
+  "frame": 16,
+  "label": "glass",
+  "x": 324,
+  "y": 1,
+  "width": 753,
+  "height": 604,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635925621572c4c143ecad"
+  },
+  "frame": 17,
+  "label": "glass",
+  "x": 413,
+  "y": 75,
+  "width": 853,
+  "height": 640,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635932621572c4c143ecae"
+  },
+  "frame": 18,
+  "label": "glass",
+  "x": 235,
+  "y": 117,
+  "width": 774,
+  "height": 397,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635941621572c4c143ecaf"
+  },
+  "frame": 19,
+  "label": "glass",
+  "x": 486,
+  "y": 133,
+  "width": 389,
+  "height": 594,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "6563594b621572c4c143ecb0"
+  },
+  "frame": 20,
+  "label": "glass",
+  "x": 118,
+  "y": 93,
+  "width": 811,
+  "height": 613,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635959621572c4c143ecb1"
+  },
+  "frame": 21,
+  "label": "glass",
+  "x": 421,
+  "y": 243,
+  "width": 452,
+  "height": 216,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635967621572c4c143ecb2"
+  },
+  "frame": 22,
+  "label": "glass",
+  "x": 271,
+  "y": 160,
+  "width": 594,
+  "height": 358,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635975621572c4c143ecb3"
+  },
+  "frame": 23,
+  "label": "glass",
+  "x": 144,
+  "y": 3,
+  "width": 1045,
+  "height": 715,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635982621572c4c143ecb4"
+  },
+  "frame": 24,
+  "label": "glass",
+  "x": 10,
+  "y": 173,
+  "width": 1265,
+  "height": 495,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635997621572c4c143ecb5"
+  },
+  "frame": 25,
+  "label": "glass",
+  "x": 340,
+  "y": 78,
+  "width": 588,
+  "height": 556,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656359aa621572c4c143ecb6"
+  },
+  "frame": 26,
+  "label": "glass",
+  "x": 1,
+  "y": 139,
+  "width": 1265,
+  "height": 253,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656359b9621572c4c143ecb7"
+  },
+  "frame": 27,
+  "label": "glass",
+  "x": 247,
+  "y": 221,
+  "width": 530,
+  "height": 292,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656359ca621572c4c143ecb8"
+  },
+  "frame": 28,
+  "label": "glass",
+  "x": 283,
+  "y": 48,
+  "width": 694,
+  "height": 529,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656359d9621572c4c143ecb9"
+  },
+  "frame": 29,
+  "label": "glass",
+  "x": 382,
+  "y": 162,
+  "width": 751,
+  "height": 556,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656359e5621572c4c143ecba"
+  },
+  "frame": 30,
+  "label": "glass",
+  "x": 238,
+  "y": 57,
+  "width": 494,
+  "height": 342,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656359ed621572c4c143ecbb"
+  },
+  "frame": 31,
+  "label": "glass",
+  "x": 112,
+  "y": 282,
+  "width": 875,
+  "height": 190,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656359fc621572c4c143ecbc"
+  },
+  "frame": 32,
+  "label": "glass",
+  "x": 4,
+  "y": 98,
+  "width": 1253,
+  "height": 466,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635a0c621572c4c143ecbd"
+  },
+  "frame": 33,
+  "label": "glass",
+  "x": 243,
+  "y": 178,
+  "width": 783,
+  "height": 347,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635a1b621572c4c143ecbe"
+  },
+  "frame": 34,
+  "label": "glass",
+  "x": 1,
+  "y": 169,
+  "width": 1182,
+  "height": 448,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635a28621572c4c143ecbf"
+  },
+  "frame": 35,
+  "label": "glass",
+  "x": 3,
+  "y": 201,
+  "width": 1064,
+  "height": 516,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635a3a621572c4c143ecc0"
+  },
+  "frame": 36,
+  "label": "glass",
+  "x": 26,
+  "y": 346,
+  "width": 1130,
+  "height": 225,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635a44621572c4c143ecc1"
+  },
+  "frame": 37,
+  "label": "glass",
+  "x": 85,
+  "y": 60,
+  "width": 1080,
+  "height": 518,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635a56621572c4c143ecc2"
+  },
+  "frame": 38,
+  "label": "glass",
+  "x": 637,
+  "y": 1,
+  "width": 640,
+  "height": 512,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635a63621572c4c143ecc3"
+  },
+  "frame": 39,
+  "label": "glass",
+  "x": 337,
+  "y": 158,
+  "width": 433,
+  "height": 308,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635a6b621572c4c143ecc4"
+  },
+  "frame": 40,
+  "label": "glass",
+  "x": 178,
+  "y": 200,
+  "width": 591,
+  "height": 261,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635a75621572c4c143ecc5"
+  },
+  "frame": 41,
+  "label": "glass",
+  "x": 297,
+  "y": 40,
+  "width": 676,
+  "height": 651,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635a7c621572c4c143ecc6"
+  },
+  "frame": 42,
+  "label": "glass",
+  "x": 197,
+  "y": 177,
+  "width": 513,
+  "height": 357,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635a8c621572c4c143ecc7"
+  },
+  "frame": 43,
+  "label": "glass",
+  "x": 282,
+  "y": 1,
+  "width": 861,
+  "height": 718,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635a98621572c4c143ecc8"
+  },
+  "frame": 44,
+  "label": "glass",
+  "x": 166,
+  "y": 121,
+  "width": 893,
+  "height": 518,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635aa5621572c4c143ecc9"
+  },
+  "frame": 45,
+  "label": "glass",
+  "x": 346,
+  "y": 325,
+  "width": 290,
+  "height": 204,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635ab8621572c4c143ecca"
+  },
+  "frame": 46,
+  "label": "glass",
+  "x": 201,
+  "y": 144,
+  "width": 820,
+  "height": 364,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635ac3621572c4c143eccb"
+  },
+  "frame": 47,
+  "label": "glass",
+  "x": 190,
+  "y": 278,
+  "width": 509,
+  "height": 167,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635aca621572c4c143eccc"
+  },
+  "frame": 48,
+  "label": "glass",
+  "x": 254,
+  "y": 198,
+  "width": 750,
+  "height": 313,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635ad3621572c4c143eccd"
+  },
+  "frame": 49,
+  "label": "glass",
+  "x": 195,
+  "y": 248,
+  "width": 917,
+  "height": 330,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635ae3621572c4c143ecce"
+  },
+  "frame": 50,
+  "label": "glass",
+  "x": 174,
+  "y": 16,
+  "width": 1129,
+  "height": 690,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635b2f621572c4c143eccf"
+  },
+  "frame": 100,
+  "label": "metal",
+  "x": 10,
+  "y": 10,
+  "width": 786,
+  "height": 517,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635b38621572c4c143ecd0"
+  },
+  "frame": 101,
+  "label": "metal",
+  "x": 252,
+  "y": 25,
+  "width": 806,
+  "height": 619,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635b42621572c4c143ecd1"
+  },
+  "frame": 102,
+  "label": "metal",
+  "x": 428,
+  "y": 185,
+  "width": 783,
+  "height": 474,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635b49621572c4c143ecd2"
+  },
+  "frame": 103,
+  "label": "metal",
+  "x": 286,
+  "y": 200,
+  "width": 651,
+  "height": 371,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635b59621572c4c143ecd3"
+  },
+  "frame": 104,
+  "label": "metal",
+  "x": 109,
+  "y": 2,
+  "width": 1169,
+  "height": 715,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635b63621572c4c143ecd4"
+  },
+  "frame": 105,
+  "label": "metal",
+  "x": 81,
+  "y": 183,
+  "width": 888,
+  "height": 508,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635b72621572c4c143ecd5"
+  },
+  "frame": 106,
+  "label": "metal",
+  "x": 439,
+  "y": 104,
+  "width": 839,
+  "height": 614,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635b7a621572c4c143ecd6"
+  },
+  "frame": 107,
+  "label": "metal",
+  "x": 368,
+  "y": 73,
+  "width": 590,
+  "height": 481,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635b88621572c4c143ecd7"
+  },
+  "frame": 108,
+  "label": "metal",
+  "x": 0,
+  "y": 31,
+  "width": 1268,
+  "height": 682,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635b92621572c4c143ecd8"
+  },
+  "frame": 109,
+  "label": "metal",
+  "x": 317,
+  "y": 173,
+  "width": 612,
+  "height": 441,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635b9e621572c4c143ecd9"
+  },
+  "frame": 110,
+  "label": "metal",
+  "x": 186,
+  "y": 192,
+  "width": 992,
+  "height": 309,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635ba5621572c4c143ecda"
+  },
+  "frame": 111,
+  "label": "metal",
+  "x": 346,
+  "y": 0,
+  "width": 488,
+  "height": 716,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635bb3621572c4c143ecdb"
+  },
+  "frame": 112,
+  "label": "metal",
+  "x": 446,
+  "y": 34,
+  "width": 764,
+  "height": 620,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635bbe621572c4c143ecdc"
+  },
+  "frame": 113,
+  "label": "metal",
+  "x": 443,
+  "y": 289,
+  "width": 637,
+  "height": 430,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635bc6621572c4c143ecdd"
+  },
+  "frame": 114,
+  "label": "metal",
+  "x": 336,
+  "y": 133,
+  "width": 662,
+  "height": 500,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635bd0621572c4c143ecde"
+  },
+  "frame": 115,
+  "label": "metal",
+  "x": 334,
+  "y": 17,
+  "width": 939,
+  "height": 702,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635bdb621572c4c143ecdf"
+  },
+  "frame": 116,
+  "label": "metal",
+  "x": 294,
+  "y": 6,
+  "width": 758,
+  "height": 580,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635beb621572c4c143ece0"
+  },
+  "frame": 117,
+  "label": "metal",
+  "x": 170,
+  "y": 162,
+  "width": 1028,
+  "height": 556,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635bf4621572c4c143ece1"
+  },
+  "frame": 118,
+  "label": "metal",
+  "x": 366,
+  "y": 107,
+  "width": 600,
+  "height": 485,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635bfe621572c4c143ece2"
+  },
+  "frame": 119,
+  "label": "metal",
+  "x": 388,
+  "y": 209,
+  "width": 351,
+  "height": 317,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635c0a621572c4c143ece3"
+  },
+  "frame": 120,
+  "label": "metal",
+  "x": 156,
+  "y": 251,
+  "width": 874,
+  "height": 385,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635c11621572c4c143ece4"
+  },
+  "frame": 121,
+  "label": "metal",
+  "x": 471,
+  "y": 109,
+  "width": 267,
+  "height": 411,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635c1f621572c4c143ece5"
+  },
+  "frame": 122,
+  "label": "metal",
+  "x": 454,
+  "y": 102,
+  "width": 664,
+  "height": 498,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635c29621572c4c143ece6"
+  },
+  "frame": 123,
+  "label": "metal",
+  "x": 11,
+  "y": 84,
+  "width": 1265,
+  "height": 635,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635c34621572c4c143ece7"
+  },
+  "frame": 124,
+  "label": "metal",
+  "x": 470,
+  "y": 192,
+  "width": 305,
+  "height": 312,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635c3d621572c4c143ece8"
+  },
+  "frame": 125,
+  "label": "metal",
+  "x": 355,
+  "y": 129,
+  "width": 687,
+  "height": 429,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635c45621572c4c143ece9"
+  },
+  "frame": 126,
+  "label": "metal",
+  "x": 371,
+  "y": 165,
+  "width": 536,
+  "height": 410,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635c4d621572c4c143ecea"
+  },
+  "frame": 127,
+  "label": "metal",
+  "x": 270,
+  "y": 67,
+  "width": 749,
+  "height": 606,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635c56621572c4c143eceb"
+  },
+  "frame": 128,
+  "label": "metal",
+  "x": 77,
+  "y": 26,
+  "width": 724,
+  "height": 692,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635c5f621572c4c143ecec"
+  },
+  "frame": 129,
+  "label": "metal",
+  "x": 73,
+  "y": 60,
+  "width": 954,
+  "height": 659,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635c6b621572c4c143eced"
+  },
+  "frame": 130,
+  "label": "metal",
+  "x": 275,
+  "y": 14,
+  "width": 755,
+  "height": 691,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635c73621572c4c143ecee"
+  },
+  "frame": 131,
+  "label": "metal",
+  "x": 287,
+  "y": 265,
+  "width": 611,
+  "height": 248,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635c7d621572c4c143ecef"
+  },
+  "frame": 132,
+  "label": "metal",
+  "x": 359,
+  "y": 231,
+  "width": 487,
+  "height": 397,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635c86621572c4c143ecf0"
+  },
+  "frame": 133,
+  "label": "metal",
+  "x": 27,
+  "y": 119,
+  "width": 1172,
+  "height": 553,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635c8e621572c4c143ecf1"
+  },
+  "frame": 134,
+  "label": "metal",
+  "x": 114,
+  "y": 90,
+  "width": 853,
+  "height": 580,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635c9e621572c4c143ecf2"
+  },
+  "frame": 135,
+  "label": "metal",
+  "x": 405,
+  "y": 163,
+  "width": 496,
+  "height": 418,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635ca7621572c4c143ecf3"
+  },
+  "frame": 136,
+  "label": "metal",
+  "x": 172,
+  "y": 48,
+  "width": 716,
+  "height": 638,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635caf621572c4c143ecf4"
+  },
+  "frame": 137,
+  "label": "metal",
+  "x": 263,
+  "y": 173,
+  "width": 502,
+  "height": 463,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635cb7621572c4c143ecf5"
+  },
+  "frame": 138,
+  "label": "metal",
+  "x": 460,
+  "y": 175,
+  "width": 628,
+  "height": 544,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635cbe621572c4c143ecf6"
+  },
+  "frame": 139,
+  "label": "metal",
+  "x": 458,
+  "y": 113,
+  "width": 406,
+  "height": 431,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635cc6621572c4c143ecf7"
+  },
+  "frame": 140,
+  "label": "metal",
+  "x": 309,
+  "y": 215,
+  "width": 494,
+  "height": 299,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635cd0621572c4c143ecf8"
+  },
+  "frame": 141,
+  "label": "metal",
+  "x": 361,
+  "y": 185,
+  "width": 530,
+  "height": 409,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635cdd621572c4c143ecf9"
+  },
+  "frame": 142,
+  "label": "metal",
+  "x": 7,
+  "y": 5,
+  "width": 909,
+  "height": 483,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635ce4621572c4c143ecfa"
+  },
+  "frame": 143,
+  "label": "metal",
+  "x": 307,
+  "y": 96,
+  "width": 770,
+  "height": 621,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635cfc621572c4c143ecfc"
+  },
+  "frame": 144,
+  "label": "metal",
+  "x": 169,
+  "y": 81,
+  "width": 785,
+  "height": 606,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635d03621572c4c143ecfd"
+  },
+  "frame": 145,
+  "label": "metal",
+  "x": 249,
+  "y": 116,
+  "width": 776,
+  "height": 601,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635d0e621572c4c143ecfe"
+  },
+  "frame": 146,
+  "label": "metal",
+  "x": 267,
+  "y": 174,
+  "width": 1011,
+  "height": 423,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635d18621572c4c143ecff"
+  },
+  "frame": 147,
+  "label": "metal",
+  "x": 46,
+  "y": 169,
+  "width": 913,
+  "height": 566,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635d25621572c4c143ed00"
+  },
+  "frame": 148,
+  "label": "metal",
+  "x": 489,
+  "y": 121,
+  "width": 702,
+  "height": 594,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635d2e621572c4c143ed01"
+  },
+  "frame": 149,
+  "label": "metal",
+  "x": 240,
+  "y": 60,
+  "width": 775,
+  "height": 617,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635d62621572c4c143ed02"
+  },
+  "frame": 200,
+  "label": "paper",
+  "x": 130,
+  "y": 66,
+  "width": 982,
+  "height": 548,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635d69621572c4c143ed03"
+  },
+  "frame": 201,
+  "label": "paper",
+  "x": 4,
+  "y": 5,
+  "width": 1281,
+  "height": 573,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635d77621572c4c143ed04"
+  },
+  "frame": 202,
+  "label": "paper",
+  "x": 160,
+  "y": 16,
+  "width": 846,
+  "height": 620,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635d7e621572c4c143ed05"
+  },
+  "frame": 203,
+  "label": "paper",
+  "x": 47,
+  "y": 25,
+  "width": 1190,
+  "height": 640,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635d85621572c4c143ed06"
+  },
+  "frame": 204,
+  "label": "paper",
+  "x": 165,
+  "y": 88,
+  "width": 961,
+  "height": 501,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635d8b621572c4c143ed07"
+  },
+  "frame": 205,
+  "label": "paper",
+  "x": 442,
+  "y": 171,
+  "width": 312,
+  "height": 447,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635d90621572c4c143ed08"
+  },
+  "frame": 206,
+  "label": "paper",
+  "x": 190,
+  "y": 261,
+  "width": 673,
+  "height": 266,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635d9d621572c4c143ed09"
+  },
+  "frame": 207,
+  "label": "paper",
+  "x": 5,
+  "y": 43,
+  "width": 1096,
+  "height": 653,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635da6621572c4c143ed0a"
+  },
+  "frame": 208,
+  "label": "paper",
+  "x": 189,
+  "y": 142,
+  "width": 742,
+  "height": 520,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635dac621572c4c143ed0b"
+  },
+  "frame": 209,
+  "label": "paper",
+  "x": 106,
+  "y": 159,
+  "width": 855,
+  "height": 418,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635db3621572c4c143ed0c"
+  },
+  "frame": 210,
+  "label": "paper",
+  "x": 140,
+  "y": 104,
+  "width": 913,
+  "height": 510,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635dbc621572c4c143ed0d"
+  },
+  "frame": 211,
+  "label": "paper",
+  "x": 6,
+  "y": 16,
+  "width": 1110,
+  "height": 703,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635dc4621572c4c143ed0e"
+  },
+  "frame": 212,
+  "label": "paper",
+  "x": 104,
+  "y": 64,
+  "width": 1150,
+  "height": 604,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635dd0621572c4c143ed0f"
+  },
+  "frame": 213,
+  "label": "paper",
+  "x": 1,
+  "y": 1,
+  "width": 1190,
+  "height": 715,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635dd9621572c4c143ed10"
+  },
+  "frame": 214,
+  "label": "paper",
+  "x": 105,
+  "y": 167,
+  "width": 1029,
+  "height": 477,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635de1621572c4c143ed11"
+  },
+  "frame": 215,
+  "label": "paper",
+  "x": 1,
+  "y": 3,
+  "width": 1164,
+  "height": 706,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635de8621572c4c143ed12"
+  },
+  "frame": 216,
+  "label": "paper",
+  "x": 93,
+  "y": 33,
+  "width": 1073,
+  "height": 683,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635dee621572c4c143ed13"
+  },
+  "frame": 217,
+  "label": "paper",
+  "x": 96,
+  "y": 181,
+  "width": 1058,
+  "height": 436,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635df5621572c4c143ed14"
+  },
+  "frame": 218,
+  "label": "paper",
+  "x": 159,
+  "y": 45,
+  "width": 844,
+  "height": 667,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635e04621572c4c143ed15"
+  },
+  "frame": 219,
+  "label": "paper",
+  "x": 65,
+  "y": 13,
+  "width": 1050,
+  "height": 688,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635e0b621572c4c143ed16"
+  },
+  "frame": 220,
+  "label": "paper",
+  "x": 221,
+  "y": 209,
+  "width": 771,
+  "height": 393,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635e14621572c4c143ed17"
+  },
+  "frame": 221,
+  "label": "paper",
+  "x": 6,
+  "y": 49,
+  "width": 1179,
+  "height": 660,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635e21621572c4c143ed18"
+  },
+  "frame": 222,
+  "label": "paper",
+  "x": 157,
+  "y": 197,
+  "width": 875,
+  "height": 325,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635e27621572c4c143ed19"
+  },
+  "frame": 223,
+  "label": "paper",
+  "x": 203,
+  "y": 144,
+  "width": 771,
+  "height": 411,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635e2f621572c4c143ed1a"
+  },
+  "frame": 224,
+  "label": "paper",
+  "x": 0,
+  "y": 10,
+  "width": 998,
+  "height": 649,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635e38621572c4c143ed1b"
+  },
+  "frame": 225,
+  "label": "paper",
+  "x": 69,
+  "y": 91,
+  "width": 916,
+  "height": 515,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635e3e621572c4c143ed1c"
+  },
+  "frame": 226,
+  "label": "paper",
+  "x": 324,
+  "y": 58,
+  "width": 727,
+  "height": 566,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635e45621572c4c143ed1d"
+  },
+  "frame": 227,
+  "label": "paper",
+  "x": 242,
+  "y": 97,
+  "width": 725,
+  "height": 489,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635e4b621572c4c143ed1e"
+  },
+  "frame": 228,
+  "label": "paper",
+  "x": 260,
+  "y": 59,
+  "width": 774,
+  "height": 609,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635e51621572c4c143ed1f"
+  },
+  "frame": 229,
+  "label": "paper",
+  "x": 119,
+  "y": 16,
+  "width": 943,
+  "height": 669,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635e5c621572c4c143ed20"
+  },
+  "frame": 230,
+  "label": "paper",
+  "x": 16,
+  "y": 17,
+  "width": 1042,
+  "height": 701,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635e68621572c4c143ed21"
+  },
+  "frame": 231,
+  "label": "paper",
+  "x": 11,
+  "y": 122,
+  "width": 1011,
+  "height": 541,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635e73621572c4c143ed22"
+  },
+  "frame": 232,
+  "label": "paper",
+  "x": 15,
+  "y": 42,
+  "width": 1242,
+  "height": 668,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635e7a621572c4c143ed23"
+  },
+  "frame": 233,
+  "label": "paper",
+  "x": 10,
+  "y": 10,
+  "width": 1250,
+  "height": 696,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635e81621572c4c143ed24"
+  },
+  "frame": 234,
+  "label": "paper",
+  "x": 10,
+  "y": 10,
+  "width": 1255,
+  "height": 696,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635e89621572c4c143ed25"
+  },
+  "frame": 235,
+  "label": "paper",
+  "x": 220,
+  "y": 206,
+  "width": 762,
+  "height": 420,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635e8f621572c4c143ed26"
+  },
+  "frame": 236,
+  "label": "paper",
+  "x": 57,
+  "y": 10,
+  "width": 1089,
+  "height": 691,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635e98621572c4c143ed27"
+  },
+  "frame": 237,
+  "label": "paper",
+  "x": 275,
+  "y": 283,
+  "width": 998,
+  "height": 424,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635e9f621572c4c143ed28"
+  },
+  "frame": 238,
+  "label": "paper",
+  "x": 0,
+  "y": 162,
+  "width": 1279,
+  "height": 557,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635eae621572c4c143ed29"
+  },
+  "frame": 239,
+  "label": "paper",
+  "x": 309,
+  "y": 212,
+  "width": 611,
+  "height": 310,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635eb5621572c4c143ed2a"
+  },
+  "frame": 240,
+  "label": "paper",
+  "x": 20,
+  "y": 87,
+  "width": 985,
+  "height": 621,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635ebe621572c4c143ed2b"
+  },
+  "frame": 241,
+  "label": "paper",
+  "x": 62,
+  "y": 3,
+  "width": 1097,
+  "height": 709,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635ecb621572c4c143ed2c"
+  },
+  "frame": 242,
+  "label": "paper",
+  "x": 170,
+  "y": 234,
+  "width": 1010,
+  "height": 483,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635ed3621572c4c143ed2d"
+  },
+  "frame": 243,
+  "label": "paper",
+  "x": 17,
+  "y": 17,
+  "width": 1043,
+  "height": 563,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635ed8621572c4c143ed2e"
+  },
+  "frame": 244,
+  "label": "paper",
+  "x": 194,
+  "y": 159,
+  "width": 1008,
+  "height": 454,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635ee1621572c4c143ed2f"
+  },
+  "frame": 245,
+  "label": "paper",
+  "x": 226,
+  "y": 25,
+  "width": 626,
+  "height": 623,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635ee8621572c4c143ed30"
+  },
+  "frame": 246,
+  "label": "paper",
+  "x": 286,
+  "y": 176,
+  "width": 773,
+  "height": 421,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635ef1621572c4c143ed31"
+  },
+  "frame": 247,
+  "label": "paper",
+  "x": 135,
+  "y": 14,
+  "width": 697,
+  "height": 705,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635efa621572c4c143ed32"
+  },
+  "frame": 248,
+  "label": "paper",
+  "x": 214,
+  "y": 50,
+  "width": 823,
+  "height": 649,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65635f00621572c4c143ed33"
+  },
+  "frame": 249,
+  "label": "paper",
+  "x": 218,
+  "y": 169,
+  "width": 566,
+  "height": 547,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "6563670ffeed7a1837fefa00"
+  },
+  "frame": 51,
+  "label": "glass",
+  "x": 384,
+  "y": 211,
+  "width": 465,
+  "height": 508,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "6563671dfeed7a1837fefa01"
+  },
+  "frame": 52,
+  "label": "glass",
+  "x": 100,
+  "y": 19,
+  "width": 1094,
+  "height": 317,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636728feed7a1837fefa02"
+  },
+  "frame": 53,
+  "label": "glass",
+  "x": 142,
+  "y": 277,
+  "width": 798,
+  "height": 324,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636743feed7a1837fefa03"
+  },
+  "frame": 54,
+  "label": "glass",
+  "x": 104,
+  "y": 95,
+  "width": 990,
+  "height": 500,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "6563674afeed7a1837fefa04"
+  },
+  "frame": 55,
+  "label": "glass",
+  "x": 265.9621238708496,
+  "y": 35.241149961948395,
+  "width": 989.8264503479004,
+  "height": 676.2047919631004,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636751feed7a1837fefa05"
+  },
+  "frame": 56,
+  "label": "glass",
+  "x": 77.09948539733887,
+  "y": 84.50889587402344,
+  "width": 1142.0759296417236,
+  "height": 327.69800662994385,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "6563675cfeed7a1837fefa06"
+  },
+  "frame": 57,
+  "label": "glass",
+  "x": 0,
+  "y": 125,
+  "width": 1216,
+  "height": 354,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636768feed7a1837fefa07"
+  },
+  "frame": 58,
+  "label": "glass",
+  "x": 406,
+  "y": 137,
+  "width": 592,
+  "height": 517,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636771feed7a1837fefa08"
+  },
+  "frame": 59,
+  "label": "glass",
+  "x": 218,
+  "y": 134,
+  "width": 640,
+  "height": 466,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "6563677cfeed7a1837fefa09"
+  },
+  "frame": 60,
+  "label": "glass",
+  "x": 538,
+  "y": 159,
+  "width": 365,
+  "height": 559,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636782feed7a1837fefa0a"
+  },
+  "frame": 61,
+  "label": "glass",
+  "x": 498.20812225341797,
+  "y": 45.45898497104645,
+  "width": 534.7602462768555,
+  "height": 674.5410150289536,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "6563678cfeed7a1837fefa0b"
+  },
+  "frame": 62,
+  "label": "glass",
+  "x": 154,
+  "y": 226,
+  "width": 948,
+  "height": 237,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636795feed7a1837fefa0c"
+  },
+  "frame": 63,
+  "label": "glass",
+  "x": 30,
+  "y": 69,
+  "width": 905.2394866943359,
+  "height": 652.6739519834518,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "6563679ffeed7a1837fefa0d"
+  },
+  "frame": 64,
+  "label": "glass",
+  "x": 402,
+  "y": 185,
+  "width": 461,
+  "height": 534,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656367b4feed7a1837fefa0e"
+  },
+  "frame": 65,
+  "label": "glass",
+  "x": 412,
+  "y": 199,
+  "width": 794,
+  "height": 520,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656367b8feed7a1837fefa0f"
+  },
+  "frame": 66,
+  "label": "glass",
+  "x": 215.25781631469727,
+  "y": 149.32005643844604,
+  "width": 912.5605583190918,
+  "height": 440.8941578865051,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656367befeed7a1837fefa10"
+  },
+  "frame": 67,
+  "label": "glass",
+  "x": 299.51183319091797,
+  "y": 227.76344776153564,
+  "width": 564.9417495727539,
+  "height": 279.16062355041504,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656367c8feed7a1837fefa11"
+  },
+  "frame": 68,
+  "label": "glass",
+  "x": 0,
+  "y": 6,
+  "width": 1149.3974915146828,
+  "height": 674.1025543212891,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656367dcfeed7a1837fefa12"
+  },
+  "frame": 69,
+  "label": "glass",
+  "x": 431,
+  "y": 63,
+  "width": 838,
+  "height": 373,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656367effeed7a1837fefa13"
+  },
+  "frame": 70,
+  "label": "glass",
+  "x": 12,
+  "y": 32,
+  "width": 1129,
+  "height": 687,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656367fefeed7a1837fefa14"
+  },
+  "frame": 71,
+  "label": "glass",
+  "x": 67,
+  "y": 178,
+  "width": 1065,
+  "height": 253,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636803feed7a1837fefa15"
+  },
+  "frame": 72,
+  "label": "glass",
+  "x": 355.74913024902344,
+  "y": 187.52672910690308,
+  "width": 924.2508697509766,
+  "height": 491.9790816307068,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636810feed7a1837fefa16"
+  },
+  "frame": 73,
+  "label": "glass",
+  "x": 278,
+  "y": 250,
+  "width": 677,
+  "height": 292,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "6563681afeed7a1837fefa17"
+  },
+  "frame": 74,
+  "label": "glass",
+  "x": 362,
+  "y": 253,
+  "width": 312,
+  "height": 233,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636828feed7a1837fefa18"
+  },
+  "frame": 75,
+  "label": "glass",
+  "x": 398,
+  "y": 230,
+  "width": 636,
+  "height": 485,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "6563682dfeed7a1837fefa19"
+  },
+  "frame": 76,
+  "label": "glass",
+  "x": 18.97058129310608,
+  "y": 112.03948616981506,
+  "width": 902.3443448543549,
+  "height": 525.1982295513153,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636836feed7a1837fefa1a"
+  },
+  "frame": 77,
+  "label": "glass",
+  "x": 592,
+  "y": 291,
+  "width": 525,
+  "height": 427,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "6563683efeed7a1837fefa1b"
+  },
+  "frame": 78,
+  "label": "glass",
+  "x": 488.46229553222656,
+  "y": 0,
+  "width": 689.466552734375,
+  "height": 720,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "6563684dfeed7a1837fefa1c"
+  },
+  "frame": 79,
+  "label": "glass",
+  "x": 341,
+  "y": 213,
+  "width": 932,
+  "height": 506,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636865feed7a1837fefa1d"
+  },
+  "frame": 80,
+  "label": "glass",
+  "x": 508,
+  "y": 105,
+  "width": 463,
+  "height": 619,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "6563687cfeed7a1837fefa1e"
+  },
+  "frame": 81,
+  "label": "glass",
+  "x": 313,
+  "y": 187,
+  "width": 706,
+  "height": 532,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636882feed7a1837fefa1f"
+  },
+  "frame": 82,
+  "label": "glass",
+  "x": 178.55981826782227,
+  "y": 37.37231522798538,
+  "width": 1101.4401817321777,
+  "height": 626.8126317858696,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636886feed7a1837fefa20"
+  },
+  "frame": 83,
+  "label": "glass",
+  "x": 207.00435638427734,
+  "y": 0,
+  "width": 1018.4489822387695,
+  "height": 720,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "6563688afeed7a1837fefa21"
+  },
+  "frame": 84,
+  "label": "glass",
+  "x": 368.74217987060547,
+  "y": 50.942503809928894,
+  "width": 753.6349868774414,
+  "height": 647.1827298402786,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656368a1feed7a1837fefa22"
+  },
+  "frame": 85,
+  "label": "glass",
+  "x": 6,
+  "y": 215,
+  "width": 1247,
+  "height": 502,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656368affeed7a1837fefa23"
+  },
+  "frame": 86,
+  "label": "glass",
+  "x": 431,
+  "y": 34,
+  "width": 520,
+  "height": 597,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656368b3feed7a1837fefa24"
+  },
+  "frame": 87,
+  "label": "glass",
+  "x": 92.50268936157227,
+  "y": 184.49782848358154,
+  "width": 982.2228813171387,
+  "height": 386.8677520751953,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656368b8feed7a1837fefa25"
+  },
+  "frame": 88,
+  "label": "glass",
+  "x": 116.1871337890625,
+  "y": 220.19635677337646,
+  "width": 1013.8893890380859,
+  "height": 331.73076152801514,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656368c3feed7a1837fefa26"
+  },
+  "frame": 89,
+  "label": "glass",
+  "x": 380,
+  "y": 183,
+  "width": 786,
+  "height": 429,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656368cefeed7a1837fefa27"
+  },
+  "frame": 90,
+  "label": "glass",
+  "x": 307,
+  "y": 181,
+  "width": 951,
+  "height": 525,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656368d6feed7a1837fefa28"
+  },
+  "frame": 91,
+  "label": "glass",
+  "x": 344,
+  "y": 226,
+  "width": 784,
+  "height": 355,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656368ddfeed7a1837fefa29"
+  },
+  "frame": 92,
+  "label": "glass",
+  "x": 158,
+  "y": 140,
+  "width": 895.1263427734375,
+  "height": 270.41420817375183,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656368e7feed7a1837fefa2a"
+  },
+  "frame": 93,
+  "label": "glass",
+  "x": 245,
+  "y": 105,
+  "width": 828,
+  "height": 594,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656368f6feed7a1837fefa2b"
+  },
+  "frame": 94,
+  "label": "glass",
+  "x": 212,
+  "y": 114,
+  "width": 755,
+  "height": 508,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636907feed7a1837fefa2c"
+  },
+  "frame": 95,
+  "label": "glass",
+  "x": 521,
+  "y": 207,
+  "width": 753,
+  "height": 506,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636910feed7a1837fefa2d"
+  },
+  "frame": 96,
+  "label": "glass",
+  "x": 284,
+  "y": 109,
+  "width": 649,
+  "height": 491,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "6563691cfeed7a1837fefa2e"
+  },
+  "frame": 97,
+  "label": "glass",
+  "x": 115,
+  "y": 258,
+  "width": 904,
+  "height": 235,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636925feed7a1837fefa2f"
+  },
+  "frame": 98,
+  "label": "glass",
+  "x": 664,
+  "y": 6,
+  "width": 615,
+  "height": 713,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636938feed7a1837fefa30"
+  },
+  "frame": 99,
+  "label": "glass",
+  "x": 343,
+  "y": 89,
+  "width": 930,
+  "height": 624,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636987feed7a1837fefa31"
+  },
+  "frame": 150,
+  "label": "metal",
+  "x": 255.51464080810547,
+  "y": 133.51568698883057,
+  "width": 677.9477310180664,
+  "height": 524.4283390045166,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636991feed7a1837fefa32"
+  },
+  "frame": 151,
+  "label": "metal",
+  "x": 276,
+  "y": 132,
+  "width": 903,
+  "height": 299,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636995feed7a1837fefa33"
+  },
+  "frame": 152,
+  "label": "metal",
+  "x": 282.9034423828125,
+  "y": 16.439331471920013,
+  "width": 823.9450836181641,
+  "height": 637.2922530770302,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636999feed7a1837fefa34"
+  },
+  "frame": 153,
+  "label": "metal",
+  "x": 273.19202423095703,
+  "y": 95.02086997032166,
+  "width": 709.0349960327148,
+  "height": 611.5272295475006,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656369a0feed7a1837fefa35"
+  },
+  "frame": 154,
+  "label": "metal",
+  "x": 234,
+  "y": 34,
+  "width": 937.8431129455566,
+  "height": 695.1551511883736,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656369a4feed7a1837fefa36"
+  },
+  "frame": 155,
+  "label": "metal",
+  "x": 262.53894805908203,
+  "y": 9.541442915797234,
+  "width": 764.999885559082,
+  "height": 646.8841952830553,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656369a8feed7a1837fefa37"
+  },
+  "frame": 156,
+  "label": "metal",
+  "x": 364.84752655029297,
+  "y": 189.03571844100952,
+  "width": 446.95178985595703,
+  "height": 390.0972819328308,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656369b0feed7a1837fefa38"
+  },
+  "frame": 157,
+  "label": "metal",
+  "x": 510.94532012939453,
+  "y": 230.3920340538025,
+  "width": 336.14559173583984,
+  "height": 272.9865860939026,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656369b5feed7a1837fefa39"
+  },
+  "frame": 158,
+  "label": "metal",
+  "x": 404.90440368652344,
+  "y": 0,
+  "width": 772.1343231201172,
+  "height": 720,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656369b9feed7a1837fefa3a"
+  },
+  "frame": 159,
+  "label": "metal",
+  "x": 352.0815658569336,
+  "y": 108.84814023971558,
+  "width": 729.8646926879883,
+  "height": 558.0947184562683,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656369bcfeed7a1837fefa3b"
+  },
+  "frame": 160,
+  "label": "metal",
+  "x": 321.8578338623047,
+  "y": 184.6493625640869,
+  "width": 654.6774291992188,
+  "height": 366.56158447265625,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656369bffeed7a1837fefa3c"
+  },
+  "frame": 161,
+  "label": "metal",
+  "x": 362.13321685791016,
+  "y": 143.59441995620728,
+  "width": 571.6794204711914,
+  "height": 472.3447108268738,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656369c3feed7a1837fefa3d"
+  },
+  "frame": 162,
+  "label": "metal",
+  "x": 324.7060775756836,
+  "y": 46.45044207572937,
+  "width": 898.8811111450195,
+  "height": 673.5495579242706,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656369c8feed7a1837fefa3e"
+  },
+  "frame": 163,
+  "label": "metal",
+  "x": 306.23485565185547,
+  "y": 126.20038032531738,
+  "width": 627.1918106079102,
+  "height": 503.1687641143799,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656369ccfeed7a1837fefa3f"
+  },
+  "frame": 164,
+  "label": "metal",
+  "x": 284.9666404724121,
+  "y": 209.74316596984863,
+  "width": 613.7683296203613,
+  "height": 350.7071542739868,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656369d0feed7a1837fefa40"
+  },
+  "frame": 165,
+  "label": "metal",
+  "x": 72.950439453125,
+  "y": 140.42871594429016,
+  "width": 1207.049560546875,
+  "height": 407.02722430229187,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656369edfeed7a1837fefa44"
+  },
+  "frame": 167,
+  "label": "metal",
+  "x": 321,
+  "y": 317,
+  "width": 405,
+  "height": 268,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656369f3feed7a1837fefa45"
+  },
+  "frame": 168,
+  "label": "metal",
+  "x": 179.61084365844727,
+  "y": 0,
+  "width": 856.6802024841309,
+  "height": 647.4708795547485,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "656369f8feed7a1837fefa46"
+  },
+  "frame": 169,
+  "label": "metal",
+  "x": 254.96612548828125,
+  "y": 55.64801037311554,
+  "width": 703.1491851806641,
+  "height": 563.2374304533005,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636a05feed7a1837fefa49"
+  },
+  "frame": 171,
+  "label": "metal",
+  "x": 308.59411239624023,
+  "y": 82.25712776184082,
+  "width": 609.0110206604004,
+  "height": 437.1389150619507,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636a09feed7a1837fefa4a"
+  },
+  "frame": 172,
+  "label": "metal",
+  "x": 632.530517578125,
+  "y": 149.73418951034546,
+  "width": 534.2509460449219,
+  "height": 570.2658104896545,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636a19feed7a1837fefa4f"
+  },
+  "frame": 175,
+  "label": "metal",
+  "x": 177.39242553710938,
+  "y": 19.062499701976776,
+  "width": 922.0171356201172,
+  "height": 643.8694050908089,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636a1efeed7a1837fefa50"
+  },
+  "frame": 176,
+  "label": "metal",
+  "x": 322.1643829345703,
+  "y": 148.22985649108887,
+  "width": 698.4621429443359,
+  "height": 391.7586851119995,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636a22feed7a1837fefa51"
+  },
+  "frame": 177,
+  "label": "metal",
+  "x": 89.12805557250977,
+  "y": 92.52325057983398,
+  "width": 782.2203636169434,
+  "height": 474.94767665863037,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636a24feed7a1837fefa52"
+  },
+  "frame": 178,
+  "label": "metal",
+  "x": 255.53638458251953,
+  "y": 170.26702523231506,
+  "width": 717.358512878418,
+  "height": 549.7329747676849,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636a27feed7a1837fefa53"
+  },
+  "frame": 179,
+  "label": "metal",
+  "x": 425.29151916503906,
+  "y": 70.04895150661469,
+  "width": 809.8625183105469,
+  "height": 649.9510484933853,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636a2afeed7a1837fefa54"
+  },
+  "frame": 180,
+  "label": "metal",
+  "x": 553.4487152099609,
+  "y": 156.59124612808228,
+  "width": 726.5512847900391,
+  "height": 563.4087538719177,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636a2dfeed7a1837fefa55"
+  },
+  "frame": 181,
+  "label": "metal",
+  "x": 388.6280059814453,
+  "y": 65.53747594356537,
+  "width": 508.9392852783203,
+  "height": 400.25159418582916,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636a30feed7a1837fefa56"
+  },
+  "frame": 182,
+  "label": "metal",
+  "x": 359.43077087402344,
+  "y": 240.23705005645752,
+  "width": 588.4279632568359,
+  "height": 479.7629499435425,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636a38feed7a1837fefa57"
+  },
+  "frame": 183,
+  "label": "metal",
+  "x": 24.078369140625,
+  "y": 0,
+  "width": 1255.921630859375,
+  "height": 717.8271532058716,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636a43feed7a1837fefa58"
+  },
+  "frame": 184,
+  "label": "metal",
+  "x": 482,
+  "y": 240,
+  "width": 291,
+  "height": 226,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636a47feed7a1837fefa59"
+  },
+  "frame": 185,
+  "label": "metal",
+  "x": 113.07275772094727,
+  "y": 38.67773562669754,
+  "width": 1035.2985954284668,
+  "height": 681.3222643733025,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636a4bfeed7a1837fefa5a"
+  },
+  "frame": 186,
+  "label": "metal",
+  "x": 19.28076148033142,
+  "y": 26.495727002620697,
+  "width": 1260.3552401065826,
+  "height": 693.5042729973793,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636a53feed7a1837fefa5b"
+  },
+  "frame": 187,
+  "label": "metal",
+  "x": 400,
+  "y": 223,
+  "width": 836,
+  "height": 494,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636a57feed7a1837fefa5c"
+  },
+  "frame": 188,
+  "label": "metal",
+  "x": 135.80105781555176,
+  "y": 138.39795112609863,
+  "width": 796.9001293182373,
+  "height": 528.8476753234863,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636a5afeed7a1837fefa5d"
+  },
+  "frame": 189,
+  "label": "metal",
+  "x": 118.54272842407227,
+  "y": 25.28039664030075,
+  "width": 1153.6467552185059,
+  "height": 694.7196033596992,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636a60feed7a1837fefa5f"
+  },
+  "frame": 191,
+  "label": "metal",
+  "x": 287.3475646972656,
+  "y": 222.22307682037354,
+  "width": 602.4440765380859,
+  "height": 291.66688442230225,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636a63feed7a1837fefa60"
+  },
+  "frame": 192,
+  "label": "metal",
+  "x": 387.9924011230469,
+  "y": 131.45369052886963,
+  "width": 406.2446594238281,
+  "height": 417.22997188568115,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636a6dfeed7a1837fefa61"
+  },
+  "frame": 190,
+  "label": "metal",
+  "x": 169,
+  "y": 203,
+  "width": 875,
+  "height": 377,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636a73feed7a1837fefa62"
+  },
+  "frame": 193,
+  "label": "metal",
+  "x": 159.1797161102295,
+  "y": 225.97791194915771,
+  "width": 946.1610889434814,
+  "height": 350.51390647888184,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636a76feed7a1837fefa63"
+  },
+  "frame": 194,
+  "label": "metal",
+  "x": 157.45593070983887,
+  "y": 20.06152331829071,
+  "width": 993.3283710479736,
+  "height": 648.77257168293,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636a79feed7a1837fefa64"
+  },
+  "frame": 195,
+  "label": "metal",
+  "x": 77.45251655578613,
+  "y": 48.849608302116394,
+  "width": 1202.5474834442139,
+  "height": 671.1503916978836,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636a7cfeed7a1837fefa65"
+  },
+  "frame": 196,
+  "label": "metal",
+  "x": 362.04524993896484,
+  "y": 202.38324880599976,
+  "width": 394.3740463256836,
+  "height": 321.93466901779175,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636a80feed7a1837fefa66"
+  },
+  "frame": 197,
+  "label": "metal",
+  "x": 402.29442596435547,
+  "y": 183.90703439712524,
+  "width": 637.3630142211914,
+  "height": 412.77546644210815,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636a83feed7a1837fefa67"
+  },
+  "frame": 198,
+  "label": "metal",
+  "x": 422.0281219482422,
+  "y": 142.62745141983032,
+  "width": 435.3095245361328,
+  "height": 346.2853932380676,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636a94feed7a1837fefa68"
+  },
+  "frame": 199,
+  "label": "metal",
+  "x": 277,
+  "y": 139,
+  "width": 996,
+  "height": 575,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636acafeed7a1837fefa69"
+  },
+  "frame": 250,
+  "label": "paper",
+  "x": 109.81884956359863,
+  "y": 55.41149854660034,
+  "width": 1138.633451461792,
+  "height": 656.4220118522644,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636acefeed7a1837fefa6a"
+  },
+  "frame": 251,
+  "label": "paper",
+  "x": 8.64501953125,
+  "y": 85.12255847454071,
+  "width": 1122.8303527832031,
+  "height": 634.8774415254593,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636ad6feed7a1837fefa6b"
+  },
+  "frame": 252,
+  "label": "paper",
+  "x": 175.85033416748047,
+  "y": 19.948363602161407,
+  "width": 924.6506118774414,
+  "height": 609.3029782176018,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636ae4feed7a1837fefa6c"
+  },
+  "frame": 253,
+  "label": "paper",
+  "x": 1,
+  "y": 80,
+  "width": 987,
+  "height": 558,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636afcfeed7a1837fefa6d"
+  },
+  "frame": 254,
+  "label": "paper",
+  "x": 47,
+  "y": 43,
+  "width": 914,
+  "height": 672,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636b05feed7a1837fefa6e"
+  },
+  "frame": 255,
+  "label": "paper",
+  "x": 96.64880752563477,
+  "y": 67.97326505184174,
+  "width": 912.5949668884277,
+  "height": 602.0883804559708,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636b09feed7a1837fefa6f"
+  },
+  "frame": 256,
+  "label": "paper",
+  "x": 130.04541397094727,
+  "y": 0,
+  "width": 1149.9545860290527,
+  "height": 695.5497980117798,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636b0cfeed7a1837fefa70"
+  },
+  "frame": 257,
+  "label": "paper",
+  "x": 89.51281547546387,
+  "y": 162.50701904296875,
+  "width": 967.0606708526611,
+  "height": 557.4929809570312,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636b0ffeed7a1837fefa71"
+  },
+  "frame": 258,
+  "label": "paper",
+  "x": 4.3541258573532104,
+  "y": 9.425171166658401,
+  "width": 1124.4495850801468,
+  "height": 710.5748288333416,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636b13feed7a1837fefa72"
+  },
+  "frame": 259,
+  "label": "paper",
+  "x": 3.0159911513328552,
+  "y": 57.097594141960144,
+  "width": 1199.8061218857765,
+  "height": 607.6923304796219,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636b16feed7a1837fefa73"
+  },
+  "frame": 260,
+  "label": "paper",
+  "x": 129.38302993774414,
+  "y": 4.253906384110451,
+  "width": 978.2085227966309,
+  "height": 677.9427393525839,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636b22feed7a1837fefa74"
+  },
+  "frame": 261,
+  "label": "paper",
+  "x": 33,
+  "y": 85,
+  "width": 1200,
+  "height": 622,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636b25feed7a1837fefa75"
+  },
+  "frame": 262,
+  "label": "paper",
+  "x": 204.06158447265625,
+  "y": 81.43493413925171,
+  "width": 808.1086730957031,
+  "height": 638.5650658607483,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636b28feed7a1837fefa76"
+  },
+  "frame": 263,
+  "label": "paper",
+  "x": 71.33069038391113,
+  "y": 162.15272068977356,
+  "width": 1052.6054668426514,
+  "height": 440.3013789653778,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636b35feed7a1837fefa77"
+  },
+  "frame": 264,
+  "label": "paper",
+  "x": 167,
+  "y": 25,
+  "width": 804,
+  "height": 592,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636b40feed7a1837fefa78"
+  },
+  "frame": 265,
+  "label": "paper",
+  "x": 96,
+  "y": 184,
+  "width": 854,
+  "height": 364,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636b44feed7a1837fefa79"
+  },
+  "frame": 266,
+  "label": "paper",
+  "x": 133.32250595092773,
+  "y": 12.607665807008743,
+  "width": 949.6662330627441,
+  "height": 658.2424204051495,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636b47feed7a1837fefa7a"
+  },
+  "frame": 267,
+  "label": "paper",
+  "x": 186.21129989624023,
+  "y": 56.193727254867554,
+  "width": 1057.9857063293457,
+  "height": 594.703985452652,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636b4afeed7a1837fefa7b"
+  },
+  "frame": 268,
+  "label": "paper",
+  "x": 16.67700171470642,
+  "y": 76.02612555027008,
+  "width": 1262.7114260196686,
+  "height": 642.4239438772202,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636b4efeed7a1837fefa7c"
+  },
+  "frame": 269,
+  "label": "paper",
+  "x": 109.12878036499023,
+  "y": 10.213928371667862,
+  "width": 966.0008430480957,
+  "height": 691.5541313588619,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636b51feed7a1837fefa7d"
+  },
+  "frame": 270,
+  "label": "paper",
+  "x": 72.1478271484375,
+  "y": 107.75767207145691,
+  "width": 999.3902587890625,
+  "height": 454.23622727394104,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636b5bfeed7a1837fefa7e"
+  },
+  "frame": 271,
+  "label": "paper",
+  "x": 95.88879585266113,
+  "y": 16.736876964569092,
+  "width": 1101.0681438446045,
+  "height": 673.7565922737122,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636b5ffeed7a1837fefa7f"
+  },
+  "frame": 272,
+  "label": "paper",
+  "x": 224.65179443359375,
+  "y": 8.90222154557705,
+  "width": 732.4983978271484,
+  "height": 673.0619946867228,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636b6afeed7a1837fefa80"
+  },
+  "frame": 273,
+  "label": "paper",
+  "x": 84,
+  "y": 28.111143708229065,
+  "width": 1021.0925445556641,
+  "height": 637.8888562917709,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636b73feed7a1837fefa81"
+  },
+  "frame": 274,
+  "label": "paper",
+  "x": 217,
+  "y": 224,
+  "width": 881,
+  "height": 384,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636b7ffeed7a1837fefa82"
+  },
+  "frame": 275,
+  "label": "paper",
+  "x": 164,
+  "y": 88,
+  "width": 1011,
+  "height": 591,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636b8efeed7a1837fefa83"
+  },
+  "frame": 276,
+  "label": "paper",
+  "x": 1,
+  "y": 301,
+  "width": 1277,
+  "height": 418,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636b95feed7a1837fefa84"
+  },
+  "frame": 277,
+  "label": "paper",
+  "x": 116,
+  "y": 114,
+  "width": 837.2769451141357,
+  "height": 454.48291540145874,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636ba2feed7a1837fefa85"
+  },
+  "frame": 278,
+  "label": "paper",
+  "x": 188,
+  "y": 3,
+  "width": 908,
+  "height": 677,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636ba6feed7a1837fefa86"
+  },
+  "frame": 279,
+  "label": "paper",
+  "x": 100.54931640625,
+  "y": 0,
+  "width": 1118.519515991211,
+  "height": 690.0751304626465,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636ba9feed7a1837fefa87"
+  },
+  "frame": 280,
+  "label": "paper",
+  "x": 3.7733155488967896,
+  "y": 6.0930173099040985,
+  "width": 1215.1645201444626,
+  "height": 662.1832211315632,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636bacfeed7a1837fefa88"
+  },
+  "frame": 281,
+  "label": "paper",
+  "x": 56.949830055236816,
+  "y": 43.64385902881622,
+  "width": 1052.2277975082397,
+  "height": 630.6461924314499,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636bb3feed7a1837fefa89"
+  },
+  "frame": 282,
+  "label": "paper",
+  "x": 8.594970703125,
+  "y": 162.30663657188416,
+  "width": 1265.6591796875,
+  "height": 557.6933634281158,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636bb6feed7a1837fefa8a"
+  },
+  "frame": 283,
+  "label": "paper",
+  "x": 224.38648223876953,
+  "y": 65.73877036571503,
+  "width": 979.7781753540039,
+  "height": 654.261229634285,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636bc0feed7a1837fefa8b"
+  },
+  "frame": 284,
+  "label": "paper",
+  "x": 227,
+  "y": 135,
+  "width": 1052,
+  "height": 573,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636bc9feed7a1837fefa8c"
+  },
+  "frame": 285,
+  "label": "paper",
+  "x": 320,
+  "y": 234,
+  "width": 468,
+  "height": 286,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636bcefeed7a1837fefa8d"
+  },
+  "frame": 286,
+  "label": "paper",
+  "x": 53.992676734924316,
+  "y": 19.57910120487213,
+  "width": 1049.7255849838257,
+  "height": 677.7075237035751,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636bd1feed7a1837fefa8e"
+  },
+  "frame": 287,
+  "label": "paper",
+  "x": 219.84216690063477,
+  "y": 144.13346886634827,
+  "width": 622.1211814880371,
+  "height": 467.44104266166687,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636bddfeed7a1837fefa8f"
+  },
+  "frame": 288,
+  "label": "paper",
+  "x": 20,
+  "y": 149,
+  "width": 1198,
+  "height": 495,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636be0feed7a1837fefa90"
+  },
+  "frame": 289,
+  "label": "paper",
+  "x": 143.02340507507324,
+  "y": 30.571898818016052,
+  "width": 810.9045886993408,
+  "height": 670.6082636117935,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636be4feed7a1837fefa91"
+  },
+  "frame": 290,
+  "label": "paper",
+  "x": 34.940552711486816,
+  "y": 80.62829732894897,
+  "width": 1042.2316884994507,
+  "height": 555.0831341743469,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636bf3feed7a1837fefa93"
+  },
+  "frame": 292,
+  "label": "paper",
+  "x": 11,
+  "y": 13,
+  "width": 1266,
+  "height": 698,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636bf9feed7a1837fefa95"
+  },
+  "frame": 294,
+  "label": "paper",
+  "x": 24.009277820587158,
+  "y": 1.004272447898984,
+  "width": 1029.743926525116,
+  "height": 653.4991874825209,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636bfdfeed7a1837fefa96"
+  },
+  "frame": 295,
+  "label": "paper",
+  "x": 107.69128799438477,
+  "y": 25.928834080696106,
+  "width": 1006.1343955993652,
+  "height": 677.2316998243332,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636c01feed7a1837fefa97"
+  },
+  "frame": 296,
+  "label": "paper",
+  "x": 33.73300075531006,
+  "y": 50.33514440059662,
+  "width": 993.8552713394165,
+  "height": 623.9854198694229,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636c0cfeed7a1837fefa98"
+  },
+  "frame": 297,
+  "label": "paper",
+  "x": 154,
+  "y": 91,
+  "width": 941,
+  "height": 505,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636c15feed7a1837fefa99"
+  },
+  "frame": 298,
+  "label": "paper",
+  "x": 311,
+  "y": 195,
+  "width": 632,
+  "height": 396,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+},
+{
+  "_id": {
+    "$oid": "65636c4afeed7a1837fefa9a"
+  },
+  "frame": 299,
+  "label": "paper",
+  "x": 6.2738037109375,
+  "y": 8.876098841428757,
+  "width": 1194.5257568359375,
+  "height": 700.2077825367451,
+  "project_id": {
+    "$oid": "656356c1621572c4c143ec9a"
+  }
+}]
