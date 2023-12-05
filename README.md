@@ -32,9 +32,8 @@ pip install
 ```
 
 ### `Step 4` - Install MongoDB
-```bash
 Make sure to install MongoDB
-```
+
 
 ### `Step 5` - Run the API
 ```bash
@@ -42,8 +41,8 @@ python app.py
 ```
 
 ### `Step 6` - Run the website
+Open bash shell in the frontend directory, and run the command:
 ```bash
-Open bash shell in the frontend directory, and run :
 npm start
 ```
 
