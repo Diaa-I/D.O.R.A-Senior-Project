@@ -30,7 +30,7 @@ pip install
 ```
 ### `Step 4` - Install MongoDB
 ```bash
-Make sure to install mongoDB
+Make sure to install MongoDB
 ```
 ### `Step 5` - Run the application
 ```bash
