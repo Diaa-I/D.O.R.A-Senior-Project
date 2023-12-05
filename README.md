@@ -18,25 +18,36 @@ Our project is mainly about facilitating the annotation process, which is an ess
 ```bash
 git clone https://github.com/Diaa-I/Junior-Project.git
 ```
+
 ### `Step 2` - Cd in the repository
 ```bash
 cd Junior-Project
 ```
+
 ### `Step 3` - Install requirements
 ```bash
 pip install -r requirements.txt
 npm install
 pip install
 ```
+
 ### `Step 4` - Install MongoDB
 ```bash
 Make sure to install MongoDB
 ```
-### `Step 5` - Run the application
+
+### `Step 5` - Run the API
 ```bash
 python app.py
 ```
-### `Step 6` - Access the application
+
+### `Step 6` - Run the website
+```bash
+Open bash shell in the frontend directory, and run :
+npm start
+```
+
+### `Step 7` - Access the application
 
 Open a web browser and navigate to [http://localhost:5000](http://localhost:5000)
 
