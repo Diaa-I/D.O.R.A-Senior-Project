@@ -25,14 +25,44 @@ cd Junior-Project
 ### `Step 3` - Install requirements
 ```bash
 pip install -r requirements.txt
+npm install
+pip install
 ```
-### `Step 4` - Run the application
+### `Step 4` - Install MongoDB
+```bash
+Make sure to install mongoDB
+```
+### `Step 5` - Run the application
 ```bash
 python app.py
 ```
-### `Step 5` - Access the application
+### `Step 6` - Access the application
 
 Open a web browser and navigate to [http://localhost:5000](http://localhost:5000)
+
+## Libraries used
+### Python:
+os
+shutil
+sys
+cv2
+yaml
+flask
+natsort
+flask_pymongo
+json
+bson
+flask_cors
+glob
+Path
+
+### Npm:
+react
+axios
+react-router-dom
+react-bootstrap
+react-icons
+
 
 ## Contributors
 
