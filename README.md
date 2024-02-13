@@ -30,8 +30,10 @@ npm install
 pip install
 ```
 
-### `Step 4` - Install MongoDB - [Windows](https://youtu.be/gB6WLkSrtJk?si=6USVCiglkay2ZHW-](https://youtu.be/uo3VHw8v_GE?si=DicKOqtd7UghhRjO) [MacOS](https://youtu.be/8gUQL2zlpvI?si=w_zbzBRLsRSa9rsO)
-Make sure to install MongoDB
+### `Step 4` - Install MongoDB  
+
+Make sure to install MongoDB- [Windows](https://youtu.be/uo3VHw8v_GE?si=DicKOqtd7UghhRjO) [MacOS](https://youtu.be/8gUQL2zlpvI?si=w_zbzBRLsRSa9rsO)
+
 
 
 ### `Step 5` - Run the API
