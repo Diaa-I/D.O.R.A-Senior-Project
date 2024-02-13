@@ -5,13 +5,12 @@
 # Dynamic Object Recognition and Annotation (DORA)
 
 ## Overview
-Over the past few years, Artificial Intelligence (AI) has been used to solve different kinds of problems in many fields. Supervised learning requires data to be annotated manually. The manual annotation process is time-consuming and prone to error. Thus, there is a growing demand for automated annotation solutions that can accurately and efficiently label data. The project's objective is to develop a system that can automatically annotate images with high accuracy, speed, and efficiency, while also improving its performance through reinforcement learning.
+Over the past few years, Artificial Intelligence (AI) has been used to solve different kinds of problems in many fields. Supervised learning requires data to be annotated manually. The manual annotation process is time-consuming and prone to error. Thus, there is a growing demand for automated annotation solutions that can accurately and efficiently label data. The project's objective is to develop a system that can automatically annotate images with high accuracy, speed, and efficiency.
 
-We believe this project can significantly impact the field of semi-automated video annotation. By combining the strengths of object detection and reinforcement learning, our system can overcome the limitations of traditional annotation methods and provide a more efficient and effective solution.
-
+The motivation behind our project arises from the limitations of existing manual annotation tools. While manual annotation is a common practice in the data collection and preprocessing pipeline, current tools struggle to be fast enough to assist users. Manual annotation is a very time-consuming task and, in some applications, very expensive. By tackling these challenges our project aims to facilitate the data annotation process, offering a solution that overcomes the limitations of the traditional annotation methods. 
 ## Project Summary
 
-Our project is mainly about facilitating the annotation process, which is an essential part of any supervised learning process. This project will provide an easy-to-use web application that will make the annotation process much faster. The idea is to use a small part of the video to build an initial model which will be used to suggest the annotation of the following frames. The user will be able to accept or reject the suggested annotations by using reinforcement learning which will improve the model performance using the user feedback as well as retraining. The aim of the project is not to replace human annotators, but to significantly speed up their work.
+Our project is mainly about facilitating the annotation process, which is an essential part of any supervised learning process. This project will provide an easy-to-use web application that will make the annotation process much faster. The idea is to use a small part of the video to build an initial model which will be used to suggest the annotation of the following frames. The user will be able to accept or reject the suggested annotations. The aim of the project is not to replace human annotators, but to significantly speed up their work.
 
 ## Installation
 ### `Step 1` - Clone the repository
@@ -31,7 +30,7 @@ npm install
 pip install
 ```
 
-### `Step 4` - Install MongoDB
+### `Step 4` - Install MongoDB - [Windows](https://youtu.be/gB6WLkSrtJk?si=6USVCiglkay2ZHW-](https://youtu.be/uo3VHw8v_GE?si=DicKOqtd7UghhRjO) [MacOS](https://youtu.be/8gUQL2zlpvI?si=w_zbzBRLsRSa9rsO)
 Make sure to install MongoDB
 
 
